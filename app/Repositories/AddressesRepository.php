@@ -31,4 +31,17 @@ class AddressesRepository implements AddressesInterface
     {
         return $this->model->all();
     }
+
+    public function getAddressByDepartmentWise()
+    {
+        $addresses = $this->all();
+        $data = [];
+        foreach ($addresses as $address) {
+            $data[$address->department_id][$address->id]['address_1'] = $address->address_1;
+            $data[$address->department_id][$address->id]['address_2'] = json_decode($address->address_2);
+            $data[$address->department_id][$address->id]['postal_no'] = $address->postal_no;
+        }
+
+        return $data;
+    }
 }

@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Claims;
+use App\Repositories\AddressesInterface;
+use App\Repositories\ClaimInterface;
+use App\Repositories\ClaimMechanicsInterface;
+use App\Repositories\ClaimTypesInterface;
+use App\Repositories\DepartmentsInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -10,7 +16,48 @@ use Validator;
 
 class PassportController extends Controller
 {
-    public $sucessStatus = 200;
+    public $successStatus = 200;
+    /**
+     * @var ClaimTypesInterface
+     */
+    private $claimTypes;
+    /**
+     * @var ClaimMechanicsInterface
+     */
+    private $claimMechanics;
+    /**
+     * @var DepartmentsInterface
+     */
+    private $departments;
+    /**
+     * @var AddressesInterface
+     */
+    private $addresses;
+    /**
+     * @var ClaimInterface
+     */
+    private $claim;
+
+    /**
+     * PassportController constructor.
+     * @param ClaimInterface $claim
+     * @param ClaimTypesInterface $claimTypes
+     * @param ClaimMechanicsInterface $claimMechanics
+     * @param DepartmentsInterface $departments
+     * @param AddressesInterface $addresses
+     */
+    public function __construct(ClaimInterface $claim,
+                                ClaimTypesInterface $claimTypes,
+                                ClaimMechanicsInterface $claimMechanics,
+                                DepartmentsInterface $departments,
+                                AddressesInterface $addresses)
+    {
+        $this->claim = $claim;
+        $this->claimTypes = $claimTypes;
+        $this->claimMechanics = $claimMechanics;
+        $this->departments = $departments;
+        $this->addresses = $addresses;
+    }
 
     /*
      * login api
@@ -25,12 +72,12 @@ class PassportController extends Controller
             $success['token'] = $user->createToken('MyApp')->accessToken;
             return response()->json(
                 [
-                    'status' => $this->sucessStatus,
+                    'status' => $this->successStatus,
                     'token' => $success['token'],
                     'roles' => ($user->roles) ? $user->roles : [],
                     'modules' => ($user->modules) ? $user->modules: [],
                 ],
-                $this->sucessStatus
+                $this->successStatus
             );
         }
         else {
@@ -63,21 +110,46 @@ class PassportController extends Controller
 
         return response()->json(
             [
-                'status' => $this->sucessStatus,
+                'status' => $this->successStatus,
                 'token' => $success['token']
             ],
-            $this->sucessStatus
+            $this->successStatus
         );
     }
 
-    /*
-     * details api
-     *
-     * @return \Illumiante\Http\Response
+    /**
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getClaimFormData() {
-        $user = Auth::user();
-        return response()->json(['success' => $user], $this->sucessStatus);
+        $claimTypes = $this->claimTypes->all()->pluck('name', 'id');
+        $claimMechanics = $this->claimMechanics->all()->pluck('name', 'id');
+        $departments = $this->departments->all()->pluck('code');
+        $addresses = $this->addresses->getAddressByDepartmentWise();
+        return response()->json(
+            [
+                'status' => $this->successStatus,
+                'data' => [
+                    'claim_types' => $claimTypes,
+                    'claim_mechanics' => $claimMechanics,
+                    'departments' => $departments,
+                    'addresses' => $addresses,
+                ]
+            ], $this->successStatus);
+    }
+
+    public function createClaim(Request $request)
+    {
+        $data = $request->all();
+
+        $response = $this->claim->createClaim($data);
+
+        if($response) {
+            return response()->json(
+                [
+                    'status' => $this->successStatus,
+                    'message' => 'Claim created successfully'
+                ], $this->successStatus);
+        }
     }
 
 }

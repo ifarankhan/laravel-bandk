@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'path_to_upload' => 'images',
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -22,4 +22,5 @@ Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/claim-form-data', 'API\PassportController@getClaimFormData');
+    Route::post('/claim/create', 'API\PassportController@createClaim');
 });
