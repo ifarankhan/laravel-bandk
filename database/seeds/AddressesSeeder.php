@@ -201,11 +201,18 @@ class AddressesSeeder extends Seeder
 
         foreach ($data as $address) {
             $addressObj = new \App\Addresses();
-            $addressObj->address_1 = $address['name'];
+            $addressObj->address = $address['name'];
             $addressObj->department_id = $address['department_id'];
-            $addressObj->address_2 = json_encode($address['child']);
             $addressObj->postal_no = '6800';
             $addressObj->save();
+
+            foreach ($address['child'] as $child) {
+                $subAddressObj = new \App\Addresses();
+                $subAddressObj->address = $child;
+                $subAddressObj->postal_no = '6800';
+                $subAddressObj->parent_id = $addressObj->id;
+                $subAddressObj->save();
+            }
         }
     }
 }

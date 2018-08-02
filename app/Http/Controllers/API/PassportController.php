@@ -123,8 +123,7 @@ class PassportController extends Controller
     public function getClaimFormData() {
         $claimTypes = $this->claimTypes->all()->pluck('name', 'id');
         $claimMechanics = $this->claimMechanics->all()->pluck('name', 'id');
-        $departments = $this->departments->all()->pluck('code');
-        $addresses = $this->addresses->getAddressByDepartmentWise();
+        $departments = $this->departments->all();
         return response()->json(
             [
                 'status' => $this->successStatus,
@@ -132,7 +131,6 @@ class PassportController extends Controller
                     'claim_types' => $claimTypes,
                     'claim_mechanics' => $claimMechanics,
                     'departments' => $departments,
-                    'addresses' => $addresses,
                 ]
             ], $this->successStatus);
     }

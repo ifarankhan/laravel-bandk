@@ -12,6 +12,7 @@ use App\Repositories\ClaimTypesInterface;
 use App\Repositories\ClaimTypesRepository;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\DepartmentsRepository;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Schema::defaultStringLength(191);
         $this->app->singleton(ClaimInterface::class, ClaimRepository::class);
         $this->app->singleton(AddressesInterface::class, AddressesRepository::class);
         $this->app->singleton(ClaimMechanicsInterface::class, ClaimMechanicsRepository::class);
