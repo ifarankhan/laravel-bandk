@@ -26,6 +26,9 @@ class RolesSeeder extends Seeder
             [
                 'name' => 'ADMIN'
             ],
+            [
+                'name' => 'MANAGER'
+            ],
         ];
 
         \App\Roles::insert($data);

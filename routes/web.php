@@ -12,9 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard.index');
 });
 
-Auth::routes();
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index')->middleware(['auth']);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
+
+    Route::get('/dashboard/users', 'UsersController@index')->name('users.index');
+    Route::get('/dashboard/users/create', 'UsersController@create')->name('users.create');
+    Route::post('/dashboard/users/create', 'UsersController@store')->name('users.store');
+    Route::get('/dashboard/users/edit/{id}', 'UsersController@edit')->name('users.edit');
+});
+
+
+Auth::routes();

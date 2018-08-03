@@ -30,10 +30,15 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->hasManyThrough(Roles::class, UserRoles::class, 'user_id', 'id')->select(['roles.id', 'roles.name']);
+        return $this->belongsToMany(Roles::class, 'user_roles', 'user_id', 'role_id')->select(['roles.id', 'roles.name']);
     }
     public function modules()
     {
-        return $this->hasManyThrough(Modules::class, UserModules::class, 'user_id', 'id')->select(['modules.id', 'modules.name']);
+        return $this->belongsToMany(Modules::class, 'user_modules', 'user_id', 'module_id')->select(['modules.id', 'modules.name']);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Departments::class, 'department_id');
     }
 }
