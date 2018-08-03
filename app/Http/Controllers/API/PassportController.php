@@ -73,15 +73,20 @@ class PassportController extends Controller
             return response()->json(
                 [
                     'status' => $this->successStatus,
-                    'token' => $success['token'],
-                    'roles' => ($user->roles) ? $user->roles : [],
-                    'modules' => ($user->modules) ? $user->modules: [],
+                    'message' => 'Login Successfully.',
+                    'data' => [
+                        'token' => $success['token'],
+                        'name' => $user->name,
+                        'roles' => ($user->roles) ? $user->roles : [],
+                        'modules' => ($user->modules) ? $user->modules: [],
+                    ]
+
                 ],
                 $this->successStatus
             );
         }
         else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Unauthorised', 'status' => 401], $this->successStatus);
         }
     }
 
@@ -111,7 +116,11 @@ class PassportController extends Controller
         return response()->json(
             [
                 'status' => $this->successStatus,
-                'token' => $success['token']
+                'message' => 'Register Successfully.',
+                'data' => [
+                    'token' => $success['token'],
+                    'name' => $success['name']
+                ]
             ],
             $this->successStatus
         );
@@ -126,6 +135,7 @@ class PassportController extends Controller
         $departments = $this->departments->all();
         return response()->json(
             [
+                'message' => 'Claim data',
                 'status' => $this->successStatus,
                 'data' => [
                     'claim_types' => $claimTypes,

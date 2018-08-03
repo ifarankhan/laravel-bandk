@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','department_id', 'roles', 'modules'
+        'name', 'email', 'password','department_id'
     ];
 
     /**
@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->hasManyThrough(Roles::class, UserRoles::class, 'user_id', 'id')->select(['roles.id', 'roles.name']);
+    }
+    public function modules()
+    {
+        return $this->hasManyThrough(Modules::class, UserModules::class, 'user_id', 'id')->select(['modules.id', 'modules.name']);
+    }
 }
