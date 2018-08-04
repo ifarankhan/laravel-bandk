@@ -5,7 +5,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Create Users </h2>
+                    <h2>Edit Users </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -18,6 +18,11 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="name" value="{{ $user->name }}">
+                                @if ($errors->has('name'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
@@ -25,6 +30,11 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="email" required="required" class="form-control col-md-7 col-xs-12" name="email" value="{{ $user->email }}">
+                                @if ($errors->has('email'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,6 +50,11 @@
                                         <option value="{{ $role->id }}" {{ in_array($role->id, $userRoles) ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
                                     @endforeach
                                 </select>
+                                    @if ($errors->has('roles'))
+                                        <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('roles') }}</strong>
+                                    </span>
+                                    @endif
                             </div>
                         </div>
                         <div class="form-group">
@@ -51,6 +66,11 @@
                                         <option value="{{ $module->id }}" {{ in_array($module->id, $userModules) ? 'selected=selected' : '' }}>{{ $module->name }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('modules'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('modules') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group" id="department_id_div" style="{{ in_array(5, $userRoles) ? '' : 'display: none;' }}">
@@ -62,6 +82,11 @@
                                         <option value="{{ $department->id }}">{{ $department->code }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('department_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('department_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -90,7 +115,7 @@
            jQuery("#roles").on('change', function(){
                 var value = jQuery(this).val();
 
-                if(jQuery.inArray("5", value) !== -1) {
+                if(jQuery.inArray("2", value) !== -1) {
                     jQuery("#department_id_div").show();
                     jQuery("#department_id").prop( "disabled", false );
                 } else {

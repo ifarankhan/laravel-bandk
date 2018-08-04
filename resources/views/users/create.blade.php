@@ -129,7 +129,7 @@
            jQuery("#roles").on('change', function(){
                 var value = jQuery(this).val();
 
-                if(jQuery.inArray("5", value) !== -1) {
+                if(jQuery.inArray("2", value) !== -1) {
                     jQuery("#department_id_div").show();
                     jQuery("#department_id").prop( "disabled", false );
                 } else {
