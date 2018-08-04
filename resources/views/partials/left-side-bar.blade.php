@@ -7,17 +7,21 @@
         <div class="clearfix"></div>
 
         <br />
-
+        <?php
+            $userRoles = (\Auth::user()->roles) ? \Auth::user()->roles->pluck('id')->toArray() : [];
+        ?>
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <ul class="nav side-menu">
+                    @if(in_array(4,$userRoles))
                     <li><a><i class="fa fa-users"></i> User Management <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('users.index') }}">All users</a></li>
                             <li><a href="{{ route('users.create') }}">Create</a></li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
             </div>
 
