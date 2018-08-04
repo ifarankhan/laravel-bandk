@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\UserRequest;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\ModulesInterface;
 use App\Repositories\RolesInterface;
@@ -72,7 +73,7 @@ class UsersController extends Controller
         return view('users.edit', compact('roles', 'modules', 'departments', 'user'));
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $request->all();
 

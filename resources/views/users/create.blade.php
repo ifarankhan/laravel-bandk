@@ -17,25 +17,42 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="name">
+                                <input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name">
+                                @if ($errors->has('name'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" required="required" class="form-control col-md-7 col-xs-12" name="email">
+                                <input type="text" id="email" class="form-control col-md-7 col-xs-12" name="email">
+                                @if ($errors->has('email'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="password" required="required" class="form-control col-md-7 col-xs-12" name="password">
+                                <input type="text" id="password" class="form-control col-md-7 col-xs-12" name="password">
+                                @if ($errors->has('password'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Roles</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Roles
+                                <span class="required">*</span>
+                            </label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
                                 <select class="form-control select2" name="roles[]" multiple="multiple" id="roles">
                                     <option value="">Choose option</option>
@@ -43,10 +60,17 @@
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('roles'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('roles') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Modules</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Modules
+                                <span class="required">*</span>
+                            </label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
                                 <select class="form-control select2" name="modules[]" multiple="multiple">
                                     <option value="">Choose option</option>
@@ -54,10 +78,17 @@
                                         <option value="{{ $module->id }}">{{ $module->name }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('modules'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('modules') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group" id="department_id_div" style="display: none;">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Department
+                                <span class="required">*</span>
+                            </label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
                                 <select class="form-control" name="department_id" disabled="disabled" id="department_id">
                                     <option value="">Choose option</option>
@@ -65,6 +96,11 @@
                                         <option value="{{ $department->id }}">{{ $department->code }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('department_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('department_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
