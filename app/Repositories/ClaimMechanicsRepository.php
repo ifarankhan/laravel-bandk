@@ -30,7 +30,7 @@ class ClaimMechanicsRepository implements ClaimMechanicsInterface
 
     public function all()
     {
-        return $this->model->orderBy('name', 'ASC')->get();
+        return $this->model->orderBy('name', 'ASC')->get(['id', 'name']);
     }
 
 }

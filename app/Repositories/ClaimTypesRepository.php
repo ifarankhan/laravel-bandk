@@ -28,7 +28,7 @@ class ClaimTypesRepository implements ClaimTypesInterface
 
     public function all()
     {
-        return $this->model->orderBy('name', 'ASC')->get();
+        return $this->model->orderBy('name', 'ASC')->get(['id', 'name']);
     }
 
 }

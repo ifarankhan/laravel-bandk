@@ -130,8 +130,8 @@ class PassportController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function getClaimFormData() {
-        $claimTypes = $this->claimTypes->all()->pluck('name', 'id');
-        $claimMechanics = $this->claimMechanics->all()->pluck('name', 'id');
+        $claimTypes = $this->claimTypes->all();
+        $claimMechanics = $this->claimMechanics->all();
         $departments = $this->departments->all();
         return response()->json(
             [
