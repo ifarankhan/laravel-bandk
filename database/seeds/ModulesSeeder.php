@@ -21,7 +21,7 @@ class ModulesSeeder extends Seeder
                 'name' => 'INFO_APP'
             ],
             [
-                'name' => 'MANAGER'
+                'name' => 'OWN_COMPANY_CLAIMS'
             ],
         ];
 

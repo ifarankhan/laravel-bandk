@@ -15,19 +15,13 @@ class RolesSeeder extends Seeder
 
         $data = [
             [
-                'name' => 'CAN_ACCESS_CLAIM_FORM'
-            ],
-            [
-                'name' => 'CAN_ACCESS_INFO_PAGE'
-            ],
-            [
-                'name' => 'CAN_MANAGE_DEPARTMENT_CLAIMS'
-            ],
-            [
                 'name' => 'ADMIN'
             ],
             [
                 'name' => 'MANAGER'
+            ],
+            [
+                'name' => 'AGENT'
             ],
         ];
 
