@@ -86,7 +86,7 @@ class PassportController extends Controller
             );
         }
         else {
-            return response()->json(['error' => 'Unauthorised', 'status' => 401], $this->successStatus);
+            return response()->json(['message' => 'Email or password is wrong', 'status' => 401, "data" =>  null], $this->successStatus);
         }
     }
 
