@@ -73,13 +73,13 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group" id="department_id_div" style="{{ in_array(5, $userRoles) ? '' : 'display: none;' }}">
+                        <div class="form-group" id="department_id_div" style="{{ in_array('2', $userRoles) ? '' : 'display: none;' }}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control" name="department_id" {{ in_array('5', $userRoles) ? '' : 'disabled=disabled' }} id="department_id">
+                                <select class="form-control" name="department_id" {{ in_array('2', $userRoles) ? '' : 'disabled=disabled' }} id="department_id">
                                     <option value="">Choose option</option>
                                     @foreach($departments as $department)
-                                        <option value="{{ $department->id }}">{{ $department->code }}</option>
+                                        <option value="{{ $department->id }}" {{ ($department->id == $user->id) ? 'selected=selected' : '' }}>{{ $department->code }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('department_id'))
