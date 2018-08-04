@@ -155,7 +155,8 @@ class PassportController extends Controller
             return response()->json(
                 [
                     'status' => $this->successStatus,
-                    'message' => 'Claim created successfully'
+                    'message' => 'Claim created successfully',
+                    'data' => null
                 ], $this->successStatus);
         }
     }
