@@ -159,6 +159,13 @@ class PassportController extends Controller
                         'id' => $response->id
                     ]
                 ], $this->successStatus);
+        } else {
+            return response()->json(
+                [
+                    'status' => $this->successStatus,
+                    'message' => 'Error While creating claim',
+                    'data' => null
+                ], $this->successStatus);
         }
     }
 
