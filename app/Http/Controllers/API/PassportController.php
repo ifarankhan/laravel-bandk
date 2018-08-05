@@ -148,7 +148,6 @@ class PassportController extends Controller
     public function createClaim(Request $request)
     {
         $data = $request->all();
-
         $response = $this->claim->createClaim($data);
 
         if($response) {
@@ -156,7 +155,9 @@ class PassportController extends Controller
                 [
                     'status' => $this->successStatus,
                     'message' => 'Claim created successfully',
-                    'data' => null
+                    'data' => [
+                        'id' => $response->id
+                    ]
                 ], $this->successStatus);
         }
     }

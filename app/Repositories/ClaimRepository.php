@@ -43,7 +43,7 @@ class ClaimRepository implements ClaimInterface
         $data['user_id'] = \Auth::user()->id;
         $claim = $this->model->create($data);
 
-        if(count($data['images']) > 0) {
+        if(isset($data['images']) && count($data['images']) > 0) {
             foreach ($data['images'] as $image) {
                 $this->claimImages = new ClaimImages();
                 $uniqueFileName = uniqid() . $image->getClientOriginalName();
