@@ -41,6 +41,7 @@ class ClaimRepository implements ClaimInterface
     public function createClaim($data)
     {
         $data['user_id'] = \Auth::user()->id;
+        $data['date'] = isset($data['date']) ? date('Y-m-d', strtotime($data['date'])) : null;
         $claim = $this->model->create($data);
 
         if(isset($data['images']) && count($data['images']) > 0) {
