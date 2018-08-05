@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Claims;
+use App\Http\Requests\ClaimCreationRequest;
 use App\Repositories\AddressesInterface;
 use App\Repositories\ClaimInterface;
 use App\Repositories\ClaimMechanicsInterface;
@@ -148,6 +149,31 @@ class PassportController extends Controller
     public function createClaim(Request $request)
     {
         $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'claim_type_id' => 'required',
+            'estimate' => 'required',
+            'date' => 'required',
+            'claim_mechanic_id' => 'required',
+            'department_id' => 'required',
+            'address_1' => 'required',
+            'address_2' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+            'images' => 'required|mimes:png:jpg:jpeg'
+        ]);
+
+        if($validator->fails()) {
+            $errors = $validator->errors()->toArray();
+            $m = '';
+            foreach ($errors as $error) {
+                $m = $m . $error[0]."\n";
+            }
+            return response()->json([
+                'status' => 422,
+                'message' => $m,
+                'data' => null
+            ],$this->successStatus);
+        }
         $response = $this->claim->createClaim($data);
 
         if($response) {
