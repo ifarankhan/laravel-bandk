@@ -160,7 +160,7 @@ class PassportController extends Controller
             'description' => 'required',
             'status' => 'required',
             'images' => 'required',
-            'images.*' => 'image|mimes:jpg,jpeg'
+            'images.*' => 'image|mimes:jpg,png,jpeg'
         ]);
 
         if($validator->fails()) {
