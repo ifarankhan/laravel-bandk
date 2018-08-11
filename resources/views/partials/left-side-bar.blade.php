@@ -21,6 +21,12 @@
                             <li><a href="{{ route('users.create') }}">Create</a></li>
                         </ul>
                     </li>
+                        <li><a><i class="fa fa-users"></i> Content Management <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('content.index') }}">Content Listing</a></li>
+                            <li><a href="{{ route('content.create') }}">Create</a></li>
+                        </ul>
+                    </li>
                     @endif
                 </ul>
             </div>

@@ -10,6 +10,8 @@ use App\Repositories\ClaimMechanicsRepository;
 use App\Repositories\ClaimRepository;
 use App\Repositories\ClaimTypesInterface;
 use App\Repositories\ClaimTypesRepository;
+use App\Repositories\ContentInterface;
+use App\Repositories\ContentRepository;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\DepartmentsRepository;
 use App\Repositories\ModulesInterface;
@@ -49,5 +51,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(UserInterface::class, UserRepository::class);
         $this->app->singleton(RolesInterface::class, RolesRepository::class);
         $this->app->singleton(ModulesInterface::class, ModulesRepository::class);
+        $this->app->singleton(ContentInterface::class, ContentRepository::class);
     }
 }
