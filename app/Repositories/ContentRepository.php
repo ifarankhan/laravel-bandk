@@ -29,7 +29,7 @@ class ContentRepository implements ContentInterface
 
     public function all()
     {
-        return $this->model->all();
+        return $this->model->with(['parent'])->get();
     }
 
     public function getOne($id)

@@ -17,6 +17,11 @@ class Content extends Model
         return $this->hasMany(Content::class, 'parent_id', 'id')->select(['id','title', 'parent_id']);
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(Content::class, 'parent_id', 'id');
+    }
+
     public function getChildrenCountAttribute()
     {
         return count($this->children);
