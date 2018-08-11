@@ -17,7 +17,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title">
+                                <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{ old('title') }}">
                                 @if ($errors->has('title'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -29,7 +29,9 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea type="text" id="description" col="10" row="15" class="form-control col-md-7 col-xs-12" name="description"></textarea>
+                                <textarea type="text" id="description" col="10" row="15" class="form-control col-md-7 col-xs-12" name="description">
+                                    {{ old('description') }}
+                                </textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -45,7 +47,7 @@
                                     <option value="">Select Parent</option>
                                     @if(count($parents) > 0)
                                         @foreach($parents as $parent)
-                                            <option value="{{ $parent->id }}">{{ $parent->title }}</option>
+                                            <option value="{{ $parent->id }}" {{ (old('parent_id') == $parent->id) ? 'selected="selected"' : ''}}>{{ $parent->title }}</option>
                                         @endforeach
                                     @endif
                                 </select>
