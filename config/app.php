@@ -55,6 +55,7 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'path_to_upload' => 'images',
+    'path_to_upload_files' => 'files',
 
     /*
     |--------------------------------------------------------------------------

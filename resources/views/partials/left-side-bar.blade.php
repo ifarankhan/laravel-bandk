@@ -15,18 +15,27 @@
             <div class="menu_section">
                 <ul class="nav side-menu">
                     @if(in_array('ADMIN',$userRoles))
-                    <li><a><i class="fa fa-users"></i> User Management <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('users.index') }}">All users</a></li>
-                            <li><a href="{{ route('users.create') }}">Create</a></li>
-                        </ul>
-                    </li>
-                        <li><a><i class="fa fa-users"></i> Content Management <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('content.index') }}">Content Listing</a></li>
-                            <li><a href="{{ route('content.create') }}">Create</a></li>
-                        </ul>
-                    </li>
+                        <li><a><i class="fa fa-users"></i> User Management <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ route('users.index') }}">All users</a></li>
+                                <li><a href="{{ route('users.create') }}">Create</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-file-archive-o"></i> Content Management <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ route('content.index') }}">Content Listing</a></li>
+                                <li><a href="{{ route('content.create') }}">Create</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    @if(in_array('ADMIN',$userRoles) || in_array('MANAGER',$userRoles))
+                        <li><a><i class="fa fa-users"></i> Claims Management <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ route('claim.index') }}">Content Listing</a></li>
+                                <li><a href="{{ route('claim.create') }}">Create</a></li>
+                            </ul>
+                        </li>
                     @endif
                 </ul>
             </div>

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\AddressesInterface;
 use App\Repositories\AddressesRepository;
+use App\Repositories\ClaimConversationInterface;
+use App\Repositories\ClaimConversationRepository;
 use App\Repositories\ClaimInterface;
 use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimMechanicsRepository;
@@ -43,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Schema::defaultStringLength(191);
+        require_once app_path() . '/Helper/helper.php';
+
         $this->app->singleton(ClaimInterface::class, ClaimRepository::class);
         $this->app->singleton(AddressesInterface::class, AddressesRepository::class);
         $this->app->singleton(ClaimMechanicsInterface::class, ClaimMechanicsRepository::class);
@@ -52,5 +56,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RolesInterface::class, RolesRepository::class);
         $this->app->singleton(ModulesInterface::class, ModulesRepository::class);
         $this->app->singleton(ContentInterface::class, ContentRepository::class);
+        $this->app->singleton(ClaimConversationInterface::class, ClaimConversationRepository::class);
     }
 }

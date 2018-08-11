@@ -34,6 +34,11 @@ class ClaimRepository implements ClaimInterface
         $this->claimImages = $claimImages;
     }
 
+    public function getOne($id)
+    {
+        return $this->model->with(['conversations', 'conversations.files'])->find($id);
+    }
+
     public function all($user = null)
     {
         return $this->model->all();
