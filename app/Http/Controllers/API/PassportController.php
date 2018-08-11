@@ -8,6 +8,7 @@ use App\Repositories\AddressesInterface;
 use App\Repositories\ClaimInterface;
 use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimTypesInterface;
+use App\Repositories\ContentInterface;
 use App\Repositories\DepartmentsInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,10 @@ class PassportController extends Controller
      * @var ClaimInterface
      */
     private $claim;
+    /**
+     * @var ContentInterface
+     */
+    private $content;
 
     /**
      * PassportController constructor.
@@ -46,18 +51,21 @@ class PassportController extends Controller
      * @param ClaimMechanicsInterface $claimMechanics
      * @param DepartmentsInterface $departments
      * @param AddressesInterface $addresses
+     * @param ContentInterface $content
      */
     public function __construct(ClaimInterface $claim,
                                 ClaimTypesInterface $claimTypes,
                                 ClaimMechanicsInterface $claimMechanics,
                                 DepartmentsInterface $departments,
-                                AddressesInterface $addresses)
+                                AddressesInterface $addresses,
+                                ContentInterface $content)
     {
         $this->claim = $claim;
         $this->claimTypes = $claimTypes;
         $this->claimMechanics = $claimMechanics;
         $this->departments = $departments;
         $this->addresses = $addresses;
+        $this->content = $content;
     }
 
     /*
@@ -194,6 +202,34 @@ class PassportController extends Controller
                     'data' => null
                 ], $this->successStatus);
         }
+    }
+
+    public function getCategories($parentId = null)
+    {
+        $response = $this->content->getCategories($parentId);
+
+        return response()->json([
+            'status' => $this->successStatus,
+            'message' => 'List of Categories and subcategories',
+            'data' => $response
+        ], $this->successStatus);
+    }
+    public function getCategory($id = null)
+    {
+        if(is_null($id)) {
+            return response()->json([
+                'status' => 201,
+                'message' => 'Category id is missing',
+                'data' => null
+            ], $this->successStatus);
+        }
+        $response = $this->content->getCategories($id);
+
+        return response()->json([
+            'status' => $this->successStatus,
+            'message' => 'List of Categories and subcategories',
+            'data' => $response
+        ], $this->successStatus);
     }
 
 }
