@@ -12,6 +12,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClaimConversationRequest;
 use App\Repositories\ClaimConversationInterface;
 use App\Repositories\ClaimInterface;
+use App\Repositories\ClaimTypesInterface;
+use App\Repositories\DepartmentsInterface;
+use Illuminate\Http\Request;
 
 class ClaimsController extends Controller
 {
@@ -24,22 +27,38 @@ class ClaimsController extends Controller
      * @var ClaimConversationInterface
      */
     private $claimConversation;
+    /**
+     * @var ClaimTypesInterface
+     */
+    private $claimTypes;
+    /**
+     * @var DepartmentsInterface
+     */
+    private $departments;
 
     /**
      * ClaimsController constructor.
      * @param ClaimInterface $claim
      * @param ClaimConversationInterface $claimConversation
+     * @param ClaimTypesInterface $claimTypes
+     * @param DepartmentsInterface $departments
      */
-    public function __construct(ClaimInterface $claim, ClaimConversationInterface $claimConversation)
+    public function __construct(ClaimInterface $claim, ClaimConversationInterface $claimConversation,
+                                ClaimTypesInterface $claimTypes, DepartmentsInterface $departments)
     {
         $this->claim = $claim;
         $this->claimConversation = $claimConversation;
+        $this->claimTypes = $claimTypes;
+        $this->departments = $departments;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $claims = $this->claim->all();
-        return view('claims.index', compact('claims'));
+        $search = $request->get('search');
+        $claimTypes = $this->claimTypes->all();
+        $departments = $this->departments->all();
+        $claims = $this->claim->search($search);
+        return view('claims.index', compact('claims', 'departments', 'claimTypes', 'search'));
     }
 
     public function details($id)

@@ -39,6 +39,22 @@ class ClaimRepository implements ClaimInterface
         return $this->model->with(['conversations', 'conversations.files'])->find($id);
     }
 
+    public function search($search)
+    {
+        $query = $this->model;
+        if($search && isset($search['claim_type_id'])) {
+            $query = $query->where('claim_type_id', $search['claim_type_id']);
+        }
+        if($search && isset($search['department_id'])) {
+            $query = $query->where('department_id', $search['department_id']);
+        }
+        if($search && isset($search['date'])) {
+            $query = $query->where('date','=', date('Y-m-d',strtotime($search['date'])));
+        }
+
+        return $query->get();
+
+    }
     public function all($user = null)
     {
         return $this->model->all();
