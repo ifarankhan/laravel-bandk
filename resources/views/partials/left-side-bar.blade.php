@@ -30,7 +30,7 @@
                     @endif
 
                     @if(in_array('ADMIN',$userRoles) || in_array('MANAGER',$userRoles))
-                        <li><a><i class="fa fa-users"></i> Claims Management <span class="fa fa-chevron-down"></span></a>
+                        <li><a><i class="fa fa-briefcase"></i> Claims Management <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('claim.index') }}">Claims Listing</a></li>
                             </ul>
