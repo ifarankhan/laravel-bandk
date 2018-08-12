@@ -41,5 +41,13 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
 
 });
 
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/category/{slug}', 'HomeController@categoryDetail')->name('home.category');
+
+
+});
+
 
 Auth::routes();

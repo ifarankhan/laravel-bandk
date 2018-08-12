@@ -1,4 +1,4 @@
-@extends('layouts.app-front')
+@extends('layouts.app-front-login')
 
 @section('content')
     <div class="outer">

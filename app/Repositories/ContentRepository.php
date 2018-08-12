@@ -36,6 +36,10 @@ class ContentRepository implements ContentInterface
     {
         return $this->model->find($id);
     }
+    public function getFirst()
+    {
+        return $this->model->first();
+    }
 
     public function store($data)
     {
