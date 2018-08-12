@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContentRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,10 @@ class ContentRequest extends FormRequest
         if($this->get('id')) {
             return [
                 'title' => 'required',
-                'description' => 'required',
-                'category_id' => 'required',
             ];
         } else {
             return [
-                'title' => 'required|unique:contents',
-                'description' => 'required',
-                'category_id' => 'required',
+                'title' => 'required|unique:categories',
             ];
         }
 

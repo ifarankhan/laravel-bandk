@@ -37,7 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectTo()
+    /*public function redirectTo()
     {
         $roles = \Auth::user()->roles->pluck('name')->toArray();
         $modules = (\Auth::user()->modules) ? \Auth::user()->modules->pluck('name')->toArray() : [];
@@ -51,5 +51,5 @@ class LoginController extends Controller
                 return redirect()->route('home.claim-form');
             }
         }
-    }
+    }*/
 }

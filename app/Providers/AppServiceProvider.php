@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\AddressesInterface;
 use App\Repositories\AddressesRepository;
+use App\Repositories\CategoryInterface;
+use App\Repositories\CategoryRepository;
 use App\Repositories\ClaimConversationInterface;
 use App\Repositories\ClaimConversationRepository;
 use App\Repositories\ClaimInterface;
@@ -34,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 
     /**
@@ -57,5 +59,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ModulesInterface::class, ModulesRepository::class);
         $this->app->singleton(ContentInterface::class, ContentRepository::class);
         $this->app->singleton(ClaimConversationInterface::class, ClaimConversationRepository::class);
+        $this->app->singleton(CategoryInterface::class, CategoryRepository::class);
     }
 }

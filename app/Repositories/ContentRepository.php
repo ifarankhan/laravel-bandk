@@ -29,7 +29,7 @@ class ContentRepository implements ContentInterface
 
     public function all()
     {
-        return $this->model->with(['parent'])->get();
+        return $this->model->with(['category'])->get();
     }
 
     public function getOne($id)
@@ -49,7 +49,7 @@ class ContentRepository implements ContentInterface
 
         $this->model->title = $data['title'];
         $this->model->description = $data['description'];
-        $this->model->parent_id = isset($data['parent_id']) ? $data['parent_id'] : null;
+        $this->model->category_id = isset($data['category_id']) ? $data['category_id'] : null;
 
         $this->model->save();
 
@@ -60,15 +60,5 @@ class ContentRepository implements ContentInterface
     public function delete($id)
     {
         return $this->getOne($id)->delete();
-    }
-
-    public function getCategories($parentId)
-    {
-        if(is_null($parentId)) {
-            return  $this->model->where('parent_id', $parentId)->get(['id', 'title']);
-        } else {
-            return  $this->model->where('id', $parentId)->get(['id', 'description','title']);
-        }
-
     }
 }

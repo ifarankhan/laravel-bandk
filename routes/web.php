@@ -30,6 +30,12 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/content/edit/{id}', 'ContentsController@edit')->name('content.edit');
     Route::delete('/dashboard/content/delete/{id}', 'ContentsController@delete')->name('content.delete');
 
+    Route::get('/dashboard/categories', 'CategoryController@index')->name('category.index');
+    Route::get('/dashboard/category/create', 'CategoryController@create')->name('category.create');
+    Route::post('/dashboard/category/create', 'CategoryController@store')->name('category.store');
+    Route::get('/dashboard/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
+    Route::delete('/dashboard/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
+
     Route::get('/dashboard/claims', 'ClaimsController@index')->name('claim.index');
     Route::get('/dashboard/claim/create', 'ClaimsController@create')->name('claim.create');
     Route::post('/dashboard/claim/create', 'ClaimsController@store')->name('claim.store');

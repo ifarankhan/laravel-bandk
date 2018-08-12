@@ -23,6 +23,6 @@ Route::post('register', 'API\PassportController@register');
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/claim-form-data', 'API\PassportController@getClaimFormData');
     Route::post('/claim/create', 'API\PassportController@createClaim');
-    Route::get('/categories/{id?}', 'API\PassportController@getCategories');
+    Route::get('/categories', 'API\PassportController@getCategories');
     Route::get('/category/{id?}', 'API\PassportController@getCategory');
 });

@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContentRequest;
 use App\Http\Requests\UserRequest;
+use App\Repositories\CategoryInterface;
 use App\Repositories\ContentInterface;
 use App\Repositories\ContentRepository;
 use App\Repositories\DepartmentsInterface;
@@ -27,14 +28,20 @@ class ContentsController extends Controller
      * @var ContentInterface
      */
     private $content;
+    /**
+     * @var CategoryInterface
+     */
+    private $category;
 
     /**
      * ContentsController constructor.
      * @param ContentInterface $content
+     * @param CategoryInterface $category
      */
-    public function __construct(ContentInterface $content)
+    public function __construct(ContentInterface $content, CategoryInterface $category)
     {
         $this->content = $content;
+        $this->category = $category;
     }
 
     public function index()
@@ -45,13 +52,13 @@ class ContentsController extends Controller
 
     public function create()
     {
-        $parents = $this->content->all();
+        $parents = $this->category->all();
         return view('contents.create', compact('parents'));
     }
     public function edit($id)
     {
         $content = $this->content->getOne($id);
-        $parents = $this->content->all();
+        $parents = $this->category->all();
         return view('contents.edit', compact('content', 'parents'));
     }
 

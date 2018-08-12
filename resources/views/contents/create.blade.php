@@ -40,20 +40,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Parent
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Category<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select type="text" id="parent_id" class="form-control col-md-7 col-xs-12" name="parent_id">
-                                    <option value="">Select Parent</option>
+                                <select type="text" id="parent_id" class="form-control col-md-7 col-xs-12" name="category_id">
+                                    <option value="">Select Category</option>
                                     @if(count($parents) > 0)
                                         @foreach($parents as $parent)
-                                            <option value="{{ $parent->id }}" {{ (old('parent_id') == $parent->id) ? 'selected="selected"' : ''}}>{{ $parent->title }}</option>
+                                            <option value="{{ $parent->id }}" {{ (old('category_id') == $parent->id) ? 'selected="selected"' : ''}}>{{ $parent->title }}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @if ($errors->has('parent_id'))
+                                @if ($errors->has('category_id'))
                                     <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('parent_id') }}</strong>
+                                        <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

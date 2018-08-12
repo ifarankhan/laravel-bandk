@@ -5,8 +5,8 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Contents Lists</h2>
-                    <a href="{{ route('content.create') }}" class="btn btn-danger pull-right">Create</a>
+                    <h2>Categories Lists</h2>
+                    <a href="{{ route('category.create') }}" class="btn btn-danger pull-right">Create</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -21,18 +21,18 @@
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Category</th>
+                            <th>Parent</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($contents as $content)
-                            <tr id="content_{{ $content->id }}">
-                                <td>{{ $content->title }}</td>
-                                <td>{{ ($content->category) ? $content->category->title :  ''}}</td>
+                        @foreach($categories as $category)
+                            <tr id="content_{{ $category->id }}">
+                                <td>{{ $category->title }}</td>
+                                <td>{{ ($category->parent) ? $category->parent->title :  ''}}</td>
                                 <td>
-                                    <a href="{{ route('content.edit', ['id'=> $content->id]) }}" class="btn btn-success">Edit</a>
-                                    <button data-id="{{ $content->id }}" data-url="{{ route('content.delete', ['id'=> $content->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                                    <a href="{{ route('category.edit', ['id'=> $category->id]) }}" class="btn btn-success">Edit</a>
+                                    <button data-id="{{ $category->id }}" data-url="{{ route('category.delete', ['id'=> $category->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
                                 </td>
                             </tr>
                         @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Claims;
 use App\Http\Requests\ClaimCreationRequest;
 use App\Repositories\AddressesInterface;
+use App\Repositories\CategoryInterface;
 use App\Repositories\ClaimInterface;
 use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimTypesInterface;
@@ -43,6 +44,10 @@ class PassportController extends Controller
      * @var ContentInterface
      */
     private $content;
+    /**
+     * @var CategoryInterface
+     */
+    private $category;
 
     /**
      * PassportController constructor.
@@ -52,13 +57,15 @@ class PassportController extends Controller
      * @param DepartmentsInterface $departments
      * @param AddressesInterface $addresses
      * @param ContentInterface $content
+     * @param CategoryInterface $category
      */
     public function __construct(ClaimInterface $claim,
                                 ClaimTypesInterface $claimTypes,
                                 ClaimMechanicsInterface $claimMechanics,
                                 DepartmentsInterface $departments,
                                 AddressesInterface $addresses,
-                                ContentInterface $content)
+                                ContentInterface $content,
+                                CategoryInterface $category)
     {
         $this->claim = $claim;
         $this->claimTypes = $claimTypes;
@@ -66,6 +73,7 @@ class PassportController extends Controller
         $this->departments = $departments;
         $this->addresses = $addresses;
         $this->content = $content;
+        $this->category = $category;
     }
 
     /*
@@ -204,9 +212,10 @@ class PassportController extends Controller
         }
     }
 
-    public function getCategories($parentId = null)
+    public function getCategories()
     {
-        $response = $this->content->getCategories($parentId);
+        $parentId = null;
+        $response = $this->category->getCategories($parentId);
 
         return response()->json([
             'status' => $this->successStatus,
@@ -223,11 +232,19 @@ class PassportController extends Controller
                 'data' => null
             ], $this->successStatus);
         }
-        $response = $this->content->getCategories($id);
+        $response = $this->category->getCategory($id);
+
+        if(count($response) == 0) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No category found.',
+                'data' => null
+            ], $this->successStatus);
+        }
 
         return response()->json([
             'status' => $this->successStatus,
-            'message' => 'List of Categories and subcategories',
+            'message' => 'List of category with content',
             'data' => $response
         ], $this->successStatus);
     }
