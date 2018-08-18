@@ -32,6 +32,11 @@ class AddressesRepository implements AddressesInterface
         return $this->model->all();
     }
 
+    public function getAddressesByDepartment($departmentId)
+    {
+        return $this->model->where('department_id', $departmentId)->get();
+    }
+
     public function getAddressByDepartmentWise()
     {
         $addresses = $this->all();

@@ -157,52 +157,8 @@
 
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('/admin/build/js/custom.min.js') }}"></script>
+<script src="{{ asset('/common/js/common.js') }}"></script>
 
-<script>
-    jQuery(document).ready(function () {
-
-        jQuery(".delete").on('click', function (event) {
-            event.preventDefault();
-            $(this).unbind('click');
-            var url = $(this).data('url');
-            var id = $(this).data('id');
-            var data = {'_token': _token};
-            var modalElement = jQuery("#modal-delete");
-            modalElement.show();
-            jQuery(".delete-confirm").on('click', function () {
-
-                sendAjax(url,data, 'DELETE', function (response) {
-                    console.log(response);
-                    if(response.success) {
-                        jQuery("#content_"+id).hide('slow');
-                    }
-                    modalElement.modal('hide');
-                });
-
-            });
-
-        })
-
-    });
-
-    function sendAjax(url, data, method, callback)
-    {
-        jQuery.ajax({
-            url: url,
-            method: method,
-            dataType: 'json',
-            data: data,
-            success: function (result) {
-                callback(result);
-
-            },
-            error: function (error) {
-                callback(error);
-            }
-        });
-    }
-
-</script>
 @yield('js')
 </body>
 </html>

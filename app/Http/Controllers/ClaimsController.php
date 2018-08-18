@@ -10,8 +10,11 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\ClaimConversationRequest;
+use App\Http\Requests\ClaimRequests;
+use App\Repositories\AddressesInterface;
 use App\Repositories\ClaimConversationInterface;
 use App\Repositories\ClaimInterface;
+use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimTypesInterface;
 use App\Repositories\DepartmentsInterface;
 use Illuminate\Http\Request;
@@ -35,6 +38,14 @@ class ClaimsController extends Controller
      * @var DepartmentsInterface
      */
     private $departments;
+    /**
+     * @var ClaimMechanicsInterface
+     */
+    private $claimMechanics;
+    /**
+     * @var AddressesInterface
+     */
+    private $addresses;
 
     /**
      * ClaimsController constructor.
@@ -42,14 +53,18 @@ class ClaimsController extends Controller
      * @param ClaimConversationInterface $claimConversation
      * @param ClaimTypesInterface $claimTypes
      * @param DepartmentsInterface $departments
+     * @param ClaimMechanicsInterface $claimMechanics
+     * @param AddressesInterface $addresses
      */
     public function __construct(ClaimInterface $claim, ClaimConversationInterface $claimConversation,
-                                ClaimTypesInterface $claimTypes, DepartmentsInterface $departments)
+                                ClaimTypesInterface $claimTypes, DepartmentsInterface $departments, ClaimMechanicsInterface $claimMechanics, AddressesInterface $addresses)
     {
         $this->claim = $claim;
         $this->claimConversation = $claimConversation;
         $this->claimTypes = $claimTypes;
         $this->departments = $departments;
+        $this->claimMechanics = $claimMechanics;
+        $this->addresses = $addresses;
     }
 
     public function index(Request $request)
@@ -79,5 +94,32 @@ class ClaimsController extends Controller
             $request->session()->flash('alert-danger', 'Error while updating/creating conversation.');
             return redirect()->back();
         }
+    }
+
+    public function create()
+    {
+        $departments = $this->departments->all();
+        $mechanicsTypes = $this->claimMechanics->all();
+        $types = $this->claimTypes->all();
+        return view('claims.create', compact('departments', 'mechanicsTypes', 'types'));
+    }
+
+    public function store(ClaimRequests $request)
+    {
+        $data = $request->all();
+        $response = $this->claim->createClaim($data);
+
+        if($response) {
+            $request->session()->flash('alert-success', 'Claim has been created.');
+            return redirect()->route('claim.create');
+        } else {
+            $request->session()->flash('alert-danger', 'Error while creating claim.');
+            return redirect()->route('claim.create');
+        }
+    }
+
+    public function departmentAddress($id)
+    {
+        return $this->addresses->getAddressesByDepartment($id);
     }
 }

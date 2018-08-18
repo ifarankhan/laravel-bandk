@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DCG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet" type="text/css">
+    <script>
+        var _token = "{{ csrf_token() }}";
+    </script>
+    @yield('css')
 </head>
 
 <body>
@@ -39,55 +44,6 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2 column">
-            <div class="sideNav" style="width: 100%;height: 100%;">
-                <button>
-                    <span></span>
-                </button>
-                <ul>
-                    <?php
-                        $html = '';
-                    ?>
-                    {!! getLeftMenu($categories, $html) !!}
-                    {{--@if(count($categories) > 0)
-                        @foreach($categories as $category)
-                            <li class="home"><a href="javascript:;">{{ $category->title }}</a>
-                                @if($category->childrenCount > 0)
-                                    <ul class="nav child_menu">
-                                        @foreach($category->children as $child)
-                                            <li class="current-page"><a href="#">{{ $child->title }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
-                        @endforeach
-                    @endif--}}
-                   {{-- <li class="home"><a href="javascript:;">Home</a>
-                        <ul class="nav child_menu">
-                            <li class="current-page"><a href="#">Dashboard</a></li>
-                            <li><a href="index2.html">Dashboard2</a></li>
-                            <li><a href="index3.html">Dashboard3</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class="newIndividual"><a href="javascript:;">New Appliction</a>
-                        <ul class="nav child_menu">
-                            <li class="current-page"><a href="#">Dashboard</a></li>
-                            <li><a href="index2.html">Dashboard2</a></li>
-                            <li><a href="index3.html">Dashboard3</a></li>
-                        </ul>
-                    </li>
-                    <li class="howToGuide"><a href="javascript:;">How-to guides</a>
-                        <ul class="nav child_menu">
-                            <li class="current-page"><a href="#">Dashboard</a></li>
-                            <li><a href="index2.html">Dashboard2</a></li>
-                            <li><a href="index3.html">Dashboard3</a></li>
-                        </ul>
-                    </li>--}}
-                </ul>
-            </div>
-        </div>
         @yield('content')
     </div>
 </div>
@@ -105,6 +61,7 @@
 <script type="text/javascript" src="{{ asset('frontend/script/jquery-3.3.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/script/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/script/custom.js') }}"></script>
+<script src="{{ asset('/common/js/common.js') }}"></script>
 </body>
 </html>
 

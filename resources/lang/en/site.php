@@ -3,6 +3,9 @@
 return [
     'claim_type' => 'Skadetype',
     'department' => 'Afdelingsnr',
+    'mechanics_type' => 'Afdelingsnr',
+    'attach_photo' => 'Attach Photo',
+    'description' => 'Description',
     'address_1' => 'Adresse 1',
     'address_2' => 'Adresse 2',
     'postal_no' => 'Postnr',
@@ -10,6 +13,7 @@ return [
     'date' => 'Date',
     'actions' => 'Actions',
     'select_claim_type' => 'Select Claim Type',
+    'select_claim_mechanic_type' => 'Select Mechanics',
     'select_department' => 'Select Department',
     'details' => 'Details',
     'conversation' => 'Conversation',
