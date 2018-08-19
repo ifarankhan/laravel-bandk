@@ -107,6 +107,12 @@ jQuery(document).ready(function () {
     var anchors = jQuery("a.load-content");
     jQuery(anchors[0]).trigger('click');
 
+
+    jQuery("button#add_address").on('click', function(){
+        var parent = jQuery('div#address_div');
+        parent.append('<div style="margin-bottom: 35px;"><input type="text"  class="form-control col-md-7 col-xs-12" name="addresses[]" ></div>');
+    });
+
 });
 
 function sendAjax(url, data, method, callback)

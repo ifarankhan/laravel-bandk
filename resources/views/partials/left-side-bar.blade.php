@@ -29,6 +29,7 @@
                         </li>
                         <li><a><i class="fa fa-wrench"></i> Settings <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
+                                <li><a href="{{ route('department.index') }}">Departments</a></li>
                                 <li><a href="{{ route('claim-type.index') }}">Claim Types</a></li>
                                 <li><a href="{{ route('claim-mechanic.index') }}">Claim Mechanics</a></li>
                             </ul>

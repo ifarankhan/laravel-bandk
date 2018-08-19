@@ -37,6 +37,11 @@ class AddressesRepository implements AddressesInterface
         return $this->model->where('department_id', $departmentId)->get();
     }
 
+    public function getAddressByIdDepartmentId($id, $departmentId)
+    {
+        return $this->model->where('id', $id)->where('department_id', $departmentId)->first();
+    }
+
     public function getAddressByDepartmentWise()
     {
         $addresses = $this->all();
@@ -48,5 +53,17 @@ class AddressesRepository implements AddressesInterface
         }
 
         return $data;
+    }
+
+    public function store($data)
+    {
+        if(isset($data['id'])) {
+            $this->model = $this->model->find($data['id']);
+        }
+
+        $this->model->address = $data['address'];
+        $this->model->department_id = $data['department_id'];
+
+        return $this->model->save();
     }
 }

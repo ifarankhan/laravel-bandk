@@ -56,6 +56,12 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/claim-mechanic/edit/{id}', 'ClaimMechanicsController@edit')->name('claim-mechanic.edit');
     Route::delete('/dashboard/claim-mechanic/delete/{id}', 'ClaimMechanicsController@delete')->name('claim-mechanic.delete');
 
+    Route::get('/dashboard/departments', 'DepartmentController@index')->name('department.index');
+    Route::get('/dashboard/department/create', 'DepartmentController@create')->name('department.create');
+    Route::post('/dashboard/department/create', 'DepartmentController@store')->name('department.store');
+    Route::get('/dashboard/department/edit/{id}', 'DepartmentController@edit')->name('department.edit');
+    Route::delete('/dashboard/department/delete/{id}', 'DepartmentController@delete')->name('department.delete');
+
 
 
 });
