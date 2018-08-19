@@ -92,4 +92,17 @@ class ContentsController extends Controller
         ];
 
     }
+
+    public function getList($categoryId)
+    {
+        $contents = $this->content->getByCategoryId($categoryId);
+        $category = $this->category->getOne($categoryId);
+
+        $html = view('partials.category-detail', compact('contents', 'category'))->render();
+
+        return [
+            'html' => $html,
+            'status' => true
+        ];
+    }
 }

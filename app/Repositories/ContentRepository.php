@@ -61,4 +61,9 @@ class ContentRepository implements ContentInterface
     {
         return $this->getOne($id)->delete();
     }
+
+    public function getByCategoryId($categoryId)
+    {
+        return $this->model->where('category_id', $categoryId)->get();
+    }
 }

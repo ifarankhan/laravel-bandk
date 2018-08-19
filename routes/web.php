@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
 
     Route::get('/', 'HomeController@index')->name('home.index');
-    /*Route::get('/category/{slug}', 'HomeController@categoryDetail')->name('home.category');*/
+    Route::get('/content/list/{categoryId}', 'ContentsController@getList')->name('content.list');
 
 
 });

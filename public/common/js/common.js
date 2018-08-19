@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
 
     jQuery(".delete").on('click', function (event) {
         event.preventDefault();
-        $(this).unbind('click');
+        $(this).off('click');
         var url = $(this).data('url');
         var id = $(this).data('id');
         var data = {'_token': _token};
@@ -14,12 +14,13 @@ jQuery(document).ready(function () {
         jQuery(".delete-confirm").on('click', function () {
 
             sendAjax(url,data, 'DELETE', function (response) {
-                console.log(response);
                 if(response.success) {
                     jQuery("#content_"+id).hide('slow');
                 }
                 modalElement.modal('hide');
             });
+
+            $(this).off('click');
 
         });
     });
@@ -54,14 +55,14 @@ jQuery(document).ready(function () {
 
     jQuery("#department_id").trigger('change');
 
-    $("input#fileUpload").on('change', function () {
+    jQuery("input#fileUpload").on('change', function () {
 
         //Get count of selected files
-        var countFiles = $(this)[0].files.length;
+        var countFiles = jQuery(this)[0].files.length;
 
-        var imgPath = $(this)[0].value;
+        var imgPath = jQuery(this)[0].value;
         var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-        var image_holder = $("#image-holder");
+        var image_holder = jQuery("#image-holder");
         image_holder.empty();
 
         if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
@@ -89,6 +90,22 @@ jQuery(document).ready(function () {
             alert("Pls select only images");
         }
     });
+
+    jQuery("a.load-content").on('click', function(){
+        var parent = jQuery("div#content-details");
+        parent.html('<div class="row"><div class="col-md-4"></div><div class="col-md-4"><i class="fa fa-spinner fa-spin fa-4x" /></div><div class="col-md-4"></div></div>');
+        var url = jQuery(this).data('url');
+        console.log(url);
+
+        sendAjax(url,{}, 'GET', function (response) {
+           if(response.status == true) {
+               parent.html(response.html);
+           }
+        });
+    });
+
+    var anchors = jQuery("a.load-content");
+    jQuery(anchors[0]).trigger('click');
 
 });
 

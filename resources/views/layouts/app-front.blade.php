@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        .main-header-active {
+            background: #f37522 !important;
+            transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+        }
+    </style>
     <script>
         var _token = "{{ csrf_token() }}";
     </script>
@@ -23,8 +32,8 @@
                 <div class="col-xs-8 text-left zero-padding">
                     <img src="/frontend/images/logob&k.png" alt="logo">
                     <div class="links">
-                        <a href="{{ route('home.index') }}" class="link1">Home</a>
-                        <a href="#" class="link2">Claim Form</a>
+                        <a href="{{ route('home.index') }}" class="link1 {{ \Request::route()->getName() == 'home.index' ? 'main-header-active': ''}}">Home</a>
+                        <a href="{{ route('claim.create') }}" class="link2 {{ \Request::route()->getName() == 'claim.create' ? 'main-header-active': ''}}">Claim Form</a>
                     </div>
                 </div>
                 <div class="col-xs-4 zero-padding text-right padding-15">

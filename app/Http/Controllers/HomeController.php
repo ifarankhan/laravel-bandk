@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ContentInterface;
-use Illuminate\Http\Request;
+use App\Repositories\CategoryInterface;
 
 class HomeController extends Controller
 {
-    /**
-     * @var ContentInterface
-     */
-    private $content;
 
     /**
-     * Create a new controller instance.
-     *
-     * @param ContentInterface $content
+     * @var CategoryInterface
      */
-    public function __construct(ContentInterface $content)
+    private $category;
+
+    /**
+     * HomeController constructor.
+     * @param CategoryInterface $category
+     */
+    public function __construct(CategoryInterface $category)
     {
         $this->middleware('auth');
-        $this->content = $content;
+        $this->category = $category;
 
-        \View::share('categories', $this->content->getCategories(null));
+        \View::share('categories', $this->category->getCategories(null));
     }
 
     /**
@@ -32,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $category = $this->content->getFirst();
+        $category = $this->category->getFirst();
         return view('site.index', compact('category'));
     }
 
