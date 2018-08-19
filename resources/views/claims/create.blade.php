@@ -31,20 +31,6 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group ">
-                        <label for="heading">{{ getTranslation('mechanics_type') }}</label>
-                        <select class="form-control" name="claim_mechanic_id">
-                            <option value="">{{ getTranslation('select_claim_mechanic_type') }}</option>
-                            @foreach($mechanicsTypes as $item)
-                                <option value="{{ $item->id }}" {{ old('claim_mechanic_id') == $item->id ? 'selected="selected"' : '' }}>{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('claim_mechanic_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('claim_mechanic_id') }}</strong>
-                            </span>
-                        @endif
-                    </div>
 
                     <div class="form-group ">
                         <div class="half half-left">
@@ -112,6 +98,20 @@
                             <span class="help-block">
                                     <strong>{{ $errors->first('description') }}</strong>
                                 </span>
+                        @endif
+                    </div>
+                    <div class="form-group ">
+                        <label for="heading">{{ getTranslation('mechanics_type') }}</label>
+                        <select class="form-control" name="claim_mechanic_id">
+                            <option value="">{{ getTranslation('select_claim_mechanic_type') }}</option>
+                            @foreach($mechanicsTypes as $item)
+                                <option value="{{ $item->id }}" {{ old('claim_mechanic_id') == $item->id ? 'selected="selected"' : '' }}>{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('claim_mechanic_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('claim_mechanic_id') }}</strong>
+                            </span>
                         @endif
                     </div>
 

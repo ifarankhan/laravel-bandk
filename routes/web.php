@@ -41,8 +41,21 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::post('/dashboard/claim/create', 'ClaimsController@store')->name('claim.store');
     Route::get('/dashboard/claim/details/{id}', 'ClaimsController@details')->name('claim.details');
     Route::delete('/dashboard/claim/delete/{id}', 'ClaimsController@delete')->name('claim.delete');
-
     Route::post('/dashboard/claim/conversation/create', 'ClaimsController@addConversation')->name('claim.conversation.store');
+
+
+    Route::get('/dashboard/claim-types', 'ClaimTypeController@index')->name('claim-type.index');
+    Route::get('/dashboard/claim-type/create', 'ClaimTypeController@create')->name('claim-type.create');
+    Route::post('/dashboard/claim-type/create', 'ClaimTypeController@store')->name('claim-type.store');
+    Route::get('/dashboard/claim-type/edit/{id}', 'ClaimTypeController@edit')->name('claim-type.edit');
+    Route::delete('/dashboard/claim-type/delete/{id}', 'ClaimTypeController@delete')->name('claim-type.delete');
+
+    Route::get('/dashboard/claim-mechanics', 'ClaimMechanicsController@index')->name('claim-mechanic.index');
+    Route::get('/dashboard/claim-mechanic/create', 'ClaimMechanicsController@create')->name('claim-mechanic.create');
+    Route::post('/dashboard/claim-mechanic/create', 'ClaimMechanicsController@store')->name('claim-mechanic.store');
+    Route::get('/dashboard/claim-mechanic/edit/{id}', 'ClaimMechanicsController@edit')->name('claim-mechanic.edit');
+    Route::delete('/dashboard/claim-mechanic/delete/{id}', 'ClaimMechanicsController@delete')->name('claim-mechanic.delete');
+
 
 
 });
