@@ -20,8 +20,8 @@ class IsSuperUser extends Middleware
     {
         if ((\Auth::user()->roles) && in_array('ADMIN', \Auth::user()->roles->pluck('name')->toArray())) {
             return $next($request);
+        }else{
+            abort(403, 'Unauthorized action.');
         }
-
-        return redirect()->route('dashboard.index');
     }
 }

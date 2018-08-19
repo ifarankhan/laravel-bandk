@@ -48,7 +48,7 @@ class LoginController extends Controller
             if(in_array('INFO_APP', $modules)) {
                 return redirect()->route('home.index');
             } elseif (in_array('CLAIM_FORM', $modules)) {
-                return redirect()->route('home.index');
+                return redirect()->route('claim.create');
             }
         }
     }

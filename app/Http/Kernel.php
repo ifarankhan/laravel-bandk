@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CanAccess;
 use App\Http\Middleware\IsSuperUser;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -59,5 +60,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'is_super_admin' => IsSuperUser::class,
+        'can_access' => CanAccess::class,
     ];
 }

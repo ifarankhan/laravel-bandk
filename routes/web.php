@@ -15,10 +15,10 @@
     return redirect()->route('dashboard.index');
 });*/
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index')->middleware(['auth']);
+
 
 Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
-
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index')->middleware(['auth']);
     Route::get('/dashboard/users', 'UsersController@index')->name('users.index');
     Route::get('/dashboard/users/create', 'UsersController@create')->name('users.create');
     Route::post('/dashboard/users/create', 'UsersController@store')->name('users.store');
@@ -66,17 +66,18 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
 
 });
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth', 'can_access']], function() {
 
     Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');
     Route::get('/claim/create', 'ClaimsController@create')->name('claim.create');
     Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
 
     Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/content/list/{categoryId}', 'ContentsController@getList')->name('content.list');
 
 
 });
-
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/content/list/{categoryId}', 'ContentsController@getList')->name('content.list');
+});
 
 Auth::routes();
