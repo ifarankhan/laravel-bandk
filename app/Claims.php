@@ -25,10 +25,6 @@ class Claims extends Model
     {
         return $this->belongsTo(Addresses::class, 'address_1', 'id');
     }
-    public function address2()
-    {
-        return $this->belongsTo(Addresses::class, 'address_2', 'id');
-    }
     public function images()
     {
         return $this->hasMany(ClaimImages::class, 'claim_id', 'id');

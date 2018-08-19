@@ -52,7 +52,7 @@ class ClaimRepository implements ClaimInterface
             $query = $query->where('date','=', date('Y-m-d',strtotime($search['date'])));
         }
 
-        return $query->get();
+        return $query->orderBy('created_at', 'DESC')->get();
 
     }
     public function all($user = null)
@@ -62,7 +62,13 @@ class ClaimRepository implements ClaimInterface
     public function createClaim($data)
     {
         $data['user_id'] = \Auth::user()->id;
-        $data['date'] = isset($data['date']) ? date('Y-m-d', strtotime($data['date'])) : null;
+        $date = null;
+        if(isset($data['date'])) {
+            $date = str_replace('/', '-', $data['date']);
+            $date = date('Y-m-d', strtotime($date));
+        }
+        $data['date'] = $date;
+
         $claim = $this->model->create($data);
 
         if(isset($data['images']) && count($data['images']) > 0) {
@@ -77,8 +83,5 @@ class ClaimRepository implements ClaimInterface
         }
 
         return $claim;
-
-
-
     }
 }

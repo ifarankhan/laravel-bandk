@@ -37,7 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /*public function redirectTo()
+    public function redirectTo()
     {
         $roles = \Auth::user()->roles->pluck('name')->toArray();
         $modules = (\Auth::user()->modules) ? \Auth::user()->modules->pluck('name')->toArray() : [];
@@ -48,8 +48,8 @@ class LoginController extends Controller
             if(in_array('INFO_APP', $modules)) {
                 return redirect()->route('home.index');
             } elseif (in_array('CLAIM_FORM', $modules)) {
-                return redirect()->route('home.claim-form');
+                return redirect()->route('home.index');
             }
         }
-    }*/
+    }
 }

@@ -33,6 +33,12 @@
                     </div>
 
                 </div>
+                <div class="row ribbon-content">
+                    <div class="col-md-12">
+                        <strong>{{ getTranslation('description') }}:</strong> {{ $claim->description }}
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
