@@ -30,6 +30,6 @@ class DepartmentsRepository implements DepartmentsInterface
 
     public function all()
     {
-        return $this->model->with(['addresses', 'addresses.subAddresses'])->get(['id', 'name', 'code']);
+        return $this->model->with(['addresses'])->get(['id', 'name', 'code']);
     }
 }
