@@ -68,15 +68,16 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
 
 Route::group(['middleware' => ['auth', 'can_access']], function() {
 
-    Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');
     Route::get('/claim/create', 'ClaimsController@create')->name('claim.create');
-    Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
 
     Route::get('/', 'HomeController@index')->name('home.index');
 
 
 });
 Route::group(['middleware' => ['auth']], function() {
+
+    Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
+    Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');
     Route::get('/content/list/{categoryId}', 'ContentsController@getList')->name('content.list');
 });
 
