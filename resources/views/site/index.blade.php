@@ -18,3 +18,11 @@
 
     </div>
 @endsection
+
+@section('css')
+    <style>
+        .detail h1 {
+            width: 100%;
+        }
+    </style>
+@endsection

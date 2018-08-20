@@ -95,7 +95,10 @@ jQuery(document).ready(function () {
         var parent = jQuery("div#content-details");
         parent.html('<div class="row"><div class="col-md-4"></div><div class="col-md-4"><i class="fa fa-spinner fa-spin fa-4x" /></div><div class="col-md-4"></div></div>');
         var url = jQuery(this).data('url');
-        console.log(url);
+
+        var id = jQuery(this).data('id');
+        jQuery('#ul_'+id).toggle();
+
 
         sendAjax(url,{}, 'GET', function (response) {
            if(response.status == true) {

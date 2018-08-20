@@ -20,10 +20,10 @@ function getTranslation($key)
 function getLeftMenu($categories,  &$html)
 {
     foreach ($categories as $category) {
-        $html = $html . '<li class="home_'.$category->title.'" ><a  class="load-content" href="javascript:;" data-url="'.route("content.list", ["categoryId" => $category->id]).'">'. $category->title.' </a>';
+        $html = $html . '<li class="home '.$category->title.'" ><a  class="load-content" href="javascript:;" data-id="'.$category->id.'" data-url="'.route("content.list", ["categoryId" => $category->id]).'">'. $category->title.' </a>';
 
         if($category->childrenCount > 0) {
-            $html = $html . '<ul class="nav child_menu">';
+            $html = $html . '<ul class="nav child_menu" style="display:none;" id="ul_'.$category->id.'">';
             getLeftMenu($category->children,$html);
             $html = $html . '</ul>';
         }

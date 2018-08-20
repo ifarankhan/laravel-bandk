@@ -21,13 +21,22 @@ $(".sideNav button").click(function(){
     
     
 $('.sideNav ul li').click(function() {
-	if ($(this).hasClass('active')) {
-	$('.sideNav ul li').removeClass('active');
+
+	if (!$(this).hasClass('active')) {
+        $('.sideNav ul li').removeClass('active');
+
+        $(this).addClass('active');
+	//$(this).toggleClass('active');
+	}
+	/*if ($(this).hasClass('active')) {
+	    $('.sideNav ul li').removeClass('active');
+	    $(this).find('ul.child_menu').toggle();
 	//$(this).toggleClass('active');
 	} else {
 		$('.sideNav ul li').removeClass('active');
+
 		$(this).addClass('active');
-	}
+	}*/
 	
     //e.preventDefault();
 
