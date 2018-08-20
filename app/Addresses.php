@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 class Addresses extends Model
 {
-    public function subAddress()
+    public function subAddresses()
     {
         return $this->hasMany(Addresses::class, 'parent_id', 'id')->select(['id', 'address', 'parent_id']);
     }
