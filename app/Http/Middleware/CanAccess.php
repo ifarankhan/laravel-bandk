@@ -23,7 +23,7 @@ class CanAccess extends Middleware
         $modules = (\Auth::user()->modules) ? \Auth::user()->modules->pluck('name')->toArray() : [];
         $requestName = $request->route()->getName();
 
-        if(in_array('ADMIN', $roles) || in_array('MANAGER', $roles)) {
+        if(in_array('ADMIN', $roles)) {
             if($requestName == 'home.index' || $requestName == 'claim.create') {
                 return redirect()->route('dashboard.index');
             } else {
@@ -43,6 +43,12 @@ class CanAccess extends Middleware
                 }else{
                     abort(403, 'Unauthorized action.');
                 }
+            }
+        } elseif (in_array('MANAGER', $roles)) {
+            if($requestName == 'home.index') {
+                return $next($request);
+            } else{
+                abort(403, 'Unauthorized action.');
             }
         }
     }
