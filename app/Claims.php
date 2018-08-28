@@ -36,4 +36,11 @@ class Claims extends Model
         }
         return $value;
     }
+    public function getCreatedAtAttribute($value)
+    {
+        if ($value) {
+            return date('Y-m-d', strtotime($value));
+        }
+        return $value;
+    }
 }

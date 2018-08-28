@@ -59,6 +59,24 @@ class ClaimRepository implements ClaimInterface
     {
         return $this->model->all();
     }
+    public function allCount($user = null)
+    {
+        return $this->model->count();
+    }
+    public function todayClaimsQuery()
+    {
+        return $this->model->where('created_at','>=' ,date('Y-m-d'));
+    }
+    public function todayCount($user = null)
+    {
+        $query = $this->todayClaimsQuery();
+        return $query->count();
+    }
+    public function todayClaims($user = null)
+    {
+        $query = $this->todayClaimsQuery();
+        return $query->get();
+    }
     public function createClaim($data)
     {
         $data['user_id'] = \Auth::user()->id;

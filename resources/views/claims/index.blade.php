@@ -65,12 +65,13 @@
                         </form>
                     <br />
                     <br />
-                    <table id="datatable1" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
+                            <th>{{ getTranslation('claim_created_at') }}</th>
+                            <th>{{ getTranslation('date') }}</th>
                             <th>{{ getTranslation('claim_type') }}</th>
                             <th>{{ getTranslation('estimate') }}</th>
-                            <th>{{ getTranslation('date') }}</th>
                             <th>{{ getTranslation('department') }}</th>
                             <th>{{ getTranslation('address_1') }}</th>
                             <th>{{ getTranslation('address_2') }}</th>
@@ -80,9 +81,10 @@
                         <tbody>
                         @foreach($claims as $claim)
                             <tr>
+                                <td>{{ $claim->created_at }}</td>
+                                <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
                                 <td>{{ $claim->estimate }}</td>
-                                <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
                                 <td>{{ ($claim->address2)  ? $claim->address2->address : ''}}</td>

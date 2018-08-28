@@ -31,6 +31,10 @@ class UserRepository implements UserInterface
     {
         return $this->model->all();
     }
+    public function allCount()
+    {
+        return $this->model->count();
+    }
 
     public function getOne($id)
     {

@@ -94,6 +94,7 @@ class PassportController extends Controller
                     'data' => [
                         'token' => $success['token'],
                         'name' => $user->name,
+                        'id' => $user->id,
                         'roles' => ($user->roles) ? $user->roles : [],
                         'modules' => ($user->modules) ? $user->modules: [],
                     ]

@@ -21,4 +21,8 @@ return [
     'attach_file' => 'Attach File(s)',
     'claim_details' => 'Claim Details',
     'submit' => 'Submit',
+    'total_users' => 'Total Users',
+    'total_claims' => 'Total Claims',
+    'today_claims' => 'Today Claims',
+    'claim_created_at' => 'Claim creation date',
 ];
