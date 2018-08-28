@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClaimConversationRequest;
 use App\Http\Requests\ClaimRequests;
+use App\Http\Requests\ClaimStatusRequests;
 use App\Repositories\AddressesInterface;
 use App\Repositories\ClaimConversationInterface;
 use App\Repositories\ClaimInterface;
@@ -115,6 +116,20 @@ class ClaimsController extends Controller
         } else {
             $request->session()->flash('alert-danger', 'Error while creating claim.');
             return redirect()->route('claim.create');
+        }
+    }
+
+    public function updateStatus(ClaimStatusRequests $request)
+    {
+        $data = $request->all();
+        $response = $this->claim->updateStatus($data);
+
+        if($response) {
+            $request->session()->flash('alert-success', 'Claim status has been updated.');
+            return redirect()->route('claim.details', ['id'=> $data['id']]);
+        } else {
+            $request->session()->flash('alert-danger', 'Error while update status of claim.');
+            return redirect()->route('claim.details', ['id'=> $data['id']]);
         }
     }
 

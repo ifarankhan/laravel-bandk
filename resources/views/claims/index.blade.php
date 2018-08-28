@@ -1,6 +1,10 @@
 @extends('layouts.app-admin')
 
 @section('content')
+    <ul class="breadcrumb">
+        <li><a href="{{ route('dashboard.index') }}">{{ getTranslation('dashboard') }}</a></li>
+        <li><a href="{{ route('claim.index') }}">{{ getTranslation('claims') }}</a></li>
+    </ul>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -65,7 +69,7 @@
                         </form>
                     <br />
                     <br />
-                    <table id="datatable" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>{{ getTranslation('claim_created_at') }}</th>
@@ -80,14 +84,17 @@
                         </thead>
                         <tbody>
                         @foreach($claims as $claim)
-                            <tr>
+                            <?php
+
+                            ?>
+                            <tr class="alert alert-{{ getClaimColor($claim) }}">
                                 <td>{{ $claim->created_at }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
                                 <td>{{ $claim->estimate }}</td>
                                 <td>{{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
-                                <td>{{ ($claim->address2)  ? $claim->address2->address : ''}}</td>
+                                <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success">{{ getTranslation('details') }}</a>
                                 </td>

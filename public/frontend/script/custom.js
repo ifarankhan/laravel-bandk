@@ -1,5 +1,13 @@
 //
 $(document).ready(function(){
+
+    jQuery("#estimate").on('change', function (event) {
+        var value = $(this).val();
+        value = formatNumber(value);
+
+        $(this).val(value);
+    });
+
 equalheight('.column');
 	$(".sideNav").css("height",$(".column").height() + 40 + "px")
 
@@ -18,6 +26,8 @@ equalheight('.column');
 $(".sideNav button").click(function(){
 		$(".sideNav").toggleClass('open');
 	});
+
+
     
     
 $('.sideNav ul li').click(function() {
@@ -84,7 +94,10 @@ var currentTallest = 0,
  });
 }
 
-
+function formatNumber(x) {
+    x = x.replace('.', '');
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 $(window).resize(function(){
   equalheight('.column');

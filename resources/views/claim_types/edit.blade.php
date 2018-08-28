@@ -1,6 +1,10 @@
 @extends('layouts.app-admin')
 
 @section('content')
+    <ul class="breadcrumb">
+        <li><a href="{{ route('dashboard.index') }}">{{ getTranslation('dashboard') }}</a></li>
+        <li><a href="{{ route('claim-type.index') }}">{{ getTranslation('claim_type') }}</a></li>
+    </ul>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">

@@ -31,6 +31,29 @@ function getLeftMenu($categories,  &$html)
     }
 
     return $html;
+}
 
-
+function getClaimColor($claim)
+{
+    $color = '';
+    if($claim->status == 'FOR_BNK' || $claim->status == 'FOR_MANAGER') {
+        $color = 'danger';
+    } elseif ($claim->status == 'OPEN') {
+        $color = 'success';
+    } elseif ($claim->status == 'CLOSED') {
+        $color = 'info';
+    }
+    return $color;
+}
+function getClaimStatus($claim)
+{
+    $status = '';
+    if($claim->status == 'FOR_BNK' || $claim->status == 'FOR_MANAGER') {
+        $status = getTranslation('not_processed');
+    } elseif ($claim->status == 'OPEN') {
+        $status = getTranslation('open');
+    } elseif ($claim->status == 'CLOSED') {
+        $status = getTranslation('closed');
+    }
+    return $status;
 }

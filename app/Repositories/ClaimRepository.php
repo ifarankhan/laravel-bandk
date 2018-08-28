@@ -102,4 +102,11 @@ class ClaimRepository implements ClaimInterface
 
         return $claim;
     }
+
+    function updateStatus($data)
+    {
+        $claim = $this->getOne($data['id']);
+        $claim->status = $data['status'];
+        return $claim->save();
+    }
 }

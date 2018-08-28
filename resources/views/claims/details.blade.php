@@ -1,5 +1,9 @@
 @extends('layouts.app-admin')
 @section('content')
+    <ul class="breadcrumb">
+        <li><a href="{{ route('dashboard.index') }}">{{ getTranslation('dashboard') }}</a></li>
+        <li><a href="{{ route('claim.index') }}">{{ getTranslation('claims') }}</a></li>
+    </ul>
     <div class="flash-message">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
             @if(Session::has('alert-' . $msg))
@@ -10,9 +14,43 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="mt-element-ribbon bg-grey-steel">
-                <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
-                    <div class="ribbon-sub ribbon-clip"></div>{{ getTranslation('claim_details') }}</div>
+                <form action="{{ route('claim.status') }}" method="POST">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
+                                <div class="ribbon-sub ribbon-clip"></div>{{ getTranslation('claim_details') }}
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value="{{ $claim->id }}">
+                                    <div class="form-group col-md-6">
+                                        <select class="form-control" name="status">
+                                            <option value="">{{ getTranslation('select_status') }}</option>
+                                            <option value="CLOSED" {{ $claim->status == 'CLOSED' ? 'selected="selected"' : '' }}>{{ getTranslation('closed') }}</option>
+                                            <option value="OPEN" {{ $claim->status == 'OPEN' ? 'selected="selected"' : '' }}>{{ getTranslation('open') }}</option>
+                                        </select>
+                                        @if ($errors->has('status'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('status') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
                 <div class="row ribbon-content">
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('status') }}:</strong> {{ getClaimStatus($claim) }}
+                    </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
                     </div>
@@ -29,7 +67,7 @@
                         <strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address1)  ? $claim->address1->address : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address2)  ? $claim->address2->address : ''}}
+                        <strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}
                     </div>
 
                 </div>
@@ -152,11 +190,33 @@
         </div>
     </div>
 
+    {{--<div id="status" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>--}}
+
 @endsection
 
 @section('css')
     <style>
-
+        .help-block{
+            color: #a94442;
+        }
         .bg-grey-steel {
             background: #e9edef!important;
         }
