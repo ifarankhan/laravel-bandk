@@ -26,13 +26,13 @@ class DepartmentRequest extends FormRequest
         if($this->get('id')) {
             return [
                 'name' => 'required',
-                'code' => 'required|number'
+                'code' => 'required|numeric'
             ];
         }
 
         return [
             'name' => 'required|unique:departments',
-            'code' => 'required|number|unique:departments'
+            'code' => 'required|numeric|unique:departments'
         ];
 
     }
