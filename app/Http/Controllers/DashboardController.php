@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\ClaimInterface;
+use App\Repositories\CustomerInterface;
 use App\Repositories\UserInterface;
 
 class DashboardController extends Controller
@@ -22,16 +23,22 @@ class DashboardController extends Controller
      * @var ClaimInterface
      */
     private $claim;
+    /**
+     * @var CustomerInterface
+     */
+    private $customer;
 
     /**
      * DashboardController constructor.
      * @param UserInterface $user
      * @param ClaimInterface $claim
+     * @param CustomerInterface $customer
      */
-    public function __construct(UserInterface $user, ClaimInterface $claim)
+    public function __construct(UserInterface $user, ClaimInterface $claim, CustomerInterface $customer)
     {
         $this->user = $user;
         $this->claim = $claim;
+        $this->customer = $customer;
     }
 
     public function index()
@@ -40,6 +47,7 @@ class DashboardController extends Controller
         $claimCount = $this->claim->allCount();
         $todayCount = $this->claim->todayCount();
         $todayClaims = $this->claim->todayClaims();
-        return view('dashboard.index', compact('userCount', 'claimCount', 'todayCount', 'todayClaims'));
+        $customersCount = $this->customer->allCount();
+        return view('dashboard.index', compact('userCount', 'claimCount', 'todayCount', 'todayClaims', 'customersCount'));
     }
 }

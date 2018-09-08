@@ -10,7 +10,7 @@ return [
     'address_2' => 'Adresse 2',
     'postal_no' => 'Postnr',
     'estimate' => 'Estimate',
-    'date' => 'Date',
+    'claim_creation_date' => 'Date',
     'actions' => 'Actions',
     'select_claim_type' => 'Select Claim Type',
     'select_claim_mechanic_type' => 'Select Mechanics',
@@ -48,4 +48,5 @@ return [
     'customer_policy_number' => 'Police nr.',
     'customer_emails' => 'Emails',
     'customer_add_emails' => 'Add Emails',
+    'total_customer' => 'Total customers',
 ];

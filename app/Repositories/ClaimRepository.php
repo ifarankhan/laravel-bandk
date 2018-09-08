@@ -49,7 +49,7 @@ class ClaimRepository implements ClaimInterface
             $query = $query->where('department_id', $search['department_id']);
         }
         if($search && isset($search['date'])) {
-            $query = $query->where('date','=', date('Y-m-d',strtotime($search['date'])));
+            $query = $query->where('created_at','>=', date('Y-m-d 00:00:00',strtotime($search['date'])))->where('created_at', '<=', date('Y-m-d 23:59:00',strtotime($search['date'])));
         }
 
         return $query->orderBy('created_at', 'DESC')->get();

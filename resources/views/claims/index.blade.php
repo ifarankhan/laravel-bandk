@@ -31,16 +31,16 @@
                                         <select id="claim_type_id" class="form-control" name="search[claim_type_id]" data-actions-box="true" tabindex="-1" aria-hidden="true">
                                             <option value="">{{ getTranslation('select_claim_type') }}</option>
                                             @foreach($claimTypes as $claimType)
-                                                <option value="{{ $claimType->id }}" {{ ($search && $search['claim_type_id'] && $search['claim_type_id'] == $claimType->id) ? 'selected="selected"' : '' }}>{{ $claimType->name }}</option>
+                                                <option value="{{ $claimType->id }}" {{ ($search && isset($search['claim_type_id'])&& $search['claim_type_id'] == $claimType->id) ? 'selected="selected"' : '' }}>{{ $claimType->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-4 col-lg-4">
                                         <label for="type_of_document">
-                                            {{ getTranslation('date') }}
+                                            {{ getTranslation('claim_creation_date') }}
                                         </label>
                                         <div class="input-group date" id="date">
-                                            <input type="text" class="form-control" name="search[date]" id="date" value="{{ ($search && $search['date']) ? $search['date'] : ''}}">
+                                            <input type="text" class="form-control" name="search[date]" id="date" value="{{ ($search && isset($search['date'])) ? $search['date'] : ''}}">
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -53,7 +53,7 @@
                                         <select id="department_id" class="form-control" name="search[department_id]" tabindex="-1" aria-hidden="true">
                                             <option value="">{{ getTranslation('select_department') }}</option>
                                             @foreach($departments as $department)
-                                                <option value="{{ $department->id }}" {{ ($search && $search['department_id'] && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }} ({{ $department->code }})</option>
+                                                <option value="{{ $department->id }}" {{ ($search && isset($search['department_id']) && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }} ({{ $department->code }})</option>
                                             @endforeach
                                         </select>
                                     </div>

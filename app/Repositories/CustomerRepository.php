@@ -24,6 +24,10 @@ class CustomerRepository implements CustomerInterface
     {
         return $this->model->get();
     }
+    public function allCount()
+    {
+        return $this->model->count();
+    }
 
     public function getOne($id)
     {

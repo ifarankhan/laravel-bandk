@@ -2,32 +2,49 @@
 
 @section('content')
     <div class="row">
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-users"></i>
-                </div>
-                <div class="count">{{ $userCount }}</div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href="{{ route('users.index') }}">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-users"></i>
+                    </div>
+                    <div class="count">{{ $userCount }}</div>
 
-                <h3>{{ getTranslation('total_users') }}</h3>
-            </div>
+                    <h3>{{ getTranslation('total_users') }}</h3>
+                </div>
+            </a>
         </div>
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-briefcase"></i>
-                </div>
-                <div class="count">{{ $claimCount }}</div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href="{{ route('customer.index') }}">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-users"></i>
+                    </div>
+                    <div class="count">{{ $customersCount }}</div>
 
-                <h3>{{ getTranslation('total_claims') }}</h3>
-            </div>
+                    <h3>{{ getTranslation('total_customer') }}</h3>
+                </div>
+            </a>
         </div>
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="tile-stats">
-                <div class="icon"><i class="fa fa-briefcase"></i>
-                </div>
-                <div class="count">{{ $todayCount }}</div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href="{{ route('claim.index') }}">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-briefcase"></i>
+                    </div>
+                    <div class="count">{{ $claimCount }}</div>
 
-                <h3>{{ getTranslation('today_claims') }}</h3>
-            </div>
+                    <h3>{{ getTranslation('total_claims') }}</h3>
+                </div>
+            </a>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href="{{ route('claim.index') }}?search[date]={{ date('Y-m-d') }}">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-briefcase"></i>
+                    </div>
+                    <div class="count">{{ $todayCount }}</div>
+
+                    <h3>{{ getTranslation('today_claims') }}</h3>
+                </div>
+            </a>
         </div>
     </div>
 
