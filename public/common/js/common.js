@@ -115,6 +115,10 @@ jQuery(document).ready(function () {
         var parent = jQuery('div#address_div');
         parent.append('<div style="margin-bottom: 35px;"><input type="text"  class="form-control col-md-7 col-xs-12" name="addresses[]" ></div>');
     });
+    jQuery("button#add_emails").on('click', function(){
+        var parent = jQuery('div#emails_div');
+        parent.append('<div style="margin-bottom: 35px;"><input type="text"  class="form-control col-md-7 col-xs-12" name="emails[]" ></div>');
+    });
 
 });
 

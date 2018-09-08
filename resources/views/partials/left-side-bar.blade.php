@@ -21,6 +21,12 @@
                                 <li><a href="{{ route('users.create') }}">Create</a></li>
                             </ul>
                         </li>
+                        <li><a><i class="fa fa-users"></i> Customer Management <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ route('customer.index') }}">All customers</a></li>
+                                <li><a href="{{ route('customer.create') }}">Create</a></li>
+                            </ul>
+                        </li>
                         <li><a><i class="fa fa-file-archive-o"></i> Content Management <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('category.index') }}">Categories Listing</a></li>
