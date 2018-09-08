@@ -63,6 +63,12 @@ class CustomersController extends Controller
         }
     }
 
+    public function details($id)
+    {
+        $customer = $this->customer->getOne($id);
+        return view('customers.details', compact('customer'));
+    }
+
     public function delete($id)
     {
         $response = $this->customer->delete($id);

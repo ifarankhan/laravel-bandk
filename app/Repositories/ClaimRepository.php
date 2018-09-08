@@ -36,7 +36,7 @@ class ClaimRepository implements ClaimInterface
 
     public function getOne($id)
     {
-        return $this->model->with(['conversations', 'conversations.files'])->find($id);
+        return $this->model->with(['conversations', 'conversations.files', 'customer'])->find($id);
     }
 
     public function search($search)

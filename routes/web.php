@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::post('/dashboard/customer/create', 'CustomersController@store')->name('customer.store');
     Route::get('/dashboard/customer/edit/{id}', 'CustomersController@edit')->name('customer.edit');
     Route::delete('/dashboard/customer/delete/{id}', 'CustomersController@delete')->name('customer.delete');
+    Route::get('/dashboard/customer/details/{id}', 'CustomersController@details')->name('customer.details');
 
 
 

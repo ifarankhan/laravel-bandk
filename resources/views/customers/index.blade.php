@@ -51,6 +51,7 @@
                                 <td>{{ ($customer->policy_number) ? $customer->policy_number :  ''}}</td>
                                 <td>{!! ($customer->emails) ? implode('<br />', json_decode($customer->emails, true)) :  '' !!}</td>
                                 <td>
+                                    <a href="{{ route('customer.details', ['id'=> $customer->id]) }}" class="btn btn-info">Details</a>
                                     <a href="{{ route('customer.edit', ['id'=> $customer->id]) }}" class="btn btn-success">Edit</a>
                                     <button data-id="{{ $customer->id }}" data-url="{{ route('customer.delete', ['id'=> $customer->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
                                 </td>

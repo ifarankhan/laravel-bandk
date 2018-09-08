@@ -70,6 +70,34 @@
                         <strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}
                     </div>
 
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_name') }}:</strong> {{ $claim->customer->name }}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_address') }}:</strong> {{ ($claim->customer->address) ? $claim->customer->address : '' }}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer->zip_code) ?  $claim->customer->zip_code : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer->city) ? $claim->customer->city : '' }}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer->contact_person) ? $claim->customer->contact_person : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ ($claim->customer->bank_number)  ? $claim->customer->bank_number : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ ($claim->customer->account_number)  ? $claim->customer->account_number : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_insurance_company_name') }}:</strong> {{ ($claim->customer->insurance_company_name)  ? $claim->customer->insurance_company_name : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ ($claim->customer->policy_number)  ? $claim->customer->policy_number : ''}}
+                    </div>
+
                 </div>
                 <div class="row ribbon-content">
                     <div class="col-md-12">
@@ -214,6 +242,12 @@
 
 @section('css')
     <style>
+        hr.style-one {
+            border: 0;
+            height: 1px;
+            background: #333;
+            background-image: linear-gradient(to right, #ccc, #333, #ccc);
+        }
         .help-block{
             color: #a94442;
         }

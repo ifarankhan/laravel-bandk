@@ -49,4 +49,5 @@ return [
     'customer_emails' => 'Emails',
     'customer_add_emails' => 'Add Emails',
     'total_customer' => 'Total customers',
+    'claim_number' => 'Claim Number',
 ];

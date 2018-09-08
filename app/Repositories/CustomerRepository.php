@@ -31,7 +31,7 @@ class CustomerRepository implements CustomerInterface
 
     public function getOne($id)
     {
-        return $this->model->find($id);
+        return $this->model->with(['claims'])->find($id);
     }
     public function getFirst()
     {
