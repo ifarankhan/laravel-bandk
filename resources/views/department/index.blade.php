@@ -26,6 +26,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Code</th>
+                            <th>Address</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -34,6 +35,34 @@
                             <tr id="content_{{ $department->id }}">
                                 <td>{{ $department->name }}</td>
                                 <td>{{ $department->code }}</td>
+                                <td>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
+                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
+                                                <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
+                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Build Year</td>
+                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(count($department->addresses) > 0)
+                                            @foreach($department->addresses as $address)
+                                                <tr style="margin-bottom: 35px;" class="addresses">
+                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
+                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
+                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
+                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
+                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        </tbody>
+
+
+                                    </table>
+                                </td>
                                 <td>
                                     <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Edit</a>
                                     <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>

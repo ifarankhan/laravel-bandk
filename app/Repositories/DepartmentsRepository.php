@@ -59,21 +59,25 @@ class DepartmentsRepository implements DepartmentsInterface
         if(count($data['addresses']) > 0) {
             foreach ($data['addresses'] as $key => $address) {
                 $addressObj = null;
-                if(trim($address) != '') {
-                    $addressObj = $this->addresses->getAddressByIdDepartmentId($key, $this->model->id);
-                    if($addressObj) {
-                        $addressObj->address = $address;
-                        $addressObj->save();
-                    } else {
-                        $add = new Addresses();
-                        $add->address = $address;
-                        $add->department_id = $this->model->id;
-                        $add->save();
-                    }
+                $addressObj = $this->addresses->getAddressByIdDepartmentId($key, $this->model->id);
+                if($addressObj) {
+                    $addressObj->address     = isset($address['address']) ? $address['address'] : '';
+                    $addressObj->zip_code    = isset($address['zip_code']) ? $address['zip_code'] : null;
+                    $addressObj->city        = isset($address['city']) ? $address['city'] : null;
+                    $addressObj->build_year  = isset($address['build_year']) ? $address['build_year'] : null;
+                    $addressObj->m2          = isset($address['m2']) ? $address['m2'] : null;
+                    $addressObj->save();
+                } else {
+                    $add = new Addresses();
+                    $add->address     = isset($address['address']) ? $address['address'] : '';
+                    $add->zip_code    = isset($address['zip_code']) ? $address['zip_code'] : null;
+                    $add->city        = isset($address['city']) ? $address['city'] : null;
+                    $add->build_year  = isset($address['build_year']) ? $address['build_year'] : null;
+                    $add->m2          = isset($address['m2']) ? $address['m2'] : null;
+                    $add->department_id = $this->model->id;
+                    $add->save();
                 }
-
             }
-
         }
         return $this->model;
 

@@ -8,6 +8,6 @@ class Departments extends Model
 {
     public function addresses()
     {
-        return $this->hasMany(Addresses::class, 'department_id', 'id')->select(['id', 'address', 'department_id']);
+        return $this->hasMany(Addresses::class, 'department_id', 'id');
     }
 }

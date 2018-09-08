@@ -18,9 +18,9 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $department->id }}">
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">Name <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-11 col-sm-11 col-xs-12">
                                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="name" value="{{ $department->name }}">
                                 @if ($errors->has('name'))
                                     <span class="help-block" style="color: red;">
@@ -30,9 +30,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Code <span class="required">*</span>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">Code <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-11 col-sm-11 col-xs-12">
                                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="code" value="{{ $department->code }}">
                                 @if ($errors->has('code'))
                                     <span class="help-block" style="color: red;">
@@ -41,22 +41,34 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Addresses
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12">&nbsp;
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="col-md-9" id="address_div">
+                            <div class="col-md-11 col-sm-11 col-xs-12">
+                                <div class="col-md-10" id="address_div">
+                                    <table >
+                                        <tr>
+                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
+                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
+                                            <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
+                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Build Year</td>
+                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
+                                        </tr>
+
+                                    </table>
                                     @if(count($department->addresses) > 0)
                                         @foreach($department->addresses as $address)
-                                            <div style="margin-bottom: 35px;">
-                                                <input type="text"  required="required" class="form-control col-md-7 col-xs-12" name="addresses[{{ $address->id }}]" value="{{ $address->address }}">
+                                            <div style="margin-bottom: 35px;" class="addresses">
+                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][address]" value="{{ $address->address}}">
+                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][zip_code]" value="{{ $address->zip_code}}">
+                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][city]" value="{{ $address->city}}">
+                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][build_year]" value="{{ $address->build_year}}">
+                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][m2]" value="{{ $address->m2}}">
                                             </div>
-
                                         @endforeach
                                     @endif
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <button class="btn btn-danger pull-right" type="button" id="add_address">Add Address</button>
                                 </div>
 
