@@ -74,7 +74,7 @@
                         <strong>{{ getTranslation('customer_name') }}:</strong> {{ ($claim->customer) ? $claim->customer->name : '' }}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_address') }}:</strong> {{ ($claim->customer-) ? $claim->customer->address : '' }}
+                        <strong>{{ getTranslation('customer_address') }}:</strong> {{ ($claim->customer) ? $claim->customer->address : '' }}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}
