@@ -18,41 +18,19 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="status" value="FOR_BNK">
                     <div class="form-group ">
-                        <label for="heading">{{ getTranslation('claim_type') }}</label>
-                        <select class="form-control" name="claim_type_id">
-                            <option value="">{{ getTranslation('select_claim_type') }}</option>
-                            @foreach($types as $type)
-                                <option value="{{ $type->id }}" {{ old('claim_type_id') == $type->id ? 'selected="selected"' : '' }}>{{ $type->name }}</option>
+                        <label for="heading">{{ getTranslation('customer') }}</label>
+                        <select class="form-control" name="customer_id">
+                            <option value="">{{ getTranslation('select_customer_id') }}</option>
+                            @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
                             @endforeach
                         </select>
-                        @if ($errors->has('claim_type_id'))
+                        @if ($errors->has('customer_id'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('claim_type_id') }}</strong>
+                                <strong>{{ $errors->first('customer_id') }}</strong>
                             </span>
                         @endif
                     </div>
-
-                    <div class="form-group ">
-                        <div class="half half-left">
-                            <label for="estimate">{{ getTranslation('estimate') }}</label>
-                            <input type="text" class="form-control" id="estimate" name="estimate" value="{{ old('estimate') }}">
-                            @if ($errors->has('estimate'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('estimate') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="half half-right">
-                            <label for="date">{{ getTranslation('date') }}</label>
-                            <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}">
-                            @if ($errors->has('date'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('date') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-
                     <div class="form-group ">
                         <label for="department">{{ getTranslation('department') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
@@ -69,7 +47,6 @@
                                 </span>
                         @endif
                     </div>
-
                     <div class="form-group ">
                         <label for="address">{{ getTranslation('address_1') }}</label>
                         <input type="hidden" value="{{ old('address_1') }}" id="hidden_address_1">
@@ -81,7 +58,6 @@
                                 </span>
                         @endif
                     </div>
-
                     <div class="form-group ">
                         <label for="Address">{{ getTranslation('address_2') }}</label>
                         <input type="text" class="form-control" id="address" name="address_2" value="{{ old('address_2') }}">
@@ -91,6 +67,41 @@
                                 </span>
                         @endif
                     </div>
+
+                    <div class="form-group ">
+                        <label for="heading">{{ getTranslation('claim_type') }}</label>
+                        <select class="form-control" name="claim_type_id">
+                            <option value="">{{ getTranslation('select_claim_type') }}</option>
+                            @foreach($types as $type)
+                                <option value="{{ $type->id }}" {{ old('claim_type_id') == $type->id ? 'selected="selected"' : '' }}>{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('claim_type_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('claim_type_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="date">{{ getTranslation('date') }}</label>
+                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}">
+                        @if ($errors->has('date'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('date') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group ">
+                        <label for="estimate">{{ getTranslation('estimate') }}</label>
+                        <input type="text" class="form-control" id="estimate" name="estimate" value="{{ old('estimate') }}">
+                        @if ($errors->has('estimate'))
+                            <span class="help-block">
+                                    <strong>{{ $errors->first('estimate') }}</strong>
+                                </span>
+                        @endif
+                    </div>
+
                     <div class="form-group ">
                         <label for="Description" class="display-block">{{ getTranslation('description') }}</label>
                         <textarea rows="5" cols="64" name="description">{{ old('description') }}</textarea>

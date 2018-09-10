@@ -13,6 +13,7 @@ return [
     'claim_creation_date' => 'Date',
     'actions' => 'Actions',
     'select_claim_type' => 'Select Claim Type',
+    'select_customer_id' => 'Select Customer',
     'select_claim_mechanic_type' => 'Select Mechanics',
     'select_department' => 'Select Department',
     'details' => 'Details',

@@ -25,6 +25,7 @@ class ClaimRequests extends FormRequest
     {
         return [
             'claim_type_id' => 'required',
+            'customer_id' => 'required',
             'estimate' => 'required',
             'date' => 'required',
             'claim_mechanic_id' => 'required',
@@ -42,6 +43,7 @@ class ClaimRequests extends FormRequest
     {
         return [
             'claim_type_id.required' => 'Claim type field is required',
+            'customer_id.required' => 'Customer field is required',
             'estimate.required' => 'Estimate is required',
             'claim_mechanic_id.required' => 'Claim mechanics field is required.',
             'department_id.required' => 'Department field is required',

@@ -17,6 +17,7 @@ use App\Repositories\ClaimConversationInterface;
 use App\Repositories\ClaimInterface;
 use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimTypesInterface;
+use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,10 @@ class ClaimsController extends Controller
      * @var AddressesInterface
      */
     private $addresses;
+    /**
+     * @var CustomerInterface
+     */
+    private $customer;
 
     /**
      * ClaimsController constructor.
@@ -56,9 +61,11 @@ class ClaimsController extends Controller
      * @param DepartmentsInterface $departments
      * @param ClaimMechanicsInterface $claimMechanics
      * @param AddressesInterface $addresses
+     * @param CustomerInterface $customer
      */
     public function __construct(ClaimInterface $claim, ClaimConversationInterface $claimConversation,
-                                ClaimTypesInterface $claimTypes, DepartmentsInterface $departments, ClaimMechanicsInterface $claimMechanics, AddressesInterface $addresses)
+                                ClaimTypesInterface $claimTypes, DepartmentsInterface $departments, ClaimMechanicsInterface $claimMechanics,
+                                AddressesInterface $addresses, CustomerInterface $customer)
     {
         $this->claim = $claim;
         $this->claimConversation = $claimConversation;
@@ -66,6 +73,7 @@ class ClaimsController extends Controller
         $this->departments = $departments;
         $this->claimMechanics = $claimMechanics;
         $this->addresses = $addresses;
+        $this->customer = $customer;
     }
 
     public function index(Request $request)
@@ -102,7 +110,8 @@ class ClaimsController extends Controller
         $departments = $this->departments->all();
         $mechanicsTypes = $this->claimMechanics->all();
         $types = $this->claimTypes->all();
-        return view('claims.create', compact('departments', 'mechanicsTypes', 'types'));
+        $customers = $this->customer->all();
+        return view('claims.create', compact('departments', 'mechanicsTypes', 'types', 'customers'));
     }
 
     public function store(ClaimRequests $request)
