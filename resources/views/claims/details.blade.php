@@ -74,28 +74,28 @@
                         <strong>{{ getTranslation('customer_name') }}:</strong> {{ ($claim->customer) ? $claim->customer->name : '' }}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_address') }}:</strong> {{ ($claim->customer->address) ? $claim->customer->address : '' }}
+                        <strong>{{ getTranslation('customer_address') }}:</strong> {{ ($claim->customer-) ? $claim->customer->address : '' }}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer->zip_code) ?  $claim->customer->zip_code : ''}}
+                        <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer->city) ? $claim->customer->city : '' }}
+                        <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer->contact_person) ? $claim->customer->contact_person : ''}}
+                        <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer) ? $claim->customer->contact_person : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ ($claim->customer->bank_number)  ? $claim->customer->bank_number : ''}}
+                        <strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ ($claim->customer)  ? $claim->customer->bank_number : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ ($claim->customer->account_number)  ? $claim->customer->account_number : ''}}
+                        <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ ($claim->customer)  ? $claim->customer->account_number : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_insurance_company_name') }}:</strong> {{ ($claim->customer->insurance_company_name)  ? $claim->customer->insurance_company_name : ''}}
+                        <strong>{{ getTranslation('customer_insurance_company_name') }}:</strong> {{ ($claim->customer)  ? $claim->customer->insurance_company_name : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ ($claim->customer->policy_number)  ? $claim->customer->policy_number : ''}}
+                        <strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ ($claim->customer)  ? $claim->customer->policy_number : ''}}
                     </div>
 
                 </div>
