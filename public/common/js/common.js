@@ -52,8 +52,39 @@ jQuery(document).ready(function () {
             loader.hide();
         });
     });
+    jQuery("#customer_id").on('change', function(){
+        var value = jQuery(this).val();
+        var loader = jQuery("i#customer_loader");
+        var department = jQuery("select#department_id");
+        var selectedDepartment = jQuery("#hidden_department_1").val();
+        var url = $(this).data('url')+value;
+        var data = {};
+        if(value != '') {
+            loader.show();
+            sendAjax(url,data, 'get', function (response) {
+                if(response.length > 0) {
+                    var html = '';
+                    var select = '';
+                    jQuery.each( response, function( key, value ) {
+                        select = '';
+                        if(selectedDepartment == value.id) {
+                            select = 'selected="selected"';
+                        }
+                        html = html + '<option value="'+value.id+'"'+select+'>'+value.name+': '+value.code+'</option>';
+                    });
 
-    jQuery("#department_id").trigger('change');
+                    department.html(html);
+                }
+
+                loader.hide();
+                jQuery("#department_id").trigger('change');
+
+            });
+        }
+
+    });
+
+    jQuery("#customer_id").trigger('change');
 
     jQuery("input#fileUpload").on('change', function () {
 

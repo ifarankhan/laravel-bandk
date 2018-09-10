@@ -18,8 +18,10 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="status" value="FOR_BNK">
                     <div class="form-group ">
-                        <label for="heading">{{ getTranslation('customer') }}</label>
-                        <select class="form-control" name="customer_id">
+                        <label for="heading">{{ getTranslation('customer') }}
+                            <i class="fa fa-spin fa-spinner" style="display: none;" id="customer_loader"></i>
+                        </label>
+                        <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/departments/">
                             <option value="">{{ getTranslation('select_customer_id') }}</option>
                             @foreach($customers as $customer)
                                 <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
@@ -35,11 +37,9 @@
                         <label for="department">{{ getTranslation('department') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
                         </label>
+                        <input type="hidden" value="{{ old('department_id') }}" id="hidden_department_1">
                         <select class="form-control" name="department_id" id="department_id" data-url="/department/address/">
                             <option value="">{{ getTranslation('select_department') }}</option>
-                            @foreach($departments as $department)
-                                <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected="selected"' : '' }}>{{ $department->name }}</option>
-                            @endforeach
                         </select>
                         @if ($errors->has('department_id'))
                             <span class="help-block">

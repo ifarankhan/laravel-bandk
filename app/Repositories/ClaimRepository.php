@@ -48,6 +48,9 @@ class ClaimRepository implements ClaimInterface
         if($search && isset($search['department_id'])) {
             $query = $query->where('department_id', $search['department_id']);
         }
+        if($search && isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
         if($search && isset($search['date'])) {
             $query = $query->where('created_at','>=', date('Y-m-d 00:00:00',strtotime($search['date'])))->where('created_at', '<=', date('Y-m-d 23:59:00',strtotime($search['date'])));
         }

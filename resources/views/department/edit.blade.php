@@ -42,6 +42,26 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer_id">{{ getTranslation('customer') }}<span class="required">*</span>
+                            </label>
+                            <div class="col-md-11 col-sm-11 col-xs-12">
+                                <select class="form-control col-md-7 col-xs-12" name="customer_id" id="customer_id">
+                                    <option value="">{{ getTranslation('select_customer') }}</option>
+                                    @if(count($customers) > 0)
+                                        @foreach($customers as $customer)
+                                            <option value="{{ $customer->id }}" {{ ($department->customer_id == $customer->id) ? "selected='selected'" : '' }}>{{ $customer->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+
+                                @if ($errors->has('customer_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('customer_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12">&nbsp;
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">

@@ -24,7 +24,7 @@
                         <form action="{{ route('claim.index') }}" method="GET">
                              <div class="row">
                                 <div class="form-group form-group-sm">
-                                    <div class="col-md-4 col-lg-4">
+                                    <div class="col-md-3 col-lg-3">
                                         <label for="claim_type_id">
                                             {{ getTranslation('claim_type') }}
                                         </label>
@@ -35,7 +35,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-4 col-lg-4">
+                                    <div class="col-md-3 col-lg-3">
                                         <label for="type_of_document">
                                             {{ getTranslation('claim_creation_date') }}
                                         </label>
@@ -46,7 +46,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-4">
+                                    <div class="col-md-3 col-lg-3">
                                         <label for="department_id">
                                             {{ getTranslation('department') }}
                                         </label>
@@ -54,6 +54,17 @@
                                             <option value="">{{ getTranslation('select_department') }}</option>
                                             @foreach($departments as $department)
                                                 <option value="{{ $department->id }}" {{ ($search && isset($search['department_id']) && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }} ({{ $department->code }})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <label for="customer_id">
+                                            {{ getTranslation('customer') }}
+                                        </label>
+                                        <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
+                                            <option value="">{{ getTranslation('select_customer') }}</option>
+                                            @foreach($customers as $customer)
+                                                <option value="{{ $customer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $customer->id) ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

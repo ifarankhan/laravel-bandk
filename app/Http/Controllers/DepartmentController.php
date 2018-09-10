@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\DepartmentRequest;
 use App\Repositories\CategoryInterface;
+use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use Illuminate\Http\Request;
 
@@ -23,15 +24,21 @@ class DepartmentController extends Controller
      * @var DepartmentsInterface
      */
     private $departments;
+    /**
+     * @var CustomerInterface
+     */
+    private $customer;
 
     /**
      * DepartmentController constructor.
      * @param DepartmentsInterface $departments
+     * @param CustomerInterface $customer
      */
-    public function __construct(DepartmentsInterface $departments)
+    public function __construct(DepartmentsInterface $departments, CustomerInterface $customer)
     {
 
         $this->departments = $departments;
+        $this->customer = $customer;
     }
 
     public function index()
@@ -43,12 +50,14 @@ class DepartmentController extends Controller
     public function create()
     {
         $parents = $this->departments->all();
-        return view('department.create', compact('parents'));
+        $customers = $this->customer->all();
+        return view('department.create', compact('parents', 'customers'));
     }
     public function edit($id)
     {
         $department = $this->departments->getOne($id);
-        return view('department.edit', compact('department'));
+        $customers = $this->customer->all();
+        return view('department.edit', compact('department', 'customers'));
     }
 
     public function store(DepartmentRequest $request)
@@ -80,5 +89,10 @@ class DepartmentController extends Controller
             'success' => false
         ];
 
+    }
+
+    public function customerDepartments($id)
+    {
+        return $this->departments->getCustomerDepartment($id);
     }
 }

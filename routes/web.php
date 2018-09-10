@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
     Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');
+    Route::get('/customer/departments/{id}', 'DepartmentController@customerDepartments')->name('customer.department');
     Route::get('/content/list/{categoryId}', 'ContentsController@getList')->name('content.list');
     Route::post('/claim/status', 'ClaimsController@updateStatus')->name('claim.status');
 });

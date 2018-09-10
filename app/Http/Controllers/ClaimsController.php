@@ -81,8 +81,9 @@ class ClaimsController extends Controller
         $search = $request->get('search');
         $claimTypes = $this->claimTypes->all();
         $departments = $this->departments->all();
+        $customers = $this->customer->all();
         $claims = $this->claim->search($search);
-        return view('claims.index', compact('claims', 'departments', 'claimTypes', 'search'));
+        return view('claims.index', compact('claims', 'departments', 'claimTypes', 'search', 'customers'));
     }
 
     public function details($id)

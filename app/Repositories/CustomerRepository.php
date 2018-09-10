@@ -65,4 +65,9 @@ class CustomerRepository implements CustomerInterface
     {
         return $this->getOne($id)->delete();
     }
+
+    public function getDepartmentsByCustomer($id)
+    {
+
+    }
 }

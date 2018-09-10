@@ -53,6 +53,7 @@ class DepartmentsRepository implements DepartmentsInterface
 
         $this->model->name = $data['name'];
         $this->model->code = $data['code'];
+        $this->model->customer_id = $data['customer_id'];
 
         $this->model->save();
 
@@ -86,5 +87,15 @@ class DepartmentsRepository implements DepartmentsInterface
     public function delete($id)
     {
         return $this->getOne($id)->delete();
+    }
+
+    public function getCustomerDepartment($customer_id)
+    {
+        $departments = $this->model->where('customer_id', $customer_id)->get();
+
+        if(count($departments) > 0 ) {
+            return $departments;
+        }
+        return [];
     }
 }
