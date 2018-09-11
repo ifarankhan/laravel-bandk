@@ -10,4 +10,9 @@ class Addresses extends Model
     {
         return $this->hasMany(Addresses::class, 'parent_id', 'id')->select(['id', 'address', 'parent_id']);
     }
+
+    public function getParentIdAttribute()
+    {
+        return -1;
+    }
 }
