@@ -36,6 +36,11 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
     Route::delete('/dashboard/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
 
+    Route::get('/dashboard/categories/all', 'CategoryController@allCategories')->name('category.all');
+    Route::get('/dashboard/categories/update', 'CategoryController@categoryUpdate')->name('category.update');
+    Route::get('/dashboard/categories/create-json', 'CategoryController@categoryCreate')->name('category.create-json');
+    Route::get('/dashboard/categories/remove', 'CategoryController@categoryRemove')->name('category.remove');
+
     Route::get('/dashboard/claims', 'ClaimsController@index')->name('claim.index');
     Route::get('/dashboard/claim/create', 'ClaimsController@create')->name('claim.create');
     Route::post('/dashboard/claim/create', 'ClaimsController@store')->name('claim.store');

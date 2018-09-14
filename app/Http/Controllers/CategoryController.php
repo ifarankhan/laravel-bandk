@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Repositories\CategoryInterface;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -77,5 +78,33 @@ class CategoryController extends Controller
             'success' => false
         ];
 
+    }
+
+    public function allCategories(Request $request)
+    {
+        $get = $request->query();
+        return  $this->category->allCategories($get);
+    }
+
+    public function categoryUpdate(Request $request)
+    {
+        $get = $request->query();
+        $response = $this->category->updateCategory($get);
+
+        return [
+            'response' => $response
+        ];
+    }
+    public function categoryCreate(Request $request)
+    {
+        $get = $request->query();
+        return  $this->category->categoryCreate($get);
+    }
+    public function categoryRemove(Request $request)
+    {
+        $get = $request->query();
+        return [
+            'response' => $this->category->categoryRemove($get)
+        ];
     }
 }
