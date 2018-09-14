@@ -67,7 +67,7 @@
                                 <select class="form-control select2" name="modules[]" multiple="multiple" >
                                     <option value="">Choose option</option>
                                     @foreach($modules as $module)
-                                        <option value="{{ $module->id }}" {{ in_array($module->id, $userModules) ? 'selected=selected' : '' }}>{{ $module->name }}</option>
+                                        <option value="{{ $module->id }}" {{ in_array($module->id, $userModules) ? 'selected=selected' : '' }}>{{ $module->text }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('modules'))
@@ -77,18 +77,18 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group" id="department_id_div" style="{{ in_array('2', $userRoles) ? '' : 'display: none;' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
+                        <div class="form-group" >
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer</label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control" name="department_id" {{ in_array('2', $userRoles) ? '' : 'disabled=disabled' }} id="department_id">
+                                <select class="form-control" name="customer_id" id="customer_id">
                                     <option value="">Choose option</option>
-                                    @foreach($departments as $department)
-                                        <option value="{{ $department->id }}" {{ ($department->id == $user->id) ? 'selected=selected' : '' }}>{{ $department->code }}</option>
+                                    @foreach($customers as $customer)
+                                        <option value="{{ $customer->id }}" {{ ($customer->id == $user->customer_id) ? 'selected=selected' : '' }}>{{ $customer->name }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('department_id'))
+                                @if ($errors->has('customer_id'))
                                     <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('department_id') }}</strong>
+                                        <strong>{{ $errors->first('customer_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

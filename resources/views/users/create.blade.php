@@ -54,7 +54,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control select2" name="roles[]" multiple="multiple" id="roles">
+                                <select class="form-control select2" name="roles[]" multiple="multiple" id="roles1">
                                     <option value="">Choose option</option>
                                     @foreach($roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -75,7 +75,7 @@
                                 <select class="form-control select2" name="modules[]" multiple="multiple">
                                     <option value="">Choose option</option>
                                     @foreach($modules as $module)
-                                        <option value="{{ $module->id }}">{{ $module->name }}</option>
+                                        <option value="{{ $module->id }}">{{ $module->text }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('modules'))
@@ -85,20 +85,22 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group" id="department_id_div" style="display: none;">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Department
+                        <div class="form-group" >
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control" name="department_id" disabled="disabled" id="department_id">
+                                <select class="form-control" name="customer_id" id="customer_id">
                                     <option value="">Choose option</option>
-                                    @foreach($departments as $department)
-                                        <option value="{{ $department->id }}">{{ $department->code }}</option>
-                                    @endforeach
+                                    @if(count($customers) > 0)
+                                        @foreach($customers as $customer)
+                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
-                                @if ($errors->has('department_id'))
+                                @if ($errors->has('customer_id'))
                                     <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('department_id') }}</strong>
+                                        <strong>{{ $errors->first('customer_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -24,11 +24,7 @@ class CanAccess extends Middleware
         $requestName = $request->route()->getName();
 
         if(in_array('ADMIN', $roles)) {
-            if($requestName == 'home.index' || $requestName == 'claim.create') {
-                return redirect()->route('dashboard.index');
-            } else {
-                return $next($request);
-            }
+            return $next($request);
 
         } elseif (in_array('AGENT', $roles)) {
             if(in_array('INFO_APP', $modules) && !in_array('CLAIM_FORM', $modules)) {

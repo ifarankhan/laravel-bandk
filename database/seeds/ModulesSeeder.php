@@ -15,13 +15,16 @@ class ModulesSeeder extends Seeder
 
         $data = [
             [
-                'name' => 'CLAIM_FORM'
+                'name' => 'CLAIM_FORM',
+                'text' => 'Skadeanmeldelse'
             ],
             [
-                'name' => 'INFO_APP'
+                'name' => 'INFO_APP',
+                'text' => 'Beredskabsplan'
             ],
             [
-                'name' => 'OWN_COMPANY_CLAIMS'
+                'name' => 'OWN_COMPANY_CLAIMS',
+                'text' => 'Skadeanmeldelse og Beredskabsplan'
             ],
         ];
 

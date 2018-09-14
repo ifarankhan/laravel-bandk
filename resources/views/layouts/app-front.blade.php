@@ -34,6 +34,16 @@
                     <div class="links">
                         <a href="{{ route('home.index') }}" class="link1 {{ \Request::route()->getName() == 'home.index' ? 'main-header-active': ''}}">Home</a>
                         <a href="{{ route('claim.create') }}" class="link2 {{ \Request::route()->getName() == 'claim.create' ? 'main-header-active': ''}}">Claim Form</a>
+                        <?php
+                            $roles = \Auth::user()->roles;
+                            $rolesArray = [];
+                            if(count($roles) > 0) {
+                                $rolesArray = $roles->pluck('name')->toArray();
+                            }
+                        ?>
+                        @if(in_array('ADMIN', $rolesArray))
+                            <a href="{{ route('dashboard.index') }}" class="link2 {{ \Request::route()->getName() == 'dashboard.index' ? 'main-header-active': ''}}">Admin Panel</a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-xs-4 zero-padding text-right padding-15">
@@ -71,6 +81,7 @@
 <script type="text/javascript" src="{{ asset('frontend/script/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/script/custom.js') }}"></script>
 <script src="{{ asset('/common/js/common.js') }}"></script>
+@yield('js')
 </body>
 </html>
 

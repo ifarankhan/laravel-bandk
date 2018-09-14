@@ -126,6 +126,32 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance_number"> {{ getTranslation('customer_insurance_number') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="insurance_number" class="form-control col-md-7 col-xs-12" name="insurance_number" value="{{ old('insurance_number') }}">
+                                @if ($errors->has('insurance_number'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('insurance_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bnk_insurance_number"> {{ getTranslation('bnk_insurance_number') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="bnk_insurance_number" class="form-control col-md-7 col-xs-12" name="bnk_insurance_number" value="{{ old('bnk_insurance_number') }}">
+                                @if ($errors->has('bnk_insurance_number'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('bnk_insurance_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ getTranslation('customer_emails') }}
                             </label>

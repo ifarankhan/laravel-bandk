@@ -27,6 +27,10 @@
                                 <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
                             @endforeach
                         </select>
+
+                        @foreach($customers as $customer)
+                            <input type="hidden" id="customer_{{ $customer->id }}" value="{{ json_encode($customer) }}">
+                        @endforeach
                         @if ($errors->has('customer_id'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('customer_id') }}</strong>
@@ -111,6 +115,25 @@
                                 </span>
                         @endif
                     </div>
+
+                    <div class="form-group ">
+                        <label for="insurance_number">{{ getTranslation('customer_insurance_number') }}</label>
+                        <input type="text" class="form-control" id="insurance_number" name="estimate" value="{{ old('insurance_number') }}" disabled="disabled">
+                    </div>
+                    <div class="form-group ">
+                        <label for="insurance_police_number">{{ getTranslation('customer_policy_number') }}</label>
+                        <input type="text" class="form-control" id="insurance_police_number" name="insurance_police_number" value="{{ old('insurance_police_number') }}" disabled="disabled">
+                    </div>
+                    <div class="form-group ">
+                        <label for="bnk_insurance_number">{{ getTranslation('bnk_insurance_number') }}</label>
+                        <input type="text" class="form-control" id="bnk_insurance_number" name="bnk_insurance_number" value="{{ old('bnk_insurance_number') }}" disabled="disabled">
+                    </div>
+                    <div class="form-group ">
+                        <label for="estimate">{{ getTranslation('customer_bank_number') }}</label>
+                        <input type="text" class="form-control" id="bank_account_number" name="bank_account_number" value="{{ old('bank_account_number') }}" disabled="disabled">
+                    </div>
+
+
                     <div class="form-group ">
                         <label for="heading">{{ getTranslation('mechanics_type') }}</label>
                         <select class="form-control" name="claim_mechanic_id">
@@ -147,6 +170,7 @@
 @endsection
 
 @section('css')
+    <link href="{{ asset('/admin/vendors/select2/dist/css/select2.min.css') }} " rel="stylesheet">
     <style>
         #image-holder img {
             border: 1px solid #ddd;
@@ -164,4 +188,10 @@
             color: #a94442;
         }
     </style>
+@endsection
+@section('js')
+    <script src="{{ asset('/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <script>
+        $('.select2').select2();
+    </script>
 @endsection

@@ -76,7 +76,7 @@
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
-                                <td>{{ ($claim->address2)  ? $claim->address2->address : ''}}</td>
+                                <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success">{{ getTranslation('details') }}</a>
                                 </td>

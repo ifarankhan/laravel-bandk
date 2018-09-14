@@ -71,7 +71,7 @@
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
                                 <div class="col-md-10" id="address_div">
-                                    <table >
+                                    <table>
                                         <tr>
                                             <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
                                             <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>

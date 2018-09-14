@@ -46,6 +46,8 @@ return [
     'customer_bank_number' => 'Pengeinstituts reg. nr.',
     'customer_account_number' => 'Konto nr.',
     'customer_insurance_company_name' => 'Navn på forsikringsselskab',
+    'customer_insurance_number' => 'Customer Insurance number',
+    'bnk_insurance_number' => 'B&K Insurance number',
     'customer_policy_number' => 'Police nr.',
     'customer_emails' => 'Emails',
     'customer_add_emails' => 'Add Emails',

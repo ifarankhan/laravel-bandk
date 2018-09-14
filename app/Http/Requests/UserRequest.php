@@ -30,6 +30,7 @@ class UserRequest extends FormRequest
                 'password' => 'required',
                 'roles' => 'required',
                 'modules' => 'required',
+                'customer_id' => 'required'
             ];
         } else {
             return [

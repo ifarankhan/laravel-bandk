@@ -58,6 +58,15 @@ jQuery(document).ready(function () {
         var department = jQuery("select#department_id");
         var selectedDepartment = jQuery("#hidden_department_1").val();
         var url = $(this).data('url')+value;
+        var customer = $("#customer_"+value).val();
+        if(value) {
+            customer = jQuery.parseJSON(customer);
+            jQuery("#insurance_number").val(customer.insurance_number);
+            jQuery("#insurance_police_number").val(customer.policy_number);
+            jQuery("#bnk_insurance_number").val(customer.bnk_insurance_number);
+            jQuery("#bank_account_number").val(customer.bank_number);
+        }
+
         var data = {};
         if(value != '') {
             loader.show();
@@ -140,6 +149,19 @@ jQuery(document).ready(function () {
 
     var anchors = jQuery("a.load-content");
     jQuery(anchors[0]).trigger('click');
+
+/*    jQuery("#claim_mechanic_id").on("change",function(){
+        var element = jQuery(this);
+        var m = element.val();
+        var html = '';
+        if(m.length > 0) {
+            $.each(m, function( index, value ) {
+                html = html + '<tr id="mechanic_'+value+'"><td>'+'<input type="hidden" value="'+value+'" style="width:150px;" class="form-control col-md-3 col-xs-12" name="mechanic['+index+'][id]" >'+element.select2('data')[index].text+'</td>';
+                html = html + '<td>'+'<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="mechanic['+index+'][estimate]" >'+'</td>'+'</tr>';
+            });
+            jQuery("#tbody_id").append(html);
+        }
+    });*/
 
 
     jQuery("button#add_address").on('click', function(){

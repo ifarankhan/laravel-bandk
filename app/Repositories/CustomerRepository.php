@@ -53,6 +53,8 @@ class CustomerRepository implements CustomerInterface
         $this->model->account_number = isset($data['account_number']) ? $data['account_number'] : null;
         $this->model->insurance_company_name = isset($data['insurance_company_name']) ? $data['insurance_company_name'] : null;
         $this->model->policy_number = isset($data['policy_number']) ? $data['policy_number'] : null;
+        $this->model->insurance_number = isset($data['insurance_number']) ? $data['insurance_number'] : null;
+        $this->model->bnk_insurance_number = isset($data['bnk_insurance_number']) ? $data['bnk_insurance_number'] : null;
         $this->model->emails = isset($data['emails']) ? json_encode($data['emails']) : null;
 
         $this->model->save();

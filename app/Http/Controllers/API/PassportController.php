@@ -10,6 +10,7 @@ use App\Repositories\ClaimInterface;
 use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimTypesInterface;
 use App\Repositories\ContentInterface;
+use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,6 +49,10 @@ class PassportController extends Controller
      * @var CategoryInterface
      */
     private $category;
+    /**
+     * @var CustomerInterface
+     */
+    private $customer;
 
     /**
      * PassportController constructor.
@@ -58,6 +63,7 @@ class PassportController extends Controller
      * @param AddressesInterface $addresses
      * @param ContentInterface $content
      * @param CategoryInterface $category
+     * @param CustomerInterface $customer
      */
     public function __construct(ClaimInterface $claim,
                                 ClaimTypesInterface $claimTypes,
@@ -65,7 +71,8 @@ class PassportController extends Controller
                                 DepartmentsInterface $departments,
                                 AddressesInterface $addresses,
                                 ContentInterface $content,
-                                CategoryInterface $category)
+                                CategoryInterface $category,
+                                CustomerInterface $customer)
     {
         $this->claim = $claim;
         $this->claimTypes = $claimTypes;
@@ -74,6 +81,7 @@ class PassportController extends Controller
         $this->addresses = $addresses;
         $this->content = $content;
         $this->category = $category;
+        $this->customer = $customer;
     }
 
     /*
@@ -151,11 +159,13 @@ class PassportController extends Controller
         $claimTypes = $this->claimTypes->all();
         $claimMechanics = $this->claimMechanics->all();
         $departments = $this->departments->all();
+        $customers = $this->customer->all();
         return response()->json(
             [
                 'message' => 'Claim data',
                 'status' => $this->successStatus,
                 'data' => [
+                    'customers' => $customers,
                     'claim_types' => $claimTypes,
                     'claim_mechanics' => $claimMechanics,
                     'departments' => $departments,

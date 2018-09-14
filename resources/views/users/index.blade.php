@@ -39,7 +39,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ ($user->department) ? $user->department->name : '' }}</td>
                                 <td>{{ ($user->roles) ? implode(',', $user->roles->pluck('name')->toArray()) : ''}}</td>
-                                <td>{{ ($user->modules) ? implode(',', $user->modules->pluck('name')->toArray()) : ''}}</td>
+                                <td>{{ ($user->modules) ? implode(',', $user->modules->pluck('text')->toArray()) : ''}}</td>
                                 <td>
                                     <a href="{{ route('users.edit', ['id'=> $user->id]) }}" class="btn btn-success">Edit</a>
                                 </td>

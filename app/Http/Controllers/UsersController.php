@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\UserRequest;
+use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\ModulesInterface;
 use App\Repositories\RolesInterface;
@@ -34,6 +35,10 @@ class UsersController extends Controller
      * @var ModulesInterface
      */
     private $modules;
+    /**
+     * @var CustomerInterface
+     */
+    private $customer;
 
     /**
      * UsersController constructor.
@@ -41,14 +46,16 @@ class UsersController extends Controller
      * @param DepartmentsInterface $departments
      * @param RolesInterface $roles
      * @param ModulesInterface $modules
+     * @param CustomerInterface $customer
      */
-    public function __construct(UserInterface $user, DepartmentsInterface $departments, RolesInterface $roles, ModulesInterface $modules)
+    public function __construct(UserInterface $user, DepartmentsInterface $departments, RolesInterface $roles, ModulesInterface $modules, CustomerInterface $customer)
     {
 
         $this->user = $user;
         $this->departments = $departments;
         $this->roles = $roles;
         $this->modules = $modules;
+        $this->customer = $customer;
     }
 
     public function index()
@@ -61,16 +68,16 @@ class UsersController extends Controller
     {
         $roles = $this->roles->all();
         $modules = $this->modules->all();
-        $departments = $this->departments->all();
-        return view('users.create', compact('roles', 'modules', 'departments'));
+        $customers = $this->customer->all();
+        return view('users.create', compact('roles', 'modules', 'customers'));
     }
     public function edit($id)
     {
         $user = $this->user->getOne($id);
         $roles = $this->roles->all();
         $modules = $this->modules->all();
-        $departments = $this->departments->all();
-        return view('users.edit', compact('roles', 'modules', 'departments', 'user'));
+        $customers = $this->customer->all();
+        return view('users.edit', compact('roles', 'modules', 'customers', 'user'));
     }
 
     public function store(UserRequest $request)
