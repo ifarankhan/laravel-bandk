@@ -67,26 +67,33 @@
                             <div class="col-md-11 col-sm-11 col-xs-12">
                                 <div class="col-md-10" id="address_div">
                                     <table >
+                                        <thead>
                                         <tr>
                                             <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
-                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
-                                            <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
-                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Build Year</td>
+                                            <td style="width:150px;" class="col-md-2 col-xs-12" >Post nr.</td>
+                                            <td style="width:150px;" class="col-md-2 col-xs-12" >By</td>
+                                            <td style="width:150px;" class="col-md-2 col-xs-12" >Build Year</td>
                                             <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
                                         </tr>
+                                        </thead>
+
+                                        <tbody class="addresses">
+                                        @if(count($department->addresses) > 0)
+                                            @foreach($department->addresses as $address)
+                                                <tr style="margin-bottom: 35px;" >
+                                                    <td><input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][address]" value="{{ $address->address}}"></td>
+                                                    <td><input type="text"  style="width: 150px;" class="form-control col-md-2 col-xs-12" name="addresses[{{$address->id}}][zip_code]" value="{{ $address->zip_code}}"></td>
+                                                    <td><input type="text"  style="width: 150px;" class="form-control col-md-2 col-xs-12" name="addresses[{{$address->id}}][city]" value="{{ $address->city}}"></td>
+                                                    <td><input type="text"  style="width: 150px;" class="form-control col-md-2 col-xs-12" name="addresses[{{$address->id}}][build_year]" value="{{ $address->build_year}}"></td>
+                                                    <td><input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][m2]" value="{{ $address->m2}}"></td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        </tbody>
+
 
                                     </table>
-                                    @if(count($department->addresses) > 0)
-                                        @foreach($department->addresses as $address)
-                                            <div style="margin-bottom: 35px;" class="addresses">
-                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][address]" value="{{ $address->address}}">
-                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][zip_code]" value="{{ $address->zip_code}}">
-                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][city]" value="{{ $address->city}}">
-                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][build_year]" value="{{ $address->build_year}}">
-                                                <input type="text"  style="width: 150px;" class="form-control col-md-3 col-xs-12" name="addresses[{{$address->id}}][m2]" value="{{ $address->m2}}">
-                                            </div>
-                                        @endforeach
-                                    @endif
+
                                 </div>
                                 <div class="col-md-2">
                                     <button class="btn btn-danger pull-right" type="button" id="add_address">Add Address</button>

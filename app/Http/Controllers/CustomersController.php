@@ -55,7 +55,7 @@ class CustomersController extends Controller
         $response = $this->customer->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Customer has been created/updated successfully. Go to department click '.'<a href="'.route('department.index').'">here</a>');
+            $request->session()->flash('alert-success', '<strong>Customer has been created/updated successfully. To go to department click '.'<a class="btn btn-danger" href="'.route('department.index').'">here</a></strong>');
             return redirect()->route('customer.index');
         } else {
             $request->session()->flash('alert-danger', 'Error while updating/creating customer.');

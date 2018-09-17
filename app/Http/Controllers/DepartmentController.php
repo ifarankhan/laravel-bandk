@@ -66,7 +66,7 @@ class DepartmentController extends Controller
         $response = $this->departments->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Department has been created/updated successfully. Go to users click '.'<a href="'.route('users.index').'">here</a>');
+            $request->session()->flash('alert-success', '<strong>Department has been created/updated successfully. To go to users click '.'<a class="btn btn-danger" href="'.route('users.index').'">here</a></strong>');
             return redirect()->route('department.index');
         } else {
             $request->session()->flash('alert-danger', 'Error while updating/creating departments.');

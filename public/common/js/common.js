@@ -169,9 +169,9 @@ jQuery(document).ready(function () {
         var index = jQuery(".addresses").length;
         parent.append('<div style="margin-bottom: 35px;" class="addresses">' +
                 '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][address]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][zip_code]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][city]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][build_year]" >' +
+                '<input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][zip_code]" >' +
+                '<input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][city]" >' +
+                '<input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][build_year]" >' +
                 '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][m2]" >' +
             '</div>');
     });
