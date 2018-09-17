@@ -165,15 +165,15 @@ jQuery(document).ready(function () {
 
 
     jQuery("button#add_address").on('click', function(){
-        var parent = jQuery('div#address_div');
+        var parent = jQuery('tbody#address_div');
         var index = jQuery(".addresses").length;
-        parent.append('<div style="margin-bottom: 35px;" class="addresses">' +
-                '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][address]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][zip_code]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][city]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][build_year]" >' +
-                '<input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][m2]" >' +
-            '</div>');
+        parent.append('<tr style="margin-bottom: 35px;" class="addresses">' +
+                '<td><input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][address]" ></td>' +
+                '<td><input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][zip_code]" ></td>' +
+                '<td><input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][city]" ></td>' +
+                '<td><input type="text" style="width:150px;" class="form-control col-md-2 col-xs-12" name="addresses['+index+'][build_year]" ></td>' +
+                '<td><input type="text" style="width:150px;" class="form-control col-md-3 col-xs-12" name="addresses['+index+'][m2]" ></td>' +
+            '</tr>');
     });
     jQuery("button#add_emails").on('click', function(){
         var parent = jQuery('div#emails_div');
