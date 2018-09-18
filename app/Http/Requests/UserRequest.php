@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         if(is_null($this->get('id')))  {
             return [
                 'name' => 'required',
-                'email' => 'required|unique:users',
+                'email' => 'required|email|unique:users',
                 'password' => 'required',
                 'roles' => 'required',
                 'modules' => 'required',

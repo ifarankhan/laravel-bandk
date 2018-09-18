@@ -122,7 +122,7 @@
                     </div>
                     <div class="form-group ">
                         <label for="insurance_police_number">{{ getTranslation('customer_policy_number') }}</label>
-                        <input type="text" class="form-control" id="insurance_police_number" name="insurance_police_number" value="{{ old('insurance_police_number') }}" disabled="disabled">
+                        <input type="text" class="form-control" id="insurance_police_number" name="policy_number" value="{{ old('policy_number') }}" disabled="disabled">
                     </div>
                     <div class="form-group ">
                         <label for="bnk_insurance_number">{{ getTranslation('bnk_insurance_number') }}</label>

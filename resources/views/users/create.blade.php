@@ -17,7 +17,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name">
+                                <input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" value="{{ old('name') }}">
                                 @if ($errors->has('name'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -29,7 +29,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" class="form-control col-md-7 col-xs-12" name="email">
+                                <input type="text" id="email" class="form-control col-md-7 col-xs-12" name="email" value="{{ old('email') }}">
                                 @if ($errors->has('email'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -41,7 +41,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="password" class="form-control col-md-7 col-xs-12" name="password">
+                                <input type="text" id="password" class="form-control col-md-7 col-xs-12" name="password" >
                                 @if ($errors->has('password'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -57,7 +57,9 @@
                                 <select class="form-control select2" name="roles[]" multiple="multiple" id="roles1">
                                     <option value="">Choose option</option>
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @if($role->id != 2)
+                                            <option value="{{ $role->id }}" {{ old('roles') && in_array($role->id, old('roles')) ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @if ($errors->has('roles'))
@@ -75,7 +77,7 @@
                                 <select class="form-control select2" name="modules[]" multiple="multiple">
                                     <option value="">Choose option</option>
                                     @foreach($modules as $module)
-                                        <option value="{{ $module->id }}">{{ $module->text }}</option>
+                                        <option value="{{ $module->id }}" {{ old('modules') && in_array($module->id, old('modules')) ? 'selected="selected"' : '' }}>{{ $module->text }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('modules'))
@@ -94,7 +96,7 @@
                                     <option value="">Choose option</option>
                                     @if(count($customers) > 0)
                                         @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                            <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
                                         @endforeach
                                     @endif
                                 </select>
