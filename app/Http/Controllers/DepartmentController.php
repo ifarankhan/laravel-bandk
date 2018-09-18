@@ -63,6 +63,7 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         $data = $request->all();
+        $data['code'] = 0;
         $response = $this->departments->store($data);
 
         if($response) {

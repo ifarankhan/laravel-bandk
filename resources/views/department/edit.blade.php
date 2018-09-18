@@ -29,7 +29,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">Code <span class="required">*</span>
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
@@ -40,7 +40,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer_id">{{ getTranslation('customer') }}<span class="required">*</span>
                             </label>
