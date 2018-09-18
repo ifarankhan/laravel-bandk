@@ -54,4 +54,5 @@ return [
     'total_customer' => 'Total customers',
     'claim_number' => 'Claim Number',
     'select_customer' => 'Select customer',
+    'claim_id' => 'Claim number',
 ];

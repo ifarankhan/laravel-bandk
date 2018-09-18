@@ -83,6 +83,7 @@
                     <table id="datatable" class="table table-bordered">
                         <thead>
                         <tr>
+                            <th>{{ getTranslation('claim_id') }}</th>
                             <th>{{ getTranslation('claim_created_at') }}</th>
                             <th>{{ getTranslation('date') }}</th>
                             <th>{{ getTranslation('claim_type') }}</th>
@@ -99,6 +100,7 @@
 
                             ?>
                             <tr class="alert alert-{{ getClaimColor($claim) }}">
+                                <td>{{ $claim->id }}</td>
                                 <td>{{ $claim->created_at }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
