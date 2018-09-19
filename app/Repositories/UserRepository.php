@@ -41,6 +41,15 @@ class UserRepository implements UserInterface
         return $this->model->find($id);
     }
 
+    public function updateStatus($data)
+    {
+        $user = $this->getOne($data['id']);
+        $user->status = $data['status'];
+        $user->save();
+
+        return $user;
+    }
+
     public function store($data)
     {
         if(isset($data['id'])) {

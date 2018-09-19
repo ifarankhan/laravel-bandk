@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
                         @foreach($users as $user)
-                            <tr>
+                            <tr id="user_{{ $user->id }}">
                                 <td>{{ ucfirst($user->name )}}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ ($user->department) ? $user->department->name : '' }}</td>
@@ -42,6 +42,13 @@
                                 <td>{{ ($user->modules) ? implode(',', $user->modules->pluck('text')->toArray()) : ''}}</td>
                                 <td>
                                     <a href="{{ route('users.edit', ['id'=> $user->id]) }}" class="btn btn-success">Edit</a>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" data-toggle="tooltip" data-placement="top" title="{{ getTranslation('disable_enable_user') }}">
+                                        {{ getTranslation('disable_enable_user') }}
+                                        <input type="checkbox" class="checkboxes enable-disable" data-url="{{ route('users.status', ['id' => $user->id]) }}"
+                                               data-csrf="{{ csrf_token() }}" data-id="{{ $user->id }}" @if($user->status) checked="checked" @endif />
+                                        <i class="fa fa-spin fa-spinner" id="loader_{{ $user->id }}" style="display: none;"></i>
+                                        <span></span>
+                                    </label>
                                 </td>
                             </tr>
                         @endforeach

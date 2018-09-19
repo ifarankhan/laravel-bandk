@@ -52,21 +52,14 @@ jQuery(document).ready(function () {
             loader.hide();
         });
     });
+
+
     jQuery("#customer_id").on('change', function(){
         var value = jQuery(this).val();
         var loader = jQuery("i#customer_loader");
         var department = jQuery("select#department_id");
         var selectedDepartment = jQuery("#hidden_department_1").val();
         var url = $(this).data('url')+value;
-        var customer = $("#customer_"+value).val();
-        if(value) {
-            customer = jQuery.parseJSON(customer);
-            jQuery("#insurance_number").val(customer.insurance_number);
-            jQuery("#insurance_police_number").val(customer.policy_number);
-            jQuery("#bnk_insurance_number").val(customer.bnk_insurance_number);
-            jQuery("#bank_account_number").val(customer.bank_number);
-        }
-
         var data = {};
         if(value != '') {
             loader.show();
@@ -94,6 +87,22 @@ jQuery(document).ready(function () {
     });
 
     jQuery("#customer_id").trigger('change');
+
+    jQuery("table#datatable1").on('click', '.enable-disable', function () {
+        var isChecked = $(this).is(':checked');
+        var url = $(this).data('url');
+        var csrf = $(this).data('csrf');
+        var id = $(this).data('id');
+        $('i#loader_'+id).show();
+
+        sendAjax(url, {'status': isChecked, '_token': csrf}, 'post', function (result) {
+            if(result) {
+                $('i#loader_'+id).hide();
+
+            }
+        });
+    });
+
 
     jQuery("input#fileUpload").on('change', function () {
 

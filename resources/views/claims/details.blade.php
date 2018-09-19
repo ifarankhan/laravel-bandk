@@ -52,29 +52,25 @@
                         <strong>{{ getTranslation('status') }}:</strong> {{ getClaimStatus($claim) }}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('estimate') }}:</strong> {{ $claim->estimate }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}
-                    </div>
-                    <div class="col-md-4">
                         <strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer) ? $claim->customer->contact_person : ''}}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address1)  ? $claim->address1->address : ''}}
                     </div>
                     <div class="col-md-4">
+                        <strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}
+                    </div>
+                    <div class="col-md-4">
                         <strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}
                     </div>
-
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_name') }}:</strong> {{ ($claim->customer) ? $claim->customer->name : '' }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_address') }}:</strong> {{ ($claim->customer) ? $claim->customer->address : '' }}
+                        <strong>{{ getTranslation('estimate') }}:</strong> {{ $claim->estimate }}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}
@@ -82,22 +78,6 @@
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}
                     </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer) ? $claim->customer->contact_person : ''}}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ ($claim->customer)  ? $claim->customer->bank_number : ''}}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ ($claim->customer)  ? $claim->customer->account_number : ''}}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_insurance_company_name') }}:</strong> {{ ($claim->customer)  ? $claim->customer->insurance_company_name : ''}}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ ($claim->customer)  ? $claim->customer->policy_number : ''}}
-                    </div>
-
                 </div>
                 <div class="row ribbon-content">
                     <div class="col-md-12">

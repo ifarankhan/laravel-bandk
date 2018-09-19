@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/users/create', 'UsersController@create')->name('users.create');
     Route::post('/dashboard/users/create', 'UsersController@store')->name('users.store');
     Route::get('/dashboard/users/edit/{id}', 'UsersController@edit')->name('users.edit');
+    Route::post('/dashboard/users/status/{id}', 'UsersController@status')->name('users.status');
 
     Route::get('/dashboard/content', 'ContentsController@index')->name('content.index');
     Route::get('/dashboard/content/create', 'ContentsController@create')->name('content.create');

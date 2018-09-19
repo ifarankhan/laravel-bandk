@@ -79,6 +79,12 @@ class UsersController extends Controller
         $customers = $this->customer->all();
         return view('users.edit', compact('roles', 'modules', 'customers', 'user'));
     }
+    public function status($id, Request $request)
+    {
+        $data = $request->all();
+        $data['id'] = $id;
+        return $this->user->updateStatus($data);
+    }
 
     public function store(UserRequest $request)
     {

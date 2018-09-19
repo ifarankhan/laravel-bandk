@@ -55,4 +55,5 @@ return [
     'claim_number' => 'Claim Number',
     'select_customer' => 'Select customer',
     'claim_id' => 'Claim number',
+    'disable_enable_user' => 'Disable/Enable',
 ];

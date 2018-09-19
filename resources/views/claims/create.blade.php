@@ -116,7 +116,7 @@
                         @endif
                     </div>
 
-                    <div class="form-group ">
+                    {{--<div class="form-group ">
                         <label for="insurance_number">{{ getTranslation('customer_insurance_number') }}</label>
                         <input type="text" class="form-control" id="insurance_number" name="estimate" value="{{ old('insurance_number') }}" disabled="disabled">
                     </div>
@@ -131,7 +131,7 @@
                     <div class="form-group ">
                         <label for="estimate">{{ getTranslation('customer_bank_number') }}</label>
                         <input type="text" class="form-control" id="bank_account_number" name="bank_account_number" value="{{ old('bank_account_number') }}" disabled="disabled">
-                    </div>
+                    </div>--}}
 
 
                     <div class="form-group ">
