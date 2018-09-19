@@ -44,7 +44,7 @@ class UserRepository implements UserInterface
     public function updateStatus($data)
     {
         $user = $this->getOne($data['id']);
-        $user->status = $data['status'];
+        $user->status = ($data['status'] == "true") ? 1 : 0;
         $user->save();
 
         return $user;
