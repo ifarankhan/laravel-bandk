@@ -78,6 +78,6 @@ class UserRepository implements UserInterface
     {
         $data =  $this->model->with(['customer', 'customer.departments'])->find($user->id);
         //return $data;
-        return $data->customer->departments;
+        return ($data->customer) ? $data->customer->departments : [];
     }
 }
