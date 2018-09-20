@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Departments extends Model
 {
-    public function addresses()
+    public function subAddresses()
     {
         return $this->hasMany(Addresses::class, 'department_id', 'id');
     }

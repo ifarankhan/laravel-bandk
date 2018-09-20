@@ -2,12 +2,12 @@
 
 return [
     'claim_type' => 'Skadetype',
-    'department' => 'Afdelingsnr',
+    'department' => 'Afdeling',
     'mechanics_type' => 'Afdelingsnr',
     'attach_photo' => 'Attach Photo',
     'description' => 'Description',
-    'address_1' => 'Adresse 1',
-    'address_2' => 'Adresse 2',
+    'address_1' => 'Skadested',
+    'address_2' => 'Skadested 2',
     'postal_no' => 'Postnr',
     'estimate' => 'Estimate',
     'claim_creation_date' => 'Date',

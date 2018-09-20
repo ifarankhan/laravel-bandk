@@ -12,10 +12,12 @@ use App\Repositories\ClaimTypesInterface;
 use App\Repositories\ContentInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
+use App\Repositories\UserInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use Validator;
 
 class PassportController extends Controller
@@ -53,6 +55,10 @@ class PassportController extends Controller
      * @var CustomerInterface
      */
     private $customer;
+    /**
+     * @var UserRepositoryInterface
+     */
+    private $userRepository;
 
     /**
      * PassportController constructor.
@@ -64,6 +70,7 @@ class PassportController extends Controller
      * @param ContentInterface $content
      * @param CategoryInterface $category
      * @param CustomerInterface $customer
+     * @param UserInterface $userRepository
      */
     public function __construct(ClaimInterface $claim,
                                 ClaimTypesInterface $claimTypes,
@@ -72,7 +79,8 @@ class PassportController extends Controller
                                 AddressesInterface $addresses,
                                 ContentInterface $content,
                                 CategoryInterface $category,
-                                CustomerInterface $customer)
+                                CustomerInterface $customer,
+                                UserInterface $userRepository)
     {
         $this->claim = $claim;
         $this->claimTypes = $claimTypes;
@@ -82,6 +90,7 @@ class PassportController extends Controller
         $this->content = $content;
         $this->category = $category;
         $this->customer = $customer;
+        $this->userRepository = $userRepository;
     }
 
     /*
@@ -158,17 +167,15 @@ class PassportController extends Controller
     public function getClaimFormData() {
         $claimTypes = $this->claimTypes->all();
         $claimMechanics = $this->claimMechanics->all();
-        $departments = $this->departments->all();
-        $customers = $this->customer->all();
+
         return response()->json(
             [
                 'message' => 'Claim data',
                 'status' => $this->successStatus,
                 'data' => [
-                    'customers' => $customers,
+                    'users' => $this->userRepository->getUserAllData(\Auth::user()),
                     'claim_types' => $claimTypes,
                     'claim_mechanics' => $claimMechanics,
-                    'departments' => $departments,
                 ]
             ], $this->successStatus);
     }

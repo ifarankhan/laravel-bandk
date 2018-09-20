@@ -73,4 +73,9 @@ class UserRepository implements UserInterface
         return $this->model;
 
     }
+
+    public function getUserAllData($user)
+    {
+        return $this->model->with(['customer', 'customer.departments'])->find($user->id);
+    }
 }
