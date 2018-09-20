@@ -63,14 +63,14 @@
                     <div class="col-md-4">
                         <strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address1)  ? $claim->address1->address : ''}}
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-4">&nbsp;</div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-4">&nbsp;</div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('estimate') }}:</strong> {{ $claim->estimate }}
                     </div>
