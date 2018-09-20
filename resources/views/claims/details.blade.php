@@ -57,16 +57,16 @@
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer) ? $claim->customer->contact_person : ''}}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address1)  ? $claim->address1->address : ''}}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}
                     </div>
                     <div class="col-md-4">
