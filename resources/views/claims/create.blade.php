@@ -17,7 +17,8 @@
                 <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="status" value="FOR_BNK">
-                    <div class="form-group ">
+                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ \Auth::user()->customer_id }}">
+                    {{--<div class="form-group ">
                         <label for="heading">{{ getTranslation('customer') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="customer_loader"></i>
                         </label>
@@ -36,7 +37,7 @@
                                 <strong>{{ $errors->first('customer_id') }}</strong>
                             </span>
                         @endif
-                    </div>
+                    </div>--}}
                     <div class="form-group ">
                         <label for="department">{{ getTranslation('department') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
