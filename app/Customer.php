@@ -12,7 +12,7 @@ class Customer extends Model
     }
     public function departments()
     {
-        return $this->hasMany(Departments::class, 'customer_id', 'id')->with(['subAddresses']);
+        return $this->hasMany(Departments::class, 'customer_id', 'id')->with(['addresses']);
     }
 
 }

@@ -89,7 +89,7 @@ class ClaimRepository implements ClaimInterface
             $date = date('Y-m-d', strtotime($date));
         }
         $data['date'] = $date;
-
+        $data['customer_id'] = \Auth::user()->customer_id;
         $claim = $this->model->create($data);
 
         if(isset($data['images']) && count($data['images']) > 0) {
