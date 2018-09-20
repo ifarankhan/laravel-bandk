@@ -42,7 +42,7 @@ return [
     'customer_name' => 'Navn',
     'customer_address' => 'Adresse',
     'customer_zip_code' => 'Post nr.',
-    'customer_city' => 'City',
+    'customer_city' => 'By',
     'customer_contact_person' => 'Kontaktperson',
     'customer_bank_number' => 'Pengeinstituts reg. nr.',
     'customer_account_number' => 'Konto nr.',
