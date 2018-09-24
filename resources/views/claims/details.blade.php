@@ -118,7 +118,7 @@
 
                 @foreach($claim->images as $key => $image)
                     <div class="column">
-                        <img class="demo cursor" src="{{ asset('/images/'.$image->image) }}" style="width:100%" onclick="currentSlide({{ $key + 1 }})" alt="Nature and sunrise">
+                        <img class="demo cursor" src="{{ asset('/images/'.$image->image) }}" style="width:100%" onclick="currentSlide({{ $key + 1 }})">
                     </div>
                 @endforeach
             </div>
