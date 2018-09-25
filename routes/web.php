@@ -42,13 +42,6 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/categories/create-json', 'CategoryController@categoryCreate')->name('category.create-json');
     Route::get('/dashboard/categories/remove', 'CategoryController@categoryRemove')->name('category.remove');
 
-    Route::get('/dashboard/claims', 'ClaimsController@index')->name('claim.index');
-    Route::get('/dashboard/claim/create', 'ClaimsController@create')->name('claim.create');
-    Route::post('/dashboard/claim/create', 'ClaimsController@store')->name('claim.store');
-    Route::get('/dashboard/claim/details/{id}', 'ClaimsController@details')->name('claim.details');
-    Route::delete('/dashboard/claim/delete/{id}', 'ClaimsController@delete')->name('claim.delete');
-    Route::post('/dashboard/claim/conversation/create', 'ClaimsController@addConversation')->name('claim.conversation.store');
-
 
     Route::get('/dashboard/claim-types', 'ClaimTypeController@index')->name('claim-type.index');
     Route::get('/dashboard/claim-type/create', 'ClaimTypeController@create')->name('claim-type.create');
@@ -89,6 +82,13 @@ Route::group(['middleware' => ['auth', 'can_access']], function() {
 
 });
 Route::group(['middleware' => ['auth']], function() {
+
+    Route::get('/dashboard/claims', 'ClaimsController@index')->name('claim.index');
+    Route::get('/dashboard/claim/create', 'ClaimsController@create')->name('claim.create');
+    Route::post('/dashboard/claim/create', 'ClaimsController@store')->name('claim.store');
+    Route::get('/dashboard/claim/details/{id}', 'ClaimsController@details')->name('claim.details');
+    Route::delete('/dashboard/claim/delete/{id}', 'ClaimsController@delete')->name('claim.delete');
+    Route::post('/dashboard/claim/conversation/create', 'ClaimsController@addConversation')->name('claim.conversation.store');
 
     Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
     Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');

@@ -41,6 +41,7 @@ class ClaimRepository implements ClaimInterface
 
     public function search($search)
     {
+        $userRoles = (\Auth::user()->roles) ? \Auth::user()->roles->pluck('name')->toArray() : [];
         $query = $this->model;
         if($search && isset($search['claim_type_id'])) {
             $query = $query->where('claim_type_id', $search['claim_type_id']);
@@ -53,6 +54,14 @@ class ClaimRepository implements ClaimInterface
         }
         if($search && isset($search['date'])) {
             $query = $query->where('created_at','>=', date('Y-m-d 00:00:00',strtotime($search['date'])))->where('created_at', '<=', date('Y-m-d 23:59:00',strtotime($search['date'])));
+        }
+
+        if(in_array('AGENT', $userRoles)) {
+
+            if(\Auth::user()->customer) {
+                $query = $query->where('customer_id', \Auth::user()->customer->id);
+            }
+
         }
 
         return $query->orderBy('created_at', 'DESC')->get();

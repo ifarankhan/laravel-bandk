@@ -57,3 +57,8 @@ function getClaimStatus($claim)
     }
     return $status;
 }
+
+function getUserRoles($user)
+{
+    return  ($user->roles) ? $user->roles->pluck('name')->toArray() : [];
+}

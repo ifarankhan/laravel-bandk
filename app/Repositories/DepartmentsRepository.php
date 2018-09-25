@@ -37,7 +37,12 @@ class DepartmentsRepository implements DepartmentsInterface
 
     public function all()
     {
-        return $this->model->with(['addresses'])->get(['id', 'name', 'code']);
+        $query = $this->model;
+        $roles = getUserRoles(\Auth::user());
+        if(in_array('AGENT', $roles) && \Auth::user()->customer) {
+            $query = $query->where('customer_id', \Auth::user()->customer->id);
+        }
+        return $query->with(['addresses'])->get(['id', 'name', 'code']);
     }
 
     public function getOne($id)

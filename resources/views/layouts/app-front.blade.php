@@ -43,6 +43,8 @@
                         ?>
                         @if(in_array('ADMIN', $rolesArray))
                             <a href="{{ route('dashboard.index') }}" class="link2 {{ \Request::route()->getName() == 'dashboard.index' ? 'main-header-active': ''}}">Admin Panel</a>
+                        @elseif(in_array('AGENT', $rolesArray))
+                            <a href="{{ route('claim.index') }}" class="link2 {{ \Request::route()->getName() == 'claim.index' ? 'main-header-active': ''}}">My Claims</a>
                         @endif
                     </div>
                 </div>

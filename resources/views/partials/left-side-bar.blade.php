@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ route('dashboard.index') }}" class="site_title"><i class="fa fa-paw"></i> <span>B&K!</span></a>
+            <a href="{{ route('home.index') }}" class="site_title"><i class="fa fa-paw"></i> <span>B&K!</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -34,7 +34,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if(in_array('ADMIN',$userRoles) || in_array('MANAGER',$userRoles))
+                    @if(in_array('ADMIN',$userRoles) || in_array('MANAGER',$userRoles) || in_array('AGENT', $userRoles))
                         <li><a><i class="fa fa-briefcase"></i> Claims Management <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('claim.index') }}">Claims Listing</a></li>

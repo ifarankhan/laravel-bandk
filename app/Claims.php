@@ -17,6 +17,10 @@ class Claims extends Model
     {
         return $this->belongsTo(ClaimTypes::class, 'claim_type_id', 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');

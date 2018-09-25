@@ -49,13 +49,13 @@
 
                 <div class="row ribbon-content">
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('status') }}:</strong> {{ getClaimStatus($claim) }}
+                        <strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ ($claim->customer) ? $claim->customer->contact_person : ''}}
+                        <strong>{{ getTranslation('claim_person') }}:</strong> {{ ($claim->user) ? ucfirst($claim->user->name) : '' }}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
@@ -77,6 +77,10 @@
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}
                     </div>
+                    <div class="col-md-4">
+                        <strong>{{ getTranslation('status') }}:</strong> {{ getClaimStatus($claim) }}
+                    </div>
+                    <div class="col-md-4">&nbsp;</div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}
                     </div>

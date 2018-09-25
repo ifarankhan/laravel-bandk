@@ -15,7 +15,7 @@ return [
     'select_claim_type' => 'Select Claim Type',
     'select_customer_id' => 'Select Customer',
     'select_claim_mechanic_type' => 'Select Mechanics',
-    'select_department' => 'Select Department',
+    'select_department' => 'Select Afdeling',
     'details' => 'Details',
     'conversation' => 'Conversation',
     'add_conversation' => 'Add conversation',
@@ -57,4 +57,5 @@ return [
     'select_customer' => 'Select customer',
     'claim_id' => 'Claim number',
     'disable_enable_user' => 'Disable/Enable',
+    'claim_person' => 'Claim by',
 ];
