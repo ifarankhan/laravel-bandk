@@ -17,6 +17,7 @@
                 <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" name="status" value="FOR_BNK">
+                    <input type="hidden" name="from_web" value="from_web">
                     <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ \Auth::user()->customer_id }}">
                     {{--<div class="form-group ">
                         <label for="heading">{{ getTranslation('customer') }}

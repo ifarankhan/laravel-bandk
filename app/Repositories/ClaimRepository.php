@@ -93,9 +93,11 @@ class ClaimRepository implements ClaimInterface
     {
         $data['user_id'] = \Auth::user()->id;
         $date = null;
-        if(isset($data['date'])) {
+        if(isset($data['date']) && isset($date['from_web'])) {
             $date = str_replace('/', '-', $data['date']);
             $date = date('Y-m-d', strtotime($date));
+        } elseif (isset($data['date']) && !isset($date['from_web'])) {
+            $data['date'] = date('Y-m-d', $data['date']);
         }
         $data['date'] = $date;
         $data['customer_id'] = \Auth::user()->customer_id;
