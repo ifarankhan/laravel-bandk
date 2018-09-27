@@ -184,7 +184,7 @@ class PassportController extends Controller
         $validator = Validator::make($request->all(),[
             'claim_type_id' => 'required',
             'estimate' => 'required',
-            'date' => 'required|date_format:"d/m/Y"',
+            'date' => 'required',
             'claim_mechanic_id' => 'required',
             'department_id' => 'required',
             'address_1' => 'required',
