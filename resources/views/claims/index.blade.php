@@ -2,7 +2,9 @@
 
 @section('content')
     <ul class="breadcrumb">
-        <li><a href="{{ route('dashboard.index') }}">{{ getTranslation('dashboard') }}</a></li>
+        @if(!in_array('AGENT', getUserRoles(\Auth::user())))
+            <li><a href="{{ route('dashboard.index') }}">{{ getTranslation('dashboard') }}</a></li>
+        @endif
         <li><a href="{{ route('claim.index') }}">{{ getTranslation('claims') }}</a></li>
     </ul>
     <div class="row">
