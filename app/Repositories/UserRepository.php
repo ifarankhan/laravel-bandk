@@ -29,7 +29,12 @@ class UserRepository implements UserInterface
 
     public function all()
     {
-        return $this->model->all();
+        $roles = getUserRoles(\Auth::user());
+        $query = $this->model;
+        if(in_array('AGENT', $roles) && \Auth::user()->customer) {
+            $query = $query->where('customer_id', \Auth::user()->customer->id);
+        }
+        return $query->get();
     }
     public function allCount()
     {

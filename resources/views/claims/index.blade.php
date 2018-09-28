@@ -22,57 +22,117 @@
                         @endforeach
                     </div>
                     @if(in_array('AGENT', getUserRoles(\Auth::user())) && \Auth::user()->customer)
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="mt-element-ribbon bg-grey-steel">
 
+                                    <div class="row ribbon-content">
+
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_name') }}:</strong> {{ \Auth::user()->customer->name }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ \Auth::user()->customer->contact_person }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_insurance_company_name') }}:</strong> {{ \Auth::user()->customer->insurance_company_name }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('address_1') }}:</strong> {{ (\Auth::user()->customer->address)  ? \Auth::user()->customer->address : ''}}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_emails') }}:</strong> {{ (\Auth::user()->customer && \Auth::user()->customer->email)  ? implode(', ', json_decode(\Auth::user()->customer->email, true)) : ''}}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->policy_number : ''}}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->zip_code : ''}}
+                                        </div>
+                                        <div class="col-md-4">&nbsp;</div>
+                                        <div class="col-md-4">&nbsp;</div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_city') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->city : '' }}
+                                        </div>
+                                        <div class="col-md-4">&nbsp;</div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->bank_number : '' }}
+                                        </div>
+                                        <div class="col-md-4">&nbsp;</div>
+                                        <div class="col-md-4">&nbsp;</div>
+                                        <div class="col-md-4">
+                                            <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->account_number : '' }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                     <form action="{{ route('claim.index') }}" method="GET">
                          <div class="row">
-                            <div class="form-group form-group-sm">
-                                <div class="col-md-3 col-lg-3">
-                                    <label for="claim_type_id">
-                                        {{ getTranslation('claim_type') }}
-                                    </label>
-                                    <select id="claim_type_id" class="form-control" name="search[claim_type_id]" data-actions-box="true" tabindex="-1" aria-hidden="true">
-                                        <option value="">{{ getTranslation('select_claim_type') }}</option>
-                                        @foreach($claimTypes as $claimType)
-                                            <option value="{{ $claimType->id }}" {{ ($search && isset($search['claim_type_id'])&& $search['claim_type_id'] == $claimType->id) ? 'selected="selected"' : '' }}>{{ $claimType->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-3 col-lg-3">
-                                    <label for="type_of_document">
-                                        {{ getTranslation('claim_creation_date') }}
-                                    </label>
-                                    <div class="input-group date" id="date">
-                                        <input type="text" class="form-control" name="search[date]" id="date" value="{{ ($search && isset($search['date'])) ? $search['date'] : ''}}">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-lg-3">
-                                    <label for="department_id">
-                                        {{ getTranslation('department') }}
-                                    </label>
-                                    <select id="department_id" class="form-control" name="search[department_id]" tabindex="-1" aria-hidden="true">
-                                        <option value="">{{ getTranslation('select_department') }}</option>
-                                        @foreach($departments as $department)
-                                            <option value="{{ $department->id }}" {{ ($search && isset($search['department_id']) && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }} ({{ $department->code }})</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @if(!in_array('AGENT', getUserRoles(\Auth::user())))
-                                    <div class="col-md-3 col-lg-3">
-                                        <label for="customer_id">
-                                            {{ getTranslation('customer') }}
+                            <div class="form-group form-group-sm col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <label for="claim_type_id">
+                                            {{ getTranslation('claim_type') }}
                                         </label>
-                                        <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
-                                            <option value="">{{ getTranslation('select_customer') }}</option>
-                                            @foreach($customers as $customer)
-                                                <option value="{{ $customer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $customer->id) ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
+                                        <select id="claim_type_id" class="form-control" name="search[claim_type_id]" data-actions-box="true" tabindex="-1" aria-hidden="true">
+                                            <option value="">{{ getTranslation('select_claim_type') }}</option>
+                                            @foreach($claimTypes as $claimType)
+                                                <option value="{{ $claimType->id }}" {{ ($search && isset($search['claim_type_id'])&& $search['claim_type_id'] == $claimType->id) ? 'selected="selected"' : '' }}>{{ $claimType->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                               @endif
+                                    <div class="col-md-4 col-lg-4">
+                                        <label for="type_of_document">
+                                            {{ getTranslation('claim_creation_date') }}
+                                        </label>
+                                        <div class="input-group date" id="date">
+                                            <input type="text" class="form-control" name="search[date]" id="date" value="{{ ($search && isset($search['date'])) ? $search['date'] : ''}}">
+                                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <label for="department_id">
+                                            {{ getTranslation('department') }}
+                                        </label>
+                                        <select id="department_id" class="form-control" name="search[department_id]" tabindex="-1" aria-hidden="true">
+                                            <option value="">{{ getTranslation('select_department') }}</option>
+                                            @foreach($departments as $department)
+                                                <option value="{{ $department->id }}" {{ ($search && isset($search['department_id']) && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }} ({{ $department->code }})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <label for="user_id">
+                                            {{ getTranslation('users') }}
+                                        </label>
+                                        <select id="user_id" class="form-control" name="search[user_id]" tabindex="-1" aria-hidden="true">
+                                            <option value="">{{ getTranslation('select_users') }}</option>
+                                            @foreach($users as $user)
+                                                <option value="{{ $user->id }}" {{ ($search && isset($search['user_id']) && $search['user_id'] == $user->id) ? 'selected="selected"' : '' }}>{{ $user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @if(!in_array('AGENT', getUserRoles(\Auth::user())))
+                                        <div class="col-md-4 col-lg-4">
+                                            <label for="customer_id">
+                                                {{ getTranslation('customer') }}
+                                            </label>
+                                            <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
+                                                <option value="">{{ getTranslation('select_customer') }}</option>
+                                                @foreach($customers as $customer)
+                                                    <option value="{{ $customer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $customer->id) ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+
+                                </div>
                             </div>
                          </div>
                         <div class="row">

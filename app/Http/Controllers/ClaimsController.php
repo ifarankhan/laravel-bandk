@@ -19,7 +19,9 @@ use App\Repositories\ClaimMechanicsInterface;
 use App\Repositories\ClaimTypesInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
+use App\Repositories\UserInterface;
 use Illuminate\Http\Request;
+use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 
 class ClaimsController extends Controller
 {
@@ -52,6 +54,10 @@ class ClaimsController extends Controller
      * @var CustomerInterface
      */
     private $customer;
+    /**
+     * @var UserRepositoryInterface
+     */
+    private $userRepository;
 
     /**
      * ClaimsController constructor.
@@ -62,10 +68,11 @@ class ClaimsController extends Controller
      * @param ClaimMechanicsInterface $claimMechanics
      * @param AddressesInterface $addresses
      * @param CustomerInterface $customer
+     * @param UserInterface $userRepository
      */
     public function __construct(ClaimInterface $claim, ClaimConversationInterface $claimConversation,
                                 ClaimTypesInterface $claimTypes, DepartmentsInterface $departments, ClaimMechanicsInterface $claimMechanics,
-                                AddressesInterface $addresses, CustomerInterface $customer)
+                                AddressesInterface $addresses, CustomerInterface $customer, UserInterface $userRepository)
     {
         $this->claim = $claim;
         $this->claimConversation = $claimConversation;
@@ -74,6 +81,7 @@ class ClaimsController extends Controller
         $this->claimMechanics = $claimMechanics;
         $this->addresses = $addresses;
         $this->customer = $customer;
+        $this->userRepository = $userRepository;
     }
 
     public function index(Request $request)
@@ -82,8 +90,9 @@ class ClaimsController extends Controller
         $claimTypes = $this->claimTypes->all();
         $departments = $this->departments->all();
         $customers = $this->customer->all();
+        $users = $this->userRepository->all();
         $claims = $this->claim->search($search);
-        return view('claims.index', compact('claims', 'departments', 'claimTypes', 'search', 'customers'));
+        return view('claims.index', compact('claims', 'departments', 'claimTypes', 'search', 'customers', 'users'));
     }
 
     public function details($id)

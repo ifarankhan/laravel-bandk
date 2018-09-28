@@ -34,7 +34,7 @@ class CanAccess extends Middleware
                     abort(403, 'Unauthorized action.');
                 }
             } elseif (in_array('CLAIM_FORM', $modules)) {
-                if($requestName == 'claim.create' || $requestName == 'home.index') {
+                if($requestName == 'claim.create') {
                     return $next($request);
                 }else{
                     abort(403, 'Unauthorized action.');

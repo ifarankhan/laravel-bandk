@@ -58,4 +58,5 @@ return [
     'claim_id' => 'Claim number',
     'disable_enable_user' => 'Disable/Enable',
     'claim_person' => 'Claim by',
+    'select_users' => 'Select Users',
 ];
