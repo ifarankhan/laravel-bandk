@@ -38,7 +38,7 @@ class ClaimsController extends Controller
      * @var ClaimTypesInterface
      */
     private $claimTypes;
-    /**
+    /**n
      * @var DepartmentsInterface
      */
     private $departments;
@@ -122,6 +122,18 @@ class ClaimsController extends Controller
         $types = $this->claimTypes->all();
         $customers = $this->customer->all();
         return view('claims.create', compact('departments', 'mechanicsTypes', 'types', 'customers'));
+    }
+    public function otherFields(Request $request)
+    {
+        $data = $request->all();
+        $response = $this->claim->otherFields($data);
+        if($response) {
+            $request->session()->flash('alert-success', 'Claim has been created.');
+            return redirect()->back();
+        } else {
+            $request->session()->flash('alert-danger', 'Error while creating claim.');
+            return redirect()->back();
+        }
     }
 
     public function store(ClaimRequests $request)

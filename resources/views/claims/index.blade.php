@@ -103,7 +103,7 @@
                                         <select id="department_id" class="form-control" name="search[department_id]" tabindex="-1" aria-hidden="true">
                                             <option value="">{{ getTranslation('select_department') }}</option>
                                             @foreach($departments as $department)
-                                                <option value="{{ $department->id }}" {{ ($search && isset($search['department_id']) && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }} ({{ $department->code }})</option>
+                                                <option value="{{ $department->id }}" {{ ($search && isset($search['department_id']) && $search['department_id'] == $department->id) ? 'selected="selected"' : '' }}>{{ $department->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -164,15 +164,14 @@
                         <tbody>
                         @foreach($claims as $claim)
                             <?php
-
                             ?>
                             <tr class="alert alert-{{ getClaimColor($claim) }}">
                                 <td>{{ $claim->id }}</td>
                                 <td>{{ $claim->created_at }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
-                                <td>{{ $claim->estimate }}</td>
-                                <td>{{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}</td>
+                                <td data-claim-id="{{ $claim->id }}" data-csrf="{{ csrf_token() }}" data-url="{{ route('claim.detail.form') }}" class="estimate_value">{{ ($claim->estimate && is_numeric($claim->estimate)) ? number_format($claim->estimate,0,",",".") : 0 }}</td>
+                                <td>{{ ($claim->department) ? $claim->department->name : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
@@ -422,5 +421,52 @@
         $('#date').datetimepicker({
             format: 'YYYY-MM-DD'
         });
+        $('#datatable').on( 'dblclick', 'tbody td.estimate_value', function (e) {
+            var element = $(this);
+
+            var claimId = element.attr('data-claim-id');
+
+            var url = element.attr('data-url');
+            var csrf = element.attr('data-csrf');
+            var html = element.html().trim();
+
+            var index = html.indexOf('<textarea type="text"');
+
+            if(index === -1) {
+                var input = '<textarea type="text" name="updated-value" class="form-control update-value-'+claimId+'" data-claim-id="'+claimId+'">'+html+'</textarea>';
+
+                $(this).html(input);
+
+                $(".update-value-"+claimId).on('blur', element, function (e) {
+                    var updatedText = $(this).val();
+                    var  data = {_token: csrf, id: claimId, estimate: updatedText};
+
+                    if(updatedText != html && updatedText.trim() != '') {
+                        sendAjax(url, data, 'POST',function (result) {
+                        });
+                    }
+
+                    //updatedText = formatNumber(updatedText);
+                    element.html(updatedText);
+
+                });
+
+                $(".update-value-"+claimId).on('change', element, function (event) {
+                    console.log('hello')
+                    var updatedText = $(this).val();
+                    updatedText = formatNumber(updatedText);
+
+                    $(this).val(updatedText);
+                });
+            }
+
+
+        });
+
+
+        function formatNumber(x) {
+            x = x.replace('.', '');
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
     </script>
 @endsection

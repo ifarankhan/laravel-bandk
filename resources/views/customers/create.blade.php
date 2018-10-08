@@ -127,7 +127,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance_number"> {{ getTranslation('customer_insurance_number') }}
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -138,8 +138,8 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>--}}
+                        {{--<div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bnk_insurance_number"> {{ getTranslation('bnk_insurance_number') }}
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -150,7 +150,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ getTranslation('customer_emails') }}
@@ -175,7 +175,7 @@
                         <br />
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <a class="btn btn-danger" href="{{ route('category.index') }}">Back</a>
+                                <a class="btn btn-danger" href="{{ route('customer.index') }}">Back</a>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>

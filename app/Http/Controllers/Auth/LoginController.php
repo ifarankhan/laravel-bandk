@@ -44,6 +44,7 @@ class LoginController extends Controller
         $modules = (\Auth::user()->modules) ? \Auth::user()->modules->pluck('name')->toArray() : [];
 
         if(in_array('ADMIN', $roles) || in_array('MANAGER', $roles)) {
+            session()->remove('url.intended');
             return route('dashboard.index');
         } elseif (in_array('AGENT', $roles)) {
             if(in_array('INFO_APP', $modules)) {
@@ -51,7 +52,7 @@ class LoginController extends Controller
                 return route('home.index');
             } elseif (in_array('CLAIM_FORM', $modules)) {
                 session()->remove('url.intended');
-                return route('claim.create');
+                return route('claim.index');
             }
         }
     }

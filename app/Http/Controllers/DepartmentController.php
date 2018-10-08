@@ -41,10 +41,12 @@ class DepartmentController extends Controller
         $this->customer = $customer;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $departments = $this->departments->all();
-        return view('department.index', compact('departments'));
+        $search = $request->get('search');
+        $departments = $this->departments->search($search);
+        $customers = $this->customer->all();
+        return view('department.index', compact('departments', 'customers', 'search'));
     }
 
     public function create()

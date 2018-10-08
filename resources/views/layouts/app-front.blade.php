@@ -32,8 +32,8 @@
                 <div class="col-xs-8 text-left zero-padding">
                     <img src="/frontend/images/logob&k.png" alt="logo">
                     <div class="links">
-                        <a href="{{ route('home.index') }}" class="link1 {{ \Request::route()->getName() == 'home.index' ? 'main-header-active': ''}}">Home</a>
-                        <a href="{{ route('claim.create') }}" class="link2 {{ \Request::route()->getName() == 'claim.create' ? 'main-header-active': ''}}">Claim Form</a>
+                        <a href="{{ route('home.index') }}" class="link1 {{ \Request::route()->getName() == 'home.index' ? 'main-header-active': ''}}">{{ getTranslation('emergency_app') }}</a>
+                        <a href="{{ route('claim.create') }}" class="link2 {{ \Request::route()->getName() == 'claim.create' ? 'main-header-active': ''}}">{{ getTranslation('claim_form') }}</a>
                         <?php
                             $roles = \Auth::user()->roles;
                             $rolesArray = [];
@@ -42,9 +42,9 @@
                             }
                         ?>
                         @if(in_array('ADMIN', $rolesArray))
-                            <a href="{{ route('dashboard.index') }}" class="link2 {{ \Request::route()->getName() == 'dashboard.index' ? 'main-header-active': ''}}">Admin Panel</a>
+                            <a href="{{ route('dashboard.index') }}" class="link2 {{ \Request::route()->getName() == 'dashboard.index' ? 'main-header-active': ''}}">{{ getTranslation('admin_panel') }}</a>
                         @elseif(in_array('AGENT', $rolesArray))
-                            <a href="{{ route('claim.index') }}" class="link2 {{ \Request::route()->getName() == 'claim.index' ? 'main-header-active': ''}}">My Claims</a>
+                            <a href="{{ route('claim.index') }}" class="link2 {{ \Request::route()->getName() == 'claim.index' ? 'main-header-active': ''}}">{{ getTranslation('my_claims') }}</a>
                         @endif
                     </div>
                 </div>

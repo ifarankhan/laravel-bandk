@@ -78,6 +78,22 @@ class ClaimRepository implements ClaimInterface
     {
         return $this->model->count();
     }
+
+    public function otherFields($data)
+    {
+        $claim = $this->getOne($data['id']);
+
+        if(isset($data['rekv_nummer'])) {
+            $claim->rekv_nummer = $data['rekv_nummer'];
+        } elseif(isset($data['selsskab_skade_nummer'])) {
+            $claim->selsskab_skade_nummer = $data['selsskab_skade_nummer'];
+        } elseif(isset($data['estimate'])) {
+            $claim->estimate = $data['estimate'];
+        }
+
+        return $claim->save();
+    }
+
     public function todayClaimsQuery()
     {
         return $this->model->where('created_at','>=' ,date('Y-m-d'));

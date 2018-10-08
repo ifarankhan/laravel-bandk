@@ -36,6 +36,14 @@ class UserRepository implements UserInterface
         }
         return $query->get();
     }
+    public function search($search)
+    {
+        $query = $this->model;
+        if (isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
+        return $query->get();
+    }
     public function allCount()
     {
         return $this->model->count();

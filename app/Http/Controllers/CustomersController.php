@@ -32,10 +32,12 @@ class CustomersController extends Controller
         $this->customer = $customer;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $customers = $this->customer->all();
-        return view('customers.index', compact('customers'));
+        $search = $request->get('search');
+        $allCustomers = $this->customer->all();
+        $customers = $this->customer->search($search);
+        return view('customers.index', compact('allCustomers','customers', 'search'));
     }
 
     public function create()

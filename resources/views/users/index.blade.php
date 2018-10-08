@@ -21,6 +21,37 @@
                             @endif
                         @endforeach
                     </div>
+                    <form action="{{ route('users.index') }}" method="GET">
+                        <div class="row">
+                            <div class="form-group form-group-sm col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <label for="customer_id">
+                                            {{ getTranslation('customer') }}
+                                        </label>
+                                        <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
+                                            <option value="">{{ getTranslation('select_customer') }}</option>
+                                            @foreach($customers as $aCustomer)
+                                                <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="form-group form-group-sm ">
+                                            <label for="customer_id">
+                                                &nbsp;
+                                            </label>
+                                            <div class="">
+                                                <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>

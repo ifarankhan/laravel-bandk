@@ -52,10 +52,29 @@
                         <strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}
                     </div>
                     <div class="col-md-4">
-                        <strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}
+                        <strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name : ''}}
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('claim_person') }}:</strong> {{ ($claim->user) ? ucfirst($claim->user->name) : '' }}
+                    </div>
+                    <div class="col-md-4">
+                        <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
+                            <input type="hidden" name="id" value="{{ $claim->id }}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label class="control-label" for="rekv_nummer">Selsskab skade nummer
+                                    </label>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="text" id="selsskab_skade_nummer" class="form-control col-md-12 " name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="submit" class="btn btn-success btn-xs">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
@@ -83,6 +102,25 @@
                     <div class="col-md-4">&nbsp;</div>
                     <div class="col-md-4">
                         <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}
+                    </div>
+                    <div class="col-md-4">
+                        <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
+                            <input type="hidden" name="id" value="{{ $claim->id }}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label class="control-label" for="rekv_nummer">Rekv nummer
+                                    </label>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="text" id="rekv_nummer" class="form-control col-md-12 " name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="submit" class="btn btn-success btn-xs">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="row ribbon-content">

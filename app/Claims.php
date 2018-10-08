@@ -40,14 +40,14 @@ class Claims extends Model
     public function getDateAttribute($value)
     {
         if ($value) {
-            return date('Y-m-d', strtotime($value));
+            return date('d-m-Y', strtotime($value));
         }
         return $value;
     }
     public function getCreatedAtAttribute($value)
     {
         if ($value) {
-            return date('Y-m-d', strtotime($value));
+            return date('d-m-Y', strtotime($value));
         }
         return $value;
     }

@@ -58,10 +58,12 @@ class UsersController extends Controller
         $this->customer = $customer;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->user->all();
-        return view('users.index', compact('users'));
+        $search = $request->get('search');
+        $users = $this->user->search($search);
+        $customers = $this->customer->all();
+        return view('users.index', compact('users', 'customers', 'search'));
     }
 
     public function create()

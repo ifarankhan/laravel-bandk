@@ -35,6 +35,16 @@ class DepartmentsRepository implements DepartmentsInterface
         $this->addresses = $addresses;
     }
 
+    public function search($search)
+    {
+        $query = $this->model;
+        if(isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
+
+        return $query->get();
+    }
+
     public function all()
     {
         $query = $this->model;

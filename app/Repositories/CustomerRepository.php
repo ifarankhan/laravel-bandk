@@ -24,6 +24,14 @@ class CustomerRepository implements CustomerInterface
     {
         return $this->model->get();
     }
+    public function search($search)
+    {
+        $query = $this->model;
+        if(isset($search['customer_id'])) {
+            $query = $query->where('id', $search['customer_id']);
+        }
+        return $query->get();
+    }
     public function allCount()
     {
         return $this->model->count();

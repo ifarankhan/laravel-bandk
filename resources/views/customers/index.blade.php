@@ -13,6 +13,37 @@
                     <a href="{{ route('customer.create') }}" class="btn btn-danger pull-right">Create</a>
                     <div class="clearfix"></div>
                 </div>
+                <form action="{{ route('customer.index') }}" method="GET">
+                    <div class="row">
+                        <div class="form-group form-group-sm col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    <label for="customer_id">
+                                        {{ getTranslation('customer') }}
+                                    </label>
+                                    <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
+                                        <option value="">{{ getTranslation('select_customer') }}</option>
+                                        @foreach($allCustomers as $aCustomer)
+                                            <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="form-group form-group-sm ">
+                                        <label for="customer_id">
+                                            &nbsp;
+                                        </label>
+                                        <div class="">
+                                            <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <div class="x_content">
                     <div class="flash-message">
                         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -24,26 +55,26 @@
                     <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>{{ getTranslation('customer_name') }}</th>
+                           {{-- <th>{{ getTranslation('customer_name') }}</th>
                             <th>{{ getTranslation('customer_address') }}</th>
                             <th>{{ getTranslation('customer_city') }}</th>
-                            <th>{{ getTranslation('customer_zip_code') }}</th>
+                            <th>{{ getTranslation('customer_zip_code') }}</th>--}}
                             <th>{{ getTranslation('customer_contact_person') }}</th>
                             <th>{{ getTranslation('customer_bank_number') }}</th>
                             <th>{{ getTranslation('customer_account_number') }}</th>
                             <th>{{ getTranslation('customer_insurance_company_name') }}</th>
                             <th>{{ getTranslation('customer_policy_number') }}</th>
                             <th>{{ getTranslation('customer_emails') }}</th>
-                            <th>{{ getTranslation('actions') }}</th>
+                            <th width="20%">{{ getTranslation('actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($customers as $customer)
                             <tr id="content_{{ $customer->id }}">
-                                <td>{{ $customer->name }}</td>
+                                {{--<td>{{ $customer->name }}</td>
                                 <td>{{ ($customer->address) ? $customer->address :  ''}}</td>
                                 <td>{{ ($customer->city) ? $customer->city :  ''}}</td>
-                                <td>{{ ($customer->zip_code) ? $customer->zip_code :  ''}}</td>
+                                <td>{{ ($customer->zip_code) ? $customer->zip_code :  ''}}</td>--}}
                                 <td>{{ ($customer->contact_person) ? $customer->contact_person :  ''}}</td>
                                 <td>{{ ($customer->bank_number) ? $customer->bank_number :  ''}}</td>
                                 <td>{{ ($customer->account_number) ? $customer->account_number :  ''}}</td>
@@ -51,9 +82,9 @@
                                 <td>{{ ($customer->policy_number) ? $customer->policy_number :  ''}}</td>
                                 <td>{!! ($customer->emails) ? implode('<br />', json_decode($customer->emails, true)) :  '' !!}</td>
                                 <td>
-                                    <a href="{{ route('customer.details', ['id'=> $customer->id]) }}" class="btn btn-info">Details</a>
-                                    <a href="{{ route('customer.edit', ['id'=> $customer->id]) }}" class="btn btn-success">Edit</a>
-                                    <button data-id="{{ $customer->id }}" data-url="{{ route('customer.delete', ['id'=> $customer->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                                    <a href="{{ route('customer.details', ['id'=> $customer->id]) }}" class="btn btn-info btn-xs">{!! getTranslation('details')  !!} </a>
+                                    <a href="{{ route('customer.edit', ['id'=> $customer->id]) }}" class="btn btn-success btn-xs">{!! getTranslation('edit') !!}</a>
+                                    <button data-id="{{ $customer->id }}" data-url="{{ route('customer.delete', ['id'=> $customer->id]) }}" class="btn btn-danger delete btn-xs" data-toggle="modal" data-target="#modal-delete">{!! getTranslation('delete') !!}</button>
                                 </td>
                             </tr>
                         @endforeach

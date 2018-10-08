@@ -72,7 +72,7 @@ jQuery(document).ready(function () {
                         if(selectedDepartment == value.id) {
                             select = 'selected="selected"';
                         }
-                        html = html + '<option value="'+value.id+'"'+select+'>'+value.name+': '+value.code+'</option>';
+                        html = html + '<option value="'+value.id+'"'+select+'>'+value.name+'</option>';
                     });
 
                     department.html(html);

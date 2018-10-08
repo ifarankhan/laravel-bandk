@@ -33,7 +33,14 @@ class CanAccess extends Middleware
                 } else{
                     abort(403, 'Unauthorized action.');
                 }
-            } elseif (in_array('CLAIM_FORM', $modules)) {
+            } elseif (in_array('CLAIM_FORM', $modules) && in_array('INFO_APP', $modules)) {
+
+                if($requestName == 'claim.create' || $requestName == 'home.index') {
+                    return $next($request);
+                }else{
+                    abort(403, 'Unauthorized action.');
+                }
+            } elseif (!in_array('INFO_APP', $modules) && in_array('CLAIM_FORM', $modules)) {
                 if($requestName == 'claim.create') {
                     return $next($request);
                 }else{

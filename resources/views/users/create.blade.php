@@ -77,7 +77,9 @@
                                 <select class="form-control select2" name="modules[]" multiple="multiple">
                                     <option value="">Choose option</option>
                                     @foreach($modules as $module)
-                                        <option value="{{ $module->id }}" {{ old('modules') && in_array($module->id, old('modules')) ? 'selected="selected"' : '' }}>{{ $module->text }}</option>
+                                        @if($module->id != 3)
+                                            <option value="{{ $module->id }}" {{ old('modules') && in_array($module->id, old('modules')) ? 'selected="selected"' : '' }}>{{ $module->text }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @if ($errors->has('modules'))

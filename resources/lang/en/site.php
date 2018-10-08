@@ -59,4 +59,17 @@ return [
     'disable_enable_user' => 'Disable/Enable',
     'claim_person' => 'Claim by',
     'select_users' => 'Select Users',
+    'action' => 'Action',
+    'details' => 'Details',
+    'edit' => 'edit',
+    'delete' => 'Delete',
+
+
+    'emergency_app' => 'Emergency App',
+    'claim_form' => 'Claim Form',
+    'admin_panel' => 'Admin panel',
+    'my_claims' => 'My claims',
+    'contact_bnk_admin' => 'Ask B&K Admin',
+    'contact_bnk_admin_message' => 'Full authentication is required to access this resource. Please contact B&K admin.',
+
 ];
