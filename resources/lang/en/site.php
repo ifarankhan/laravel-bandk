@@ -94,5 +94,12 @@ return [
     'user_create_success_message' => 'User has been created/updated successfully',
     'user_create_error_message' => 'Error while updating/creating user',
 
+    'claim_create_success_message' => 'Claim has been created/updated successfully',
+    'claim_create_error_message' => 'Error while updating/creating claim.',
+
+
+    'claim_conversation_create_success_message' => 'Claim conversation has been created/updated successfully.',
+    'claim_conversation_create_error_message' => 'Error while updating/creating conversation.',
+
 
 ];

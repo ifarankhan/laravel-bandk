@@ -107,10 +107,10 @@ class ClaimsController extends Controller
         $response = $this->claimConversation->create($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Claim conversation has been created/updated successfully.');
+            $request->session()->flash('alert-success', getTranslation('claim_conversation_create_success_message'));
             return redirect()->back();
         } else {
-            $request->session()->flash('alert-danger', 'Error while updating/creating conversation.');
+            $request->session()->flash('alert-danger', getTranslation('claim_conversation_create_error_message'));
             return redirect()->back();
         }
     }
@@ -128,10 +128,10 @@ class ClaimsController extends Controller
         $data = $request->all();
         $response = $this->claim->otherFields($data);
         if($response) {
-            $request->session()->flash('alert-success', 'Claim has been created.');
+            $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
             return redirect()->back();
         } else {
-            $request->session()->flash('alert-danger', 'Error while creating claim.');
+            $request->session()->flash('alert-danger', getTranslation('claim_create_error_message'));
             return redirect()->back();
         }
     }
@@ -142,10 +142,10 @@ class ClaimsController extends Controller
         $response = $this->claim->createClaim($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Claim has been created.');
+            $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
             return redirect()->route('claim.create');
         } else {
-            $request->session()->flash('alert-danger', 'Error while creating claim.');
+            $request->session()->flash('alert-danger', getTranslation('claim_create_error_message'));
             return redirect()->route('claim.create');
         }
     }
@@ -156,10 +156,10 @@ class ClaimsController extends Controller
         $response = $this->claim->updateStatus($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Claim status has been updated.');
+            $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
             return redirect()->route('claim.details', ['id'=> $data['id']]);
         } else {
-            $request->session()->flash('alert-danger', 'Error while update status of claim.');
+            $request->session()->flash('alert-danger', getTranslation('claim_create_error_message'));
             return redirect()->route('claim.details', ['id'=> $data['id']]);
         }
     }
