@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
         ];
 
 
-        \App\Roles::insert($data);
+        \App\User::insert($data);
     }
 }
