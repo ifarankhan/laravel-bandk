@@ -64,7 +64,7 @@
                             <div class="form-group" style="margin-left: -15px;">
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="rekv_nummer">Selsskab skade nummer
+                                    <label class="control-label" for="rekv_nummer"><strong>Selsskab skade nummer</strong>
                                     </label>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -107,10 +107,10 @@
                         <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
                             <input type="hidden" name="id" value="{{ $claim->id }}">
                             {{ csrf_field() }}
-                            <div class="form-group" style="margin-left: -15px;">
+                            <div class="form-group" style="margin-left: -8px;">
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="rekv_nummer">Rekv nummer
+                                    <label class="control-label" for="rekv_nummer"><strong>Rekv nummer</strong>
                                     </label>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
