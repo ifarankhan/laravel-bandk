@@ -55,7 +55,7 @@ return [
     'total_customer' => 'Total customers',
     'claim_number' => 'Claim Number',
     'select_customer' => 'Select customer',
-    'claim_id' => 'Claim number',
+    'claim_id' => 'B&K skade nummer',
     'disable_enable_user' => 'Disable/Enable',
     'claim_person' => 'Claim by',
     'select_users' => 'Select Users',

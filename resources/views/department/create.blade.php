@@ -18,7 +18,7 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('department.store') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="title">Name <span class="required">*</span>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="title">{{ getTranslation('department') }} <span class="required">*</span>
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
                                 <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="name" value="{{ old('name') }}">

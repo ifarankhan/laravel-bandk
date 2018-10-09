@@ -61,7 +61,7 @@
                         <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
                             <input type="hidden" name="id" value="{{ $claim->id }}">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="form-group" style="margin-left: -15px;">
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <label class="control-label" for="rekv_nummer">Selsskab skade nummer
@@ -107,7 +107,7 @@
                         <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
                             <input type="hidden" name="id" value="{{ $claim->id }}">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="form-group" style="margin-left: -15px;">
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <label class="control-label" for="rekv_nummer">Rekv nummer

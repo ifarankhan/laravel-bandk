@@ -55,32 +55,32 @@
                     <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                           {{-- <th>{{ getTranslation('customer_name') }}</th>
+                            <th>{{ getTranslation('customer_name') }}</th>
                             <th>{{ getTranslation('customer_address') }}</th>
                             <th>{{ getTranslation('customer_city') }}</th>
-                            <th>{{ getTranslation('customer_zip_code') }}</th>--}}
-                            <th>{{ getTranslation('customer_contact_person') }}</th>
+                            <th>{{ getTranslation('customer_zip_code') }}</th>
+                            {{--<th>{{ getTranslation('customer_contact_person') }}</th>
                             <th>{{ getTranslation('customer_bank_number') }}</th>
                             <th>{{ getTranslation('customer_account_number') }}</th>
                             <th>{{ getTranslation('customer_insurance_company_name') }}</th>
                             <th>{{ getTranslation('customer_policy_number') }}</th>
-                            <th>{{ getTranslation('customer_emails') }}</th>
+                            <th>{{ getTranslation('customer_emails') }}</th>--}}
                             <th width="20%">{{ getTranslation('actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($customers as $customer)
                             <tr id="content_{{ $customer->id }}">
-                                {{--<td>{{ $customer->name }}</td>
+                                <td>{{ $customer->name }}</td>
                                 <td>{{ ($customer->address) ? $customer->address :  ''}}</td>
                                 <td>{{ ($customer->city) ? $customer->city :  ''}}</td>
-                                <td>{{ ($customer->zip_code) ? $customer->zip_code :  ''}}</td>--}}
-                                <td>{{ ($customer->contact_person) ? $customer->contact_person :  ''}}</td>
+                                <td>{{ ($customer->zip_code) ? $customer->zip_code :  ''}}</td>
+                                {{--<td>{{ ($customer->contact_person) ? $customer->contact_person :  ''}}</td>
                                 <td>{{ ($customer->bank_number) ? $customer->bank_number :  ''}}</td>
                                 <td>{{ ($customer->account_number) ? $customer->account_number :  ''}}</td>
                                 <td>{{ ($customer->insurance_company_name) ? $customer->insurance_company_name :  ''}}</td>
                                 <td>{{ ($customer->policy_number) ? $customer->policy_number :  ''}}</td>
-                                <td>{!! ($customer->emails) ? implode('<br />', json_decode($customer->emails, true)) :  '' !!}</td>
+                                <td>{!! ($customer->emails) ? implode('<br />', json_decode($customer->emails, true)) :  '' !!}</td>--}}
                                 <td>
                                     <a href="{{ route('customer.details', ['id'=> $customer->id]) }}" class="btn btn-info btn-xs">{!! getTranslation('details')  !!} </a>
                                     <a href="{{ route('customer.edit', ['id'=> $customer->id]) }}" class="btn btn-success btn-xs">{!! getTranslation('edit') !!}</a>

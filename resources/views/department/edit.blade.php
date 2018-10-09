@@ -18,7 +18,7 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $department->id }}">
                         <div class="form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">Name <span class="required">*</span>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">{{ getTranslation('department') }} <span class="required">*</span>
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
                                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="name" value="{{ $department->name }}">
