@@ -95,10 +95,10 @@ class UsersController extends Controller
         $response = $this->user->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'User has been created/updated successfully.');
+            $request->session()->flash('alert-success', getTranslation('user_create_success_message'));
             return redirect()->route('users.index');
         } else {
-            $request->session()->flash('alert-danger', 'Error while updating/creating User.');
+            $request->session()->flash('alert-danger', getTranslation('user_create_error_message'));
             return redirect()->route('users.index');
         }
     }

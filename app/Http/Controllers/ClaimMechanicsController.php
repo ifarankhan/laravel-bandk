@@ -58,10 +58,10 @@ class ClaimMechanicsController extends Controller
         $response = $this->claimMechanics->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Claim mechanic has been created/updated successfully.');
+            $request->session()->flash('alert-success', getTranslation('claim_mechanics_create_success_message'));
             return redirect()->route('claim-mechanic.index');
         } else {
-            $request->session()->flash('alert-danger', 'Error while updating/creating claim mechanic.');
+            $request->session()->flash('alert-danger', getTranslation('claim_mechanics_create_error_message'));
             return redirect()->route('claim-mechanic.index');
         }
     }

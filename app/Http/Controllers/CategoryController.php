@@ -55,10 +55,10 @@ class CategoryController extends Controller
         $response = $this->category->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Category has been created/updated successfully.');
+            $request->session()->flash('alert-success', getTranslation('category_create_success_message'));
             return redirect()->route('category.index');
         } else {
-            $request->session()->flash('alert-danger', 'Error while updating/creating category.');
+            $request->session()->flash('alert-danger', getTranslation('category_create_error_message'));
             return redirect()->route('category.index');
         }
     }

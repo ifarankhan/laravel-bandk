@@ -72,4 +72,27 @@ return [
     'contact_bnk_admin' => 'Ask B&K Admin',
     'contact_bnk_admin_message' => 'Full authentication is required to access this resource. Please contact B&K admin.',
 
+    'category_create_success_message' => 'Category has been created/updated successfully',
+    'category_create_error_message' => 'Error while updating/creating category.',
+
+    'claim_mechanics_create_success_message' => 'Claim mechanic has been created/updated successfully',
+    'claim_mechanics_create_error_message' => 'Error while updating/creating claim mechanic',
+
+    'claim_type_create_success_message' => 'Claim type has been created/updated successfully',
+    'claim_type_create_error_message' => 'Error while updating/creating claim type',
+
+    'content_create_success_message' => 'Content has been created/updated successfully',
+    'content_create_error_message' => 'Error while updating/creating content',
+
+
+    'customer_create_success_message' => 'Customer has been created/updated successfully. To go to department click',
+    'customer_create_error_message' => 'Error while updating/creating customer.',
+
+    'department_create_success_message' => 'Department has been created/updated successfully. To go to users click',
+    'department_create_error_message' => 'Error while updating/creating department.',
+
+    'user_create_success_message' => 'User has been created/updated successfully',
+    'user_create_error_message' => 'Error while updating/creating user',
+
+
 ];

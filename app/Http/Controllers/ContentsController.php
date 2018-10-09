@@ -68,10 +68,10 @@ class ContentsController extends Controller
         $response = $this->content->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Content has been created/updated successfully.');
+            $request->session()->flash('alert-success', getTranslation('content_create_success_message'));
             return redirect()->route('content.index');
         } else {
-            $request->session()->flash('alert-danger', 'Error while updating/creating content.');
+            $request->session()->flash('alert-danger', getTranslation('content_create_error_message'));
             return redirect()->route('content.index');
         }
     }

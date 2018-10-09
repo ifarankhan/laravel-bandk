@@ -56,10 +56,10 @@ class ClaimTypeController extends Controller
         $response = $this->claimTypes->store($data);
 
         if($response) {
-            $request->session()->flash('alert-success', 'Claim Type has been created/updated successfully.');
+            $request->session()->flash('alert-success',getTranslation('claim_type_create_success_message'));
             return redirect()->route('claim-type.index');
         } else {
-            $request->session()->flash('alert-danger', 'Error while updating/creating claim type.');
+            $request->session()->flash('alert-danger', getTranslation('claim_type_create_error_message'));
             return redirect()->route('claim-type.index');
         }
     }
