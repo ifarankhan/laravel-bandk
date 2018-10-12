@@ -3,6 +3,21 @@
  */
 jQuery(document).ready(function () {
 
+    jQuery(".show-hide").on('click', function () {
+        var departmentId = jQuery(this).data('department-id');
+        var what = jQuery(this).data('what');
+        if(what == 'hide') {
+            jQuery('.addresses_'+departmentId).show();
+            jQuery(this).data('what', 'show');
+            jQuery(this).html('Skjule');
+        } else {
+            jQuery('.addresses_'+departmentId).hide();
+            jQuery(this).data('what', 'hide');
+            jQuery(this).html('Vis alt');
+        }
+
+    });
+
     jQuery(".delete").on('click', function (event) {
         event.preventDefault();
         $(this).off('click');
