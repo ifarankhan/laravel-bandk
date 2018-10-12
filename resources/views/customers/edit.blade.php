@@ -163,7 +163,7 @@
                                     @if(count($emails) > 0)
                                         @foreach($emails as $email)
                                             <div style="margin-bottom: 35px;">
-                                                <input type="text"  required="required" class="form-control col-md-7 col-xs-12" name="emails[]" value="{{ $email }}">
+                                                <input type="text" class="form-control col-md-7 col-xs-12" name="emails[]" value="{{ $email }}">
                                             </div>
                                         @endforeach
                                     @endif

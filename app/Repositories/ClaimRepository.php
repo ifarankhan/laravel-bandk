@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\ClaimImages;
 use App\Claims;
+use App\Events\SendEmailToCustomerUsers;
 
 class ClaimRepository implements ClaimInterface
 {
@@ -132,6 +133,17 @@ class ClaimRepository implements ClaimInterface
                 $this->claimImages->save();
             }
         }
+        $customer = \Auth::user()->customer;
+
+        /*if(!empty($customer->emails)) {
+            $emails = json_decode($customer->emails, true);
+
+            foreach ($emails as $email) {
+                if($email) {
+                    event(new SendEmailToCustomerUsers($customer, $claim->id, $claim->user->name, $email));
+                }
+            }
+        }*/
 
         return $claim;
     }
