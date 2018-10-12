@@ -48,8 +48,8 @@ class ClaimConversationRepository implements ClaimConversationInterface
         $data['user_id'] = \Auth::user()->id;
         $claimConversation = $this->model->create($data);
 
-        if(isset($data['all_files']) && count($data['all_files']) > 0) {
-            foreach ($data['all_files'] as $file) {
+        if(isset($data['file']) && count($data['file']) > 0) {
+            foreach ($data['file'] as $file) {
                 $this->claimConversationFiles = new ClaimConversationFiles();
                 $uniqueFileName = uniqid() .'_'. $file->getClientOriginalName();
                 $file->move(config('app.path_to_upload_files') , $uniqueFileName);

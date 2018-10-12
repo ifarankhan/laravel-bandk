@@ -189,7 +189,7 @@
                                 <p class="url">
                                     @if(count($conversation->files) > 0)
                                         @foreach($conversation->files as $file)
-                                            <a href="{{ asset('/files/'.$file->file_name) }}" download="{{ $file->file_name }}"><i class="fa fa-paperclip"></i> {{ $file->file_name }} </a>
+                                            <a href="{{ asset('/files/'.$file->file_name) }}" download="{{ $file->file_name }}"><i class="fa fa-paperclip"></i> {{ $file->file_name }} </a><br>
                                         @endforeach()
                                     @endif
                                 </p>
@@ -202,14 +202,14 @@
             </ul>
         </div>
         <div class="col-md-4">
-            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('claim.conversation.store') }}" method="POST" enctype='multipart/form-data'>
+            <form id="demoForm2" data-parsley-validate class="form-horizontal form-label-left dropzone" action="{{ route('claim.conversation.store') }}" method="POST" enctype='multipart/form-data'>
                 {{ csrf_field() }}
                 <input type="hidden" name="claim_id" value="{{ $claim->id }}">
                 <div class="form-group">
                     <label class="control-label col-md-12 col-sm-12 col-xs-12" style="text-align: left;" for="description">{{ getTranslation('add_conversation') }} <span class="required">*</span>
                     </label>
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <textarea type="text" id="conversation" col="10" row="15" class="form-control col-md-7 col-xs-12" name="conversation">{{ old('conversation') }}</textarea>
+                        <textarea id="conversation" col="10" row="15" class="form-control col-md-7 col-xs-12" name="conversation">{{ old('conversation') }}</textarea>
                         @if ($errors->has('conversation'))
                             <span class="help-block" style="color: red;">
                                 <strong>{{ $errors->first('conversation') }}</strong>
@@ -222,8 +222,7 @@
                 <div class="form-group">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <span class="col-md-8">
-                            <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-link"></i>{{ getTranslation('attach_file') }}</button>
-                            <input class="pull-left" id="all_files" type="file" name="all_files[]" onchange="javascript:updateList()" multiple/>
+                            {{--<input class="pull-left" id="all_files" type="file" name="all_files[]" onchange="javascript:updateList()" multiple/>--}}
                             @if ($errors->has('all_files.0'))
                                 <span class="help-block" style="color: red;">
                                 <strong>File must be of type pdf, doc, docx.</strong>
@@ -232,13 +231,14 @@
                             <div id="fileList"></div>
                         </span>
                         <span class="col-md-4">
-                            <button type="submit" class="btn btn-success pull-left btn-xs">Submit</button>
                         </span>
 
                     </div>
                 </div>
 
             </form>
+            <button type="submit" id="btn_submit" class="btn btn-success pull-left btn-xs">Submit</button>
+
         </div>
     </div>
 
@@ -265,6 +265,7 @@
 @endsection
 
 @section('css')
+    <link href="{{ asset('/admin/css/dropzone.css') }}" rel="stylesheet">
     <style>
         hr.style-one {
             border: 0;
@@ -475,7 +476,36 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('/admin/js/dropzone.js') }}"></script>
     <script>
+        jQuery(document).ready(function(){
+            /*$("#demo_form2").dropzone({
+                autoProcessQueue: false,
+
+            });*/
+            Dropzone.options.demoForm2 = {
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                dictDefaultMessage: 'Træk og slip her',
+
+                init: function (e) {
+
+                    var myDropzone = this;
+
+                    $('#btn_submit').on("click", function() {
+                        myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+                    });
+                    myDropzone.on("complete", function(file, xhr, data) {
+                        window.location.reload();
+                    });
+                    // Event to send your custom data to your server
+                    myDropzone.on("sending", function(file, xhr, data) {
+                        data.append("conversation", $('#conversation').val());
+                    });
+
+                }
+            };
+        });
         function openModal() {
             document.getElementById('myModal').style.display = "block";
         }
