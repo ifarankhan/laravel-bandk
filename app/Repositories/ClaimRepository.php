@@ -112,6 +112,9 @@ class ClaimRepository implements ClaimInterface
     public function createClaim($data)
     {
         $data['user_id'] = \Auth::user()->id;
+        if(isset($data['claim_mechanic_id']) && $data['claim_mechanic_id'] == '-1') {
+            $data['claim_mechanic_id'] = null;
+        }
         $date = null;
         if(isset($data['date']) && isset($data['from_web'])) {
             $date = str_replace('/', '-', $data['date']);
