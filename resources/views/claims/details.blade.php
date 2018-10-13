@@ -13,40 +13,104 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <div class="mt-element-ribbon bg-grey-steel">
-                <form action="{{ route('claim.status') }}" method="POST">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
-                                <div class="ribbon-sub ribbon-clip"></div>{{ getTranslation('claim_details') }}
-                            </div>
+            <form action="{{ route('claim.status') }}" method="POST">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
+                            <div class="ribbon-sub ribbon-clip">{{ getTranslation('claim_details') }}</div>
                         </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{ $claim->id }}">
-                                    <div class="form-group col-md-6">
-                                        <select class="form-control" name="status">
-                                            <option value="">{{ getTranslation('select_status') }}</option>
-                                            <option value="CLOSED" {{ $claim->status == 'CLOSED' ? 'selected="selected"' : '' }}>{{ getTranslation('closed') }}</option>
-                                            <option value="OPEN" {{ $claim->status == 'OPEN' ? 'selected="selected"' : '' }}>{{ getTranslation('open') }}</option>
-                                        </select>
-                                        @if ($errors->has('status'))
-                                            <span class="help-block">
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{ $claim->id }}">
+                            <div class="form-group col-md-6">
+                                <select class="form-control" name="status">
+                                    <option value="">{{ getTranslation('select_status') }}</option>
+                                    <option value="CLOSED" {{ $claim->status == 'CLOSED' ? 'selected="selected"' : '' }}>{{ getTranslation('closed') }}</option>
+                                    <option value="OPEN" {{ $claim->status == 'OPEN' ? 'selected="selected"' : '' }}>{{ getTranslation('open') }}</option>
+                                </select>
+                                @if ($errors->has('status'))
+                                    <span class="help-block">
                                                 <strong>{{ $errors->first('status') }}</strong>
                                             </span>
-                                        @endif
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
-                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
+            </form>
 
+            <div class="mt-element-ribbon bg-grey-steel">
+                {{--<div class="row ribbon-content">
 
+                <table class="table table-responsive table-noborder">
+                    <tbody>
+                        <tr>
+                            <td><strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}</td>
+                            <td><strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name : ''}}</td>
+                            <td><strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
+                            <td><strong>{{ getTranslation('claim_type') }}:</strong> {{ $claim->date }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Selsskab skade nummer:</strong></td>
+                            <td><strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
+                            <td> <strong>{{ getTranslation('estimate') }}:</strong> {{ $claim->estimate }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
+                                    <input type="hidden" name="id" value="{{ $claim->id }}">
+                                    {{ csrf_field() }}
+                                    <div style="margin-left: -2px;">
+                                        <input type="text" id="selsskab_skade_nummer" class="form-control" name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
+                                        <input type="submit" class="btn btn-success btn-xs">
+                                    </div>
+                                </form>
+                            </td>
+                            <td><strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}</td>
+                            <td> &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rekv nummer:</strong></td>
+                            <td>&nbsp;</td>
+                            <td> &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
+                                    <input type="hidden" name="id" value="{{ $claim->id }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group" style="margin-left: -2px;">
+                                        <input type="text" id="rekv_nummer" class="form-control" name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
+                                        <input type="submit" class="btn btn-success btn-xs">
+                                    </div>
+                                </form>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td> &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{ getTranslation('description') }}:</strong></td>
+                            <td colspan="2">{{ $claim->description }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                </div>--}}
                 <div class="row ribbon-content">
                     <div class="col-md-4">
                         <strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}
@@ -123,6 +187,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="row ribbon-content">
                     <div class="col-md-12">
                         <strong>{{ getTranslation('description') }}:</strong> {{ $claim->description }}

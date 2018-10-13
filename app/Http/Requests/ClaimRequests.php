@@ -34,7 +34,7 @@ class ClaimRequests extends FormRequest
             'address_2' => 'required',
             'description' => 'required',
             'status' => 'required',
-            'images' => 'required',
+            /*'images' => 'required',*/
             /*'images.*' => 'mimes:jpg,png,jpeg'*/
         ];
     }

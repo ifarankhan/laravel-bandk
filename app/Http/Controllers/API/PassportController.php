@@ -191,7 +191,7 @@ class PassportController extends Controller
             'address_2' => 'required',
             'description' => 'required',
             'status' => 'required',
-            'images' => 'required',
+            /*'images' => 'required',*/
             'images.*' => 'image|mimes:jpg,png,jpeg'
         ]);
 
