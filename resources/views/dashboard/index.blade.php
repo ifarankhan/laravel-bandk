@@ -74,7 +74,7 @@
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
                                 <td>{{ $claim->estimate }}</td>
                                 <td>{{ $claim->date }}</td>
-                                <td>{{ ($claim->department) ? $claim->department->name.'('.$claim->department->code.')' : ''}}</td>
+                                <td>{{ ($claim->department) ? $claim->department->name : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
