@@ -1,7 +1,7 @@
 //
 $(document).ready(function(){
 
-    jQuery("#estimate").on('change', function (event) {
+    jQuery("#estimate").on('keydown', function (event) {
         var value = $(this).val();
         value = formatNumber(value);
 

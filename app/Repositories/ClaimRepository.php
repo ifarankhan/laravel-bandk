@@ -86,10 +86,12 @@ class ClaimRepository implements ClaimInterface
 
         if(isset($data['rekv_nummer'])) {
             $claim->rekv_nummer = $data['rekv_nummer'];
-        } elseif(isset($data['selsskab_skade_nummer'])) {
+        } if(isset($data['selsskab_skade_nummer'])) {
             $claim->selsskab_skade_nummer = $data['selsskab_skade_nummer'];
-        } elseif(isset($data['estimate'])) {
+        } if(isset($data['estimate'])) {
             $claim->estimate = $data['estimate'];
+        }if(isset($data['status'])) {
+            $claim->status = $data['status'];
         }
 
         return $claim->save();

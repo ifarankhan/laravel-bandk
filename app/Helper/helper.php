@@ -36,12 +36,10 @@ function getLeftMenu($categories,  &$html)
 function getClaimColor($claim)
 {
     $color = '';
-    if($claim->status == 'FOR_BNK' || $claim->status == 'FOR_MANAGER') {
+    if($claim->status == 'FOR_BNK' || $claim->status == 'FOR_MANAGER' || $claim->status == 'OPEN') {
         $color = 'danger';
-    } elseif ($claim->status == 'OPEN') {
-        $color = 'success';
     } elseif ($claim->status == 'CLOSED') {
-        $color = 'info';
+        $color = 'success';
     }
     return $color;
 }

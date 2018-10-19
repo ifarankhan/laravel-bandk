@@ -100,7 +100,7 @@
                     </div>
                     <div class="form-group ">
                         <label for="estimate">{{ getTranslation('estimate') }}</label>
-                        <input type="text" class="form-control" id="estimate" name="estimate" value="{{ old('estimate') }}">
+                        <input type="text" class="form-control" id="estimate" name="estimate" value="{{ old('estimate') }}" maxlength="10">
                         @if ($errors->has('estimate'))
                             <span class="help-block">
                                     <strong>{{ $errors->first('estimate') }}</strong>

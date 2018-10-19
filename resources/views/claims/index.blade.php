@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="mt-element-ribbon bg-grey-steel">
-                                    {{--<table class="table table-responsive table-noborder">
+                                    <table class="table table-responsive table-noborder">
                                         <tbody>
                                         <tr>
                                             <td><strong>{{ getTranslation('customer_name') }}:</strong> {{ \Auth::user()->customer->name }}</td>
@@ -41,56 +41,23 @@
                                         </tr>
                                         <tr>
                                             <td><strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->zip_code : ''}}</td>
-                                            <td><strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
-                                            <td><strong>{{ getTranslation('estimate') }}:</strong> {{ $claim->estimate }}</td>
+                                            <td><strong>{{ getTranslation('customer_emails') }}:</strong> {!!  (\Auth::user()->customer && \Auth::user()->customer->emails)  ? implode('<br /> ', json_decode(\Auth::user()->customer->emails, true)) : ''!!}</td>
+                                            <td>&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
-                                                    <input type="hidden" name="id" value="{{ $claim->id }}">
-                                                    {{ csrf_field() }}
-                                                    <div style="margin-left: -2px;">
-                                                        <input type="text" id="selsskab_skade_nummer" class="form-control" name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
-                                                        <input type="submit" class="btn btn-success btn-xs">
-                                                    </div>
-                                                </form>
-                                            </td>
-                                            <td><strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}</td>
-                                            <td> &nbsp;</td>
+                                            <td><strong>{{ getTranslation('customer_city') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->city : '' }}</td>
+                                            <td>&nbsp;</td>
+                                            <td><strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->bank_number : '' }}</td>
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
-                                            <td><strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Rekv nummer:</strong></td>
                                             <td>&nbsp;</td>
-                                            <td> &nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
-                                                    <input type="hidden" name="id" value="{{ $claim->id }}">
-                                                    {{ csrf_field() }}
-                                                    <div class="form-group" style="margin-left: -2px;">
-                                                        <input type="text" id="rekv_nummer" class="form-control" name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
-                                                        <input type="submit" class="btn btn-success btn-xs">
-                                                    </div>
-                                                </form>
-                                            </td>
-                                            <td>&nbsp;</td>
-                                            <td> &nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>{{ getTranslation('description') }}:</strong></td>
-                                            <td colspan="2">{{ $claim->description }}</td>
-
+                                            <td><strong>{{ getTranslation('customer_account_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->account_number : '' }}</td>
                                         </tr>
                                         </tbody>
-                                    </table>--}}
+                                    </table>
 
-                                    <div class="row ribbon-content">
+                                    {{--<div class="row ribbon-content">
 
                                         <div class="col-md-4">
                                             <strong>{{ getTranslation('customer_name') }}:</strong> {{ \Auth::user()->customer->name }}
@@ -127,7 +94,7 @@
                                         <div class="col-md-4">
                                             <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->account_number : '' }}
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -213,6 +180,7 @@
                         <thead>
                         <tr>
                             <th>{{ getTranslation('claim_id') }}</th>
+                            <th>{{ getTranslation('customer_name') }}</th>
                             <th>{{ getTranslation('claim_created_at') }}</th>
                             <th>{{ getTranslation('date') }}</th>
                             <th>{{ getTranslation('claim_type') }}</th>
@@ -229,6 +197,7 @@
                             ?>
                             <tr class="alert alert-{{ getClaimColor($claim) }}">
                                 <td>{{ $claim->id }}</td>
+                                <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
                                 <td>{{ $claim->created_at }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>

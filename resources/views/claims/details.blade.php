@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <form action="{{ route('claim.status') }}" method="POST">
+            <form action="{{ route('claim.detail.form') }}" method="POST">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
@@ -37,20 +37,25 @@
                                             </span>
                                 @endif
                             </div>
-                            <div class="col-md-6">
-                                <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
-            </form>
+
 
             <div class="mt-element-ribbon bg-grey-steel">
-                {{--<div class="row ribbon-content">
+                <div class="row ribbon-content">
 
                 <table class="table table-responsive table-noborder">
+                    <thead>
+                        <tr style="width: 100%; display: none;" >
+                            <td style="with:40%">&nbsp;</td>
+                            <td style="with:30%">&nbsp;</td>
+                            <td style="with:30%">&nbsp;</td>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr>
+                        <tr >
                             <td><strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}</td>
                             <td><strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name : ''}}</td>
                             <td><strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}</td>
@@ -67,14 +72,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
-                                    <input type="hidden" name="id" value="{{ $claim->id }}">
-                                    {{ csrf_field() }}
-                                    <div style="margin-left: -2px;">
-                                        <input type="text" id="selsskab_skade_nummer" class="form-control" name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
-                                        <input type="submit" class="btn btn-success btn-xs">
-                                    </div>
-                                </form>
+                                <input type="hidden" name="id" value="{{ $claim->id }}">
+                                {{ csrf_field() }}
+                                <div style="margin-left: -2px;">
+                                    <input type="text" id="selsskab_skade_nummer" class="form-control" name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
+
+                                </div>
                             </td>
                             <td><strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}</td>
                             <td> &nbsp;</td>
@@ -82,7 +85,7 @@
                         <tr>
                             <td>&nbsp;</td>
                             <td><strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}</td>
-                            <td>-</td>
+                            <td><strong>Anmelder:</strong> {{ ($claim->user) ? $claim->user->name : '' }}</td>
                         </tr>
                         <tr>
                             <td><strong>Rekv nummer:</strong></td>
@@ -91,17 +94,21 @@
                         </tr>
                         <tr>
                             <td>
-                                <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
-                                    <input type="hidden" name="id" value="{{ $claim->id }}">
-                                    {{ csrf_field() }}
-                                    <div class="form-group" style="margin-left: -2px;">
-                                        <input type="text" id="rekv_nummer" class="form-control" name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
-                                        <input type="submit" class="btn btn-success btn-xs">
-                                    </div>
-                                </form>
+
+                                <input type="hidden" name="id" value="{{ $claim->id }}">
+                                {{ csrf_field() }}
+                                <div class="form-group" style="margin-left: -2px;">
+                                    <input type="text" id="rekv_nummer" class="form-control" name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
+
+                                </div>
                             </td>
                             <td>&nbsp;</td>
                             <td> &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button></td>
                         </tr>
                         <tr>
                             <td><strong>{{ getTranslation('description') }}:</strong></td>
@@ -110,8 +117,8 @@
                         </tr>
                     </tbody>
                 </table>
-                </div>--}}
-                <div class="row ribbon-content">
+                </div>
+                {{--<div class="row ribbon-content">
                     <div class="col-md-4">
                         <strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}
                     </div>
@@ -193,8 +200,10 @@
                         <strong>{{ getTranslation('description') }}:</strong> {{ $claim->description }}
                     </div>
 
-                </div>
+                </div>--}}
             </div>
+
+            </form>
         </div>
     </div>
     @if(count($claim->images) > 0)
@@ -332,6 +341,7 @@
 @section('css')
     <link href="{{ asset('/admin/css/dropzone.css') }}" rel="stylesheet">
     <style>
+        table {border:none;}
         hr.style-one {
             border: 0;
             height: 1px;
