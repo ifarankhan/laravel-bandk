@@ -122,7 +122,7 @@ class ClaimRepository implements ClaimInterface
             $date = str_replace('/', '-', $data['date']);
             $date = date('Y-m-d', strtotime($date));
         } elseif (isset($data['date']) && !isset($data['from_web'])) {
-            $data['date'] = date('Y-m-d', $data['date']);
+            $date = date('Y-m-d', $data['date']);
         }
         $data['date'] = $date;
         $data['customer_id'] = \Auth::user()->customer_id;

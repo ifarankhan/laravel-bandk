@@ -59,8 +59,8 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>{{ getTranslation('claim_type') }}</th>
                         <th>{{ getTranslation('customer_name') }}</th>
+                        <th>{{ getTranslation('claim_type') }}</th>
                         <th>{{ getTranslation('estimate') }}</th>
                         <th>{{ getTranslation('date') }}</th>
                         <th>{{ getTranslation('department') }}</th>
@@ -72,8 +72,8 @@
                     <tbody>
                         @foreach($todayClaims as $claim)
                             <tr>
-                                <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
                                 <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
+                                <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
                                 <td>{{ $claim->estimate }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->department) ? $claim->department->name : ''}}</td>
