@@ -82,6 +82,7 @@ class ClaimRepository implements ClaimInterface
 
     public function otherFields($data)
     {
+
         $claim = $this->getOne($data['id']);
 
         if(isset($data['rekv_nummer'])) {
@@ -109,7 +110,7 @@ class ClaimRepository implements ClaimInterface
     public function todayClaims($user = null)
     {
         $query = $this->todayClaimsQuery();
-        return $query->get();
+        return $query->orderBy('id', 'DESC')->get();
     }
     public function createClaim($data)
     {
@@ -125,7 +126,9 @@ class ClaimRepository implements ClaimInterface
             $date = date('Y-m-d', $data['date']);
         }
         $data['date'] = $date;
-        $data['customer_id'] = \Auth::user()->customer_id;
+        if(!isset($data['customer_id'])) {
+            $data['customer_id'] = \Auth::user()->customer_id;
+        }
         $claim = $this->model->create($data);
 
         if(isset($data['images']) && count($data['images']) > 0) {

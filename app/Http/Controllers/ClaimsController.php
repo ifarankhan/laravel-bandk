@@ -155,6 +155,12 @@ class ClaimsController extends Controller
         $data = $request->all();
         $response = $this->claim->updateStatus($data);
 
+        if($request->isXmlHttpRequest()) {
+            return [
+                'status' => $response
+            ];
+        }
+
         if($response) {
             $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
             return redirect()->route('claim.details', ['id'=> $data['id']]);

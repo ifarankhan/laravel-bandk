@@ -193,15 +193,13 @@
                         </thead>
                         <tbody>
                         @foreach($claims as $claim)
-                            <?php
-                            ?>
                             <tr class="alert alert-{{ getClaimColor($claim) }}">
                                 <td>{{ $claim->id }}</td>
                                 <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
                                 <td>{{ $claim->created_at }}</td>
                                 <td>{{ $claim->date }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
-                                <td data-claim-id="{{ $claim->id }}" data-csrf="{{ csrf_token() }}" data-url="{{ route('claim.detail.form') }}" class="estimate_value">{{ ($claim->estimate && is_numeric($claim->estimate)) ? number_format($claim->estimate,0,",",".") : 0 }}</td>
+                                <td data-claim-id="{{ $claim->id }}" data-csrf="{{ csrf_token() }}" data-url="{{ route('claim.detail.form') }}" class="estimate_value">{{ $claim->estimate }}</td>
                                 <td>{{ ($claim->department) ? $claim->department->name : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
