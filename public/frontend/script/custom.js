@@ -1,7 +1,7 @@
 //
 $(document).ready(function(){
 
-    jQuery("#estimate").on('keydown', function (event) {
+    jQuery("#estimate").on('change', function (event) {
         var value = $(this).val();
         value = formatNumber(value);
 
@@ -96,6 +96,7 @@ var currentTallest = 0,
 
 function formatNumber(x) {
     x = x.replace('.', '');
+    console.log(x);
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
