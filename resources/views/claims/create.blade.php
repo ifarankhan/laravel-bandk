@@ -18,8 +18,16 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="status" value="FOR_BNK">
                     <input type="hidden" name="from_web" value="from_web">
-                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ \Auth::user()->customer_id }}">
-                    {{--<div class="form-group ">
+                    <?php
+                        $roles = \Auth::user()->roles;
+
+                        if(count($roles) > 0) {
+                            $roles = $roles->pluck('name')->toArray();
+                        }
+                    ?>
+
+                    @if(in_array('ADMIN', $roles))
+                        <div class="form-group ">
                         <label for="heading">{{ getTranslation('customer') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="customer_loader"></i>
                         </label>
@@ -38,7 +46,11 @@
                                 <strong>{{ $errors->first('customer_id') }}</strong>
                             </span>
                         @endif
-                    </div>--}}
+                    </div>
+                    @else
+                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ \Auth::user()->customer_id }}">
+                    @endif
+
                     <div class="form-group ">
                         <label for="department">{{ getTranslation('department') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
