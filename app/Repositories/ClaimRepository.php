@@ -134,7 +134,7 @@ class ClaimRepository implements ClaimInterface
         if(isset($data['images']) && count($data['images']) > 0) {
             foreach ($data['images'] as $image) {
                 $this->claimImages = new ClaimImages();
-                $uniqueFileName = uniqid() . $image->getClientOriginalName().'.'.$image->getClientOriginalExtension();
+                $uniqueFileName = uniqid() . $image->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();
                 $image->move(config('app.path_to_upload') , $uniqueFileName);
                 $this->claimImages->image = $uniqueFileName;
                 $this->claimImages->claim_id = $claim->id;
