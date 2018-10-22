@@ -11,9 +11,9 @@
 |
 */
 
-/*Route::get('/', function () {
-    return redirect()->route('dashboard.index');
-});*/
+Route::get('/testing', function () {
+    phpinfo();
+});
 
 
 
