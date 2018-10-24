@@ -28,6 +28,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('/admin/build/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/admin/vendors/html-editor/bootstrap-wysihtml5.css') }}" rel="stylesheet">
     <style>
         /* Style the list */
         ul.breadcrumb {
@@ -185,6 +186,9 @@
 <script src="{{ asset('/admin/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
 <script src="{{ asset('/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
 <script src="{{ asset('/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+
+<script src="{{ asset('/admin/vendors/html-editor/wysihtml5-0.3.0.js') }}"></script>
+<script src="{{ asset('/admin/vendors/html-editor/bootstrap-wysihtml5.js') }}"></script>
 <!-- bootstrap-daterangepicker -->
 <script src="{{ asset('/admin/vendors/moment/min/moment.min.js') }}"></script>
 {{--<script src="{{ asset('/admin/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>--}}

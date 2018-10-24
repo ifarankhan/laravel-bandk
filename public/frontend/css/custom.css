@@ -367,6 +367,13 @@ ul.child_menu li a
 	font-weight: 700;
     font-size: 14px;
 }
+
+.category-front > ul, ul li,h1,h2,h3 {
+
+	margin: 0;
+	list-style: inherit;
+	padding: 0;
+}
 @media all and (max-width:990px)
 {
 	.sideNav {

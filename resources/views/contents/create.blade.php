@@ -33,7 +33,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea type="text" id="description" col="10" row="15" class="form-control col-md-7 col-xs-12" name="description">
+                                <textarea type="text" id="description"  class="form-control col-md-7 col-xs-12 wysihtml5" name="description">
                                     {{ old('description') }}
                                 </textarea>
                                 @if ($errors->has('description'))
@@ -86,6 +86,13 @@
     <script src="{{ asset('/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
+            $('.wysihtml5').wysihtml5({
+                "classes": { "*":1 },
+                "stylesheets": ["{{ asset('/admin/vendors/html-editor/wysiwyg-color.css') }}"],
+                parser: function(html) {
+                    return html;
+                }
+            });
            jQuery("#roles").on('change', function(){
                 var value = jQuery(this).val();
 
