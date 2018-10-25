@@ -143,7 +143,7 @@ class ClaimRepository implements ClaimInterface
         }
         $customer = \Auth::user()->customer;
 
-        /*if(!empty($customer->emails)) {
+        if(!empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
 
             foreach ($emails as $email) {
@@ -151,7 +151,7 @@ class ClaimRepository implements ClaimInterface
                     event(new SendEmailToCustomerUsers($customer, $claim->id, $claim->user->name, $email));
                 }
             }
-        }*/
+        }
 
         return $claim;
     }
