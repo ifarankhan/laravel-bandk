@@ -22,7 +22,7 @@ Password: {{ $user['password'] }}
 
 <strong>Anmeld skaden via portalen på internettet.</strong>
 <ol>
-    <li>Indtast <a href="{{ route('dashboard') }}">here</a></li>
+    <li>Indtast <a href="{{ route('dashboard.index') }}">here</a></li>
     <li>Indtast ovennævnte brugernavn og password og tryk Login</li>
     <li>Tast Create/Anmeld for at komme til anmeldelsesformularen</li>
     <li>Udfyld og tryk ”Send”</li>
