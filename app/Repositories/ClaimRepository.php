@@ -129,7 +129,14 @@ class ClaimRepository implements ClaimInterface
         if(!isset($data['customer_id'])) {
             $data['customer_id'] = \Auth::user()->customer_id;
         }
-        $claim = $this->model->create($data);
+
+        if(isset($data['id'])) {
+            $claim = $this->getOne($data['id']);
+            $claim->update($data);
+        } else {
+            $claim = $this->model->create($data);
+        }
+
 
         if(isset($data['images']) && count($data['images']) > 0) {
             foreach ($data['images'] as $image) {
@@ -161,5 +168,11 @@ class ClaimRepository implements ClaimInterface
         $claim = $this->getOne($data['id']);
         $claim->status = $data['status'];
         return $claim->save();
+    }
+
+    public function deleteImage($id)
+    {
+        $image = ClaimImages::find($id);
+        return $image->delete();
     }
 }

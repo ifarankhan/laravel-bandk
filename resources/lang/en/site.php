@@ -3,11 +3,11 @@
 return [
     'claim_type' => 'Skadetype',
     'department' => 'Afdeling',
-    'mechanics_type' => 'Afdelingsnr',
+    'mechanics_type' => 'Håndværker type',
     'attach_photo' => 'Tilføj foto',
     'description' => 'Beskrivelse',
-    'address_1' => 'Skadested',
-    'address_2' => 'Skadested 2',
+    'address_1' => 'Adresse',
+    'address_2' => 'Nr/Etage/Side',
     'postal_no' => 'Postnr',
     'estimate' => 'Estimat',
     'claim_creation_date' => 'Skadedato',
@@ -62,6 +62,7 @@ return [
     'details' => 'Detaljer',
     'edit' => 'Rediger',
     'delete' => 'Slet',
+    'close' => 'Close',
 
 
     'emergency_app' => 'Beredskabsplan',

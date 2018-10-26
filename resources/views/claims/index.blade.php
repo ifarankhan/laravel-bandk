@@ -30,29 +30,59 @@
                                     <table class="table table-responsive table-noborder">
                                         <tbody>
                                         <tr>
-                                            <td><strong>{{ getTranslation('customer_name') }}:</strong> {{ \Auth::user()->customer->name }}</td>
-                                            <td><strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ \Auth::user()->customer->contact_person }}</td>
-                                            <td>-</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_name') }}:</strong></div>
+                                                <div class="col-md-6"> {{ \Auth::user()->customer->name }}</div>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_contact_person') }}:</strong></div>
+                                                <div class="col-md-6">{{ \Auth::user()->customer->contact_person }}</div>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-6"><strong>Selskab:</strong></div>
+                                                <div class="col-md-6">{{ \Auth::user()->customer->name }}</div>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td><strong>{{ getTranslation('address_1') }}:</strong> {{ (\Auth::user()->customer->address)  ? \Auth::user()->customer->address : ''}}</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('address_1') }}:</strong> </div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer->address)  ? \Auth::user()->customer->address : ''}}</div>
+                                                </td>
                                             <td>&nbsp;</td>
-                                            <td><strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->policy_number : ''}}</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_policy_number') }}:</strong> </div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer)  ? \Auth::user()->customer->policy_number : ''}}</div>
+                                                </td>
                                         </tr>
                                         <tr>
-                                            <td><strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->zip_code : ''}}</td>
-                                            <td><strong>{{ getTranslation('customer_emails') }}:</strong> {!!  (\Auth::user()->customer && \Auth::user()->customer->emails)  ? implode('<br /> ', json_decode(\Auth::user()->customer->emails, true)) : ''!!}</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_zip_code') }}:</strong> </div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer)  ? \Auth::user()->customer->zip_code : ''}}</div>
+                                                </td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_emails') }}:</strong> </div>
+                                                <div class="col-md-6">{!!  (\Auth::user()->customer && \Auth::user()->customer->emails)  ? implode('<br /> ', json_decode(\Auth::user()->customer->emails, true)) : ''!!}</div>
+                                                </td>
                                             <td>&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>{{ getTranslation('customer_city') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->city : '' }}</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_city') }}:</strong> </div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer) ? \Auth::user()->customer->city : '' }}</div>
+                                                </td>
                                             <td>&nbsp;</td>
-                                            <td><strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->bank_number : '' }}</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_bank_number') }}:</strong> </div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer) ? \Auth::user()->customer->bank_number : '' }}</div>
+                                                </td>
                                         </tr>
                                         <tr>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
-                                            <td><strong>{{ getTranslation('customer_account_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->account_number : '' }}</td>
+                                            <td>
+                                                <div class="col-md-6"><strong>{{ getTranslation('customer_account_number') }}:</strong> </div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer) ? \Auth::user()->customer->account_number : '' }}</div>
+                                                </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -205,7 +235,7 @@
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success">{{ getTranslation('details') }}</a>
-                                    {{--<a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info">{{ getTranslation('edit') }}</a>--}}
+                                    <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info">{{ getTranslation('edit') }}</a>
                                 </td>
                             </tr>
                         @endforeach

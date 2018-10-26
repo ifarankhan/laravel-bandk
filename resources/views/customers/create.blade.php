@@ -43,18 +43,6 @@
 
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">{{ getTranslation('customer_city') }}
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="city" class="form-control col-md-7 col-xs-12" name="city" value="{{ old('city') }}">
-                                @if ($errors->has('city'))
-                                    <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip_code"> {{ getTranslation('customer_zip_code') }}
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -66,6 +54,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">{{ getTranslation('customer_city') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="city" class="form-control col-md-7 col-xs-12" name="city" value="{{ old('city') }}">
+                                @if ($errors->has('city'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="contact_person"> {{ getTranslation('customer_contact_person') }}
                             </label>

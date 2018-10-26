@@ -64,6 +64,5 @@ function getUserRoles($user)
 function dateFormat($date, $format = 'm/d/Y') {
     $date = strtotime($date);
     $date = date($format, $date);
-    //dd($date);
     return $date;
 }

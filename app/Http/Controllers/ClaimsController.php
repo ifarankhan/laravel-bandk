@@ -152,9 +152,15 @@ class ClaimsController extends Controller
 
         if($response) {
             $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
+            if(isset($data['id'])) {
+                return redirect()->route('claim.edit', $data['id']);
+            }
             return redirect()->route('claim.create');
         } else {
             $request->session()->flash('alert-danger', getTranslation('claim_create_error_message'));
+            if(isset($data['id'])) {
+                return redirect()->route('claim.edit', $data['id']);
+            }
             return redirect()->route('claim.create');
         }
     }
@@ -182,5 +188,20 @@ class ClaimsController extends Controller
     public function departmentAddress($id)
     {
         return $this->addresses->getAddressesByDepartment($id);
+    }
+
+    public function deleteImage($id)
+    {
+        $response =  $this->claim->deleteImage($id);
+        if($response) {
+            return [
+                'status' => '200',
+                'success' => true
+            ];
+        }
+        return [
+            'status' => '200',
+            'success' => false
+        ];
     }
 }
