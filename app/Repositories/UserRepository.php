@@ -9,6 +9,8 @@
 namespace App\Repositories;
 
 
+use App\Events\SendWelcomeEmailEvent;
+use App\Mail\SendWelcomeEmailMail;
 use App\User;
 
 class UserRepository implements UserInterface
@@ -82,6 +84,8 @@ class UserRepository implements UserInterface
 
         $this->model->modules()->attach($data['modules']);
         $this->model->roles()->attach($data['roles']);
+
+        event(new SendWelcomeEmailEvent($data, $data['email']));
 
         return $this->model;
 

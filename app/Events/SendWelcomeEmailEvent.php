@@ -10,24 +10,21 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SendEmailToCustomerUsers
+class SendWelcomeEmailEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $customer;
-    public $claim;
     public $email;
+    public $user;
 
     /**
-     * SendEmailToCustomerUsers constructor.
-     * @param $customer
-     * @param $claim
+     * SendWelcomeEmailEvent constructor.
+     * @param $user
      * @param $email
      */
-    public function __construct($customer, $claim, $email)
+    public function __construct($user, $email)
     {
-        $this->customer = $customer;
-        $this->claim = $claim;
+        $this->user = $user;
         $this->email = $email;
     }
 

@@ -141,17 +141,17 @@ class ClaimRepository implements ClaimInterface
                 $this->claimImages->save();
             }
         }
-        $customer = \Auth::user()->customer;
+        $customer = ($claim->customer) ? $claim->customer : null;
 
-        /*if(!empty($customer->emails)) {
+        if(!is_null($customer) && !empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
 
             foreach ($emails as $email) {
-                if($email) {
-                    event(new SendEmailToCustomerUsers($customer, $claim->id, $claim->user->name, $email));
+                if($email && $email != '') {
+                    event(new SendEmailToCustomerUsers($customer, $claim, $email));
                 }
             }
-        }*/
+        }
 
         return $claim;
     }

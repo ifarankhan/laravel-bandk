@@ -14,14 +14,8 @@ class SendEmailToCustomerEmail extends Mailable
      * @var
      */
     private $customer;
-    /**
-     * @var
-     */
-    private $claimId;
-    /**
-     * @var
-     */
-    private $userName;
+
+    private $claim;
     /**
      * @var
      */
@@ -30,16 +24,14 @@ class SendEmailToCustomerEmail extends Mailable
     /**
      * SendEmailToCustomerEmail constructor.
      * @param $customer
-     * @param $claimId
-     * @param $userName
+     * @param $claim
      * @param $email
      */
-    public function __construct($customer, $claimId, $userName, $email)
+    public function __construct($customer, $claim, $email)
     {
         //
         $this->customer = $customer;
-        $this->claimId = $claimId;
-        $this->userName = $userName;
+        $this->claim = $claim;
         $this->email = $email;
     }
 
@@ -50,12 +42,26 @@ class SendEmailToCustomerEmail extends Mailable
      */
     public function build()
     {
+        $subject = '';
+
+        if(!empty($this->customer->name)) {
+            $subject = $this->customer->name;
+        }
+        if($this->claim->address1) {
+            $subject = $subject . ', afd. '.$this->claim->address1->address;
+        }
+        if(!empty($this->claim->customer_policy_number)) {
+            $subject = $subject . ' - police nr,: '.$this->claim->customer_policy_number;
+        }
+        if(!empty($this->claim->address_2)) {
+            $subject = $subject . ' - '.$this->claim->address_2;
+        }
         return $this->from('no_reply@bnk.com')
+                    ->subject($subject)
                     ->with(
                         [
                             'customer'  => $this->customer,
-                            'claimId'   => $this->claimId,
-                            'userName'  => $this->userName,
+                            'claim'   => $this->claim,
                             'email'     => $this->email,
                         ])
                     ->markdown('emails.send_email_to_customer');

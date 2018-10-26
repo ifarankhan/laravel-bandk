@@ -12,7 +12,7 @@
 */
 
 Route::get('/testing', function () {
-    phpinfo();
+    echo route('claim.details',1234);
 });
 
 

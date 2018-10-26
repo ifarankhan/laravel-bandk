@@ -20,13 +20,10 @@ class SendEmailToCustomerUsersListner
     }
 
     /**
-     * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
+     * @param SendEmailToCustomerUsers $event
      */
     public function handle(SendEmailToCustomerUsers $event)
     {
-        \Mail::to($event->email)->send(new SendEmailToCustomerEmail($event->customer, $event->claimId, $event->userName, $event->email));
+        \Mail::to($event->email)->send(new SendEmailToCustomerEmail($event->customer, $event->claim, $event->email));
     }
 }
