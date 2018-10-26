@@ -29,6 +29,10 @@ class Claims extends Model
     {
         return $this->belongsTo(Departments::class, 'department_id', 'id');
     }
+    public function mechanicsType()
+    {
+        return $this->belongsTo(ClaimMechanics::class, 'claim_mechanic_id', 'id');
+    }
     public function address1()
     {
         return $this->belongsTo(Addresses::class, 'address_1', 'id');

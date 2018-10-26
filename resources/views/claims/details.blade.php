@@ -261,7 +261,7 @@
         <div class="row">
             @foreach($claim->images as $key => $image)
                 <div class="column">
-                    <img src="{{ asset('/images/'.$image->image) }}" style="width:100%; max-height: 150px;min-height: 150px;" onclick="openModal();currentSlide({{ $key }})" class="hover-shadow cursor">
+                    <img src="{{ $image->image }}" style="width:100%; max-height: 150px;min-height: 150px;" onclick="openModal();currentSlide({{ $key }})" class="hover-shadow cursor">
                 </div>
             @endforeach
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\ClaimImages;
 use App\Claims;
 use App\Http\Requests\ClaimCreationRequest;
 use App\Repositories\AddressesInterface;
@@ -262,6 +263,57 @@ class PassportController extends Controller
             'status' => $this->successStatus,
             'message' => 'List of category with content',
             'data' => $response
+        ], $this->successStatus);
+    }
+
+    public function getClaim($id = null)
+    {
+        if(is_null($id)) {
+            return response()->json([
+                'status' => 201,
+                'message' => 'Claim id is missing',
+                'data' => null
+            ], $this->successStatus);
+        }
+        $response = $this->claim->getOne($id);
+
+        if(count($response) == 0) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'no Claim found.',
+                'data' => null
+            ], $this->successStatus);
+        }
+
+        return response()->json([
+            'status' => $this->successStatus,
+            'message' => 'Claim',
+            'data' => $response
+        ], $this->successStatus);
+    }
+    public function deleteClaimImage($id = null)
+    {
+        if(is_null($id)) {
+            return response()->json([
+                'status' => 201,
+                'message' => 'Image id is missing',
+                'data' => null
+            ], $this->successStatus);
+        }
+        $response = $this->claim->deleteImage($id);
+
+        if(!$response) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'no Image found.',
+                'data' => null
+            ], $this->successStatus);
+        }
+
+        return response()->json([
+            'status' => $this->successStatus,
+            'message' => 'Image deleted Successfully',
+            'data' => null
         ], $this->successStatus);
     }
 

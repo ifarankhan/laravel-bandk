@@ -177,7 +177,7 @@
                                 @foreach($claim->images as $key => $image)
                                     <div class="col-md-6">
                                         <div id="content_{{ $image->id }}">
-                                            <img src="{{ asset('/images/'.$image->image) }}" style="width:170px;height:120px;" class="img-responsive" />
+                                            <img src="{{ $image->image }}" style="width:170px;height:120px;" class="img-responsive" />
                                             <br />
                                             <br />
                                             <a data-id="{{ $image->id }}" data-url="{{ route('image.delete', ['id'=> $image->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">{{ getTranslation('delete') }}</a>

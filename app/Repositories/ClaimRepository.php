@@ -37,7 +37,7 @@ class ClaimRepository implements ClaimInterface
 
     public function getOne($id)
     {
-        return $this->model->with(['conversations', 'conversations.files', 'customer'])->find($id);
+        return $this->model->with(['conversations', 'conversations.files', 'customer', 'images', 'type', 'department', 'address1', 'mechanicsType'])->find($id);
     }
 
     public function search($search)
@@ -173,6 +173,10 @@ class ClaimRepository implements ClaimInterface
     public function deleteImage($id)
     {
         $image = ClaimImages::find($id);
-        return $image->delete();
+        if($image) {
+            return $image->delete();
+        }
+        return false;
+
     }
 }
