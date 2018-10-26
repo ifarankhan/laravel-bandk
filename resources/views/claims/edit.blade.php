@@ -173,6 +173,8 @@
                                 </span>
                         @endif
                         @if(count($claim->images) > 0)
+                            <br />
+                            <br />
                             <div class="row">
                                 @foreach($claim->images as $key => $image)
                                     <div class="col-md-6">
