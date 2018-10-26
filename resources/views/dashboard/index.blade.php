@@ -81,6 +81,7 @@
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success">{{ getTranslation('details') }}</a>
+                                    <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info">{{ getTranslation('edit') }}</a>
                                 </td>
                             </tr>
                         @endforeach
