@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard/claim/create', 'ClaimsController@create')->name('claim.create');
     Route::post('/dashboard/claim/create', 'ClaimsController@store')->name('claim.store');
     Route::get('/dashboard/claim/details/{id}', 'ClaimsController@details')->name('claim.details');
+    Route::get('/dashboard/claim/edit/{id}', 'ClaimsController@edit')->name('claim.edit');
     Route::delete('/dashboard/claim/delete/{id}', 'ClaimsController@delete')->name('claim.delete');
     Route::post('/dashboard/claim/other/fields/update', 'ClaimsController@otherFields')->name('claim.detail.form');
 

@@ -123,6 +123,15 @@ class ClaimsController extends Controller
         $customers = $this->customer->all();
         return view('claims.create', compact('departments', 'mechanicsTypes', 'types', 'customers'));
     }
+    public function edit($id)
+    {
+        $departments = $this->departments->all();
+        $mechanicsTypes = $this->claimMechanics->all();
+        $types = $this->claimTypes->all();
+        $customers = $this->customer->all();
+        $claim = $this->claim->getOne($id);
+        return view('claims.edit', compact('departments', 'mechanicsTypes', 'types', 'customers', 'claim'));
+    }
     public function otherFields(Request $request)
     {
         $data = $request->all();
