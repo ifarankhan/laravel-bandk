@@ -152,6 +152,11 @@ class ClaimRepository implements ClaimInterface
                 $this->claimImages->save();
             }
         }
+
+        if(!isset($data['from_web']) && isset($data['deleted_image_ids']) && count($data['deleted_image_ids'])) {
+
+            $image = $this->deleteImageBulk($data['deleted_image_ids']);
+        }
         $customer = ($claim->customer) ? $claim->customer : null;
 
         if(!is_null($customer) && !empty($customer->emails)) {
@@ -182,5 +187,9 @@ class ClaimRepository implements ClaimInterface
         }
         return false;
 
+    }
+    public function deleteImageBulk($ids)
+    {
+        return ClaimImages::destroy($ids);
     }
 }
