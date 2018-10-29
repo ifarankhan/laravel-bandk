@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/categories', 'API\PassportController@getCategories');
     Route::get('/category/{id?}', 'API\PassportController@getCategory');
     Route::get('/claim/{id?}', 'API\PassportController@getClaim');
+    Route::get('/claims/open', 'API\PassportController@getOpenClaims');
 
     Route::delete('/claim/image/{id?}', 'API\PassportController@deleteClaimImage');
 });

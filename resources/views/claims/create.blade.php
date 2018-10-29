@@ -16,7 +16,7 @@
 
                 <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <input type="hidden" name="status" value="FOR_BNK">
+                    <input type="hidden" name="status" value="OPEN">
                     <input type="hidden" name="from_web" value="from_web">
                     <?php
                         $roles = \Auth::user()->roles;

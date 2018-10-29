@@ -291,6 +291,24 @@ class PassportController extends Controller
             'data' => $response
         ], $this->successStatus);
     }
+    public function getOpenClaims()
+    {
+        $response = $this->claim->openClaimsOfUser(\Auth::user()->id);
+
+        if(count($response) == 0) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'no Claim found.',
+                'data' => null
+            ], $this->successStatus);
+        }
+
+        return response()->json([
+            'status' => $this->successStatus,
+            'message' => 'Claim',
+            'data' => $response
+        ], $this->successStatus);
+    }
     public function deleteClaimImage($id = null)
     {
         if(is_null($id)) {
