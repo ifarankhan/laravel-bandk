@@ -163,7 +163,7 @@ class ClaimRepository implements ClaimInterface
         }
         $customer = ($claim->customer) ? $claim->customer : null;
 
-        if(!is_null($customer) && !empty($customer->emails)) {
+        if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
 
             foreach ($emails as $email) {

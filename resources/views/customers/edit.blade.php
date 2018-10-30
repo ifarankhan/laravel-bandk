@@ -153,10 +153,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bnk_insurance_number"> {{ getTranslation('receive_emails') }}
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="is_send_email" > {{ getTranslation('receive_emails') }}
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="bnk_insurance_number" class="form-control col-md-7 col-xs-12" name="is_send_email" value="{{ $customer->bnk_insurance_number }}">
+                                <input type="checkbox" name="is_send_email" id="is_send_email" value="true" {{  ($customer->is_send_email) ?  'checked="checked"' : '' }} >
                                 @if ($errors->has('bnk_insurance_number'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('bnk_insurance_number') }}</strong>
@@ -190,7 +190,7 @@
                         <br />
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <a class="btn btn-danger" href="{{ route('category.index') }}">Back</a>
+                                <a class="btn btn-danger" href="{{ route('customer.index') }}">Back</a>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
