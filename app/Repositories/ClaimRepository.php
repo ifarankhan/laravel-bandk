@@ -136,7 +136,10 @@ class ClaimRepository implements ClaimInterface
 
         if(isset($data['id'])) {
             $claim = $this->getOne($data['id']);
-            $claim->update($data);
+            if($claim) {
+                $claim->update($data);
+            }
+
         } else {
             $claim = $this->model->create($data);
         }
@@ -153,9 +156,10 @@ class ClaimRepository implements ClaimInterface
             }
         }
 
-        if(!isset($data['from_web']) && isset($data['deleted_image_ids']) && count($data['deleted_image_ids'])) {
-
-            $image = $this->deleteImageBulk($data['deleted_image_ids']);
+        if(!isset($data['from_web']) && isset($data['deleted_image_ids']) && strlen($data['deleted_image_ids']) > 0) {
+            $data['deleted_image_ids'] = trime($data['deleted_image_ids']);
+            $deleted_image_ids = explode(',', $data['deleted_image_ids']);
+            $image = $this->deleteImageBulk($deleted_image_ids);
         }
         $customer = ($claim->customer) ? $claim->customer : null;
 

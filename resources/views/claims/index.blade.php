@@ -12,7 +12,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Claims Lists</h2>
-                    <a href="{{ route('claim.create') }}" class="btn btn-danger pull-right">Create</a>
+                    <a href="{{ route('claim.create') }}" class="btn btn-danger pull-right">Opret skade</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -40,7 +40,7 @@
                                             </td>
                                             <td>
                                                 <div class="col-md-6"><strong>Selskab:</strong></div>
-                                                <div class="col-md-6">{{ \Auth::user()->customer->name }}</div>
+                                                <div class="col-md-6">{{ (\Auth::user()->customer) ? \Auth::user()->customer->insurance_company_name : '' }}</div>
                                             </td>
                                         </tr>
                                         <tr>

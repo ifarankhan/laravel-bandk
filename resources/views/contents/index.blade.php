@@ -10,7 +10,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Contents Lists</h2>
-                    <a href="{{ route('content.create') }}" class="btn btn-danger pull-right">Create</a>
+                    <a href="{{ route('content.create') }}" class="btn btn-danger pull-right">Opret skade</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

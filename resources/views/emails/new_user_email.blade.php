@@ -22,7 +22,7 @@ Password: {{ $user['password'] }}
 
 <strong>Anmeld skaden via portalen på internettet.</strong>
 <ol>
-    <li>Indtast <a href="{{ route('dashboard.index') }}">here</a></li>
+    <li>tryk <a href="{{ route('dashboard.index') }}">her</a></li>
     <li>Indtast ovennævnte brugernavn og password og tryk Login</li>
     <li>Tast Create/Anmeld for at komme til anmeldelsesformularen</li>
     <li>Udfyld og tryk ”Send”</li>
@@ -38,7 +38,13 @@ Password: {{ $user['password'] }}
 <p>
     Håber ovenstående har hjulpet dig i gang med brugen af systemet, og hvis ikke, skal du endelig kontakte os for yderligere instruktion.
 </p>
-Venlig hilsen
+Venlig hilsen<br />
+
+Kirsten Høll<br />
+Mæglerassistent <br />
+<br />
+Tlf: 9819 4511 • Direkte: 96327412 <br />
+Mail: kih@bk-as.dk • www.bk-as.dk
 
 {{ config('app.name') }}
 @endcomponent

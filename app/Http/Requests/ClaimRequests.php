@@ -28,7 +28,7 @@ class ClaimRequests extends FormRequest
             'customer_id' => 'required',
             'estimate' => 'required',
             'date' => 'required',
-            'claim_mechanic_id' => 'required',
+            /*'claim_mechanic_id' => 'required',*/
             'department_id' => 'required',
             'address_1' => 'required',
             'address_2' => 'required',

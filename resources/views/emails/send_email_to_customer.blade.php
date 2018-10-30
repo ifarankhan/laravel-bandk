@@ -31,7 +31,15 @@ Kontaktperson ved evt. besigtigelse <br />
 
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer. <br />
 
-Venlig hilsend
+Venlig hilsend<br />
+
+Kirsten Høll<br />
+Mæglerassistent <br />
+<br />
+Tlf: 9819 4511 • Direkte: 96327412 <br />
+Mail: kih@bk-as.dk • www.bk-as.dk
+
+{{ config('app.name') }}
 
 
 Thanks,<br>

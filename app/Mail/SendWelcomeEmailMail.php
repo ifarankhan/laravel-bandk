@@ -36,7 +36,7 @@ class SendWelcomeEmailMail extends Mailable
      */
     public function build()
     {
-        $subject = 'Welcome to Bækmark & ​​Kvist\'s claims review system';
+        $subject = 'Velkommen til Bækmark & Kvists skadeanmeldelsessystem';
         return $this->from('no_reply@bnk.com')
                     ->subject($subject)
                     ->with(

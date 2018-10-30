@@ -51,7 +51,7 @@ jQuery(document).ready(function () {
 
         sendAjax(url,data, 'get', function (response) {
             if(response.length > 0) {
-                var html = '<option value="" >Select Skadested</option>';
+                var html = '<option value="" >Vælg Skadested</option>';
                 var select = '';
                 jQuery.each( response, function( key, value ) {
                     select = '';
@@ -80,7 +80,7 @@ jQuery(document).ready(function () {
             loader.show();
             sendAjax(url,data, 'get', function (response) {
                 if(response.length > 0) {
-                    var html = '<option value="" >Select Afdeling</option>';
+                    var html = '<option value="" >Vælg afdeling</option>';
                     var select = '';
                     jQuery.each( response, function( key, value ) {
                         select = '';

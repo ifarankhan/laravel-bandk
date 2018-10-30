@@ -92,7 +92,7 @@
                             </td>
                             <td>
                                 <div class="col-md-6"><strong>{{ getTranslation('claim_type') }}:</strong></div>
-                                <div class="col-md-6">{{ $claim->date }}</div>
+                                <div class="col-md-6">{{ ($claim->type) ? $claim->type->name : ''}}</div>
                             </td>
                         </tr>
                         <tr>
@@ -273,7 +273,7 @@
                 @foreach($claim->images as $key => $image)
                     <div class="mySlides">
                         <div class="numbertext">{{ $key + 1 }}</div>
-                        <img src="{{ asset('/images/'.$image->image) }}" style="width:100%">
+                        <img src="{{ $image->image }}" style="width:100%">
                     </div>
                 @endforeach
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>

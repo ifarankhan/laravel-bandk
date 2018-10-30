@@ -104,7 +104,7 @@
 
                     <div class="form-group ">
                         <label for="date">{{ getTranslation('date') }}</label>
-                        <input type="date" class="form-control" id="date" name="date" value="{{ dateFormat($claim->date) }}">
+                        <input type="text" class="form-control" id="date" name="date" value="{{ dateFormat($claim->date) }}">
                         @if ($errors->has('date'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('date') }}</strong>
@@ -204,6 +204,7 @@
 
 @section('css')
     <link href="{{ asset('/admin/vendors/select2/dist/css/select2.min.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
         .image-holder img {
             border: 1px solid #ddd;
@@ -224,7 +225,11 @@
 @endsection
 @section('js')
     <script src="{{ asset('/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $('.select2').select2();
+        $( function() {
+            $( "#date" ).datepicker();
+        } );
     </script>
 @endsection
