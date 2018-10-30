@@ -157,7 +157,7 @@ class ClaimRepository implements ClaimInterface
         }
 
         if(!isset($data['from_web']) && isset($data['deleted_image_ids']) && strlen($data['deleted_image_ids']) > 0) {
-            $data['deleted_image_ids'] = trime($data['deleted_image_ids']);
+            $data['deleted_image_ids'] = trim($data['deleted_image_ids']);
             $deleted_image_ids = explode(',', $data['deleted_image_ids']);
             $image = $this->deleteImageBulk($deleted_image_ids);
         }

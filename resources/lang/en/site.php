@@ -63,6 +63,7 @@ return [
     'edit' => 'Rediger',
     'delete' => 'Slet',
     'close' => 'Close',
+    'receive_emails' => 'Modtag e-mails?',
 
 
     'emergency_app' => 'Beredskabsplan',

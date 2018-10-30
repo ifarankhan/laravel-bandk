@@ -14,7 +14,7 @@ class UpdateCustoemrTableAddIsEmailNotification extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            //
+            $table->boolean('is_send_email')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateCustoemrTableAddIsEmailNotification extends Migration
     public function down()
     {
         Schema::table('customers', function (Blueprint $table) {
-            //
+            $table->dropColumn('is_send_email');
         });
     }
 }
