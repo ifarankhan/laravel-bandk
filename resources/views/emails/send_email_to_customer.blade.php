@@ -39,9 +39,6 @@ Mæglerassistent <br />
 Tlf: 9819 4511 • Direkte: 96327412 <br />
 Mail: kih@bk-as.dk • www.bk-as.dk
 
-{{ config('app.name') }}
-
-
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
