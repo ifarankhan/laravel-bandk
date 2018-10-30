@@ -33,7 +33,7 @@ class DepartmentRequest extends FormRequest
         }
 
         return [
-            'name' => 'required|unique:departments',
+            'name' => 'required',
             //'name' => 'required|unique:departments,name,'.$this->get('customer_id').',customer_id',
             /*'code' => 'required|numeric|unique:departments',*/
             'customer_id' => 'required',
