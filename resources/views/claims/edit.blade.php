@@ -229,7 +229,7 @@
     <script>
         $('.select2').select2();
         $( function() {
-            $( "#date" ).datepicker();
+            $( "#date" ).datepicker({ dateFormat: 'dd/mm/yy' });
         } );
     </script>
 @endsection

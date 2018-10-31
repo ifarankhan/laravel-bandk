@@ -61,7 +61,7 @@ function getUserRoles($user)
     return  ($user->roles) ? $user->roles->pluck('name')->toArray() : [];
 }
 
-function dateFormat($date, $format = 'm/d/Y') {
+function dateFormat($date, $format = 'd/m/Y') {
     $date = strtotime($date);
     $date = date($format, $date);
     return $date;

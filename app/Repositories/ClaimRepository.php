@@ -134,6 +134,10 @@ class ClaimRepository implements ClaimInterface
             $data['customer_id'] = \Auth::user()->customer_id;
         }
 
+        if(isset($data['rekv_number'])) {
+            $data['rekv_nummer'] = $data['rekv_number'];
+        }
+
         if(isset($data['id'])) {
             $claim = $this->getOne($data['id']);
             if($claim) {

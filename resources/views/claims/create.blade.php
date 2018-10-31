@@ -103,7 +103,7 @@
 
                     <div class="form-group ">
                         <label for="date">{{ getTranslation('date') }}</label>
-                        <input type="text" class="form-control" id="date" name="date" value="{{ old('date') }}" placeholder="mm/dd/yyyy">
+                        <input type="text" class="form-control" id="date" name="date" value="{{ old('date') }}" placeholder="dd/mm/yyyy">
                         @if ($errors->has('date'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('date') }}</strong>
@@ -192,7 +192,7 @@
     <script>
         $('.select2').select2();
         $( function() {
-            $( "#date" ).datepicker();
+            $( "#date" ).datepicker({ dateFormat: 'dd/mm/yy' });
         } );
     </script>
 @endsection
