@@ -68,7 +68,7 @@ class ClaimRepository implements ClaimInterface
 
         }
 
-        return $query->orderBy('created_at', 'DESC')->get();
+        return $query->orderBy('updated_at', 'DESC')->get();
 
     }
     public function all($user = null)
@@ -114,7 +114,7 @@ class ClaimRepository implements ClaimInterface
     public function todayClaims($user = null)
     {
         $query = $this->todayClaimsQuery();
-        return $query->orderBy('id', 'DESC')->get();
+        return $query->orderBy('updated_at', 'DESC')->get();
     }
     public function createClaim($data)
     {
@@ -141,6 +141,7 @@ class ClaimRepository implements ClaimInterface
         if(isset($data['id'])) {
             $claim = $this->getOne($data['id']);
             if($claim) {
+                $data['is_updated'] = true;
                 $claim->update($data);
             }
 

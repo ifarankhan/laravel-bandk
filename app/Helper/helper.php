@@ -66,3 +66,15 @@ function dateFormat($date, $format = 'd/m/Y') {
     $date = date($format, $date);
     return $date;
 }
+
+function isUpdated($claim)
+{
+    $isUpdated = $claim->is_updated;
+
+    if($isUpdated) {
+        $claim->is_updated = false;
+        $claim->save();
+    }
+
+    return $isUpdated;
+}

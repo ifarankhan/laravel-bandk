@@ -63,6 +63,7 @@ return [
     'edit' => 'Rediger',
     'delete' => 'Slet',
     'close' => 'Close',
+    'updated_at' => 'Opdateret kl',
     'receive_emails' => 'Modtag e-mails?',
 
 

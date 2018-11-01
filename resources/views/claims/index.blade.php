@@ -209,6 +209,7 @@
                     <table id="datatable" class="table table-bordered">
                         <thead>
                         <tr>
+                            <th>{{ getTranslation('updated_at') }}</th>
                             <th>{{ getTranslation('claim_id') }}</th>
                             <th>{{ getTranslation('customer_name') }}</th>
                             <th>{{ getTranslation('claim_created_at') }}</th>
@@ -224,6 +225,11 @@
                         <tbody>
                         @foreach($claims as $claim)
                             <tr class="alert alert-{{ getClaimColor($claim) }}">
+                                <td>{{ $claim->updated_at }}
+                                    @if($claim->is_updated)
+                                        <button class="btn btn-info">Opdateret</button>
+                                     @endif
+                                </td>
                                 <td>{{ $claim->id }}</td>
                                 <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
                                 <td>{{ $claim->created_at }}</td>
@@ -255,6 +261,7 @@
     <link href="{{ asset('/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('/admin/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <style>
+        table { table-layout:fixed; }
         hr.style-one {
             border: 0;
             height: 1px;
