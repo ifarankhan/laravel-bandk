@@ -5,8 +5,7 @@ Du er nu oprettet som bruger/anmelder af skader på Bækmark & Kvists skadeanmel
 <br />
 <br />
 
-Brugernavn: {{ $user['name'] }} <br />
-Email: {{ $user['email'] }} <br />
+Brugernavn: {{ $user['email'] }} <br />
 Password: {{ $user['password'] }}
 
 <strong>Brug af App’en til skadeanmeldelse:</strong>

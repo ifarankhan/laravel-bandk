@@ -285,7 +285,7 @@
 
                 @foreach($claim->images as $key => $image)
                     <div class="column">
-                        <img class="demo cursor" src="{{ asset('/images/'.$image->image) }}" style="width:100%" onclick="currentSlide({{ $key + 1 }})">
+                        <img class="demo cursor" src="{{ $image->image }}" style="width:100%" onclick="currentSlide({{ $key + 1 }})">
                     </div>
                 @endforeach
             </div>
@@ -609,9 +609,13 @@
                 autoProcessQueue: false,
 
             });*/
+            Dropzone.prototype.defaultOptions.dictRemoveFile = "Fjern fil";
             Dropzone.options.demoForm2 = {
+                maxFiles: 10,
+                parallelUploads: 10,
                 autoProcessQueue: false,
                 uploadMultiple: true,
+                addRemoveLinks: true,
                 dictDefaultMessage: 'Træk og slip her',
 
                 init: function (e) {
