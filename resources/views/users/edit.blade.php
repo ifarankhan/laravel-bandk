@@ -63,7 +63,9 @@
                                 <select class="form-control select2" name="roles[]" multiple="multiple" id="roles">
                                     <option value="">Choose option</option>
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}" {{ in_array($role->id, $userRoles) ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
+                                        @if($role->id != 2)
+                                            <option value="{{ $role->id }}" {{ in_array($role->id, $userRoles) ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                     @if ($errors->has('roles'))
@@ -79,7 +81,9 @@
                                 <select class="form-control select2" name="modules[]" multiple="multiple" >
                                     <option value="">Choose option</option>
                                     @foreach($modules as $module)
-                                        <option value="{{ $module->id }}" {{ in_array($module->id, $userModules) ? 'selected=selected' : '' }}>{{ $module->text }}</option>
+                                        @if($module->id != 3)
+                                            <option value="{{ $module->id }}" {{ in_array($module->id, $userModules) ? 'selected=selected' : '' }}>{{ $module->text }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @if ($errors->has('modules'))
