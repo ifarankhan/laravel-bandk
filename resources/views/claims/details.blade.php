@@ -120,7 +120,7 @@
                             </td>
                             <td>
                                 <div class="col-md-6"><strong>{{ getTranslation('customer_zip_code') }}:</strong></div>
-                                <div class="col-md-6">{{ ($claim->customer) ?  $claim->customer->zip_code : ''}}</div>
+                                <div class="col-md-6">{{ ($claim->address1) ?  $claim->address1->zip_code : ''}}</div>
                             </td>
                             <td> &nbsp;</td>
                         </tr>
