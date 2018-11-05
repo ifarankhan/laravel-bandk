@@ -31,11 +31,13 @@ Kontaktperson ved evt. besigtigelse <br />
 
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer. <br />
 
-Venlig hilsend<br />
+Venlig hilsen<br />
 
 <br />
 Tlf: 9819 4511 • Direkte: 96327412 <br />
-Mail: kih@bk-as.dk • www.bk-as.dk
+Mail: kih@bk-as.dk • www.bk-as.dk<br />
+
+<img src="{{ asset('/admin/0images/bnk_logo.jpg') }}" alt="">
 
 Thanks,<br>
 {{ config('app.name') }}

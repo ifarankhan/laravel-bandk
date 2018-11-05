@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
+                'phone_number' => 'required',
                 'password' => 'required',
                 'roles' => 'required',
                 'modules' => 'required',
@@ -35,6 +36,7 @@ class UserRequest extends FormRequest
         } else {
             return [
                 'name' => 'required',
+                'phone_number' => 'required',
                 'email' => 'required',
                 'roles' => 'required',
                 'modules' => 'required',
