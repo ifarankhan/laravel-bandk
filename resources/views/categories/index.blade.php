@@ -10,7 +10,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Categories Lists</h2>
-                    <a href="{{ route('category.create') }}" class="btn btn-danger pull-right">Opret skade</a>
+                    <a href="{{ route('category.create') }}" class="btn btn-danger pull-right">Opret</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -61,7 +61,7 @@
                     <p>Do you really want to delete the category?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete">Delete</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete">Slet</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

@@ -60,7 +60,7 @@ return [
     'select_users' => 'Vælg bruger',
     'action' => 'Vælg',
     'details' => 'Detaljer',
-    'edit' => 'Rediger',
+    'edit' => 'Redigere',
     'delete' => 'Slet',
     'close' => 'Close',
     'updated_at' => 'Opdateret kl',

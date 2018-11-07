@@ -10,7 +10,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Contents Lists</h2>
-                    <a href="{{ route('content.create') }}" class="btn btn-danger pull-right">Opret skade</a>
+                    <a href="{{ route('content.create') }}" class="btn btn-danger pull-right">Opret</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -35,8 +35,8 @@
                                 <td>{{ $content->title }}</td>
                                 <td>{{ ($content->category) ? $content->category->title :  ''}}</td>
                                 <td>
-                                    <a href="{{ route('content.edit', ['id'=> $content->id]) }}" class="btn btn-success">Edit</a>
-                                    <button data-id="{{ $content->id }}" data-url="{{ route('content.delete', ['id'=> $content->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                                    <a href="{{ route('content.edit', ['id'=> $content->id]) }}" class="btn btn-success">Redigere</a>
+                                    <button data-id="{{ $content->id }}" data-url="{{ route('content.delete', ['id'=> $content->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
                                 </td>
                             </tr>
                         @endforeach

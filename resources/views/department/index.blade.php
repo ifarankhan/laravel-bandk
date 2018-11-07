@@ -10,7 +10,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Departments Lists</h2>
-                    <a href="{{ route('department.create') }}" class="btn btn-danger pull-right">Opret skade</a>
+                    <a href="{{ route('department.create') }}" class="btn btn-danger pull-right">Opret</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -71,7 +71,7 @@
                                                 <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
                                                 <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
                                                 <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
-                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Build Year</td>
+                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Byggeår</td>
                                                 <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
                                             </tr>
                                         </thead>
@@ -102,8 +102,8 @@
                                     </table>
                                 </td>
                                 <td>
-                                    <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Edit</a>
-                                    <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                                    <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
+                                    <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
                                 </td>
                             </tr>
                         @endforeach

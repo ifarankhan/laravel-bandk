@@ -10,7 +10,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Claim Types Lists</h2>
-                    <a href="{{ route('claim-type.create') }}" class="btn btn-danger pull-right">Opret skade</a>
+                    <a href="{{ route('claim-type.create') }}" class="btn btn-danger pull-right">Opret</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -34,8 +34,8 @@
                                 <tr id="content_{{ $claimType->id }}">
                                     <td>{{ $claimType->name }}</td>
                                     <td>
-                                        <a href="{{ route('claim-type.edit', ['id'=> $claimType->id]) }}" class="btn btn-success">Edit</a>
-                                        <button data-id="{{ $claimType->id }}" data-url="{{ route('claim-type.delete', ['id'=> $claimType->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                                        <a href="{{ route('claim-type.edit', ['id'=> $claimType->id]) }}" class="btn btn-success">Redigere</a>
+                                        <button data-id="{{ $claimType->id }}" data-url="{{ route('claim-type.delete', ['id'=> $claimType->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
                                     </td>
                                 </tr>
                             @endforeach
