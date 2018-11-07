@@ -23,10 +23,6 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     Estimat: {{ $claim->estimate }}
 </p>
 
-@component('mail::button', ['url' => route('claim.details', $claim->id)])
-    View Claim
-@endcomponent
-
 Kontaktperson ved evt. besigtigelse <br />
 
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer. <br />
