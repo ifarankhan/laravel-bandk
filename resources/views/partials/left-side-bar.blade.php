@@ -18,7 +18,7 @@
                         <li><a><i class="fa fa-users"></i> Kundeadministration <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('customer.index') }}">Alle kunder</a></li>
-                                <li><a href="{{ route('customer.create') }}">Upret kunde</a></li>
+                                <li><a href="{{ route('customer.create') }}">Opret kunde</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-users"></i> Afdelinger <span class="fa fa-chevron-down"></span></a>
