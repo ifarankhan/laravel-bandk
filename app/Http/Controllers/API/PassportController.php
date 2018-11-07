@@ -245,11 +245,20 @@ class PassportController extends Controller
         $parentId = null;
         $response = $this->category->getCategories($parentId);
 
+        if(count($response) > 0 ) {
+            return response()->json([
+                'status' => $this->successStatus,
+                'message' => 'List of Categories and subcategories',
+                'data' => $response
+            ], $this->successStatus);
+        }
         return response()->json([
-            'status' => $this->successStatus,
-            'message' => 'List of Categories and subcategories',
-            'data' => $response
+            'status' => 204,
+            'message' => 'No categories',
+            'data' => null
         ], $this->successStatus);
+
+
     }
     public function getCategory($id = null)
     {
@@ -264,7 +273,7 @@ class PassportController extends Controller
 
         if(count($response) == 0) {
             return response()->json([
-                'status' => 404,
+                'status' => 204,
                 'message' => 'No category found.',
                 'data' => null
             ], $this->successStatus);
@@ -290,7 +299,7 @@ class PassportController extends Controller
 
         if(count($response) == 0) {
             return response()->json([
-                'status' => 404,
+                'status' => 204,
                 'message' => 'no Claim found.',
                 'data' => null
             ], $this->successStatus);
@@ -308,7 +317,7 @@ class PassportController extends Controller
 
         if(count($response) == 0) {
             return response()->json([
-                'status' => 404,
+                'status' => 204,
                 'message' => 'no Claim found.',
                 'data' => null
             ], $this->successStatus);
