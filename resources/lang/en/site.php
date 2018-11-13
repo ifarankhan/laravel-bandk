@@ -97,6 +97,7 @@ return [
     'user_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen',
 
     'claim_create_success_message' => 'Skaden er oprettet/opdateret korrekt',
+    'claim_create_success_message_but_not_email' => 'Skaden er oprettet/opdateret korrekt. Men email er ikke sendt.',
     'claim_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
 
 

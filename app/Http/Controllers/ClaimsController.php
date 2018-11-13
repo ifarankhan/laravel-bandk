@@ -151,7 +151,12 @@ class ClaimsController extends Controller
         $response = $this->claim->createClaim($data);
 
         if($response) {
-            $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
+            if(isset($response['email'])) {
+                $request->session()->flash('alert-success', getTranslation('claim_create_success_message_but_not_email'));
+            } else {
+                $request->session()->flash('alert-success', getTranslation('claim_create_success_message'));
+            }
+
             if(isset($data['id'])) {
                 return redirect()->route('claim.edit', $data['id']);
             }

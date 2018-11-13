@@ -211,6 +211,16 @@ class PassportController extends Controller
         $response = $this->claim->createClaim($data);
 
         if($response) {
+            if(isset($response['email'])) {
+                return response()->json(
+                    [
+                        'status' => $this->successStatus,
+                        'message' => getTranslation('claim_create_success_message_but_not_email'),
+                        'data' => [
+                            'id' => $response->id
+                        ]
+                    ], $this->successStatus);
+            }
             if(isset($data['id'])) {
                 return response()->json(
                     [

@@ -173,7 +173,14 @@ class ClaimRepository implements ClaimInterface
 
             foreach ($emails as $email) {
                 if($email && $email != '') {
-                    event(new SendEmailToCustomerUsers($customer, $claim, $email));
+                    try {
+                        event(new SendEmailToCustomerUsers($customer, $claim, $email));
+                    } catch (\Exception $e) {
+                       return [
+                           'email' => false
+                       ];
+                    }
+
                 }
             }
         }
