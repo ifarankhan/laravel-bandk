@@ -94,6 +94,7 @@ return [
     'department_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
 
     'user_create_success_message' => 'Bruger er oprettet/opdateret korrekt',
+    'user_create_success_message_but_not_email' => 'Bruger er oprettet/opdateret korrekt. Men email er ikke sendt',
     'user_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen',
 
     'claim_create_success_message' => 'Skaden er oprettet/opdateret korrekt',

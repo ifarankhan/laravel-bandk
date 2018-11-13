@@ -87,7 +87,14 @@ class UserRepository implements UserInterface
         $this->model->roles()->attach($data['roles']);
 
         if(!isset($data['id'])) {
-            event(new SendWelcomeEmailEvent($data, $data['email']));
+            try {
+                event(new SendWelcomeEmailEvent($data, $data['email']));
+            } catch (\Exception $e) {
+                return [
+                    'email' => false
+                ];
+            }
+
         }
 
         return $this->model;

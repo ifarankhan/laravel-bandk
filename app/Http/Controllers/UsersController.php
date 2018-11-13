@@ -95,6 +95,11 @@ class UsersController extends Controller
         $response = $this->user->store($data);
 
         if($response) {
+            if(isset($response['email'])) {
+                $request->session()->flash('alert-success', getTranslation('user_create_success_message_but_not_email'));
+            } else {
+                $request->session()->flash('alert-success', getTranslation('user_create_success_message'));
+            }
             $request->session()->flash('alert-success', getTranslation('user_create_success_message'));
             return redirect()->route('users.index');
         } else {
