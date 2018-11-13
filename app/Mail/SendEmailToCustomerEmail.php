@@ -48,16 +48,16 @@ class SendEmailToCustomerEmail extends Mailable
             $subject = $this->customer->name;
         }
         if($this->claim->address1) {
-            $subject = $subject . ', Skadested. '.$this->claim->address1->address;
+            $subject = $subject . ', '.$this->claim->address1->address;
         }
         if(!empty($this->claim->address_2)) {
-            $subject = $subject . ' - Nr./etage/side, '.$this->claim->address_2;
+            $subject = $subject . ' - '.$this->claim->address_2;
         }
         if(!empty($this->claim->customer_policy_number)) {
-            $subject = $subject . ' - police nr,: '.$this->claim->customer_policy_number;
+            $subject = $subject . ' - police nr.: '.$this->claim->customer_policy_number;
         }
         if(!empty($this->claim->selsskab_skade_nummer)) {
-            $subject = $subject . ' - selskab skade nr,: '.$this->claim->selsskab_skade_nummer;
+            $subject = $subject . ' - skade nr,: '.$this->claim->selsskab_skade_nummer;
         }
 
         return $this->from('no_reply@bnk.com')

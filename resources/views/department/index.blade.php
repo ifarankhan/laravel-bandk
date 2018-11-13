@@ -56,56 +56,30 @@
                         <thead>
                         <tr>
                             <th>{{ getTranslation('department') }}</th>
-                            <th>{{ getTranslation('address') }}</th>
+                            <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
+                            <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
+                            <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
+                            <td style="width:150px;" class="col-md-3 col-xs-12" >Byggeår</td>
+                            <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
                             <th>{{ getTranslation('action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($departments as $department)
-                            <tr id="content_{{ $department->id }}">
-                                <td>{{ $department->name }}</td>
-                                <td>
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
-                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
-                                                <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
-                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Byggeår</td>
-                                                <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @if(count($department->addresses) > 0)
-                                            @foreach($department->addresses as $key => $address)
-                                                <tr style="margin-bottom: 35px; {{ $key > 1 ? "display:none;" : ''}}" class="{{ $key > 1 ? 'addresses_'.$department->id : ''}}" >
-                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
-                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
-                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
-                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
-                                                    <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                        @if(count($department->addresses) > 2)
-                                            <tr style="margin-bottom: 35px;">
-                                                <td colspan="5">
-                                                    <button class="btn btn-info btn-sm pull-right show-hide" data-department-id="{{ $department->id }}" data-what="hide">Vis alt</button>
-                                                </td>
-                                            </tr>
-
-                                        @endif
-
-                                        </tbody>
-
-
-                                    </table>
-                                </td>
-                                <td>
-                                    <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
-                                    <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
-                                </td>
-                            </tr>
+                                @foreach($department->addresses as $key => $address)
+                                    <tr id="content_{{ $department->id }}">
+                                        <td>{{ $department->name }}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
+                                        <td>
+                                            <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
+                                            <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                         @endforeach
                         </tbody>
                     </table>

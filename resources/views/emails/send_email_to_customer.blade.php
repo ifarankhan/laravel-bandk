@@ -8,7 +8,7 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     Afd.: {{ ($claim->department) ? $claim->department->name : ''}}
 </p>
 <p>
-    Skadested: {{ ($claim->address1)  ? $claim->address1->address : ''}}
+    Nr./etage/side: {{ ($claim->address1)  ? $claim->address1->address : ''}}
 </p>
 <p>
     Skadetype: {{ ($claim->type) ? $claim->type->name : '' }}
@@ -22,6 +22,26 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
 <p>
     Estimat: {{ $claim->estimate }}
 </p>
+<p>
+    Kontaktperson ved evt. besigtigelse: {{ ($claim->user) ? $claim->user->email : '-' }}, {{ ($claim->user) ? $claim->user->phone_number : '-'  }}
+</p>
+
+@if(count($claim->images) > 0)
+    <br />
+    <br />
+    <div class="row">
+        @foreach($claim->images as $key => $image)
+            <div class="col-md-6">
+                <div id="content_{{ $image->id }}">
+                    <img src="{{ $image->image }}" style="width:170px;height:120px;" class="img-responsive" />
+                </div>
+
+            </div>
+
+        @endforeach
+    </div>
+@endif
+
 
 Kontaktperson ved evt. besigtigelse <br />
 
@@ -30,8 +50,8 @@ Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer.
 Venlig hilsen<br />
 
 <br />
-Tlf: 9819 4511 • Direkte: 96327412 <br />
-Mail: kih@bk-as.dk • www.bk-as.dk<br />
+{{--Tlf: 9819 4511 • Direkte: 96327412 <br />
+Mail: kih@bk-as.dk • www.bk-as.dk<br />--}}
 
 <img src="{{ asset('/admin/images/bnk_logo.jpg') }}" alt="">
 

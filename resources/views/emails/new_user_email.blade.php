@@ -42,8 +42,8 @@ Venlig hilsen<br />
 Kirsten Høll<br />
 Mæglerassistent <br />
 <br />
-Tlf: 9819 4511 • Direkte: 96327412 <br />
-Mail: kih@bk-as.dk • www.bk-as.dk <br />
+{{--Tlf: 9819 4511 • Direkte: 96327412 <br />
+Mail: kih@bk-as.dk • www.bk-as.dk <br />--}}
 
 <img src="{{ asset('/admin/images/bnk_logo.jpg') }}" alt="">
 
