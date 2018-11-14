@@ -28,7 +28,7 @@ jQuery(document).ready(function () {
         modalElement.show();
         jQuery(".delete-confirm").on('click', function () {
 
-            sendAjax(url,data, 'DELETE', function (response) {
+            sendAjax(url,data, 'POST', function (response) {
                 if(response.success) {
                     jQuery("#content_"+id).hide('slow');
                 }
