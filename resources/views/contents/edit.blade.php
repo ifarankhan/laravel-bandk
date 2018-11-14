@@ -33,7 +33,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="description" >{{ $content->description }}</textarea>
+                                <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="description" style="width: 100%; height: 100%;">{{ $content->description }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -91,7 +91,9 @@
                 "stylesheets": ["{{ asset('/admin/vendors/html-editor/wysiwyg-color.css') }}"],
                 parser: function(html) {
                     return html;
-                }
+                },
+                "image": false
+
             });
            jQuery("#roles").on('change', function(){
                 var value = jQuery(this).val();
