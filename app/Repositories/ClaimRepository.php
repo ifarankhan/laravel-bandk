@@ -149,6 +149,8 @@ class ClaimRepository implements ClaimInterface
             $claim = $this->model->create($data);
         }
 
+        dd($claim);
+
 
         if(isset($data['images']) && count($data['images']) > 0) {
             foreach ($data['images'] as $image) {
