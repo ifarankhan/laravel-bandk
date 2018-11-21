@@ -217,7 +217,7 @@ class PassportController extends Controller
                         'status' => $this->successStatus,
                         'message' => getTranslation('claim_create_success_message_but_not_email'),
                         'data' => [
-                            'id' => $response->id
+                            'id' => $response['claim']->id
                         ]
                     ], $this->successStatus);
             }

@@ -177,7 +177,8 @@ class ClaimRepository implements ClaimInterface
                         event(new SendEmailToCustomerUsers($customer, $claim, $email));
                     } catch (\Exception $e) {
                        return [
-                           'email' => false
+                           'email' => false,
+                           'claim' => $claim
                        ];
                     }
 
