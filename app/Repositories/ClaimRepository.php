@@ -149,7 +149,7 @@ class ClaimRepository implements ClaimInterface
             $claim = $this->model->create($data);
         }
 
-        dd($claim);
+        dd($data);
 
 
         if(isset($data['images']) && count($data['images']) > 0) {
