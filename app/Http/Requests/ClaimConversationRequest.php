@@ -24,7 +24,7 @@ class ClaimConversationRequest extends FormRequest
     public function rules()
     {
         return [
-            'conversation' => 'required',
+            //'conversation' => 'required',
             'all_files.*' => 'file|mimes:doc,docx,pdf',
         ];
     }

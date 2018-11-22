@@ -605,10 +605,16 @@
                     var myDropzone = this;
 
                     $('#btn_submit').on("click", function() {
+                        var conversation = $("#conversation").val();
+
+                        if(conversation == '') {
+                            $("#conversation").css('border-color', 'red');
+                            return false;
+                        }
                         myDropzone.processQueue(); // Tell Dropzone to process all queued files.
                     });
                     myDropzone.on("complete", function(file, xhr, data) {
-                        //window.location.reload();
+                        window.location.reload();
                     });
                     // Event to send your custom data to your server
                     myDropzone.on("sending", function(file, xhr, data) {
