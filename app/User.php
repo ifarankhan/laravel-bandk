@@ -35,7 +35,7 @@ class User extends Authenticatable
     public function modules()
     {
         return $this->belongsToMany(Modules::class, 'user_modules', 'user_id', 'module_id')
-            ->where('name', 'CLAIM_FORM')
+            //->where('name', 'CLAIM_FORM')
             ->select(['modules.id', 'modules.name', 'modules.text']);
     }
 
