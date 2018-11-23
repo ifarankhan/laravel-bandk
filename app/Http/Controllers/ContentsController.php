@@ -102,7 +102,8 @@ class ContentsController extends Controller
 
         return [
             'html' => $html,
-            'status' => true
+            'status' => true,
+            'icon' => true,
         ];
     }
 }

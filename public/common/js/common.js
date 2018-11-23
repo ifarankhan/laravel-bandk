@@ -155,22 +155,10 @@ jQuery(document).ready(function () {
         }
     });
 
-    jQuery("a.load-content").on('click', function(){
-        var parent = jQuery("div#content-details");
-        parent.html('<div class="row"><div class="col-md-4"></div><div class="col-md-4"><i class="fa fa-spinner fa-spin fa-4x" /></div><div class="col-md-4"></div></div>');
-        var url = jQuery(this).data('url');
-
-        var id = jQuery(this).data('id');
-        jQuery('#ul_'+id).toggle();
-
-
-        sendAjax(url,{}, 'GET', function (response) {
-           if(response.status == true) {
-               parent.html(response.html);
-           }
-        });
+    jQuery('body').on('click','a.load-content',function(e){
+        e.preventDefault();
+        loadSideBar($(this));
     });
-
     var anchors = jQuery("a.load-content");
     jQuery(anchors[0]).trigger('click');
 
@@ -205,6 +193,22 @@ jQuery(document).ready(function () {
     });
 
 });
+
+function loadSideBar(element) {
+    var parent = jQuery("div#content-details");
+    parent.html('<div class="row"><div class="col-md-4"></div><div class="col-md-4"><i class="fa fa-spinner fa-spin fa-4x" /></div><div class="col-md-4"></div></div>');
+    var url = jQuery(element).data('url');
+
+    var id = jQuery(element).data('id');
+    jQuery('#ul_'+id).toggle();
+
+
+    sendAjax(url,{}, 'GET', function (response) {
+        if(response.status == true) {
+            parent.html(response.html);
+        }
+    });
+}
 
 function sendAjax(url, data, method, callback)
 {
