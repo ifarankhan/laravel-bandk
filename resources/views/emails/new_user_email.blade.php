@@ -23,7 +23,7 @@ Password: {{ $user['password'] }}
 <ol>
     <li>tryk <a href="{{ route('dashboard.index') }}">her</a></li>
     <li>Indtast ovennævnte brugernavn og password og tryk Login</li>
-    <li>Tast Create/Anmeld for at komme til anmeldelsesformularen</li>
+    <li>Tast Opert for at komme til anmeldelsesformularen</li>
     <li>Udfyld og tryk ”Send”</li>
     <li>Når du har trykke ”Send”, får du en bekræftelse på at skaden er anmeldt korrekt.</li>
 </ol>
@@ -39,8 +39,6 @@ Password: {{ $user['password'] }}
 </p>
 Venlig hilsen<br />
 
-Kirsten Høll<br />
-Mæglerassistent <br />
 <br />
 {{--Tlf: 9819 4511 • Direkte: 96327412 <br />
 Mail: kih@bk-as.dk • www.bk-as.dk <br />--}}

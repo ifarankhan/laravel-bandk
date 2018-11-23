@@ -21,8 +21,8 @@
                             @endif
                         @endforeach
                     </div>
-                    <div id="tree-container"></div>
-                    {{--<table id="datatable1" class="table table-striped table-bordered">
+                    {{--<div id="tree-container"></div>--}}
+                    <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>Title</th>
@@ -42,7 +42,7 @@
                             </tr>
                         @endforeach
                         </tbody>
-                    </table>--}}
+                    </table>
                 </div>
             </div>
         </div>

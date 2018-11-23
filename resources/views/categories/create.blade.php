@@ -15,7 +15,7 @@
                 <div class="x_content">
 
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('category.store') }}" method="POST">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('category.store') }}" method="POST" enctype='multipart/form-data'>
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span>
@@ -41,6 +41,19 @@
                                         @endforeach
                                     @endif
                                 </select>
+                                @if ($errors->has('parent_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('parent_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Icon
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" name="icon" >
                                 @if ($errors->has('parent_id'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('parent_id') }}</strong>

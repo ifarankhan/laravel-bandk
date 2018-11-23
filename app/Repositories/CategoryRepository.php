@@ -43,6 +43,13 @@ class CategoryRepository implements CategoryInterface
         $this->model->title = $data['title'];
         $this->model->parent_id = isset($data['parent_id']) ? $data['parent_id'] : null;
 
+        if($data['icon']) {
+            $uniqueFileName = uniqid() . $data['icon']->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();
+            $data['icon']->move(config('app.path_to_upload').'/icons/' , $uniqueFileName);
+
+            $this->model->icon = $uniqueFileName;
+        }
+
         $this->model->save();
 
         return $this->model;

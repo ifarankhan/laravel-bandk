@@ -5,7 +5,7 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     Skadedato: {{ $claim->date }}
 </p>
 <p>
-    Afd.: {{ ($claim->department) ? $claim->department->name : ''}}
+    Adresse: {{ ($claim->department) ? $claim->department->name : ''}}
 </p>
 <p>
     Nr./etage/side: {{ ($claim->address1)  ? $claim->address1->address : ''}}
@@ -23,7 +23,7 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     Estimat: {{ $claim->estimate }}
 </p>
 <p>
-    Kontaktperson ved evt. besigtigelse: {{ ($claim->user) ? $claim->user->email : '-' }}, {{ ($claim->user) ? $claim->user->phone_number : '-'  }}
+    Kontaktperson ved evt. besigtigelse: {{ ($claim->user) ? $claim->user->name : '-' }} <br />{{ ($claim->user) ? $claim->user->email : '-' }}, tlf. nr.{{ ($claim->user) ? $claim->user->phone_number : '-'  }}
 </p>
 
 @if(count($claim->images) > 0)
@@ -42,9 +42,6 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     </div>
 @endif
 
-
-Kontaktperson ved evt. besigtigelse <br />
-
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer. <br />
 
 Venlig hilsen<br />
@@ -55,6 +52,5 @@ Mail: kih@bk-as.dk • www.bk-as.dk<br />--}}
 
 <img src="{{ asset('/admin/images/bnk_logo.jpg') }}" alt="">
 
-Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
