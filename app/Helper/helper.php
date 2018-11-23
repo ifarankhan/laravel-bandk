@@ -20,10 +20,10 @@ function getTranslation($key)
 function getLeftMenu($categories,  &$html)
 {
     foreach ($categories as $category) {
-        if($category->icon) {
+        if(!is_null($category->icon)) {
             $html = $html . '<li class="home '.$category->title.'" >
         <a  class="load-content" href="javascript:;" data-id="'.$category->id.'" data-url="'.route("content.list", ["categoryId" => $category->id]).'">
-        <image style="height:30px;" src="'. asset("/images/icons/".$category->icon).'" />&nbsp;&nbsp;&nbsp;'
+        <image style="height:30px;" src="'. $category->icon.'" />&nbsp;&nbsp;&nbsp;'
                 . $category->title.' </a>';
 
         } else {

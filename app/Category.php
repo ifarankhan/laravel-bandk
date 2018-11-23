@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['title', 'parent_id', 'icon'];
+    protected $fillable = ['title', 'parent_id', 'icon', 'color'];
 
     protected $appends = [
         'childrenCount'
@@ -25,6 +25,15 @@ class Category extends Model
     public function getChildrenCountAttribute()
     {
         return count($this->children);
+    }
+    public function getIconAttribute($value)
+    {
+        if(!is_null($value)) {
+            return asset("/images/icons/".$value);
+        }
+
+        return null;
+
     }
 
     public function contents()

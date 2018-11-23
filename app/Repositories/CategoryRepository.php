@@ -42,8 +42,9 @@ class CategoryRepository implements CategoryInterface
 
         $this->model->title = $data['title'];
         $this->model->parent_id = isset($data['parent_id']) ? $data['parent_id'] : null;
+        $this->model->color = isset($data['color']) ? $data['color'] : null;
 
-        if($data['icon']) {
+        if(isset($data['icon'])) {
             $uniqueFileName = uniqid() . $data['icon']->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();
             $data['icon']->move(config('app.path_to_upload').'/icons/' , $uniqueFileName);
 
@@ -64,22 +65,22 @@ class CategoryRepository implements CategoryInterface
     public function getCategories($parentId)
     {
         if(is_null($parentId)) {
-            return  $this->model->where('parent_id', $parentId)->get(['id', 'title', 'icon']);
+            return  $this->model->where('parent_id', $parentId)->get(['id', 'title', 'icon', 'color']);
         } else {
-            return  $this->model->where('id', $parentId)->get(['id', 'title', 'icon']);
+            return  $this->model->where('id', $parentId)->get(['id', 'title', 'icon', 'color']);
         }
 
     }
 
     public function getCategory($categoryId)
     {
-        return  $this->model->with(['contents'])->where('id', $categoryId)->first(['id', 'title', 'icon']);
+        return  $this->model->with(['contents'])->where('id', $categoryId)->first(['id', 'title', 'icon', 'color']);
     }
 
     public function allCategories($get)
     {
         $node = isset($get['id']) && $get['id'] !== '#' ? (int)$get['id'] : 0;
-        $categories = $this->model->orderBy('parent_id', 'ASC')->get(['id', 'title as text', 'parent_id', 'icon']);
+        $categories = $this->model->orderBy('parent_id', 'ASC')->get(['id', 'title as text', 'parent_id', 'icon', 'color']);
         $data = [];
         if(count($categories) <=0){
             //add condition when result is zero
