@@ -5,10 +5,10 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     Skadedato: {{ $claim->date }}
 </p>
 <p>
-    Adresse: {{ ($claim->department) ? $claim->department->name : ''}}
+    Adresse: {{ ($claim->address1) ? $claim->address1->address : ''}}
 </p>
 <p>
-    Nr./etage/side: {{ ($claim->address1)  ? $claim->address1->address : ''}}
+    Nr./etage/side: {{ ($claim->address_2)  ? $claim->address_2 : ''}}
 </p>
 <p>
     Skadetype: {{ ($claim->type) ? $claim->type->name : '' }}
