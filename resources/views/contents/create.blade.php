@@ -213,7 +213,6 @@
                 jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(content);
             });
             jQuery("#addPhone").on('click', function(){
-                console.log('Hello');
                 var text = jQuery("#phone_number").val();
                 if(text.trim() == '') {
                     jQuery("#phone_number").css('border-color', 'red');
@@ -222,7 +221,7 @@
                 }
 
                 var content = jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html();
-                var link = '<a href="tel:'+text+'">'+text+'</a>';
+                var link = '<a href="tel://'+text+'">'+text+'</a>';
                 content = content + link;
 
                 jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(content);

@@ -231,7 +231,7 @@
                 }
 
                 var content = jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html();
-                var link = '<a href="tel:'+text+'">'+text+'</a>';
+                var link = '<a href="tel://'+text+'">'+text+'</a>';
                 content = content + link;
 
                 jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(content);
