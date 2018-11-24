@@ -125,6 +125,28 @@ class PassportController extends Controller
         }
     }
 
+    public function getUserRoles() {
+
+        if(\Auth::user()) {
+            return response()->json(
+                [
+                    'status' => $this->successStatus,
+                    'message' => 'User Roles.',
+                    'data' => [
+                        'roles' => (\Auth::user()->roles) ? \Auth::user()->roles : [],
+                        'modules' => (\Auth::user()->modules) ? \Auth::user()->modules: [],
+                    ]
+
+                ],
+                $this->successStatus
+            );
+        }else {
+            return response()->json(['message' => 'User is not login', 'status' => 401, "data" =>  null], $this->successStatus);
+        }
+
+
+    }
+
     /*
      * Register api
      *
