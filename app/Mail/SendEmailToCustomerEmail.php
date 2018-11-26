@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Collection;
 
 class SendEmailToCustomerEmail extends Mailable
 {
@@ -67,6 +68,7 @@ class SendEmailToCustomerEmail extends Mailable
                             'customer'  => $this->customer,
                             'claim'   => $this->claim,
                             'email'     => $this->email,
+                            'images' => $this->claim->images ? $this->claim->images : new Collection()
                         ])
                     ->markdown('emails.send_email_to_customer');
     }

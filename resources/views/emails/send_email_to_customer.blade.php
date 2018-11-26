@@ -25,22 +25,18 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
 <p>
     Kontaktperson ved evt. besigtigelse: {{ ($claim->user) ? $claim->user->name : '-' }} <br />{{ ($claim->user) ? $claim->user->email : '-' }}, tlf. nr.{{ ($claim->user) ? $claim->user->phone_number : '-'  }}
 </p>
+<br />
+<br />
 
-    @if(count($claim->images) > 0)
-        <p>
-            <br />
-            <br />
-            <div class="row">
-                @foreach($claim->images as $key => $image)
-                    <div class="col-md-6">
-                        <div id="content_{{ $image->id }}">
-                            <img src="{{ $image->image }}" style="width:170px;height:120px;" class="img-responsive" />
-                        </div>
-                    </div>
-                @endforeach
+<div class="row">
+    @foreach($images as $key => $image)
+        <div class="col-md-6">
+            <div id="content_{{ $image->id }}">
+                <img src="{{ $image->image }}" style="width:170px;height:120px;" class="img-responsive" />
             </div>
-        </p>
-    @endif
+        </div>
+    @endforeach
+</div>
 
 
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer. <br />
