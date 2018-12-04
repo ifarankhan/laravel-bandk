@@ -32,7 +32,7 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     @foreach($images as $key => $image)
         <div class="col-md-6">
             <div id="content_{{ $image->id }}">
-                <img src="{{ $image->image }}" style="width:170px;height:120px;" class="img-responsive" />
+                <img src="{{ $image->image }}" style="width:170px;height:120px;" />
             </div>
         </div>
     @endforeach

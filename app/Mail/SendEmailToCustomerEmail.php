@@ -54,8 +54,8 @@ class SendEmailToCustomerEmail extends Mailable
         if(!empty($this->claim->address_2)) {
             $subject = $subject . ' - '.$this->claim->address_2;
         }
-        if(!empty($this->claim->customer_policy_number)) {
-            $subject = $subject . ' - police nr.: '.$this->claim->customer_policy_number;
+        if(!empty($this->customer->policy_number)) {
+            $subject = $subject . ' - police nr.: '.$this->customer->policy_number;
         }
         if(!empty($this->claim->selsskab_skade_nummer)) {
             $subject = $subject . ' - skade nr,: '.$this->claim->selsskab_skade_nummer;
