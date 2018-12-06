@@ -128,6 +128,15 @@ class PassportController extends Controller
     public function getUserRoles() {
 
         if(\Auth::user()) {
+            $customer = (\Auth::user()->customer) ? \Auth::user()->customer: null;
+
+            if(!is_null($customer)) {
+                $emails = (\Auth::user()->customer) ? json_decode(\Auth::user()->customer->emails): null;
+                $customer->emails = $emails;
+            } else {
+                $customer = [];
+            }
+
             return response()->json(
                 [
                     'status' => $this->successStatus,
@@ -135,7 +144,7 @@ class PassportController extends Controller
                     'data' => [
                         'roles' => (\Auth::user()->roles) ? \Auth::user()->roles : [],
                         'modules' => (\Auth::user()->modules) ? \Auth::user()->modules: [],
-                        'customer' => (\Auth::user()->customer) ? \Auth::user()->customer: []
+                        'customer' => $customer
                     ]
 
                 ],
