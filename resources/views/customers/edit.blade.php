@@ -158,7 +158,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="file" name="logo" >
                                 <br />
-                                <img src="{{ $customer->logo }}" style="width: 100px; height: 100px;">
+                                @if($customer->logo)
+                                    <img src="{{ $customer->logo }}" style="width: 100px; height: 100px;">
+                                @endif
                                 @if ($errors->has('logo'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('logo') }}</strong>
