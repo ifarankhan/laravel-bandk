@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Repositories\CategoryInterface;
+use App\Repositories\CustomerInterface;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,14 +22,20 @@ class CategoryController extends Controller
      * @var CategoryInterface
      */
     private $category;
+    /**
+     * @var CustomerInterface
+     */
+    private $customer;
 
     /**
      * CategoryController constructor.
      * @param CategoryInterface $category
+     * @param CustomerInterface $customer
      */
-    public function __construct(CategoryInterface $category)
+    public function __construct(CategoryInterface $category, CustomerInterface $customer)
     {
         $this->category = $category;
+        $this->customer = $customer;
     }
 
     public function index()
@@ -40,13 +47,15 @@ class CategoryController extends Controller
     public function create()
     {
         $parents = $this->category->all();
-        return view('categories.create', compact('parents'));
+        $customers = $this->customer->all();
+        return view('categories.create', compact('parents', 'customers'));
     }
     public function edit($id)
     {
         $content = $this->category->getOne($id);
         $parents = $this->category->all();
-        return view('categories.edit', compact('content', 'parents'));
+        $customers = $this->customer->all();
+        return view('categories.edit', compact('content', 'parents', 'customers'));
     }
 
     public function store(CategoryRequest $request)

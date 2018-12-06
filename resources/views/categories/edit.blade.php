@@ -53,6 +53,26 @@
 
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="customer_id">Customer
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="customer_id" class="form-control col-md-7 col-xs-12" name="customer_id">
+                                    <option value="">Select customer</option>
+                                    @if(isset($customers) && count($customers) > 0)
+                                        @foreach($customers as $customer)
+                                            <option value="{{ $customer->id }}" {{ ($content->customer_id == $customer->id) ? 'selected="selected"' : ''}}>{{ $customer->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @if ($errors->has('customer_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('customer_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Icon
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">

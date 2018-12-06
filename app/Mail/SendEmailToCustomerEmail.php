@@ -52,7 +52,7 @@ class SendEmailToCustomerEmail extends Mailable
             $subject = $subject . ', '.$this->claim->address1->address;
         }
         if(!empty($this->claim->address_2)) {
-            $subject = $subject . ' - '.$this->claim->address_2;
+            $subject = $subject . ' - Nr/Etage/Side: '.$this->claim->address_2;
         }
         if(!empty($this->customer->policy_number)) {
             $subject = $subject . ' - police nr.: '.$this->customer->policy_number;
@@ -61,15 +61,24 @@ class SendEmailToCustomerEmail extends Mailable
             $subject = $subject . ' - skade nr,: '.$this->claim->selsskab_skade_nummer;
         }
 
-        return $this->from('no_reply@bnk.com')
+        $images = $this->claim->images ? $this->claim->images : new Collection();
+
+        $message =  $this->from('no_reply@bnk.com')
                     ->subject($subject)
                     ->with(
                         [
                             'customer'  => $this->customer,
                             'claim'   => $this->claim,
                             'email'     => $this->email,
-                            'images' => $this->claim->images ? $this->claim->images : new Collection()
                         ])
                     ->markdown('emails.send_email_to_customer');
+
+        foreach ($images as $file) {
+            $message->attach($file->image); // attach each file
+        }
+
+        return $message;
+
+
     }
 }

@@ -15,4 +15,14 @@ class Customer extends Model
         return $this->hasMany(Departments::class, 'customer_id', 'id')->with(['addresses']);
     }
 
+    public function getLogoAttribute($value)
+    {
+        if(!is_null($value)) {
+            return asset("/images/icons/".$value);
+        }
+
+        return null;
+
+    }
+
 }

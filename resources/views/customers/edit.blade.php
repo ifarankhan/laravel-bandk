@@ -15,7 +15,7 @@
                 <div class="x_content">
 
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('customer.store') }}" method="POST">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('customer.store') }}" method="POST" enctype='multipart/form-data'>
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $customer->id }}">
                         <div class="form-group">
@@ -148,6 +148,20 @@
                                 @if ($errors->has('bnk_insurance_number'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('bnk_insurance_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo">Logo
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" name="logo" >
+                                <br />
+                                <img src="{{ $customer->logo }}" style="width: 100px; height: 100px;">
+                                @if ($errors->has('logo'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('logo') }}</strong>
                                     </span>
                                 @endif
                             </div>

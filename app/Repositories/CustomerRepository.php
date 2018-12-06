@@ -66,6 +66,13 @@ class CustomerRepository implements CustomerInterface
         $this->model->emails = isset($data['emails']) ? json_encode($data['emails']) : null;
         $this->model->is_send_email = isset($data['is_send_email']) ? true : false;
 
+        if(isset($data['logo'])) {
+            $uniqueFileName = uniqid() . $data['logo']->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();
+            $data['logo']->move(config('app.path_to_upload').'/icons/' , $uniqueFileName);
+
+            $this->model->logo = $uniqueFileName;
+        }
+
         $this->model->save();
 
         return $this->model;

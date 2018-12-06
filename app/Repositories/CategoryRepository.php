@@ -43,6 +43,7 @@ class CategoryRepository implements CategoryInterface
         $this->model->title = $data['title'];
         $this->model->parent_id = isset($data['parent_id']) ? $data['parent_id'] : null;
         $this->model->color = isset($data['color']) ? $data['color'] : null;
+        $this->model->customer_id = isset($data['customer_id']) ? $data['customer_id'] : null;
 
         if(isset($data['icon'])) {
             $uniqueFileName = uniqid() . $data['icon']->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();

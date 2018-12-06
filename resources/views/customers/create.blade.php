@@ -15,7 +15,7 @@
                 <div class="x_content">
 
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('customer.store') }}" method="POST">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('customer.store') }}" method="POST" enctype='multipart/form-data'>
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ getTranslation('customer_name') }} <span class="required">*</span>
@@ -126,6 +126,19 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="logo">Logo
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" name="logo" >
+                                @if ($errors->has('logo'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('logo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="is_send_email" > {{ getTranslation('receive_emails') }}

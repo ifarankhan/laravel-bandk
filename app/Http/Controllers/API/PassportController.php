@@ -135,6 +135,7 @@ class PassportController extends Controller
                     'data' => [
                         'roles' => (\Auth::user()->roles) ? \Auth::user()->roles : [],
                         'modules' => (\Auth::user()->modules) ? \Auth::user()->modules: [],
+                        'customer' => (\Auth::user()->customer) ? \Auth::user()->customer: []
                     ]
 
                 ],
