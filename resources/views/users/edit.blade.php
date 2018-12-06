@@ -45,7 +45,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Password
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="password" required="required" class="form-control col-md-7 col-xs-12" name="password" value="">
+                                <input type="text" id="password" class="form-control col-md-7 col-xs-12" name="password" value="">
                                 @if ($errors->has('password'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('password') }}</strong>
