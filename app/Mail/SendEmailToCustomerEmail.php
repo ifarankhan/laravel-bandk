@@ -73,9 +73,9 @@ class SendEmailToCustomerEmail extends Mailable
                         ])
                     ->markdown('emails.send_email_to_customer');
 
-        foreach ($images as $file) {
+        /*foreach ($images as $file) {
             $message->attach($file->image); // attach each file
-        }
+        }*/
 
         return $message;
 
