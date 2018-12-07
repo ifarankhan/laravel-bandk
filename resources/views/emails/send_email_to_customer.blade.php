@@ -31,7 +31,12 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
     @foreach($images as $key => $image)
         <div class="col-md-6">
             <div id="content_{{ $image->id }}">
-                <img src="data:image/png;base64,{{ base64_encode(file_get_contents($image->image)) }}" style="width:170px;height:120px;" />
+                <img src="data:image/png;base64,{{ base64_encode(file_get_contents($image->image, false, array(
+      "ssl"=>array(
+            "verify_peer"=>false,
+            "verify_peer_name"=>false,
+        ),
+    ))) }}" style="width:170px;height:120px;" />
             </div>
         </div>
     @endforeach
