@@ -61,6 +61,9 @@ class SendEmailToCustomerEmail extends Mailable
             $subject = $subject . ' - skade nr.: '.$this->claim->selsskab_skade_nummer;
         }
 
+        //$images = $this->claim->images ? $this->claim->images : new Collection();
+        //data:image/png;base64,{{ base64_encode(file_get_contents($image->image, false)) }}
+
         return $this->from('no_reply@bnk.com')
                     ->subject($subject)
                     ->with(
