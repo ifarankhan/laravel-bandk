@@ -58,19 +58,17 @@ class SendEmailToCustomerEmail extends Mailable
             $subject = $subject . ' - police nr.: '.$this->customer->policy_number;
         }
         if(!empty($this->claim->selsskab_skade_nummer)) {
-            $subject = $subject . ' - skade nr,: '.$this->claim->selsskab_skade_nummer;
+            $subject = $subject . ' - skade nr.: '.$this->claim->selsskab_skade_nummer;
         }
 
-        $images = $this->claim->images ? $this->claim->images : new Collection();
-
-        return   $this->from('no_reply@bnk.com')
+        return $this->from('no_reply@bnk.com')
                     ->subject($subject)
                     ->with(
                         [
                             'customer'  => $this->customer,
                             'claim'   => $this->claim,
                             'email'     => $this->email,
-                            'images'    => $images
+                            'images' => $this->claim->images ? $this->claim->images : new Collection()
                         ])
                     ->markdown('emails.send_email_to_customer');
     }
