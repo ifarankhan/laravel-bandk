@@ -22,7 +22,12 @@ class CategoryRepository implements CategoryInterface
 
     public function all()
     {
-        return $this->model->with(['parent'])->get();
+        $query = $this->model->orwhere('customer_id', null);
+
+        if(\Auth::check() && !is_null(\Auth::user()->customer_id)) {
+           $query = $query->orwhere('customer_id', \Auth::user()->customer_id);
+        }
+        return $query->with(['parent'])->get();
     }
 
     public function getOne($id)
