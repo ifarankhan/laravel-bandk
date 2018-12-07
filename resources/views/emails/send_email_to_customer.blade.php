@@ -27,12 +27,11 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
 </p>
 <br />
 <br />
-
 <div class="row">
     @foreach($images as $key => $image)
         <div class="col-md-6">
             <div id="content_{{ $image->id }}">
-                <img src="{{ $message->embed($image->image) }}" style="width:170px;height:120px;" />
+                <img src="{{ $image->image }}" style="width:170px;height:120px;" />
             </div>
         </div>
     @endforeach
