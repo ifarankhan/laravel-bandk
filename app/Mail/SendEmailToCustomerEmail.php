@@ -63,7 +63,7 @@ class SendEmailToCustomerEmail extends Mailable
 
         $images = $this->claim->images ? $this->claim->images : new Collection();
 
-        $message =  $this->from('no_reply@bnk.com')
+        return   $this->from('no_reply@bnk.com')
                     ->subject($subject)
                     ->with(
                         [
@@ -73,13 +73,5 @@ class SendEmailToCustomerEmail extends Mailable
                             'images'    => $images
                         ])
                     ->markdown('emails.send_email_to_customer');
-
-        /*foreach ($images as $file) {
-            $message->attach($file->image); // attach each file
-        }*/
-
-        return $message;
-
-
     }
 }
