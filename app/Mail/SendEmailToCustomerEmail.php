@@ -70,6 +70,7 @@ class SendEmailToCustomerEmail extends Mailable
                             'customer'  => $this->customer,
                             'claim'   => $this->claim,
                             'email'     => $this->email,
+                            'images'    => $images
                         ])
                     ->markdown('emails.send_email_to_customer');
 
