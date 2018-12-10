@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 
+use App\Events\SendUpdatePasswordEmailEvent;
 use App\Events\SendWelcomeEmailEvent;
 use App\Mail\SendWelcomeEmailMail;
 use App\User;
@@ -95,6 +96,10 @@ class UserRepository implements UserInterface
                 ];
             }
 
+        } else {
+            if(!empty($data['password'])) {
+                event(new SendUpdatePasswordEmailEvent($data, $data['email']));
+            }
         }
 
         return $this->model;
