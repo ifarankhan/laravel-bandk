@@ -5,7 +5,10 @@ Hermed dit nye password {{ $user['password'] }}.
 <br />
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer.
 <br />
-Venlig hilsen<br />
+<br />
+Venlig hilsen
+<br />
+<br />
 
 
 <img src="{{ asset('/admin/images/bnk_logo.jpg') }}" alt="">
