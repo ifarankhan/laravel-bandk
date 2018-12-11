@@ -26,10 +26,12 @@ class CategoryRequest extends FormRequest
         if($this->get('id')) {
             return [
                 'title' => 'required',
+                'color' => 'required',
             ];
         } else {
             return [
                 'title' => 'required|unique:categories',
+                'color' => 'required',
             ];
         }
 
