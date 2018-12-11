@@ -65,6 +65,7 @@ return [
     'close' => 'Close',
     'updated_at' => 'Opdateret kl',
     'receive_emails' => 'Modtag e-mails?',
+    'show_on_frontend' => 'Vis på frontend?',
 
 
     'emergency_app' => 'Beredskabsplan',

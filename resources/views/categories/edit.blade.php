@@ -99,6 +99,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="show_on_frontend" > {{ getTranslation('show_on_frontend') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="checkbox" name="show_on_frontend" id="show_on_frontend" value="true" {{  ($content->show_on_frontend) ?  'checked="checked"' : '' }}>
+                                @if ($errors->has('show_on_frontend'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('show_on_frontend') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <br />
                         <br />
                         <div class="form-group">

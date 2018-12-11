@@ -50,6 +50,12 @@ class CategoryRepository implements CategoryInterface
         $this->model->color = isset($data['color']) ? $data['color'] : null;
         $this->model->customer_id = isset($data['customer_id']) ? $data['customer_id'] : null;
 
+        if(isset($data['show_on_frontend'])) {
+            $this->model->show_on_frontend = true;
+        } else  {
+            $this->model->show_on_frontend = false;
+        }
+
         if(isset($data['icon'])) {
             $uniqueFileName = uniqid() . $data['icon']->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();
             $data['icon']->move(config('app.path_to_upload').'/icons/' , $uniqueFileName);
@@ -71,22 +77,22 @@ class CategoryRepository implements CategoryInterface
     public function getCategories($parentId)
     {
         if(is_null($parentId)) {
-            return  $this->model->where('parent_id', $parentId)->get(['id', 'title', 'icon', 'color']);
+            return  $this->model->where('parent_id', $parentId)->get(['id', 'title', 'icon', 'color', 'show_on_frontend']);
         } else {
-            return  $this->model->where('id', $parentId)->get(['id', 'title', 'icon', 'color']);
+            return  $this->model->where('id', $parentId)->get(['id', 'title', 'icon', 'color', 'show_on_frontend']);
         }
 
     }
 
     public function getCategory($categoryId)
     {
-        return  $this->model->with(['contents'])->where('id', $categoryId)->first(['id', 'title', 'icon', 'color']);
+        return  $this->model->with(['contents'])->where('id', $categoryId)->first(['id', 'title', 'icon', 'color', 'show_on_frontend']);
     }
 
     public function allCategories($get)
     {
         $node = isset($get['id']) && $get['id'] !== '#' ? (int)$get['id'] : 0;
-        $categories = $this->model->orderBy('parent_id', 'ASC')->get(['id', 'title as text', 'parent_id', 'icon', 'color']);
+        $categories = $this->model->orderBy('parent_id', 'ASC')->get(['id', 'title as text', 'parent_id', 'icon', 'color', 'show_on_frontend']);
         $data = [];
         if(count($categories) <=0){
             //add condition when result is zero

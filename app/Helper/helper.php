@@ -20,24 +20,27 @@ function getTranslation($key)
 function getLeftMenu($categories,  &$html)
 {
     foreach ($categories as $category) {
-        if(!is_null($category->icon)) {
-            $html = $html . '<li class="home '.$category->title.'" >
-        <a  class="load-content" href="javascript:;" data-id="'.$category->id.'" data-url="'.route("content.list", ["categoryId" => $category->id]).'">
-        <image style="height:30px;" src="'. $category->icon.'" />&nbsp;&nbsp;&nbsp;'
-                . $category->title.' </a>';
+        if($category->show_on_frontend == true) {
 
-        } else {
-            $html = $html . '<li class="home '.$category->title.'" >
-        <a  class="load-content" href="javascript:;" data-id="'.$category->id.'" data-url="'.route("content.list", ["categoryId" => $category->id]).'">'. $category->title.' </a>';
+            if (!is_null($category->icon)) {
+                $html = $html . '<li class="home ' . $category->title . '" >
+        <a  class="load-content" href="javascript:;" data-id="' . $category->id . '" data-url="' . route("content.list", ["categoryId" => $category->id]) . '">
+        <image style="height:30px;" src="' . $category->icon . '" />&nbsp;&nbsp;&nbsp;'
+                    . $category->title . ' </a>';
 
+            } else {
+                $html = $html . '<li class="home ' . $category->title . '" >
+        <a  class="load-content" href="javascript:;" data-id="' . $category->id . '" data-url="' . route("content.list", ["categoryId" => $category->id]) . '">' . $category->title . ' </a>';
+
+            }
+
+            if ($category->childrenCount > 0) {
+                $html = $html . '<ul class="nav child_menu" style="display:none;" id="ul_' . $category->id . '">';
+                getLeftMenu($category->children, $html);
+                $html = $html . '</ul>';
+            }
+            $html = $html . '</li>';
         }
-
-        if($category->childrenCount > 0) {
-            $html = $html . '<ul class="nav child_menu" style="display:none;" id="ul_'.$category->id.'">';
-            getLeftMenu($category->children,$html);
-            $html = $html . '</ul>';
-        }
-        $html = $html . '</li>';
     }
 
     return $html;
