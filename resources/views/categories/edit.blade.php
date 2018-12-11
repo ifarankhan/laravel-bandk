@@ -90,7 +90,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Background Color<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="color" class="form-control col-md-7 col-xs-12" name="color" value="{{ $content->color }}">
+                                <input type="text" id="color" class="form-control col-md-7 col-xs-12" name="color" value="{{ $content->color }}" autocomplete="off">
                                 @if ($errors->has('color'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('color') }}</strong>
@@ -130,9 +130,15 @@
 
 @section('css')
     <link href="{{ asset('/admin/vendors/select2/dist/css/select2.min.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/admin/vendors/color-picker/css/colorpicker.css') }}" type="text/css" />
 @endsection
 @section('js')
     <script src="{{ asset('/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('/admin/vendors/color-picker/js/colorpicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/admin/vendors/color-picker/js/eye.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/admin/vendors/color-picker/js/utils.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/admin/vendors/color-picker/js/layout.js?ver=1.0.2') }}"></script>
     <script>
         jQuery(document).ready(function(){
            jQuery("#roles").on('change', function(){
