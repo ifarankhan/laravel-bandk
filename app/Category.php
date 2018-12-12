@@ -14,7 +14,7 @@ class Category extends Model
 
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id', 'id')->select(['id','title', 'parent_id']);
+        return $this->hasMany(Category::class, 'parent_id', 'id')->select(['id','title', 'parent_id', 'show_on_frontend']);
     }
 
     public function parent()
