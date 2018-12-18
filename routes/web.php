@@ -12,7 +12,9 @@
 */
 
 Route::get('/testing', function () {
-    echo route('claim.details',1234);
+    $claim = \App\Claims::find('1074');
+
+    dd(get_mb(filesize($claim->images[0]->image_path)));
 });
 
 

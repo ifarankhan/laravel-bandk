@@ -220,11 +220,18 @@ class ClaimRepository implements ClaimInterface
                         $message->subject($subject);
 
                         $size = count($images);
+                        $mbSize = 0;
+                        if($size > 0) {
+                            foreach ($images as $image) {
 
-                        /*if($size > 0) {
-                            foreach ($images as $image)
-                            $message->attach($image->image);
-                        }*/
+                                $mb = get_mb(filesize($image->image_path));
+                                $mbSize = $mbSize + $mb;
+                                if($mbSize < 20) {
+                                    $message->attach($image->image_path);
+                                }
+
+                            }
+                        }
 
                     }, true);
                     /*try {
