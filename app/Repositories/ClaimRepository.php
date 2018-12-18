@@ -12,6 +12,8 @@ namespace App\Repositories;
 use App\ClaimImages;
 use App\Claims;
 use App\Events\SendEmailToCustomerUsers;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
 
 class ClaimRepository implements ClaimInterface
 {
