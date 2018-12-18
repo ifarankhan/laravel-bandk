@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmailToCustomerEmail extends Mailable
 {
@@ -64,7 +65,31 @@ class SendEmailToCustomerEmail extends Mailable
         //$images = $this->claim->images ? $this->claim->images : new Collection();
         //data:image/png;base64,{{ base64_encode(file_get_contents($image->image, false)) }}
 
-        return $this->from('no_reply@bnk.com')
+        $data =  [
+            'customer'  => $this->customer,
+            'claim'   => $this->claim,
+            'email'     => $this->email,
+            'images' => $this->claim->images ? $this->claim->images : new Collection()
+        ];
+
+        $toEMail = $this->email;
+
+        Mail::send('emails.send_email_to_customer', $data, function ($message) use ($toEMail, $subject)
+        {
+
+            $message->from('no_reply@bnk.com');
+
+            $message->to($toEMail);
+
+            /*//Attach file
+            $message->attach($subject);*/
+
+            //Add a subject
+            $message->subject($subject);
+
+        });
+
+        /*return $this->from('no_reply@bnk.com')
                     ->subject($subject)
                     ->with(
                         [
@@ -73,6 +98,6 @@ class SendEmailToCustomerEmail extends Mailable
                             'email'     => $this->email,
                             'images' => $this->claim->images ? $this->claim->images : new Collection()
                         ])
-                    ->markdown('emails.send_email_to_customer');
+                    ->markdown('emails.send_email_to_customer');*/
     }
 }
