@@ -209,7 +209,7 @@ class ClaimRepository implements ClaimInterface
                     $toEMail = $email;
 
                     $markdown = Container::getInstance()->make(Markdown::class);
-                    $html = $markdown->render('emails.contact', $data);
+                    $html = $markdown->render('emails.send_email_to_customer', $data);
 
                     Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject)
                     {
