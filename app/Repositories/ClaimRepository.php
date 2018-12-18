@@ -12,6 +12,8 @@ namespace App\Repositories;
 use App\ClaimImages;
 use App\Claims;
 use App\Events\SendEmailToCustomerUsers;
+use Illuminate\Container\Container;
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
@@ -206,7 +208,10 @@ class ClaimRepository implements ClaimInterface
 
                     $toEMail = $email;
 
-                    Mail::send('emails.send_email_to_customer', $data, function ($message) use ($toEMail, $subject)
+                    $markdown = Container::getInstance()->make(Markdown::class);
+                    $html = $markdown->render('emails.contact', $data);
+
+                    Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject)
                     {
 
                         $message->from('no_reply@bnk.com');
