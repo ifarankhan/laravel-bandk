@@ -74,7 +74,7 @@ class SendEmailToCustomerEmail extends Mailable
 
         $toEMail = $this->email;
 
-        return Mail::send('emails.send_email_to_customer', $data, function ($message) use ($toEMail, $subject)
+        Mail::send('emails.send_email_to_customer', $data, function ($message) use ($toEMail, $subject)
         {
 
             $message->from('no_reply@bnk.com');

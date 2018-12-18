@@ -173,7 +173,51 @@ class ClaimRepository implements ClaimInterface
 
             foreach ($emails as $email) {
                 if($email && $email != '') {
-                    event(new SendEmailToCustomerUsers($customer, $claim, $email));
+                    //event(new SendEmailToCustomerUsers($customer, $claim, $email));
+                    $subject = '';
+
+                    if(!empty($customer->name)) {
+                        $subject = $customer->name;
+                    }
+                    if($claim->address1) {
+                        $subject = $subject . ', '.$claim->address1->address;
+                    }
+                    if(!empty($claim->address_2)) {
+                        $subject = $subject . ' - Nr/Etage/Side: '.$claim->address_2;
+                    }
+                    if(!empty($customer->policy_number)) {
+                        $subject = $subject . ' - police nr.: '.$customer->policy_number;
+                    }
+                    if(!empty($claim->selsskab_skade_nummer)) {
+                        $subject = $subject . ' - skade nr.: '.$claim->selsskab_skade_nummer;
+                    }
+
+                    //$images = $this->claim->images ? $this->claim->images : new Collection();
+                    //data:image/png;base64,{{ base64_encode(file_get_contents($image->image, false)) }}
+
+                    $data =  [
+                        'customer'  => $customer,
+                        'claim'   => $claim,
+                        'email'     => $email,
+                        'images' => $claim->images ? $claim->images : new Collection()
+                    ];
+
+                    $toEMail = $email;
+
+                    Mail::send('emails.send_email_to_customer', $data, function ($message) use ($toEMail, $subject)
+                    {
+
+                        $message->from('no_reply@bnk.com');
+
+                        $message->to($toEMail);
+
+                        /*//Attach file
+                        $message->attach($subject);*/
+
+                        //Add a subject
+                        $message->subject($subject);
+
+                    });
                     /*try {
                         event(new SendEmailToCustomerUsers($customer, $claim, $email));
                     } catch (\Exception $e) {
