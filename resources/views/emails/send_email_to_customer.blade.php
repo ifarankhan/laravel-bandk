@@ -27,15 +27,6 @@ På vegne af vores fælles kunde – {{ $customer->name }}, skal vi hermed anmel
 </p>
 <br />
 <br />
-<div class="row">
-    @foreach($images as $key => $image)
-        <div class="col-md-6">
-            <div id="content_{{ $image->id }}">
-                <img src="{{ $image->image }}" style="width:170px;height:120px;" />
-            </div>
-        </div>
-    @endforeach
-</div>
 
 
 Såfremt der måtte være spørgsmål til ovenstående, hører vi gerne fra jer. <br />

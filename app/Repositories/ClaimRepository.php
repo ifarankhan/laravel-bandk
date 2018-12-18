@@ -202,8 +202,7 @@ class ClaimRepository implements ClaimInterface
                     $data =  [
                         'customer'  => $customer,
                         'claim'   => $claim,
-                        'email'     => $email,
-                        'images' => $claim->images ? $claim->images : new Collection()
+                        'email'     => $email
                     ];
 
                     $toEMail = $email;
@@ -211,20 +210,23 @@ class ClaimRepository implements ClaimInterface
                     $markdown = Container::getInstance()->make(Markdown::class);
                     $html = $markdown->render('emails.send_email_to_customer', $data);
 
-                    Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject)
+                    $images = $claim->images ? $claim->images : new Collection();
+
+                    Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject, $images)
                     {
 
                         $message->from('no_reply@bnk.com');
-
                         $message->to($toEMail);
-
-                        /*//Attach file
-                        $message->attach($subject);*/
-
-                        //Add a subject
                         $message->subject($subject);
 
-                    });
+                        $size = count($images);
+
+                        if($size > 0) {
+                            foreach ($images as $image)
+                            $message->attach($image->image);
+                        }
+
+                    }, true);
                     /*try {
                         event(new SendEmailToCustomerUsers($customer, $claim, $email));
                     } catch (\Exception $e) {
