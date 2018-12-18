@@ -25,6 +25,6 @@ class SendEmailToCustomerUsersListner
      */
     public function handle(SendEmailToCustomerUsers $event)
     {
-        return new SendEmailToCustomerEmail($event->customer, $event->claim, $event->email);
+        new SendEmailToCustomerEmail($event->customer, $event->claim, $event->email);
     }
 }
