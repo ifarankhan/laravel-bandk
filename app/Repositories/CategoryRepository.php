@@ -24,7 +24,7 @@ class CategoryRepository implements CategoryInterface
     {
         $query = $this->model->orwhere('customer_id', null);
 
-        if(\Auth::check() && !is_null(\Auth::user()->customer_id)) {
+        if(\Auth::check() && !is_null(\Auth::user()->customer_id) && !in_array('ADMIN', getUserRoles(\AUth::user()))) {
            $query = $query->orwhere('customer_id', \Auth::user()->customer_id);
         }
         return $query->with(['parent'])->get();
