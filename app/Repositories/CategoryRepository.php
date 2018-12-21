@@ -78,7 +78,7 @@ class CategoryRepository implements CategoryInterface
     public function getCategories($parentId)
     {
         if(is_null($parentId)) {
-            return  $this->model->where('parent_id', $parentId)->get(['id', 'title', 'icon', 'color', 'show_on_frontend']);
+            return $this->all();
         } else {
             return  $this->model->where('id', $parentId)->get(['id', 'title', 'icon', 'color', 'show_on_frontend']);
         }
@@ -93,7 +93,7 @@ class CategoryRepository implements CategoryInterface
     public function allCategories($get)
     {
         $node = isset($get['id']) && $get['id'] !== '#' ? (int)$get['id'] : 0;
-        $categories = $this->model->orderBy('parent_id', 'ASC')->get(['id', 'title as text', 'parent_id', 'icon', 'color', 'show_on_frontend']);
+        $categories = $this->all();
         $data = [];
         if(count($categories) <=0){
             //add condition when result is zero
