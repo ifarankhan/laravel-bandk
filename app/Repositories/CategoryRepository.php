@@ -22,9 +22,10 @@ class CategoryRepository implements CategoryInterface
 
     public function all()
     {
-        $query = $this->model->orwhere('customer_id', null);
+        $query = $this->model;
 
         if(\Auth::check() && !is_null(\Auth::user()->customer_id) && !in_array('ADMIN', getUserRoles(\AUth::user()))) {
+           $query = $query->orwhere('customer_id', null);
            $query = $query->orwhere('customer_id', \Auth::user()->customer_id);
         }
         return $query->with(['parent'])->get();
