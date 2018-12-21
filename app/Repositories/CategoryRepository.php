@@ -80,8 +80,7 @@ class CategoryRepository implements CategoryInterface
         $query = $this->model;
 
         if(\Auth::check() && !is_null(\Auth::user()->customer_id) && !in_array('ADMIN', getUserRoles(\AUth::user()))) {
-            $query = $query->orwhere('customer_id', null);
-            $query = $query->orwhere('customer_id', \Auth::user()->customer_id);
+            $query = $query->whereIn('customer_id', [null, \Auth::user()->customer_id]);
         }
         if(is_null($parentId)) {
 
