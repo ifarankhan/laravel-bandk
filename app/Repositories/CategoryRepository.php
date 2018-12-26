@@ -78,16 +78,26 @@ class CategoryRepository implements CategoryInterface
     public function getCategories($parentId)
     {
         $query = $this->model;
-
-        if(\Auth::check() && !is_null(\Auth::user()->customer_id) && !in_array('ADMIN', getUserRoles(\AUth::user()))) {
-            $query = $query->whereIn('customer_id', [null, \Auth::user()->customer_id]);
-        }
         if(is_null($parentId)) {
-
-            return  $query->where('parent_id', $parentId)->get(['id', 'title', 'icon', 'color', 'show_on_frontend']);
+            $query = $query->where('parent_id', $parentId);
         } else {
-            return  $query->where('id', $parentId)->get(['id', 'title', 'icon', 'color', 'show_on_frontend']);
+            $query = $query->where('id', $parentId);
         }
+        $isLogin = \Auth::check();
+        $user = \Auth::user();
+
+        $query = $query->where(function ($q) use($isLogin, $user){
+            $q = $q->orwhere('customer_id',null);
+            if($isLogin && !is_null($user->customer_id) && !in_array('ADMIN', getUserRoles($user))) {
+                $q = $q->orwhere('customer_id',$user->customer_id);
+            }
+
+            return $q;
+        });
+
+        return $query->get();
+
+
 
     }
 

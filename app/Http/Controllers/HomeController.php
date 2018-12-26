@@ -20,8 +20,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
         $this->category = $category;
-
-        \View::share('categories', $this->category->getCategories(null));
     }
 
     /**
@@ -31,12 +29,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        \View::share('categories', $this->category->getCategories(null));
         $category = $this->category->getFirst();
         return view('site.index', compact('category'));
     }
 
     public function categoryDetail($slug)
     {
+        \View::share('categories', $this->category->getCategories(null));
         $slug = explode('-', $slug);
         $id = $slug[count($slug) - 1];
         $category = $this->content->getOne($id);
