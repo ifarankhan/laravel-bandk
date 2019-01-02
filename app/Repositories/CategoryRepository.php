@@ -77,6 +77,9 @@ class CategoryRepository implements CategoryInterface
 
     public function getCategories($parentId)
     {
+        if($parentId == -1) {
+            $parentId = null;
+        }
         $query = $this->model;
         if(is_null($parentId)) {
             $query = $query->where('parent_id', $parentId);

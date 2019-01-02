@@ -35,6 +35,13 @@ class Category extends Model
         return null;
 
     }
+    public function getParentIdAttribute($value)
+    {
+        if(!is_null($value)) {
+            return $value;
+        }
+        return -1;
+    }
 
     public function contents()
     {
