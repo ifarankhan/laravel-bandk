@@ -52,6 +52,9 @@ class SendEmailToCustomerEmail extends Mailable
         if($this->claim->address1) {
             $subject = $subject . ', '.$this->claim->address1->address;
         }
+        if($this->claim->department) {
+            $subject = $subject . ', afd. nr.: '.$this->claim->department->name;
+        }
         if(!empty($this->claim->address_2)) {
             $subject = $subject . ' - Nr/Etage/Side: '.$this->claim->address_2;
         }
