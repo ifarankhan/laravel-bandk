@@ -183,6 +183,9 @@ class ClaimRepository implements ClaimInterface
                     if(!empty($customer->name)) {
                         $subject = $customer->name;
                     }
+                    if($claim->department) {
+                        $subject = $subject . ', Afd. nr.: '.$claim->department->name;
+                    }
                     if($claim->address1) {
                         $subject = $subject . ', '.$claim->address1->address;
                     }
