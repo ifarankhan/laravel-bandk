@@ -264,7 +264,9 @@
             <div class="imageGallery1 col-md-12">
                 @foreach($claim->images as $key => $image)
                     <div class="col-md-3" >
-                        <a href="{{ $image->image }}" ><img class="img-responsive" src="{{ $image->image }}" style="width: 250px; height: 250px;"/></a>
+                        <a href="{{ $image->image }}" >
+                            <img class="img-responsive {{ needRotate($image->image) ? 'rotate-image' : '' }}" src="{{ $image->image }}" style="width: 250px; height: 250px;"/>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -560,7 +562,7 @@
             opacity: 0;
             width: 100px;
         }
-        img {
+        img.rotate-image {
             -webkit-transform: rotate(90deg);
             -moz-transform: rotate(90deg);
             filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
