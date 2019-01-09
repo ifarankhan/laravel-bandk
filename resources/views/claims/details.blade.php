@@ -263,8 +263,8 @@
 
             <div class="imageGallery1 col-md-12">
                 @foreach($claim->images as $key => $image)
-                    <div class="col-md-3" style="width: 300px;height: 300px;">
-                        <a href="{{ $image->image }}" ><img class="img-responsive" src="{{ $image->image }}" /></a>
+                    <div class="col-md-3" s>
+                        <a href="{{ $image->image }}" ><img class="img-responsive" src="{{ $image->image }}" tyle="width: 300px;height: 300px;"/></a>
                     </div>
                 @endforeach
             </div>
