@@ -351,7 +351,7 @@
 @endsection
 
 @section('css')
-    <link href="https://dbrekalo.github.io/simpleLightbox/dist/simpleLightbox.min.css" rel="stylesheet">
+    <link href="{{ asset('/admin/css/simpleLightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/admin/css/dropzone.css') }}" rel="stylesheet">
     <style>
         table {border:none;}
@@ -569,8 +569,8 @@
 @endsection
 
 @section('js')
-    <script src="https://dbrekalo.github.io/simpleLightbox/dist/simpleLightbox.min.js"></script>
     <script src="{{ asset('/admin/js/dropzone.js') }}"></script>
+    <script src="{{ asset('/admin/js/simpleLightbox.min.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
             /*$("#demo_form2").dropzone({
