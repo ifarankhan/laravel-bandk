@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClaimImages extends Model
 {
-    protected $appends = ['image_path'];
+    protected $appends = ['image_path',];
     public function getImageAttribute($value)
     {
        $url =  asset('/images/'.$value);

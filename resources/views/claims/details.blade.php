@@ -265,7 +265,7 @@
                 @foreach($claim->images as $key => $image)
                     <div class="col-md-3" >
                         <a href="{{ $image->image }}" >
-                            <img class="img-responsive {{ needRotate($image->image) ? 'rotate-image' : '' }}" src="{{ $image->image }}" style="width: 250px; height: 250px;"/>
+                            <img class="img-responsive {{ needRotate($image->image_path) ? 'rotate-image' : '' }}" src="{{ $image->image }}" style="width: 250px; height: 250px;"/>
                         </a>
                     </div>
                 @endforeach
