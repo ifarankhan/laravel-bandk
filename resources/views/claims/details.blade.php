@@ -259,13 +259,16 @@
     </div>
     @if(count($claim->images) > 0)
         <div class="row">
-            @foreach($claim->images as $key => $image)
-                <div class="column">
-                    <img src="{{ $image->image }}" style="width:100%; max-height: 150px;min-height: 150px;" onclick="openModal();currentSlide({{ $key }})" class="hover-shadow cursor">
-                </div>
-            @endforeach
+
+            <div class="imageGallery1">
+                @foreach($claim->images as $key => $image)
+                    <a href="{{ $image->image }}" title="Caption for gallery item 1"><img src="{{ $image->image }}" alt="Gallery image 1" /></a>
+                    <a href="{{ $image->image }}" title="Caption for gallery item 2"><img src="{{ $image->image }}" alt="Gallery image 2" /></a>
+                    <a href="{{ $image->image }}" title="Caption for gallery item 3"><img src="{{ $image->image }}" alt="Gallery image 3" /></a>
+                @endforeach
+            </div>
         </div>
-        <div id="myModal" class="modal">
+        {{--<div id="myModal" class="modal">
             <span class="close cursor" onclick="closeModal()">&times;</span>
 
             <div class="modal-content">
@@ -289,7 +292,7 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div>--}}
     @endif
     <br />
     <br />
@@ -372,6 +375,7 @@
 @endsection
 
 @section('css')
+    <link href="https://dbrekalo.github.io/simpleLightbox/dist/simpleLightbox.min.css" rel="stylesheet">
     <link href="{{ asset('/admin/css/dropzone.css') }}" rel="stylesheet">
     <style>
         table {border:none;}
@@ -584,6 +588,7 @@
 @endsection
 
 @section('js')
+    <script src="https://dbrekalo.github.io/simpleLightbox/dist/simpleLightbox.min.js"></script>
     <script src="{{ asset('/admin/js/dropzone.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
@@ -591,6 +596,7 @@
                 autoProcessQueue: false,
 
             });*/
+            $('.imageGallery1 a').simpleLightbox();
             Dropzone.prototype.defaultOptions.dictRemoveFile = "Fjern fil";
             Dropzone.options.demoForm2 = {
                 maxFiles: 10,
