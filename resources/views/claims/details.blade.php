@@ -258,41 +258,15 @@
         </div>
     </div>
     @if(count($claim->images) > 0)
+
         <div class="row">
 
             <div class="imageGallery1">
                 @foreach($claim->images as $key => $image)
-                    <a href="{{ $image->image }}" title="Caption for gallery item 1"><img src="{{ $image->image }}" alt="Gallery image 1" /></a>
-                    <a href="{{ $image->image }}" title="Caption for gallery item 2"><img src="{{ $image->image }}" alt="Gallery image 2" /></a>
-                    <a href="{{ $image->image }}" title="Caption for gallery item 3"><img src="{{ $image->image }}" alt="Gallery image 3" /></a>
+                    <a href="{{ $image->image }}" title="Caption for gallery item 1"><img src="{{ $image->image }}" style="width:100%; max-height: 150px;min-height: 150px;" /></a>
                 @endforeach
             </div>
         </div>
-        {{--<div id="myModal" class="modal">
-            <span class="close cursor" onclick="closeModal()">&times;</span>
-
-            <div class="modal-content">
-
-                @foreach($claim->images as $key => $image)
-                    <div class="mySlides">
-                        <div class="numbertext">{{ $key + 1 }}</div>
-                        <img src="{{ $image->image }}" style="width:100%">
-                    </div>
-                @endforeach
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                <div class="caption-container">
-                    <p id="caption"></p>
-                </div>
-
-                @foreach($claim->images as $key => $image)
-                    <div class="column">
-                        <img class="demo cursor" src="{{ $image->image }}" style="width:100%" onclick="currentSlide({{ $key + 1 }})">
-                    </div>
-                @endforeach
-            </div>
-        </div>--}}
     @endif
     <br />
     <br />
