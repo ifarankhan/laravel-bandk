@@ -560,6 +560,11 @@
             opacity: 0;
             width: 100px;
         }
+        img {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        }
     </style>
 @endsection
 
