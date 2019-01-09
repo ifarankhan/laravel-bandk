@@ -261,9 +261,11 @@
 
         <div class="row">
 
-            <div class="imageGallery1">
+            <div class="imageGallery1 col-md-12">
                 @foreach($claim->images as $key => $image)
-                    <a href="{{ $image->image }}" title="Caption for gallery item 1"><img src="{{ $image->image }}" style="width:100%; max-height: 150px;min-height: 150px;" /></a>
+                    <div class="col-md-3">
+                        <a href="{{ $image->image }}" title="Caption for gallery item 1"><img src="{{ $image->image }}" style="width:100%; max-height: 150px;min-height: 150px;" /></a>
+                    </div>
                 @endforeach
             </div>
         </div>
