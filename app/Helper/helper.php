@@ -97,12 +97,9 @@ function isUpdated($claim)
 function needRotate($filename)
 {
     list($width, $height) = getimagesize($filename);
-
     if($height > $width) {
         return true;
     }
-
     return false;
-
 }
 
