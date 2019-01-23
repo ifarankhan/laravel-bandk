@@ -575,11 +575,22 @@
     <script src="{{ asset('/admin/js/simpleLightbox.min.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
-            /*$("#demo_form2").dropzone({
-                autoProcessQueue: false,
-
-            });*/
             $('.imageGallery1 a').simpleLightbox();
+
+
+            $('#btn_submit').on("click", function() {
+                var conversation = $("#conversation").val();
+
+                if(conversation == '') {
+                    $("#conversation").css('border-color', 'red');
+                    return false;
+                }
+                if($("#demoForm2").find(".dz-preview.dz-file-preview").length == 0) {
+                    $("#demoForm2").submit();
+                }
+                return false;
+            });
+
             Dropzone.prototype.defaultOptions.dictRemoveFile = "Fjern fil";
             Dropzone.options.demoForm2 = {
                 maxFiles: 10,
@@ -619,46 +630,6 @@
 
         function closeModal() {
             document.getElementById('myModal').style.display = "none";
-        }
-
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        updateList = function() {
-            var input = document.getElementById('all_files');
-            var output = document.getElementById('fileList');
-
-            output.innerHTML = '<ul>';
-            for (var i = 0; i < input.files.length; ++i) {
-                output.innerHTML += '<li>' + input.files.item(i).name + '</li>';
-            }
-            output.innerHTML += '</ul>';
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("demo");
-            var captionText = document.getElementById("caption");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
-            captionText.innerHTML = dots[slideIndex-1].alt;
         }
     </script>
 @endsection
