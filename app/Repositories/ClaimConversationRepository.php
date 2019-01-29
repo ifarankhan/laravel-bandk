@@ -51,7 +51,15 @@ class ClaimConversationRepository implements ClaimConversationInterface
         if(isset($data['file']) && count($data['file']) > 0) {
             foreach ($data['file'] as $file) {
                 $this->claimConversationFiles = new ClaimConversationFiles();
-                $uniqueFileName = uniqid() .'_'. $file->getClientOriginalName();
+                $fileName = explode(',', $file->getClientOriginalName());
+                $uniqueFileName = uniqid();
+
+                if(isset($fileName[1])) {
+                    $uniqueFileName = $uniqueFileName . '_' . $fileName[0] . '_'. $fileName[1];
+                } else {
+                    $uniqueFileName = $uniqueFileName . '_' . $fileName[0];
+                }
+                $uniqueFileName = $uniqueFileName.'.'.$file->getClientOriginalExtension();
                 $file->move(config('app.path_to_upload_files') , $uniqueFileName);
                 $this->claimConversationFiles->file_name = $uniqueFileName;
                 $this->claimConversationFiles->claim_conversation_id = $claimConversation->id;
