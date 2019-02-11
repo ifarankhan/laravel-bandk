@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Claims extends Model
 {
     protected $fillable = ['claim_type_id', 'estimate', 'date', 'claim_mechanic_id', 'is_updated',
-        'department_id', 'address_1', 'address_2', 'description', 'status', 'user_id', 'customer_id', 'rekv_nummer'];
+        'department_id', 'address_1', 'address_2', 'description', 'status', 'user_id', 'customer_id', 'rekv_nummer', 'is_damage_inspected', 'selsskab_skade_nummer'];
 
     public function conversations()
     {
@@ -48,6 +48,10 @@ class Claims extends Model
         }
         return $value;
     }
+    public function getIsDamageInspectedAttribute($value)
+    {
+        return (boolean)$value;
+    }
     public function getCreatedAtAttribute($value)
     {
         if ($value) {
@@ -55,11 +59,11 @@ class Claims extends Model
         }
         return $value;
     }
-/*    public function getUpdatedAtAttribute($value)
+    public function getUpdatedAtAttribute($value)
     {
         if ($value) {
-            return date('d-m-Y H:i:s', strtotime($value));
+            return date('d-m-Y', strtotime($value));
         }
         return $value;
-    }*/
+    }
 }

@@ -90,7 +90,6 @@ class ClaimRepository implements ClaimInterface
 
     public function otherFields($data)
     {
-
         $claim = $this->getOne($data['id']);
 
         if(isset($data['rekv_nummer'])) {
@@ -101,6 +100,8 @@ class ClaimRepository implements ClaimInterface
             $claim->estimate = $data['estimate'];
         }if(isset($data['status'])) {
             $claim->status = $data['status'];
+        }if(isset($data['is_damage_inspected'])) {
+            $claim->is_damage_inspected = $data['is_damage_inspected'];
         }
 
         return $claim->save();

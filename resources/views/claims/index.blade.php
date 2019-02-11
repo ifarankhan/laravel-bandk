@@ -210,12 +210,10 @@
                         <thead>
                         <tr>
                             <th>{{ getTranslation('updated_at') }}</th>
-                            <th>{{ getTranslation('claim_id') }}</th>
                             <th>{{ getTranslation('customer_name') }}</th>
-                            <th>{{ getTranslation('claim_created_at') }}</th>
                             <th>{{ getTranslation('date') }}</th>
+                            <th>Selskab skade nummer</th>
                             <th>{{ getTranslation('claim_type') }}</th>
-                            <th>{{ getTranslation('estimate') }}</th>
                             <th>{{ getTranslation('department') }}</th>
                             <th>{{ getTranslation('address_1') }}</th>
                             <th>{{ getTranslation('address_2') }}</th>
@@ -225,23 +223,22 @@
                         <tbody>
                         @foreach($claims as $claim)
                             <tr class="alert alert-{{ getClaimColor($claim) }}">
-                                <td>{{ $claim->updated_at }}
+                                <td data-sort="{{ date('Y-m-d', strtotime($claim->updated_at)) }}">{{ $claim->updated_at }}
                                     @if($claim->is_updated)
                                         <button class="btn btn-info">Opdateret</button>
                                      @endif
                                 </td>
-                                <td>{{ $claim->id }}</td>
                                 <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
-                                <td>{{ $claim->created_at }}</td>
-                                <td>{{ $claim->date }}</td>
+                                <td data-sort="{{ date('Y-m-d', strtotime($claim->date)) }}">{{ $claim->date }}</td>
+                                <td>{{ $claim->selsskab_skade_nummer }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
-                                <td data-claim-id="{{ $claim->id }}" data-csrf="{{ csrf_token() }}" data-url="{{ route('claim.detail.form') }}" class="estimate_value">{{ $claim->estimate }}</td>
+                                {{--<td data-claim-id="{{ $claim->id }}" data-csrf="{{ csrf_token() }}" data-url="{{ route('claim.detail.form') }}" class="estimate_value">{{ $claim->estimate }}</td>--}}
                                 <td>{{ ($claim->department) ? $claim->department->name : ''}}</td>
                                 <td>{{ ($claim->address1)  ? $claim->address1->address : ''}}</td>
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
-                                    <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success">{{ getTranslation('details') }}</a>
-                                    <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info">{{ getTranslation('edit') }}</a>
+                                    <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success btn-sm">{{ getTranslation('details') }}</a>
+                                    <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info btn-sm">{{ getTranslation('edit') }}</a>
                                 </td>
                             </tr>
                         @endforeach

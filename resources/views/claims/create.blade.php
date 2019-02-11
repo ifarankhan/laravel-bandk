@@ -110,6 +110,17 @@
                             </span>
                         @endif
                     </div>
+                    <div class="form-group">
+                        <label >{{ getTranslation('is_damage_inspected') }}</label>
+                        <div class="radio">
+                            <label for="optionsRadios1">
+                                <input type="radio"  value="1" id="optionsRadios1" name="is_damage_inspected"> Yes
+                            </label>
+                            <label for="optionsRadios2">
+                                <input type="radio" checked="" value="0" id="optionsRadios2" name="is_damage_inspected"> No
+                            </label>
+                        </div>
+                    </div>
                     <div class="form-group ">
                         <label for="estimate">{{ getTranslation('estimate') }}</label>
                         <input type="text" class="form-control" id="estimate" name="estimate" value="{{ old('estimate') }}" maxlength="10">
@@ -130,7 +141,7 @@
                         @endif
                     </div>
 
-                    <div class="form-group ">
+                    {{--<div class="form-group ">
                         <label for="heading">{{ getTranslation('mechanics_type') }}</label>
                         <select class="form-control" name="claim_mechanic_id">
                             <option value="">{{ getTranslation('select_claim_mechanic_type') }}</option>
@@ -143,7 +154,7 @@
                                 <strong>{{ $errors->first('claim_mechanic_id') }}</strong>
                             </span>
                         @endif
-                    </div>
+                    </div>--}}
 
                     <div class="form-group">
                         <label for="fileUpload">{{ getTranslation('attach_photo') }}</label>

@@ -29,18 +29,18 @@
                                 @endif
                             </div>
                         </div>
-                        {{--<div class="form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">Code <span class="required">*</span>
+                        <div class="form-group">
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="policy_number">{{ getTranslation('customer_policy_number') }}
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
-                                <input type="number" id="name" class="form-control col-md-7 col-xs-12" name="code" value="{{ old('code') }}">
-                                @if ($errors->has('code'))
+                                <input type="text" id="policy_number" class="form-control col-md-7 col-xs-12" name="policy_number" value="{{ old('policy_number') }}">
+                                @if ($errors->has('policy_number'))
                                     <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('code') }}</strong>
+                                        <strong>{{ $errors->first('policy_number') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>--}}
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer_id">{{ getTranslation('customer') }}<span class="required">*</span>
                             </label>

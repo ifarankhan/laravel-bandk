@@ -110,4 +110,15 @@
     <script src="{{ asset('/admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }} "></script>
     <script src="{{ asset('/admin/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }} "></script>
     <script src="{{ asset('/admin/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }} "></script>
+    <script src="{{ asset('/admin/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('#datatable1').dataTable(
+                {
+                    searching: false,
+                    paging: false
+                }
+            );
+        });
+    </script>
 @endsection

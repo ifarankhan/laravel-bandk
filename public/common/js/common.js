@@ -18,6 +18,16 @@ jQuery(document).ready(function () {
 
     });
 
+    jQuery("#link_type_i").on('click', function () {
+       jQuery("#internal_link").show();
+       jQuery("#external_link_text").hide();
+    });
+
+    jQuery("#link_type_e").on('click', function () {
+       jQuery("#internal_link").hide();
+       jQuery("#external_link_text").show();
+    });
+
     jQuery(".delete").on('click', function (event) {
         event.preventDefault();
         $(this).off('click');

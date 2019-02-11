@@ -29,18 +29,18 @@
                                 @endif
                             </div>
                         </div>
-                        {{--<div class="form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="name">Code <span class="required">*</span>
+                        <div class="form-group">
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="policy_number">{{ getTranslation('customer_policy_number') }}
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
-                                <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="code" value="{{ $department->code }}">
-                                @if ($errors->has('code'))
+                                <input type="text" id="policy_number" class="form-control col-md-7 col-xs-12" name="policy_number" value="{{ $department->policy_number }}">
+                                @if ($errors->has('policy_number'))
                                     <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('code') }}</strong>
+                                        <strong>{{ $errors->first('policy_number') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>--}}
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer_id">{{ getTranslation('customer') }}<span class="required">*</span>
                             </label>
@@ -62,10 +62,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-12">&nbsp;
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12">&nbsp
                             </label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
-                                <div class="col-md-10" id="address_div">
+                                <div class="col-md-10" >
                                     <table >
                                         <thead>
                                         <tr>
@@ -77,7 +77,7 @@
                                         </tr>
                                         </thead>
 
-                                        <tbody class="addresses">
+                                        <tbody class="addresses" id="address_div">
                                         @if(count($department->addresses) > 0)
                                             @foreach($department->addresses as $address)
                                                 <tr style="margin-bottom: 35px;" >

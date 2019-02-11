@@ -105,6 +105,8 @@ return [
 
     'claim_conversation_create_success_message' => 'Korrespondancen er oprettet/opdateret korrekt.',
     'claim_conversation_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
+    'is_damage_inspected' => 'Er skader inspiceret',
+    'link_type' => 'Link type',
 
 
 ];

@@ -42,7 +42,7 @@ class DepartmentsRepository implements DepartmentsInterface
             $query = $query->where('customer_id', $search['customer_id']);
         }
 
-        return $query->get();
+        return $query->orderBy('name', 'ASC')->get();
     }
 
     public function all()
@@ -52,7 +52,7 @@ class DepartmentsRepository implements DepartmentsInterface
         if(in_array('AGENT', $roles) && \Auth::user()->customer) {
             $query = $query->where('customer_id', \Auth::user()->customer->id);
         }
-        return $query->with(['addresses'])->get(['id', 'name', 'code']);
+        return $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
     }
 
     public function getOne($id)
@@ -68,6 +68,10 @@ class DepartmentsRepository implements DepartmentsInterface
 
         $this->model->name = $data['name'];
         $this->model->code = $data['code'];
+        if( isset($data['policy_number']) ) {
+            $this->model->policy_number = $data['policy_number'];
+        }
+
         $this->model->customer_id = $data['customer_id'];
 
         $this->model->save();
@@ -106,7 +110,7 @@ class DepartmentsRepository implements DepartmentsInterface
 
     public function getCustomerDepartment($customer_id)
     {
-        $departments = $this->model->where('customer_id', $customer_id)->get();
+        $departments = $this->model->where('customer_id', $customer_id)->orderBy('name', 'ASC')->get();
 
         if(count($departments) > 0 ) {
             return $departments;

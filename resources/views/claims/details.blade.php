@@ -96,7 +96,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><div class="col-md-12"><strong>Selsskab skade nummer:</strong></div></td>
+                            <td><div class="col-md-12"><strong>Selskab skade nummer:</strong></div></td>
                             <td>
                                 <div class="col-md-6"><strong>{{ getTranslation('address_2') }}:</strong></div>
                                 <div class="col-md-6">{{ ($claim->address_2)  ? $claim->address_2 : ''}}</div>
@@ -112,8 +112,7 @@
                                     <input type="hidden" name="id" value="{{ $claim->id }}">
                                     {{ csrf_field() }}
                                     <div style="margin-left: -2px;">
-                                        <input type="text" id="selsskab_skade_nummer" class="form-control" name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
-
+                                        <input type="text" id="selsskab_skade_nummer" class="form-control" name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selskab skade nummer">
                                     </div>
                                 </div>
 
@@ -136,7 +135,7 @@
                              </td>
                         </tr>
                         <tr>
-                            <td><div class="col-md-12"><strong>Rekv nummer:</strong></div></td>
+                            <td><div class="col-md-12"><strong>{{ getTranslation('is_damage_inspected') }}</strong></div></td>
                             <td>&nbsp;</td>
                             <td> &nbsp;</td>
                         </tr>
@@ -145,9 +144,13 @@
                                 <div class="col-md-12">
                                     <input type="hidden" name="id" value="{{ $claim->id }}">
                                     {{ csrf_field() }}
-                                    <div class="form-group" style="margin-left: -2px;">
-                                        <input type="text" id="rekv_nummer" class="form-control" name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
-
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" {{($claim->is_damage_inspected) ? 'checked=""' : ''}} value="1" id="optionsRadios1" name="is_damage_inspected"> Yes
+                                        </label>
+                                        <label>
+                                            <input type="radio" {{(!$claim->is_damage_inspected) ? 'checked=""' : ''}} value="0" id="optionsRadios2" name="is_damage_inspected"> No
+                                        </label>
                                     </div>
                                 </div>
                             </td>

@@ -101,6 +101,17 @@
 
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ getTranslation('link_type') }}</label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label for="link_type_i">
+                                        <input type="radio" checked="" value="1" id="link_type_i" name="link_type"> Indre
+                                    </label>
+                                    <label for="link_type_e">
+                                        <input type="radio" value="0" id="link_type_e" name="link_type"> Udvendig
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="internal_link">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Category
                                 </label>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -118,7 +129,19 @@
                                     </span>
                                     @endif
                                 </div>
+                            </div>
 
+                            <div class="form-group" id="external_link_text" style="display: none;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">External Link
+                                </label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="text" name="elink" id="elink" class="form-control col-md-7 col-xs-12">
+                                    @if ($errors->has('parent_id'))
+                                        <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('parent_id') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
 
                             </div>
 
@@ -207,12 +230,20 @@
                 var text = jQuery("#text").val();
                 var link_category = jQuery("#link_category");
                 var id = link_category.val();
+                var link = '';
                 if(text.trim() == '') {
                     text = jQuery("#link_category option:selected").text();
                 }
 
                 var content = jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html();
-                var link = '<a class="load-content" href="{{ route('home.index') }}'+'/content/'+id+'" data-id="'+id+'" data-url="/content/list/'+id+'">'+text+'</a>';
+
+                if(jQuery('#link_type_e').is(':checked')) {
+                    var eLink = jQuery("#elink").val();
+                    link = '<a href="'+eLink+'" data-id="0" data-url="0" target="_blank">'+text+'</a>';
+                } else if(jQuery('#link_type_i').is(':checked')) {
+                    link = '<a class="load-content" href="{{ route('home.index') }}'+'/content/'+id+'" data-id="'+id+'" data-url="/content/list/'+id+'">'+text+'</a>';
+                }
+
                 content = content + link;
 
                 jQuery('.wysihtml5-sandbox').contents().find('.wysihtml5-editor').html(content);
