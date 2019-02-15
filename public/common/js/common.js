@@ -118,8 +118,7 @@ jQuery(document).ready(function () {
         } else if(departments.length > 0) {
             departments.multiSelect('refresh');
             var departmentsSelected = jQuery("#departments_selected").val();
-            console.log(departmentsSelected);
-            if(departmentsSelected == 'null') {
+            if(departmentsSelected == 'null' || departmentsSelected == '') {
                 departmentsSelected = [];
             } else {
                 departmentsSelected = JSON.parse(departmentsSelected);
@@ -147,7 +146,6 @@ jQuery(document).ready(function () {
                             });
                             html = html + '</optgroup>';
                         });
-                        console.log(html);
                         departments.html(html);
                         departments.multiSelect('refresh');
                     }
