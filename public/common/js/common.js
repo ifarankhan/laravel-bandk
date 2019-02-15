@@ -118,7 +118,7 @@ jQuery(document).ready(function () {
         } else if(departments.length > 0) {
             departments.multiSelect('refresh');
             var departmentsSelected = jQuery("#departments_selected").val();
-
+            console.log(departmentsSelected);
             if(departmentsSelected == 'null') {
                 departmentsSelected = [];
             } else {
