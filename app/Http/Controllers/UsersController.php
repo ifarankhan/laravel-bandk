@@ -91,7 +91,6 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
-
         $response = $this->user->store($data);
 
         if($response) {

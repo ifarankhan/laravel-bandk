@@ -31,6 +31,7 @@ class UserRequest extends FormRequest
                 'password' => 'required',
                 'roles' => 'required',
                 'modules' => 'required',
+                'departments' => 'required',
                 'customer_id' => 'required'
             ];
         } else {
@@ -39,6 +40,7 @@ class UserRequest extends FormRequest
                 'phone_number' => 'required',
                 'email' => 'required',
                 'roles' => 'required',
+                'departments' => 'required',
                 'modules' => 'required',
             ];
 

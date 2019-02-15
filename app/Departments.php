@@ -10,4 +10,9 @@ class Departments extends Model
     {
         return $this->hasMany(Addresses::class, 'department_id', 'id');
     }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

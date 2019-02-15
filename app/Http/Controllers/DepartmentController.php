@@ -14,6 +14,7 @@ use App\Http\Requests\DepartmentRequest;
 use App\Repositories\CategoryInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
+use App\Repositories\TeamsInterface;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -97,5 +98,21 @@ class DepartmentController extends Controller
     public function customerDepartments($id)
     {
         return $this->departments->getCustomerDepartment($id);
+    }
+    public function customerGroupedDepartments($id)
+    {
+        $department =  $this->departments->getCustomerDepartment($id);
+        $departmentGroup = [];
+        if(count($department) > 0) {
+            foreach ($department as $dep) {
+                $team = 'No Team';
+                if(!is_null($dep->team_id)) {
+                    $team = $dep->team->name;
+                }
+                $departmentGroup[$team][] = $dep;
+            }
+        }
+
+        return $departmentGroup;
     }
 }

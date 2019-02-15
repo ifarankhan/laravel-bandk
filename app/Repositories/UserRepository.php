@@ -79,6 +79,8 @@ class UserRepository implements UserInterface
         $this->model->department_id = isset($data['department_id']) ? $data['department_id'] : null;
         $this->model->customer_id = isset($data['customer_id']) ? $data['customer_id'] : null;
         $this->model->phone_number = isset($data['phone_number']) ? $data['phone_number'] : null;
+
+        $this->model->departments = (count($data['departments']) > 0) ? json_encode($data['departments']) : null;
         if(isset($data['password'])) {
             $this->model->password = bcrypt($data['password']);
         }

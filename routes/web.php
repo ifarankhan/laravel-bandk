@@ -39,6 +39,13 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
     Route::post('/dashboard/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
 
+
+    Route::get('/dashboard/teams', 'TeamsController@index')->name('team.index');
+    Route::get('/dashboard/team/create', 'TeamsController@create')->name('team.create');
+    Route::post('/dashboard/team/create', 'TeamsController@store')->name('team.store');
+    Route::get('/dashboard/team/edit/{id}', 'TeamsController@edit')->name('team.edit');
+    Route::post('/dashboard/team/delete/{id}', 'TeamsController@delete')->name('team.delete');
+
     Route::get('/dashboard/categories/all', 'CategoryController@allCategories')->name('category.all');
     Route::get('/dashboard/categories/update', 'CategoryController@categoryUpdate')->name('category.update');
     Route::get('/dashboard/categories/create-json', 'CategoryController@categoryCreate')->name('category.create-json');
@@ -100,6 +107,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
     Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');
     Route::get('/customer/departments/{id}', 'DepartmentController@customerDepartments')->name('customer.department');
+    Route::get('/customer/departments/grouped/{id}', 'DepartmentController@customerGroupedDepartments')->name('customer.department');
+    Route::get('/customer/teams/{id}', 'TeamsController@customerTeams')->name('customer.teams');
     Route::get('/content/list/{categoryId}', 'ContentsController@getList')->name('content.list');
     Route::post('/claim/status', 'ClaimsController@updateStatus')->name('claim.status');
 });

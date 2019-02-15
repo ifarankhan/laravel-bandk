@@ -50,7 +50,11 @@ class DepartmentsRepository implements DepartmentsInterface
         $query = $this->model;
         $roles = getUserRoles(\Auth::user());
         if(in_array('AGENT', $roles) && \Auth::user()->customer) {
-            $query = $query->where('customer_id', \Auth::user()->customer->id);
+            if(\Auth::user()->departments) {
+                $query = $query->whereIn('id', json_decode(\Auth::user()->departments));
+            } else {
+                $query = $query->where('customer_id', \Auth::user()->customer->id);
+            }
         }
         return $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
     }
@@ -68,6 +72,7 @@ class DepartmentsRepository implements DepartmentsInterface
 
         $this->model->name = $data['name'];
         $this->model->code = $data['code'];
+        $this->model->team_id = $data['team_id'];
         if( isset($data['policy_number']) ) {
             $this->model->policy_number = $data['policy_number'];
         }

@@ -67,7 +67,11 @@ class ClaimRepository implements ClaimInterface
         if(in_array('AGENT', $userRoles)) {
 
             if(\Auth::user()->customer) {
-                $query = $query->where('customer_id', \Auth::user()->customer->id);
+                if(\Auth::user()->departments) {
+                    $query = $query->whereIn('department_id', json_decode(\Auth::user()->departments));
+                } else {
+                    $query = $query->where('customer_id', \Auth::user()->customer->id);
+                }
             }
 
         }

@@ -24,6 +24,8 @@ use App\Repositories\ModulesInterface;
 use App\Repositories\ModulesRepository;
 use App\Repositories\RolesInterface;
 use App\Repositories\RolesRepository;
+use App\Repositories\TeamsInterface;
+use App\Repositories\TeamsRepository;
 use App\Repositories\UserInterface;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Schema;
@@ -63,5 +65,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ClaimConversationInterface::class, ClaimConversationRepository::class);
         $this->app->singleton(CategoryInterface::class, CategoryRepository::class);
         $this->app->singleton(CustomerInterface::class, CustomerRepository::class);
+        $this->app->singleton(TeamsInterface::class, TeamsRepository::class);
     }
 }

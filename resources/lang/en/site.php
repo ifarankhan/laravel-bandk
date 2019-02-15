@@ -54,6 +54,7 @@ return [
     'total_customer' => 'Kunder',
     'claim_number' => 'Skade nr.',
     'select_customer' => 'Vælg kunde',
+    'select_team' => 'Vælg hold',
     'claim_id' => 'B&K skade nr.',
     'disable_enable_user' => 'Ikke aktiv/aktiv',
     'claim_person' => 'Anmelder',
@@ -107,6 +108,12 @@ return [
     'claim_conversation_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
     'is_damage_inspected' => 'Er skader inspiceret',
     'link_type' => 'Link type',
+    'teams' => 'Hold',
+    'team' => 'Hold',
+
+    'team_created_successfully' => 'Team blev oprettet med succes.',
+    'team_error_while_creating' => 'Fejl under oprettelse af team.',
+
 
 
 ];

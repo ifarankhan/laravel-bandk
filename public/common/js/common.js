@@ -83,30 +83,102 @@ jQuery(document).ready(function () {
         var value = jQuery(this).val();
         var loader = jQuery("i#customer_loader");
         var department = jQuery("select#department_id");
-        var selectedDepartment = jQuery("#hidden_department_1").val();
-        var url = $(this).data('url')+value;
-        var data = {};
-        if(value != '') {
-            loader.show();
-            sendAjax(url,data, 'get', function (response) {
-                if(response.length > 0) {
-                    var html = '<option value="" >Vælg afdeling</option>';
-                    var select = '';
-                    jQuery.each( response, function( key, value ) {
-                        select = '';
-                        if(selectedDepartment == value.id) {
-                            select = 'selected="selected"';
-                        }
-                        html = html + '<option value="'+value.id+'"'+select+'>'+value.name+'</option>';
-                    });
+        var departments = jQuery("select#departments");
+        var team = jQuery('select#team_id');
+        team.html('');
 
-                    department.html(html);
-                }
+        departments.html('');
 
-                loader.hide();
-                jQuery("#department_id").trigger('change');
+        if(department.length > 0) {
+            var selectedDepartment = jQuery("#hidden_department_1").val();
+            var url = $(this).data('url') + value;
+            var data = {};
+            if (value != '') {
+                loader.show();
+                sendAjax(url, data, 'get', function (response) {
+                    if (response.length > 0) {
+                        var html = '<option value="" >Vælg afdeling</option>';
+                        var select = '';
+                        jQuery.each(response, function (key, value) {
+                            select = '';
+                            if (selectedDepartment == value.id) {
+                                select = 'selected="selected"';
+                            }
+                            html = html + '<option value="' + value.id + '"' + select + '>' + value.name + '</option>';
+                        });
 
-            });
+                        department.html(html);
+                    }
+
+                    loader.hide();
+                    jQuery("#department_id").trigger('change');
+
+                });
+            }
+        } else if(departments.length > 0) {
+            departments.multiSelect('refresh');
+            var departmentsSelected = jQuery("#departments_selected").val();
+
+            if(departmentsSelected == 'null') {
+                departmentsSelected = [];
+            } else {
+                departmentsSelected = JSON.parse(departmentsSelected);
+            }
+
+
+            var url = $(this).data('url') + value;
+            var data = {};
+            if (value != '') {
+                loader.show();
+                sendAjax(url, data, 'get', function (response) {
+                    console.log(response);
+                    if (response.length != 0) {
+                        var html = '';
+                        var select = '';
+                        jQuery.each(response, function (key, value) {
+
+                            html = html + '<optgroup label="'+key+'">';
+                            jQuery.each(value, function (k,v) {
+                                select = '';
+                                if (departmentsSelected.includes(v.id.toString())){
+                                    select = 'selected="selected"';
+                                }
+                                html = html + '<option value="' + v.id + '"' + select + '>' + v.name + '</option>';
+                            });
+                            html = html + '</optgroup>';
+                        });
+                        console.log(html);
+                        departments.html(html);
+                        departments.multiSelect('refresh');
+                    }
+                    loader.hide();
+                });
+            }
+        } else if (team.length > 0) {
+            var selectedTeam = jQuery("#hidden_teams_id").val();
+            var url = $(this).data('url') + value;
+            var data = {};
+            if (value != '') {
+                loader.show();
+                sendAjax(url, data, 'get', function (response) {
+                    if (response.length > 0) {
+                        var html = '<option value="" >Vælg hold</option>';
+                        var select = '';
+                        jQuery.each(response, function (key, value) {
+                            select = '';
+                            if (selectedTeam == value.id) {
+                                select = 'selected="selected"';
+                            }
+                            html = html + '<option value="' + value.id + '"' + select + '>' + value.name + '</option>';
+                        });
+
+                        team.html(html);
+                        team.prop('disabled', false);
+                    }
+
+                    loader.hide();
+                });
+            }
         }
 
     });

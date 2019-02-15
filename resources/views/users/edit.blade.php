@@ -17,6 +17,7 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('users.store') }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $user->id }}">
+                        <input type="hidden" id="departments_selected" value="{{ $user->departments }}">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                             </label>
@@ -108,7 +109,7 @@
                         <div class="form-group" >
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer</label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control" name="customer_id" id="customer_id">
+                                <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/departments/grouped/">
                                     <option value="">Choose option</option>
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}" {{ ($customer->id == $user->customer_id) ? 'selected=selected' : '' }}>{{ $customer->name }}</option>
@@ -117,6 +118,20 @@
                                 @if ($errors->has('customer_id'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('customer_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="departments">{{ getTranslation('teams') }}<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-9 col-xs-12">
+                                <select id='departments' name="departments[]" multiple='multiple'>
+
+                                </select>
+                                @if ($errors->has('departments'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('departments') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -139,9 +154,11 @@
 
 @section('css')
     <link href="{{ asset('/admin/vendors/select2/dist/css/select2.min.css') }} " rel="stylesheet">
+    <link href="{{ asset('/admin/css/multi-select.css') }}" rel="stylesheet">
 @endsection
 @section('js')
     <script src="{{ asset('/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('/admin/js/jquery.multi-select.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
            jQuery("#roles").on('change', function(){
@@ -157,5 +174,6 @@
            });
         });
         $('.select2').select2();
+        $('#departments').multiSelect({ selectableOptgroup: true });
     </script>
 @endsection
