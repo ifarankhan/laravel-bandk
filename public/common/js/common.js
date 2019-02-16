@@ -130,7 +130,6 @@ jQuery(document).ready(function () {
             if (value != '') {
                 loader.show();
                 sendAjax(url, data, 'get', function (response) {
-                    console.log(response);
                     if (response.length != 0) {
                         var html = '';
                         var select = '';
