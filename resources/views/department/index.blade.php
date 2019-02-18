@@ -68,7 +68,7 @@
                         @foreach($departments as $department)
                                 @foreach($department->addresses as $key => $address)
                                     <tr id="content_{{ $department->id }}">
-                                        <td>{{ $department->name }}</td>
+                                        <td data-order="{{ intval($department->name) }}">{{ $department->name }}</td>
                                         <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
                                         <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
                                         <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
