@@ -355,7 +355,12 @@ class PassportController extends Controller
     }
     public function getOpenClaims()
     {
-        $response = $this->claim->openClaimsOfUser(\Auth::user()->id);
+        $userDepartments = (\Auth::user()->departments) ? json_decode(\Auth::user()->departments, true) : null;
+        if($userDepartments) {
+            $response = $this->claim->openClaimsOfUserByDepartment($userDepartments);
+        } else {
+            $response = $this->claim->openClaimsOfUser(\Auth::user()->id);
+        }
 
         if(count($response) == 0) {
             return response()->json([

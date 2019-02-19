@@ -85,7 +85,13 @@ class ClaimRepository implements ClaimInterface
     }
     public function openClaimsOfUser($userId)
     {
-        return $this->model->with(['conversations', 'conversations.files', 'customer', 'images', 'type', 'department', 'address1', 'mechanicsType'])->where('user_id' ,$userId)->where('status','OPEN')->orderBy('id', 'DESC')->get();
+        return $this->model->with(['conversations', 'conversations.files', 'customer', 'images', 'type', 'department', 'address1', 'mechanicsType'])
+            ->where('user_id' ,$userId)->where('status','OPEN')->orderBy('id', 'DESC')->get();
+    }
+    public function openClaimsOfUserBYDepartments($departments)
+    {
+        return $this->model->with(['conversations', 'conversations.files', 'customer', 'images', 'type', 'department', 'address1', 'mechanicsType'])
+            ->whereIn('department_id' ,$departments)->where('status','OPEN')->orderBy('id', 'DESC')->get();
     }
     public function allCount($user = null)
     {
