@@ -52,6 +52,14 @@
                             </div>
                         </div>
                     </form>
+                    <?php
+                        $departmentsArray = [];
+                        if($search && isset($search['customer_id']) && count($departments) > 0) {
+                            foreach ($departments as $department) {
+                                $departmentsArray[$department->name][] = $department;
+                            }
+                        }
+                    ?>
                     <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -65,22 +73,46 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($departments as $department)
-                                @foreach($department->addresses as $key => $address)
-                                    <tr id="content_{{ $department->id }}">
-                                        <td data-order="{{ intval($department->name) }}">{{ $department->name }}</td>
-                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
-                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
-                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
-                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
-                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
-                                        <td>
-                                            <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
-                                            <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
-                                        </td>
-                                    </tr>
+                        @if(count($departmentsArray) == 0)
+                            @foreach($departments as $department)
+                                    @foreach($department->addresses as $key => $address)
+                                        <tr id="content_{{ $department->id }}">
+                                            <td data-order="{{ intval($department->name) }}">{{ $department->name }}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
+                                            <td>
+                                                <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
+                                                <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                            @endforeach
+                        @elses
+                            @foreach($departmentsArray as $departmentsA)
+                                @foreach($departmentsA as $key1 => $department)
+                                    @foreach($department->addresses as $key => $address)
+                                        <tr id="content_{{ $address->id }}"  style="{{ ($key1 == 0 && $key == 0) ? '' : 'display:none' }}" class="{{ ($key1 == 0 && $key == 0) ? '' : 'toggle-class-'.$department->id }}">
+                                            <td data-order="{{ intval($department->name) }}">
+                                                {{ $department->name }}
+                                                {!! ($key1 == 0 && $key == 0 && count($department->addresses) > 1) ? '<br /><br /><a style="cursor:pointer;" class="btn btn-success btn-sm show_more" data-what-to-do="show" data-department-id="'.$department->id.'">Load more</a>': '' !!}
+                                            </td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
+                                            <td>
+                                                <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
+                                                <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @endforeach
-                        @endforeach
+                            @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -95,6 +127,15 @@
     <link href="{{ asset('/admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }} " rel="stylesheet">
+    <style>
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
 @endsection
 
 @section('js')
@@ -113,6 +154,22 @@
     <script src="{{ asset('/admin/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script>
         jQuery(document).ready(function () {
+            $('.show_more').on('click', function () {
+                var whatToDO = $(this).attr('data-what-to-do');
+                var departmentId = $(this).attr('data-department-id');
+
+                if(whatToDO == 'show') {
+                    $(this).attr('data-what-to-do', 'hide');
+                    $(".toggle-class-"+departmentId).show();
+                    $(this).html('Hide');
+                } else {
+                    $(this).attr('data-what-to-do', 'show');
+                    $(".toggle-class-"+departmentId).hide();
+                    $(this).html('Load more');
+                }
+
+
+            });
             $('#datatable1').dataTable(
                 {
                     searching: false,
