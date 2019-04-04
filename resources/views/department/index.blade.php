@@ -90,7 +90,7 @@
                                         </tr>
                                     @endforeach
                             @endforeach
-                        @elses
+                        @else
                             @foreach($departmentsArray as $departmentsA)
                                 @foreach($departmentsA as $key1 => $department)
                                     @foreach($department->addresses as $key => $address)
