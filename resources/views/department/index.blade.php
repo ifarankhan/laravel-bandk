@@ -97,7 +97,7 @@
                                         <tr id="content_{{ $address->id }}"  style="{{ ($key1 == 0 && $key == 0) ? '' : 'display:none' }}" class="{{ ($key1 == 0 && $key == 0) ? '' : 'toggle-class-'.$department->id }}">
                                             <td data-order="{{ intval($department->name) }}">
                                                 {!! ($key1 == 0 && $key == 0) ? $department->name : '' !!}
-                                                {!! ($key1 == 0 && $key == 0 && count($department->addresses) > 1) ? '<br /><br /><a style="cursor:pointer;" class="btn btn-success btn-sm show_more" data-what-to-do="show" data-department-id="'.$department->id.'">Load more</a>': '' !!}
+                                                {!! ($key1 == 0 && $key == 0 && count($department->addresses) > 1) ? '<br /><br /><a style="cursor:pointer;" class="show_more" data-what-to-do="show" data-department-id="'.$department->id.'">Load more</a>': '' !!}
                                             </td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
