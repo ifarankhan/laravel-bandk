@@ -241,7 +241,7 @@
                     var eLink = jQuery("#elink").val();
                     link = '<a href="'+eLink+'" data-id="0" data-url="0" target="_blank">'+text+'</a>';
                 } else if(jQuery('#link_type_i').is(':checked')) {
-                    link = '<a class="load-content" href="{{ route('home.index') }}'+'/content/'+id+'" data-id="'+id+'" data-url="/content/list/'+id+'">'+text+'</a>';
+                    link = '<a class="load-content" href="{{ env('APP_URL') }}'+'content/'+id+'" data-id="'+id+'" data-url="/content/list/'+id+'">'+text+'</a>';
                 }
 
                 content = content + link;
