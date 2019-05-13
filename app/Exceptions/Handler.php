@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof MethodNotAllowedHttpException)
         {
-            redirect()->route('home.index');
+            return redirect()->route('home.index');
         }
         return parent::render($request, $exception);
     }
