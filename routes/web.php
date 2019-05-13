@@ -115,7 +115,7 @@ Route::group(['middleware' => ['auth', 'can_access']], function() {
     Route::get('/claim/create', 'ClaimsController@create')->name('claim.create');
 
     Route::get('/', 'HomeController@index')->name('home.index');
-
+    Route::get('/home', 'HomeController@index')->name('home.index');
 
 });
 Route::group(['middleware' => ['auth']], function() {
