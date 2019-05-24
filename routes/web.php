@@ -13,7 +13,6 @@
 
 Route::get('/testing', function () {
     $users = \App\User::all();
-    dd($users);
     foreach ($users as $user) {
         $email = $user->email;
         $user->username = $email;
