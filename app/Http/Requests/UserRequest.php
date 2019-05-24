@@ -26,7 +26,8 @@ class UserRequest extends FormRequest
         if(is_null($this->get('id')))  {
             return [
                 'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'email' => 'required|email',
+                'username' => 'required|username|unique:users',
                 'phone_number' => 'required',
                 'password' => 'required',
                 'roles' => 'required',
@@ -39,6 +40,7 @@ class UserRequest extends FormRequest
                 'name' => 'required',
                 'phone_number' => 'required',
                 'email' => 'required',
+                'username' => 'required',
                 'roles' => 'required',
                 'departments' => 'required',
                 'modules' => 'required',

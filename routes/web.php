@@ -106,6 +106,9 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::post('/dashboard/customer/delete/{id}', 'CustomersController@delete')->name('customer.delete');
     Route::get('/dashboard/customer/details/{id}', 'CustomersController@details')->name('customer.details');
 
+    Route::get('/dashboard/meeting-place', 'MeetingPlaceController@index')->name('meeting-place.index');
+    Route::get('/dashboard/meeting-place/create', 'MeetingPlaceController@create')->name('meeting-place.create');
+    Route::get('/dashboard/meeting-place/store', 'MeetingPlaceController@store')->name('meeting-place.store');
 
 
 });

@@ -27,6 +27,18 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Username <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="username" class="form-control col-md-7 col-xs-12" name="username" value="{{ old('username') }}">
+                                @if ($errors->has('username'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
