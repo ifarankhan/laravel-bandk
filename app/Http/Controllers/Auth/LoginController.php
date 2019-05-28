@@ -62,13 +62,13 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request) + ['status' => true], $request->filled('remember')
+            ['username' => $request->get('email'), 'password' => $request->get('password')] + ['status' => true], $request->filled('remember')
         );
     }
 
     public function username()
     {
-        return 'username';
+        return 'email';
     }
 
     /**
