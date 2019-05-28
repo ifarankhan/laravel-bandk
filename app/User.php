@@ -39,7 +39,7 @@ class User extends Authenticatable
             ->select(['modules.id', 'modules.name', 'modules.text']);
     }
 
-    public function departments()
+    public function department()
     {
         return $this->belongsTo(Departments::class, 'department_id');
     }
