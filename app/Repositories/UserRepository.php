@@ -76,6 +76,7 @@ class UserRepository implements UserInterface
 
         $this->model->name = $data['name'];
         $this->model->email = $data['email'];
+        $this->model->username = $data['username'];
         $this->model->department_id = isset($data['department_id']) ? $data['department_id'] : null;
         $this->model->customer_id = isset($data['customer_id']) ? $data['customer_id'] : null;
         $this->model->phone_number = isset($data['phone_number']) ? $data['phone_number'] : null;
