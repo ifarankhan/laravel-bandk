@@ -30,6 +30,16 @@ class CategoryRepository implements CategoryInterface
         }
         return $query->with(['parent'])->get();
     }
+    public function search($search)
+    {
+        $query = $this->model;
+
+        if($search && isset($search['customer_id'])) {
+            $query = $query->orwhere('customer_id', null);
+            $query = $query->orwhere('customer_id', $search['customer_id']);
+        }
+        return $query->with(['parent', 'customer'])->get();
+    }
 
     public function getOne($id)
     {
@@ -99,14 +109,23 @@ class CategoryRepository implements CategoryInterface
         });
 
         return $query->get();
-
-
-
     }
 
     public function getCategory($categoryId)
     {
-        return  $this->model->with(['contents'])->where('id', $categoryId)->first(['id', 'title', 'icon', 'color', 'show_on_frontend']);
+        $category =   $this->model->with(['contents'])->where('id', $categoryId)->first(['id', 'title', 'icon', 'color', 'show_on_frontend']);
+
+        if(isset($category->contents) && count($category->contents) > 1) {
+            $userSpecific = hasThisUserSpecificContent(\Auth::user(), $category->contents);
+            if($userSpecific) {
+                $category->contents = $userSpecific;
+            } else {
+                $contents = getDefaultContents($category->contents);
+                $category->contents = $contents;
+            }
+        }
+
+        return $category;
     }
 
     public function allCategories($get)

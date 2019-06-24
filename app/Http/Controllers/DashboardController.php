@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ClaimInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\UserInterface;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -41,13 +42,15 @@ class DashboardController extends Controller
         $this->customer = $customer;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->get('search');
         $userCount = $this->user->allCount();
         $claimCount = $this->claim->allCount();
         $todayCount = $this->claim->todayCount();
         $todayClaims = $this->claim->todayClaims();
         $customersCount = $this->customer->allCount();
-        return view('dashboard.index', compact('userCount', 'claimCount', 'todayCount', 'todayClaims', 'customersCount'));
+        $customers = $this->customer->all();
+        return view('dashboard.index', compact('userCount', 'claimCount', 'todayCount', 'todayClaims', 'customersCount', 'customers', 'search'));
     }
 }

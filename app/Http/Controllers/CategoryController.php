@@ -38,11 +38,20 @@ class CategoryController extends Controller
         $this->customer = $customer;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = $this->category->all();
-        return view('categories.index', compact('categories'));
+        $search = $request->get('search');
+        $customers = $this->customer->all();
+        $categories = $this->category->search($search);
+        return view('categories.index', compact('categories', 'customers', 'search'));
     }
+    /*public function customerCategories($customerId)
+    {
+        $search = $request->get('search');
+        $customers = $this->customer->all();
+        $categories = $this->category->search($search);
+        return view('categories.index', compact('categories', 'customers', 'search'));
+    }*/
 
     public function create()
     {

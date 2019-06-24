@@ -61,11 +61,16 @@ Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard/content/edit/{id}', 'ContentsController@edit')->name('content.edit');
     Route::post('/dashboard/content/delete/{id}', 'ContentsController@delete')->name('content.delete');
 
+    Route::get('/dashboard/content/category/{category_id}/customer/{id}', 'ContentsController@customerCategoryContent')->name('category.customer.content');
+    Route::post('/dashboard/content/category/{category_id}/customer/{id}', 'ContentsController@postCustomerCategoryContent')->name('category.customer.content');
+
     Route::get('/dashboard/categories', 'CategoryController@index')->name('category.index');
     Route::get('/dashboard/category/create', 'CategoryController@create')->name('category.create');
     Route::post('/dashboard/category/create', 'CategoryController@store')->name('category.store');
     Route::get('/dashboard/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
     Route::post('/dashboard/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
+
+
 
 
     Route::get('/dashboard/teams', 'TeamsController@index')->name('team.index');

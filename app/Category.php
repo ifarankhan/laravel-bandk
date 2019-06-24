@@ -21,6 +21,10 @@ class Category extends Model
     {
         return $this->belongsTo(Category::class, 'parent_id', 'id');
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
 
     public function getChildrenCountAttribute()
     {
@@ -45,6 +49,6 @@ class Category extends Model
 
     public function contents()
     {
-        return $this->hasMany(Content::class, 'category_id', 'id')->select(['id', 'category_id', 'description', 'title']);
+        return $this->hasMany(Content::class, 'category_id', 'id')->select(['id', 'category_id', 'description', 'title', 'customer_id']);
     }
 }

@@ -7,6 +7,37 @@
     </ul>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
+            <form action="{{ route('content.index') }}" method="GET">
+                <div class="row">
+                    <div class="form-group form-group-sm col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4">
+                                <label for="customer_id">
+                                    {{ getTranslation('customer') }}
+                                </label>
+                                <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
+                                    <option value="">{{ getTranslation('select_customer') }}</option>
+                                    @foreach($customers as $aCustomer)
+                                        <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-lg-4">
+                                <div class="form-group form-group-sm ">
+                                    <label for="customer_id">
+                                        &nbsp;
+                                    </label>
+                                    <div class="">
+                                        <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Contents Lists</h2>
@@ -26,6 +57,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Category</th>
+                            <th>Customer</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -34,6 +66,7 @@
                             <tr id="content_{{ $content->id }}">
                                 <td>{{ $content->title }}</td>
                                 <td>{{ ($content->category) ? $content->category->title :  ''}}</td>
+                                <td>{{ ($content->customer) ? $content->customer->name :  'All'}}</td>
                                 <td>
                                     <a href="{{ route('content.edit', ['id'=> $content->id]) }}" class="btn btn-success">Redigere</a>
                                     <button data-id="{{ $content->id }}" data-url="{{ route('content.delete', ['id'=> $content->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>

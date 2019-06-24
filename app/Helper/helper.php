@@ -103,3 +103,158 @@ function needRotate($filename)
     return false;
 }
 
+function getCategoryIdAndName($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(isset($content->category)) {
+                return [
+                    'id' => $content->category->id,
+                    'title' => $content->category->title
+                ];
+            }
+        }
+    }
+    return [];
+}
+
+function getCustomerName($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(isset($content->customer)) {
+                return [
+                    'name' => $content->customer->name,
+
+                ];
+            }
+        }
+    }
+    return [];
+}
+
+
+
+function hasDefaultContent($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(is_null($content->customer_id)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+function hasUserSpecificContent($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(!is_null($content->customer_id)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function hasThisUserSpecificContent($user, $contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(!is_null($user->customer) && !is_null($content->cutomer_id) && $user->customer->id == $content->cutomer_id) {
+                return $content;
+            }
+        }
+    }
+    return false;
+}
+
+
+
+function getDefaultTitle($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(is_null($content->customer_id)) {
+                return $content->title;
+            }
+        }
+    }
+    return false;
+}
+function getUserSpecificTitle($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(!is_null($content->customer_id)) {
+                return $content->title;
+            }
+        }
+    }
+    return false;
+}
+
+function getDefaultContent($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(is_null($content->customer_id)) {
+                return $content->description;
+            }
+        }
+    }
+    return false;
+}
+
+function getDefaultContents($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $key => $content) {
+            if(!is_null($content->customer_id)) {
+                unset($contents[$key]);
+            }
+        }
+
+        return $contents;
+    }
+    return false;
+}
+
+function getDefaultContentId($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(is_null($content->customer_id)) {
+                return $content->id;
+            }
+        }
+    }
+    return false;
+}
+
+
+
+function getUserSpecificContent($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(!is_null($content->customer_id)) {
+                return $content->description;
+            }
+        }
+    }
+    return false;
+}
+
+function getUserSpecificContentId($contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(!is_null($content->customer_id)) {
+                return $content->id;
+            }
+        }
+    }
+    return false;
+}

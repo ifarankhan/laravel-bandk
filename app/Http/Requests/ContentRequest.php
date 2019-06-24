@@ -38,4 +38,20 @@ class ContentRequest extends FormRequest
         }
 
     }
+
+/*if($this->get('default_content_id')) {
+        return [
+        'default_title' => 'required',
+        'default_description' => 'required',
+        'category_id' => 'required',
+        ];
+}
+
+if($this->get('customer_content_id')) {
+    return [
+        'title' => 'required',
+        'description' => 'required',
+        'category_id' => 'required',
+    ];
+}*/
 }

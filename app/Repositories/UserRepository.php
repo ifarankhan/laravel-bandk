@@ -111,8 +111,21 @@ class UserRepository implements UserInterface
 
     public function getUserAllData($user)
     {
-        $data =  $this->model->with(['customer', 'departments'])->find($user->id);
-        //return $data;
-        return ($data->customer) ? $data->customer->departments : [];
+        $data =  $this->model->with(['customer', 'department'])->find($user->id);
+        $userDepartments = json_decode($data->departments);
+        $customerDepartments = ($data->customer) ? $data->customer->departments : [];
+        //dd($customerDepartments->pluck('id')->toArray(), $userDepartments);
+
+        if(count($customerDepartments) > 0) {
+
+            foreach ($customerDepartments as $key => $customerDepartment) {
+                //dump((string)$customerDepartment->id);
+                if(!in_array((string)$customerDepartment->id, $userDepartments)) {
+                    unset($customerDepartments[$key]);
+                }
+            }
+        }
+
+        return $customerDepartments;
     }
 }
