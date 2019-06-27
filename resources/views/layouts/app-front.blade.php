@@ -29,7 +29,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 margin-10">
-                <div class="col-xs-8 text-left zero-padding">
+                <div class="col-xs-10 text-left zero-padding">
                     <img src="/frontend/images/logob&k.png" alt="logo">
                     <div class="links">
                         <a href="{{ route('home.index') }}" class="link1 {{ \Request::route()->getName() == 'home.index' ? 'main-header-active': ''}}">{{ getTranslation('emergency_app') }}</a>
@@ -46,9 +46,13 @@
                         @elseif(in_array('AGENT', $rolesArray))
                             <a href="{{ route('claim.index') }}" class="link2 {{ \Request::route()->getName() == 'claim.index' ? 'main-header-active': ''}}">{{ getTranslation('my_claims') }}</a>
                         @endif
+
+                        @if(isset(\Auth::user()->customer) && !is_null(\Auth::user()->customer->shared_link))
+                            <a href="{{ \Auth::user()->customer->shared_link }}" class="link2" target="_blank">{{ getTranslation('shared_link') }}</a>
+                        @endif
                     </div>
                 </div>
-                <div class="col-xs-4 zero-padding text-right padding-15">
+                <div class="col-xs-2 zero-padding text-right padding-15">
                     <div class="right-section">
                         <img src="/frontend/images/logout.png" alt="img" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" style="cursor: pointer;">

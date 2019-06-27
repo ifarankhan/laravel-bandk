@@ -113,6 +113,7 @@ return [
 
     'team_created_successfully' => 'Team blev oprettet med succes.',
     'team_error_while_creating' => 'Fejl under oprettelse af team.',
+    'shared_link' => 'Fælles link',
 
 
 

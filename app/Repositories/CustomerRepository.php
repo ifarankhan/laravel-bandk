@@ -65,6 +65,7 @@ class CustomerRepository implements CustomerInterface
         $this->model->bnk_insurance_number = isset($data['bnk_insurance_number']) ? $data['bnk_insurance_number'] : null;
         $this->model->emails = isset($data['emails']) ? json_encode($data['emails']) : null;
         $this->model->is_send_email = isset($data['is_send_email']) ? true : false;
+        $this->model->shared_link = (isset($data['shared_link']) && !empty($data['shared_link'])) ? $data['shared_link'] : null;
 
         if(isset($data['logo'])) {
             $uniqueFileName = uniqid() . $data['logo']->getClientOriginalName();//.'.'.$image->getClientOriginalExtension();

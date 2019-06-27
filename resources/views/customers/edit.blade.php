@@ -129,6 +129,19 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="shared_link"> {{ getTranslation('shared_link') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="shared_link" class="form-control col-md-7 col-xs-12" name="shared_link" value="{{ $customer->shared_link }}">
+                                @if ($errors->has('shared_link'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('shared_link') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="insurance_number"> {{ getTranslation('customer_insurance_number') }}
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
