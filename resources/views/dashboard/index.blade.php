@@ -1,4 +1,11 @@
 @extends('layouts.app-admin')
+@section('css')
+    <style>
+        .h3, h3 {
+            font-size: 20px;
+        }
+    </style>
+@endsection
 
 @section('content')
     <form action="{{ route('dashboard.index') }}" method="GET">
@@ -24,6 +31,7 @@
                             </label>
                             <div class="">
                                 <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
+                                <a class="btn btn-success" href="{{ route('dashboard.index') }}">{{ getTranslation('reset') }}</a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +48,7 @@
                     <div class="icon"><i class="fa fa-users"></i>
                     </div>
                     <div class="count">{{ getTranslation('department') }}</div>
-                    <h3>&nbsp</h3>
+                    <h3>{{ getTranslation('department') }}</h3>
                 </div>
             </a>
         </div>
@@ -50,7 +58,7 @@
                     <div class="icon"><i class="fa fa-users"></i>
                     </div>
                     <div class="count">{{ getTranslation('claims') }}</div>
-                    <h3>&nbsp</h3>
+                    <h3>Skadehåndtering</h3>
                 </div>
             </a>
         </div>
@@ -60,7 +68,7 @@
                     <div class="icon"><i class="fa fa-briefcase"></i>
                     </div>
                     <div class="count">{{ getTranslation('categories') }}</div>
-                    <h3>&nbsp</h3>
+                    <h3>Beredskabsplan</h3>
                 </div>
             </a>
         </div>
@@ -70,7 +78,7 @@
                         <div class="icon"><i class="fa fa-briefcase"></i>
                         </div>
                         <div class="count">{{ getTranslation('content') }}</div>
-                        <h3>&nbsp</h3>
+                        <h3>Beredskabsplan</h3>
                     </div>
                 </a>
             </div>
@@ -80,7 +88,7 @@
     @endif
     <div class="row">
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('users.index') }}">
+            <a href="{{ ($search && isset($search['customer_id'])) ? route('users.index').'?search[customer_id]='.$search['customer_id'] :  route('users.index')}}">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-users"></i>
                     </div>
@@ -91,7 +99,7 @@
             </a>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('customer.index') }}">
+            <a href="{{ ($search && isset($search['customer_id'])) ? route('customer.index').'?search[customer_id]='.$search['customer_id'] : route('customer.index')}}">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-users"></i>
                     </div>
@@ -102,7 +110,7 @@
             </a>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('claim.index') }}">
+            <a href="{{ ($search && isset($search['customer_id'])) ? route('claim.index').'?search[customer_id]='.$search['customer_id'] :  route('claim.index')}}">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-briefcase"></i>
                     </div>
@@ -113,7 +121,7 @@
             </a>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('claim.index') }}?search[date]={{ date('Y-m-d') }}">
+            <a href="{{ ($search && isset($search['customer_id'])) ? route('claim.index').'?search[customer_id]='.$search['customer_id'] : route('claim.index') }}&search[date]={{ date('Y-m-d') }}">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-briefcase"></i>
                     </div>

@@ -45,12 +45,12 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $userCount = $this->user->allCount();
-        $claimCount = $this->claim->allCount();
-        $todayCount = $this->claim->todayCount();
-        $todayClaims = $this->claim->todayClaims();
-        $customersCount = $this->customer->allCount();
-        $customers = $this->customer->all();
+        $userCount = $this->user->allCount($search);
+        $claimCount = $this->claim->allCount($search);
+        $todayCount = $this->claim->todayCount($search);
+        $todayClaims = $this->claim->todayClaims($search);
+        $customersCount = $this->customer->allCount($search);
+        $customers = $this->customer->all($search);
         return view('dashboard.index', compact('userCount', 'claimCount', 'todayCount', 'todayClaims', 'customersCount', 'customers', 'search'));
     }
 }

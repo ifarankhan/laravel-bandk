@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V2;
 
 use App\ClaimImages;
 use App\Claims;
@@ -212,7 +212,8 @@ class PassportController extends Controller
                 'message' => 'Claim data',
                 'status' => $this->successStatus,
                 'data' => [
-                    'departments' => $this->user->getUserAllData(\Auth::user()),
+                    'companies' => $this->company->getUserCompanyData(\Auth::user()->companies),
+                    'department_ids' => $this->user->getUserDepartments(\Auth::user()),
                     'claim_types' => $claimTypes,
                     'claim_mechanics' => $claimMechanics,
                 ]

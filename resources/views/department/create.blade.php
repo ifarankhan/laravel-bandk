@@ -18,6 +18,7 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('department.store') }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" value="{{ old('team_id') }}" id="hidden_teams_id">
+                        <input type="hidden" value="{{ old('company_id') }}" id="hidden_company_id">
                         <div class="form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="title">{{ getTranslation('department') }} <span class="required">*</span>
                             </label>
@@ -71,6 +72,19 @@
                                 @if ($errors->has('team_id'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('team_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="company_id">{{ getTranslation('company') }}<span class="required">*</span>
+                            </label>
+                            <div class="col-md-11 col-sm-11 col-xs-12">
+                                <select class="form-control col-md-7 col-xs-12" name="company_id" id="company_id" disabled="disabled">
+                                </select>
+                                @if ($errors->has('company_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('company_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

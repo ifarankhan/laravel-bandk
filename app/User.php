@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','department_id', 'phone_number', 'username'
+        'name', 'email', 'password','department_id', 'phone_number', 'username', 'company_id'
     ];
 
     /**
@@ -46,5 +46,14 @@ class User extends Authenticatable
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
+    }
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'user_companies', 'user_id', 'company_id')->with(['departments'])->select(['*', 'user_companies.company_id']);
     }
 }

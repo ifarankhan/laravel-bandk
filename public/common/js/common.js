@@ -78,18 +78,118 @@ jQuery(document).ready(function () {
         });
     });
 
+    jQuery("#company_id_id").on('change', function(){
+        var value = jQuery(this).val();
 
+        var loader = jQuery("i#company_loader");
+        var department = jQuery("select#department_id");
+        var departments = jQuery("select#departments");
+        department.html('');
+        departments.html('');
+
+        var selectedDepartment = jQuery("#hidden_department_1").val();
+        var url = $(this).data('url') + value;
+        var data = {};
+        if(department.length > 0) {
+            if (value != '') {
+                loader.show();
+                sendAjax(url, data, 'get', function (response) {
+                    if (response.length > 0) {
+                        var html = '<option value="" >Vælg afdeling</option>';
+                        var select = '';
+                        jQuery.each(response, function (key, value) {
+                            select = '';
+                            if (selectedDepartment == value.id) {
+                                select = 'selected="selected"';
+                            }
+                            html = html + '<option value="' + value.id + '"' + select + '>' + value.name + '</option>';
+                        });
+                        department.html(html);
+                    }
+
+                    loader.hide();
+                    jQuery("#department_id").trigger('change');
+                });
+            }
+        }else if(departments.length > 0) {
+            departments.multiSelect('refresh');
+            var departmentsSelected = jQuery("#departments_selected").val();
+            if(departmentsSelected == 'null' || departmentsSelected == '') {
+                departmentsSelected = [];
+            } else {
+                departmentsSelected = JSON.parse(departmentsSelected);
+            }
+
+
+            var url = $(this).data('url') + value;
+            var data = {};
+            if (value != '') {
+                loader.show();
+                sendAjax(url, data, 'get', function (response) {
+                    if (response.length != 0) {
+                        var html = '';
+                        var select = '';
+                        jQuery.each(response, function (key, value) {
+
+                            html = html + '<optgroup label="'+key+'">';
+                            jQuery.each(value, function (k,v) {
+                                select = '';
+                                if (departmentsSelected.includes(v.id.toString())){
+                                    select = 'selected="selected"';
+                                }
+                                html = html + '<option value="' + v.id + '"' + select + '>' + v.name + '</option>';
+                            });
+                            html = html + '</optgroup>';
+                        });
+                        departments.html(html);
+                        departments.multiSelect('refresh');
+                    }
+                    loader.hide();
+                });
+            }
+        }
+
+
+    });
     jQuery("#customer_id").on('change', function(){
         var value = jQuery(this).val();
         var loader = jQuery("i#customer_loader");
         var department = jQuery("select#department_id");
+        var company = jQuery("select#company_id_id");
         var departments = jQuery("select#departments");
         var team = jQuery('select#team_id');
         team.html('');
 
         departments.html('');
+        if (company.length > 0) {
+            console.log('hello');
+            var selectedCompany = jQuery("#hidden_company_1").val();
+            var url = $(this).data('url') + value;
+            var data = {};
+            if (value != '' ) {
+                sendAjax(url, data, 'get', function (response) {
+                    company.html('');
+                    if (response.length > 0) {
 
-        if(department.length > 0) {
+                        var html = '<option value="" >Vælg Selskab</option>';
+                        var select = '';
+                        jQuery.each(response, function (key, value) {
+                            select = '';
+                            if (selectedCompany == value.id) {
+                                select = 'selected="selected"';
+                            }
+                            html = html + '<option value="' + value.id + '"' + select + '>' + value.name + '</option>';
+                        });
+
+                        company.html(html);
+                        company.prop('disabled', false);
+                    }
+                });
+
+                loader.hide();
+            }
+
+        } else if(department.length > 0) {
             var selectedDepartment = jQuery("#hidden_department_1").val();
             var url = $(this).data('url') + value;
             var data = {};
@@ -153,15 +253,16 @@ jQuery(document).ready(function () {
             }
         } else if (team.length > 0) {
             var selectedTeam = jQuery("#hidden_teams_id").val();
+            var selectedCompany = jQuery("#hidden_company_id").val();
             var url = $(this).data('url') + value;
             var data = {};
             if (value != '') {
                 loader.show();
                 sendAjax(url, data, 'get', function (response) {
-                    if (response.length > 0) {
+                    if (response.teams.length > 0) {
                         var html = '<option value="" >Vælg hold</option>';
                         var select = '';
-                        jQuery.each(response, function (key, value) {
+                        jQuery.each(response.teams, function (key, value) {
                             select = '';
                             if (selectedTeam == value.id) {
                                 select = 'selected="selected"';
@@ -172,6 +273,22 @@ jQuery(document).ready(function () {
                         team.html(html);
                         team.prop('disabled', false);
                     }
+                    if (response.companies.length > 0) {
+                    var company = $("#company_id");
+                        company.html('');
+                        var html = '<option value="" >Vælg Selskab</option>';
+                        var select = '';
+                        jQuery.each(response.companies, function (key, value) {
+                            select = '';
+                            if (selectedCompany == value.id) {
+                                select = 'selected="selected"';
+                            }
+                            html = html + '<option value="' + value.id + '"' + select + '>' + value.name + '</option>';
+                        });
+
+                        company.html(html);
+                        company.prop('disabled', false);
+                    }
 
                     loader.hide();
                 });
@@ -180,7 +297,15 @@ jQuery(document).ready(function () {
 
     });
 
-    jQuery("#customer_id").trigger('change');
+    if($('#company_id_id').length > 0) {
+            if($('#company_id_id option').length < 0)
+                jQuery("#customer_id").trigger('change');
+    } else {
+        jQuery("#customer_id").trigger('change');
+    }
+
+    jQuery("#company_id_id").trigger('change');
+
 
     jQuery("table#datatable1").on('click', '.enable-disable', function () {
         var isChecked = $(this).is(':checked');

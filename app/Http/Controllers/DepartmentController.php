@@ -99,9 +99,13 @@ class DepartmentController extends Controller
     {
         return $this->departments->getCustomerDepartment($id);
     }
+    public function companyDepartments($id)
+    {
+        return $this->departments->getCompanyDepartment($id);
+    }
     public function customerGroupedDepartments($id)
     {
-        $department =  $this->departments->getCustomerDepartment($id);
+        $department =  $this->departments->getCompanyDepartment($id);
         $departmentGroup = [];
         if(count($department) > 0) {
             foreach ($department as $dep) {

@@ -27,16 +27,22 @@ class ClaimRepository implements ClaimInterface
      * @var ClaimImages
      */
     private $claimImages;
+    /**
+     * @var DepartmentsInterface
+     */
+    private $departments;
 
     /**
      * ClaimRepository constructor.
      * @param Claims $claims
      * @param ClaimImages $claimImages
+     * @param DepartmentsInterface $departments
      */
-    public function __construct(Claims $claims, ClaimImages $claimImages)
+    public function __construct(Claims $claims, ClaimImages $claimImages, DepartmentsInterface $departments)
     {
         $this->model = $claims;
         $this->claimImages = $claimImages;
+        $this->departments = $departments;
     }
 
     public function getOne($id)
@@ -93,9 +99,13 @@ class ClaimRepository implements ClaimInterface
         return $this->model->with(['conversations', 'conversations.files', 'customer', 'images', 'type', 'department', 'address1', 'mechanicsType', 'creator'])
             ->whereIn('department_id' ,$departments)->where('status','OPEN')->orderBy('id', 'DESC')->get();
     }
-    public function allCount($user = null)
+    public function allCount($search = [])
     {
-        return $this->model->count();
+        $query = $this->model;
+        if (isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
+        return $query->count();
     }
 
     public function otherFields($data)
@@ -121,14 +131,21 @@ class ClaimRepository implements ClaimInterface
     {
         return $this->model->where('created_at','>=' ,date('Y-m-d'));
     }
-    public function todayCount($user = null)
+    public function todayCount($search = [])
     {
         $query = $this->todayClaimsQuery();
+        if (isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
         return $query->count();
     }
-    public function todayClaims($user = null)
+    public function todayClaims($search = [])
     {
         $query = $this->todayClaimsQuery();
+        if (isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
+
         return $query->orderBy('updated_at', 'DESC')->get();
     }
     public function createClaim($data)
@@ -147,6 +164,10 @@ class ClaimRepository implements ClaimInterface
         $data['date'] = $date;
         if(!isset($data['customer_id'])) {
             $data['customer_id'] = \Auth::user()->customer_id;
+        }
+        if(!isset($data['company_id'])) {
+            $department = $this->departments->getOne($data['department_id']);
+            $data['company_id'] = ($department->company) ? $department->company->id : null;
         }
 
         if(isset($data['rekv_number'])) {

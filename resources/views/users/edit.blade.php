@@ -119,9 +119,10 @@
                             </div>
                         </div>
                         <div class="form-group" >
+                            <input type="hidden" value="{{ $user->company_id }}" id="hidden_company_1">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer</label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/departments/grouped/">
+                                <select class="form-control " name="customer_id" id="customer_id" data-url="/customer/companies/">
                                     <option value="">Choose option</option>
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}" {{ ($customer->id == $user->customer_id) ? 'selected=selected' : '' }}>{{ $customer->name }}</option>
@@ -130,6 +131,26 @@
                                 @if ($errors->has('customer_id'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('customer_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <?php
+                            $userCompanies = ($user->companies) ? $user->companies->pluck('company_id')->toArray() : [];
+                        ?>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="company_id">{{ getTranslation('company') }}<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-9 col-xs-12">
+                                <select class="form-control col-md-7 col-xs-12 select2" name="companies[]" id="company_id_id" multiple="multiple" data-url="/customer/departments/grouped/">
+                                    <option value="">Choose option</option>
+                                    @foreach($companies as $company)
+                                        <option value="{{ $company->id }}" {{ (in_array($company->id, $userCompanies)) ? 'selected=selected' : '' }}>{{ $company->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('company_id'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('company_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

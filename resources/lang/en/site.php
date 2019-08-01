@@ -114,6 +114,12 @@ return [
     'team_created_successfully' => 'Team blev oprettet med succes.',
     'team_error_while_creating' => 'Fejl under oprettelse af team.',
     'shared_link' => 'Fælles link',
+    'companies' => 'Virksomheder',
+    'company' => 'Selskab',
+    'select_company' => 'Vælg Selskab',
+    'company_create_success_message' => 'Selskab er oprettet/opdateret korrekt',
+    'company_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
+    'reset' => 'Nulstil'
 
 
 

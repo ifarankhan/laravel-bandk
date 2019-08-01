@@ -22,7 +22,11 @@ class CustomerRepository implements CustomerInterface
 
     public function all()
     {
-        return $this->model->get();
+        $query = $this->model;
+        if(isset($search['customer_id'])) {
+            $query = $query->where('id', $search['customer_id']);
+        }
+        return $query->get();
     }
     public function search($search)
     {
@@ -32,9 +36,14 @@ class CustomerRepository implements CustomerInterface
         }
         return $query->get();
     }
-    public function allCount()
+    public function allCount($search = [])
     {
-        return $this->model->count();
+        $query = $this->model;
+        if(isset($search['customer_id'])) {
+            $query = $query->where('id', $search['customer_id']);
+        }
+
+        return $query->count();
     }
 
     public function getOne($id)

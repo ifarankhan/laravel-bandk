@@ -14,6 +14,7 @@ use App\Http\Requests\ClaimTypeRequest;
 use App\Http\Requests\TeamRequest;
 use App\Repositories\CategoryInterface;
 use App\Repositories\ClaimTypesInterface;
+use App\Repositories\CompanyInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\TeamsInterface;
 use Illuminate\Http\Request;
@@ -28,16 +29,22 @@ class TeamsController extends Controller
      * @var CustomerInterface
      */
     private $customer;
+    /**
+     * @var CompanyInterface
+     */
+    private $company;
 
     /**
      * TeamsController constructor.
      * @param TeamsInterface $teams
      * @param CustomerInterface $customer
+     * @param CompanyInterface $company
      */
-    public function __construct(TeamsInterface $teams, CustomerInterface $customer)
+    public function __construct(TeamsInterface $teams, CustomerInterface $customer, CompanyInterface $company)
     {
         $this->teams = $teams;
         $this->customer = $customer;
+        $this->company = $company;
     }
 
     public function index()
@@ -60,7 +67,13 @@ class TeamsController extends Controller
 
     public function customerTeams($id)
     {
-        return $this->teams->customerTeams($id);
+        $teams =  $this->teams->customerTeams($id);
+        $companies = $this->company->customerCompany($id);
+
+        return [
+            'teams' => $teams,
+            'companies' => $companies
+        ];
     }
 
     public function store(TeamRequest $request)

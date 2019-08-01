@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\UserRequest;
+use App\Repositories\CompanyInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\ModulesInterface;
@@ -39,6 +40,10 @@ class UsersController extends Controller
      * @var CustomerInterface
      */
     private $customer;
+    /**
+     * @var CompanyInterface
+     */
+    private $company;
 
     /**
      * UsersController constructor.
@@ -47,8 +52,9 @@ class UsersController extends Controller
      * @param RolesInterface $roles
      * @param ModulesInterface $modules
      * @param CustomerInterface $customer
+     * @param CompanyInterface $company
      */
-    public function __construct(UserInterface $user, DepartmentsInterface $departments, RolesInterface $roles, ModulesInterface $modules, CustomerInterface $customer)
+    public function __construct(UserInterface $user, DepartmentsInterface $departments, RolesInterface $roles, ModulesInterface $modules, CustomerInterface $customer, CompanyInterface $company)
     {
 
         $this->user = $user;
@@ -56,6 +62,7 @@ class UsersController extends Controller
         $this->roles = $roles;
         $this->modules = $modules;
         $this->customer = $customer;
+        $this->company = $company;
     }
 
     public function index(Request $request)
@@ -79,7 +86,8 @@ class UsersController extends Controller
         $roles = $this->roles->all();
         $modules = $this->modules->all();
         $customers = $this->customer->all();
-        return view('users.edit', compact('roles', 'modules', 'customers', 'user'));
+        $companies = $this->company->customerCompany(\Auth::user()->customer_id);
+        return view('users.edit', compact('roles', 'modules', 'customers', 'user', 'companies'));
     }
     public function status($id, Request $request)
     {

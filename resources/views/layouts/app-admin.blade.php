@@ -30,6 +30,9 @@
     <link href="{{ asset('/admin/build/css/custom.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/admin/vendors/html-editor/bootstrap-wysihtml5.css') }}" rel="stylesheet">
     <style>
+        .tile-stats .count {
+            font-size: 30px;
+        }
         /* Style the list */
         ul.breadcrumb {
             margin-top: 50px;

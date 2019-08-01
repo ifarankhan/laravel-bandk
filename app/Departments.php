@@ -15,4 +15,9 @@ class Departments extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
 }

@@ -31,7 +31,7 @@
                         <label for="heading">{{ getTranslation('customer') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="customer_loader"></i>
                         </label>
-                        <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/departments/">
+                        <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/companies/">
                             <option value="">{{ getTranslation('select_customer_id') }}</option>
                             @foreach($customers as $customer)
                                 <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
@@ -48,9 +48,26 @@
                         @endif
                     </div>
                     @else
-                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ \Auth::user()->customer_id }}">
+                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/companies/" value="{{ \Auth::user()->customer_id }}">
                     @endif
-
+                    @if(in_array('ADMIN', $roles))
+                    <div class="form-group ">
+                        <label for="department">{{ getTranslation('company') }}
+                            <i class="fa fa-spin fa-spinner" style="display: none;" id="company_loader"></i>
+                        </label>
+                        <input type="hidden" value="{{ old('company_id') }}" id="hidden_company_1">
+                        <select class="form-control" name="company_id" id="company_id_id" data-url="/company/departments/">
+                            <option value="">{{ getTranslation('select_company') }}</option>
+                        </select>
+                        @if ($errors->has('company_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('company_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    @else
+                        <input type="hidden" name="company_id" id="company_id_id" data-url="/company/departments/" value="{{ \Auth::user()->company_id }}">
+                    @endif
                     <div class="form-group ">
                         <label for="department">{{ getTranslation('department') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>

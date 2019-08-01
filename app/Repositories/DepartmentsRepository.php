@@ -78,6 +78,7 @@ class DepartmentsRepository implements DepartmentsInterface
         }
 
         $this->model->customer_id = $data['customer_id'];
+        $this->model->company_id = $data['company_id'];
 
         $this->model->save();
 
@@ -116,6 +117,16 @@ class DepartmentsRepository implements DepartmentsInterface
     public function getCustomerDepartment($customer_id)
     {
         $departments = $this->model->where('customer_id', $customer_id)->orderBy('name', 'ASC')->get();
+
+        if(count($departments) > 0 ) {
+            return $departments;
+        }
+        return [];
+    }
+    public function getCompanyDepartment($companyId)
+    {
+        $ids = explode(',', $companyId);
+        $departments = $this->model->whereIn('company_id', $ids)->orderBy('name', 'ASC')->get();
 
         if(count($departments) > 0 ) {
             return $departments;

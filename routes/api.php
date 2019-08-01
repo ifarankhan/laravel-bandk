@@ -31,3 +31,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::delete('/claim/image/{id?}', 'API\PassportController@deleteClaimImage');
 });
+
+Route::group(['middleware' => 'auth:api'], function (){
+    Route::post('/v2/claim-form-data', 'API\V2\PassportController@getClaimFormData');
+});

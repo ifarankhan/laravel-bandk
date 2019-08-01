@@ -47,9 +47,13 @@ class UserRepository implements UserInterface
         }
         return $query->get();
     }
-    public function allCount()
+    public function allCount($search = [])
     {
-        return $this->model->count();
+        $query = $this->model;
+        if (isset($search['customer_id'])) {
+            $query = $query->where('customer_id', $search['customer_id']);
+        }
+        return $query->count();
     }
 
     public function getOne($id)
@@ -72,6 +76,7 @@ class UserRepository implements UserInterface
             $this->model = $this->model->find($data['id']);
             $this->model->modules()->detach();
             $this->model->roles()->detach();
+            $this->model->companies()->detach();
         }
 
         $this->model->name = $data['name'];
@@ -89,6 +94,7 @@ class UserRepository implements UserInterface
 
         $this->model->modules()->attach($data['modules']);
         $this->model->roles()->attach($data['roles']);
+        $this->model->companies()->attach($data['companies']);
 
         if(!isset($data['id'])) {
             try {
@@ -111,13 +117,12 @@ class UserRepository implements UserInterface
 
     public function getUserAllData($user)
     {
-        $data =  $this->model->with(['customer', 'department'])->find($user->id);
+        $data =  $this->model->with(['customer', 'department', 'company'])->find($user->id);
         $userDepartments = json_decode($data->departments);
         $customerDepartments = ($data->customer) ? $data->customer->departments : [];
         //dd($customerDepartments->pluck('id')->toArray(), $userDepartments);
 
         if(count($customerDepartments) > 0) {
-
             foreach ($customerDepartments as $key => $customerDepartment) {
                 //dump((string)$customerDepartment->id);
                 if(!in_array((string)$customerDepartment->id, $userDepartments)) {
@@ -127,5 +132,12 @@ class UserRepository implements UserInterface
         }
 
         return $customerDepartments;
+    }
+
+    public function getUserDepartments($user)
+    {
+        $department = $this->getUserAllData($user);
+
+        return $department->pluck('id')->toArray();
     }
 }

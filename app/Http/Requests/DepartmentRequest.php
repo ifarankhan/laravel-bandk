@@ -28,6 +28,7 @@ class DepartmentRequest extends FormRequest
                 'name' => 'required',
                 /*'code' => 'required|numeric',*/
                 'customer_id' => 'required',
+                'company_id' => 'required',
                 'team_id' => 'required',
                 'addresses' => 'required'
             ];
@@ -38,6 +39,7 @@ class DepartmentRequest extends FormRequest
             //'name' => 'required|unique:departments,name,'.$this->get('customer_id').',customer_id',
             /*'code' => 'required|numeric|unique:departments',*/
             'customer_id' => 'required',
+            'company_id' => 'required',
             'team_id' => 'required',
             'addresses' => 'required'
         ];
