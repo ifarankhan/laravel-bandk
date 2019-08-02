@@ -48,17 +48,18 @@
                         </li>
                     @endif
                     @if(in_array('ADMIN',$userRoles))
+
+                        <li><a><i class="fa fa-file-archive-o"></i> Beredskabsplan <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ route('category.index') }}">Hændelser</a></li>
+                                <li><a href="{{ route('content.index') }}">Indhold</a></li>
+                            </ul>
+                        </li>
                         <li><a><i class="fa fa-wrench"></i> Opsætning <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('claim-type.index') }}">Opsætning</a></li>
                                 <li><a href="{{ route('claim-mechanic.index') }}">Håndvækertype</a></li>
                                 <li><a href="{{ route('team.index') }}">Hold</a></li>
-                            </ul>
-                        </li>
-                        <li><a><i class="fa fa-file-archive-o"></i> Beredskabsplan <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{ route('category.index') }}">Hændelser</a></li>
-                                <li><a href="{{ route('content.index') }}">Indhold</a></li>
                             </ul>
                         </li>
 
