@@ -112,6 +112,14 @@ class PassportController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
+            $companies = [];
+
+            if($user->companies) {
+                $companies = $user->companies->map(function ($company) {
+                    return collect(['id' => $company->company_id, 'name' => $company->name])
+                        ->all();
+                });
+            }
             return response()->json(
                 [
                     'status' => $this->successStatus,
@@ -122,6 +130,7 @@ class PassportController extends Controller
                         'id' => $user->id,
                         'roles' => ($user->roles) ? $user->roles : [],
                         'modules' => ($user->modules) ? $user->modules: [],
+                        'companies' => $companies
                     ]
 
                 ],

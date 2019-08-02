@@ -17,7 +17,9 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 
-
+/**
+ * Api version 1
+ */
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
 Route::group(['middleware' => 'auth:api'], function() {
@@ -32,6 +34,23 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::delete('/claim/image/{id?}', 'API\PassportController@deleteClaimImage');
 });
 
-Route::group(['middleware' => 'auth:api'], function (){
-    Route::post('/v2/claim-form-data', 'API\V2\PassportController@getClaimFormData');
+
+/**
+ * API version 2
+ */
+
+Route::post('/v2/login', 'API\V2\PassportController@login');
+Route::post('/v2/register', 'API\V2\PassportController@register');
+
+Route::group(['prefix' => 'v2','middleware' => 'auth:api'], function (){
+    Route::post('/claim-form-data', 'API\V2\PassportController@getClaimFormData');
+
+    Route::post('/claim/create', 'API\V2\PassportController@createClaim');
+    Route::get('/categories', 'API\V2\PassportController@getCategories');
+    Route::get('/user/roles', 'API\V2\PassportController@getUserRoles');
+    Route::get('/category/{id?}', 'API\V2\PassportController@getCategory');
+    Route::get('/claim/{id?}', 'API\V2\PassportController@getClaim');
+    Route::get('/claims/open', 'API\V2\PassportController@getOpenClaims');
+
+    Route::delete('/claim/image/{id?}', 'API\V2\PassportController@deleteClaimImage');
 });
