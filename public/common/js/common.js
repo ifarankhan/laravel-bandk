@@ -379,7 +379,6 @@ jQuery(document).ready(function () {
         }
     });*/
 
-
     jQuery("button#add_address").on('click', function(){
         var parent = jQuery('tbody#address_div');
         var index = jQuery(".addresses").length;
