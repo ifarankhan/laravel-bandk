@@ -52,5 +52,7 @@ Route::group(['prefix' => 'v2','middleware' => 'auth:api'], function (){
     Route::get('/claim/{id?}', 'API\V2\PassportController@getClaim');
     Route::get('/claims/open', 'API\V2\PassportController@getOpenClaims');
 
+    Route::get('/user/companies', 'API\V2\PassportController@getUserCompanies');
+
     Route::delete('/claim/image/{id?}', 'API\V2\PassportController@deleteClaimImage');
 });

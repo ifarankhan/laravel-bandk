@@ -44,9 +44,24 @@ class CompanyRepository implements CompanyInterface
 
     public function getUserCompanyData($companies)
     {
+        $userDepartments = (\Auth::user()->departments) ? json_decode((\Auth::user()->departments)) : [];
         $companiesIds = $companies->pluck('company_id')->toArray();
 
-        return $this->model->whereIn('id', $companiesIds)->with(['departments'])->get();
+        $companies = $this->model->whereIn('id', $companiesIds)->with(['departments'])->get();
+
+        if(count($companies) > 0) {
+            foreach ($companies as $key => $company) {
+                if(count($company->departments) > 0) {
+                    foreach ($company->departments as $k => $department) {
+                        if(!in_array($department->id, $userDepartments)) {
+                            unset($company->departments[$k]);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $companies;
     }
 
     public function customerCompany($customer_id)

@@ -222,7 +222,7 @@ class PassportController extends Controller
                 'status' => $this->successStatus,
                 'data' => [
                     'companies' => $this->company->getUserCompanyData(\Auth::user()->companies),
-                    'department_ids' => $this->user->getUserDepartments(\Auth::user()),
+                    //'department_ids' => $this->user->getUserDepartments(\Auth::user()),
                     'claim_types' => $claimTypes,
                     'claim_mechanics' => $claimMechanics,
                 ]
@@ -418,6 +418,13 @@ class PassportController extends Controller
             'message' => 'Image deleted Successfully',
             'data' => null
         ], $this->successStatus);
+    }
+
+
+    public function getUserCompanies()
+    {
+        $user = \Auth::user();
+        return ($user->companies) ? $user->companies : [];
     }
 
 }
