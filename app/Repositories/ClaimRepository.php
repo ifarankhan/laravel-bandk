@@ -121,7 +121,7 @@ class ClaimRepository implements ClaimInterface
         }if(isset($data['status'])) {
             $claim->status = $data['status'];
         }if(isset($data['is_damage_inspected'])) {
-            $claim->is_damage_inspected = $data['is_damage_inspected'];
+            $claim->is_damage_inspected = ($data['is_damage_inspected']) ? 1 : 0;
         }
 
         return $claim->save();

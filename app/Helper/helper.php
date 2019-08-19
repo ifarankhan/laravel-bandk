@@ -169,6 +169,17 @@ function hasThisUserSpecificContent($user, $contents)
     }
     return false;
 }
+function hasThisUserSpecificContentByCompanyByCustomerThenDefault($user, $contents)
+{
+    if(!is_null($contents)) {
+        foreach ($contents as $content) {
+            if(!is_null($user->customer) && !is_null($content->cutomer_id) && $user->customer->id == $content->cutomer_id) {
+                return $content;
+            }
+        }
+    }
+    return false;
+}
 
 
 
@@ -257,4 +268,29 @@ function getUserSpecificContentId($contents)
         }
     }
     return false;
+}
+
+function getCompanyContent($companyId, $customerId, $categoryId)
+{
+    $content = app(\App\Repositories\ContentInterface::class)->getCompanyContent($companyId, $customerId, $categoryId);
+    $contentArray = [];
+    if(!isset($content->id)) {
+        $contentArray['id'] = '';
+    } else {
+        $contentArray['id'] = $content->id;
+    }
+    if(!isset($content->title)) {
+        $contentArray['title'] = '';
+    } else {
+        $contentArray['title'] = $content->title;
+    }
+    if(!isset($content->description)) {
+        $contentArray['description'] = '';
+    } else {
+        $contentArray['description'] = $content->description;
+    }
+
+    return $contentArray;
+
+
 }

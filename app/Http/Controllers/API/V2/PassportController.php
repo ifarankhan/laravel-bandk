@@ -320,8 +320,9 @@ class PassportController extends Controller
 
 
     }
-    public function getCategory($id = null)
+    public function getCategory($id = null, Request $request)
     {
+        $companyId = $request->query('companyId');
         if(is_null($id)) {
             return response()->json([
                 'status' => 201,
@@ -329,7 +330,7 @@ class PassportController extends Controller
                 'data' => null
             ], $this->successStatus);
         }
-        $response = $this->category->getCategory($id);
+        $response = $this->category->getUserSpecificContentByCompanyByCustomerThenDefault($id, $companyId, \Auth::user()->customer_id);
 
         if(count($response) == 0) {
             return response()->json([

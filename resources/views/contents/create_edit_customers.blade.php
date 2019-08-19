@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Default Title <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
                                     <input type="text" id="title" required="required" class="form-control col-md-7 col-xs-12" name="default_title" value="{{ getDefaultTitle($contents) }}">
                                     @if ($errors->has('title'))
                                         <span class="help-block" style="color: red;">
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Default Description <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
                                     <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="default_description" style="width: 100%; height: 100%;">{{ getDefaultContent($contents) }}</textarea>
                                     @if ($errors->has('description'))
                                         <span class="help-block" style="color: red;">
@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title for {{ $customer->name }}<span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
                                 <input type="text" id="title" required="required" class="form-control col-md-7 col-xs-12" name="title" value="{{ getUserSpecificTitle($contents) }}">
                                 @if ($errors->has('title'))
                                     <span class="help-block" style="color: red;">
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description for {{ $customer->name }}<span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
                                 <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="description" style="width: 100%; height: 100%;">{{ getUserSpecificContent($contents) }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block" style="color: red;">
@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Category
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
                                 <?php
                                     $category = getCategoryIdAndName($contents);
                                 ?>
@@ -103,6 +103,52 @@
                                 @endif
                             </div>
 
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Companies Content
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div id="accordion">
+                                    @if(count($customer->companies) > 0)
+                                        @foreach($customer->companies as $company)
+                                            <h3>{{ $company->name }}</h3>
+                                        <?php
+                                            $companyContent = getCompanyContent($company->id, $customer->id, $categoryId);
+                                        ?>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Title <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name=company_title_description[{{ $company->id }}][title] value="{{ $companyContent['title'] }}">
+                                                        <input type="hidden" id="title" class="form-control col-md-7 col-xs-12" name=company_title_description[{{ $company->id }}][content_id] value="{{ $companyContent['id'] }}">
+                                                        @if ($errors->has('title'))
+                                                            <span class="help-block" style="color: red;">
+                                                                <strong>{{ $errors->first('title') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Description<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                        <textarea  class="form-control col-md-7 col-xs-12 wysihtml5" name=company_title_description[{{ $company->id }}][description] style="width: 100%; height: 100%;">{{ $companyContent['description'] }}</textarea>
+                                                        @if ($errors->has('description'))
+                                                            <span class="help-block" style="color: red;">
+                                                                <strong>{{ $errors->first('description') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
 
                         <br />
@@ -236,11 +282,14 @@
 
 @section('css')
     <link href="{{ asset('/admin/vendors/select2/dist/css/select2.min.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/admin/vendors/jquery.ui/jquery-ui.css') }}">
 @endsection
 @section('js')
+    <script src="{{ asset('/admin/vendors/jquery.ui/jquery-ui.js') }}"></script>
     <script src="{{ asset('/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
+            $( "#accordion" ).accordion();
             $('.wysihtml5').wysihtml5({
                 "classes": { "*":1 },
                 "stylesheets": ["{{ asset('/admin/vendors/html-editor/wysiwyg-color.css') }}"],

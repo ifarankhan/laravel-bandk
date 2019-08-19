@@ -15,6 +15,11 @@ class Customer extends Model
         return $this->hasMany(Departments::class, 'customer_id', 'id')->with(['addresses']);
     }
 
+    public function companies()
+    {
+        return $this->hasMany(Company::class, 'customer_id', 'id');
+    }
+
     public function getLogoAttribute($value)
     {
         if(!is_null($value)) {

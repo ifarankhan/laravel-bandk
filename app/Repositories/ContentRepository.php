@@ -105,12 +105,69 @@ class ContentRepository implements ContentInterface
 
         $this->model->save();
 
-        return $this->model;
+        $result = $this->model;
+
+        if(isset($data['company_title_description'])) {
+            foreach ($data['company_title_description'] as $companyId => $content) {
+                if(!is_null($content['content_id'])) {
+                    $this->model = $this->model->find($content['content_id']);
+                } else {
+                    $this->model = new Content();
+                }
+                if(!is_null($content['title']) && !is_null($content['description'])) {
+                    $this->model->title = ($content['title']) ? $content['title'] : '';
+                    $this->model->description = ($content['description']) ? $content['description'] : '';
+                    $this->model->company_id = $companyId;
+                    $this->model->customer_id = isset($data['customer_id']) ? $data['customer_id'] : null;
+                    $this->model->category_id = isset($data['category_id']) ? $data['category_id'] : null;
+
+                    $this->model->save();
+                }
+
+            }
+        }
+
+        return $result;
 
     }
 
 
+    public function getSpecificContent($categoryId, $companyId, $customerId)
+    {
+        $result = [];
+        $userCompanies = \Auth::user()->companies;
+        if($userCompanies) {
+            $companiesList = $userCompanies->pluck('company_id')->toArray();
 
+            if(in_array($companyId, $companiesList)) {
+                $content = $this->getCompanyContent($companyId, $customerId, $categoryId);
+
+                if($content) {
+                    $result[] = $content;
+                } else {
+                    $content = $this->getByCategoryIdAndCustomerId($categoryId, $customerId);
+
+                    if($content) {
+                        $result[] = $content;
+                    }
+                }
+            } else {
+                $content = $this->getByCategoryIdAndCustomerIdForCompany($categoryId, $customerId);
+
+                if($content) {
+                    $result[] = $content;
+                }
+            }
+        }else {
+            $content = $this->getByCategoryIdAndCustomerIdForCompany($categoryId, $customerId);
+
+            if($content) {
+                $result[] = $content;
+            }
+        }
+
+        return $result;
+    }
     public function delete($id)
     {
         return $this->getOne($id)->delete();
@@ -130,5 +187,20 @@ class ContentRepository implements ContentInterface
         }
 
         return $content;
+    }
+    public function getByCategoryIdAndCustomerIdForCompany($categoryId, $customerId)
+    {
+        $content =  $this->model->where('category_id', $categoryId)->where('customer_id', $customerId)->where('company_id', null)->first();
+
+        if(is_null($content)) {
+            $content =  $this->model->where('category_id', $categoryId)->where('customer_id', null)->where('company_id', null)->first();
+        }
+
+        return $content;
+    }
+
+    public function getCompanyContent($companyId, $customerId, $categoryId)
+    {
+        return $this->model->where('company_id', $companyId)->where('customer_id', $customerId)->where('category_id', $categoryId)->first();
     }
 }

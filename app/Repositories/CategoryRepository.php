@@ -14,10 +14,20 @@ use App\Category;
 class CategoryRepository implements CategoryInterface
 {
     private $model;
+    /**
+     * @var ContentInterface
+     */
+    private $content;
 
-    public function __construct(Category $category)
+    /**
+     * CategoryRepository constructor.
+     * @param Category $category
+     * @param ContentInterface $content
+     */
+    public function __construct(Category $category, ContentInterface $content)
     {
         $this->model = $category;
+        $this->content = $content;
     }
 
     public function all()
@@ -124,6 +134,16 @@ class CategoryRepository implements CategoryInterface
                 $category->contents = $contents;
             }
         }
+
+        return $category;
+    }
+
+    public function getUserSpecificContentByCompanyByCustomerThenDefault($categoryId, $companyId, $customerId)
+    {
+        $category =   $this->model->where('id', $categoryId)->first(['id', 'title', 'icon', 'color', 'show_on_frontend']);
+
+        $content = $this->content->getSpecificContent($categoryId, $companyId, $customerId);
+        $category->contents = $content;
 
         return $category;
     }
