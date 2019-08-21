@@ -239,6 +239,7 @@
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success btn-sm">{{ getTranslation('details') }}</a>
                                     <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info btn-sm">{{ getTranslation('edit') }}</a>
+                                    {{--<button data-url="{{ route('claim.delete', ['id'=> $claim->id]) }}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete">{{ getTranslation('delete') }}</button>--}}
                                 </td>
                             </tr>
                         @endforeach

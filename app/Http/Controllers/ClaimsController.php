@@ -209,4 +209,10 @@ class ClaimsController extends Controller
             'success' => false
         ];
     }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+    }
 }

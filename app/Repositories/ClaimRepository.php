@@ -173,6 +173,9 @@ class ClaimRepository implements ClaimInterface
         if(isset($data['rekv_number'])) {
             $data['rekv_nummer'] = $data['rekv_number'];
         }
+        if(isset($data['is_damage_inspected'])) {
+            $data['is_damage_inspected'] = ($data['is_damage_inspected']) ? 1 : 0;
+        }
 
         if(isset($data['id'])) {
             $claim = $this->getOne($data['id']);
