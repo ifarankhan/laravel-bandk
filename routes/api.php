@@ -43,7 +43,7 @@ Route::post('/v2/login', 'API\V2\PassportController@login');
 Route::post('/v2/register', 'API\V2\PassportController@register');
 
 Route::group(['prefix' => 'v2','middleware' => 'auth:api'], function (){
-    Route::post('/claim-form-data', 'API\V2\PassportController@getClaimFormData');
+    Route::get('/claim-form-data', 'API\V2\PassportController@getClaimFormData');
 
     Route::post('/claim/create', 'API\V2\PassportController@createClaim');
     Route::get('/categories', 'API\V2\PassportController@getCategories');

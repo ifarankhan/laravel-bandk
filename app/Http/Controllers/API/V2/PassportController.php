@@ -221,8 +221,6 @@ class PassportController extends Controller
                 'message' => 'Claim data',
                 'status' => $this->successStatus,
                 'data' => [
-                    'companies' => $this->company->getUserCompanyData(\Auth::user()->companies),
-                    //'department_ids' => $this->user->getUserDepartments(\Auth::user()),
                     'claim_types' => $claimTypes,
                     'claim_mechanics' => $claimMechanics,
                 ]
