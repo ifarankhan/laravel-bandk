@@ -98,7 +98,12 @@ class ClaimsController extends Controller
     public function details($id)
     {
         $claim = $this->claim->getOne($id);
-        return view('claims.details', compact('claim'));
+        if($claim) {
+            return view('claims.details', compact('claim'));
+        }
+
+        abort(404);
+
     }
 
     public function addConversation(ClaimConversationRequest $request)
@@ -210,9 +215,18 @@ class ClaimsController extends Controller
         ];
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $data = $request->all();
-        dd($data);
+        $response = $this->claim->delete($id);
+
+        if($response) {
+            return [
+                'is_deleted' => true
+            ];
+        }
+
+        return [
+          'is_deleted' => false
+        ];
     }
 }

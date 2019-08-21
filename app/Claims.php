@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Claims extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['claim_type_id', 'estimate', 'date', 'claim_mechanic_id', 'is_updated','company_id',
         'department_id', 'address_1', 'address_2', 'description', 'status', 'user_id', 'customer_id', 'rekv_nummer', 'is_damage_inspected', 'selsskab_skade_nummer'];
+
+    protected $dates = ['deleted_at'];
 
     public function conversations()
     {

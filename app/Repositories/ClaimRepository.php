@@ -308,4 +308,15 @@ class ClaimRepository implements ClaimInterface
     {
         return ClaimImages::destroy($ids);
     }
+
+    public function delete($id)
+    {
+        $claim = $this->getOne($id);
+
+        if($claim) {
+            return $claim->delete();
+        }
+
+        return false;
+    }
 }

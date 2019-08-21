@@ -86,45 +86,6 @@
                                         </tr>
                                         </tbody>
                                     </table>
-
-                                    {{--<div class="row ribbon-content">
-
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_name') }}:</strong> {{ \Auth::user()->customer->name }}
-                                        </div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_contact_person') }}:</strong> {{ \Auth::user()->customer->contact_person }}
-                                        </div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_insurance_company_name') }}:</strong> {{ \Auth::user()->customer->insurance_company_name }}
-                                        </div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('address_1') }}:</strong> {{ (\Auth::user()->customer->address)  ? \Auth::user()->customer->address : ''}}
-                                        </div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_emails') }}:</strong> {{ (\Auth::user()->customer && \Auth::user()->customer->email)  ? implode(', ', json_decode(\Auth::user()->customer->email, true)) : ''}}
-                                        </div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_policy_number') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->policy_number : ''}}
-                                        </div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ (\Auth::user()->customer)  ? \Auth::user()->customer->zip_code : ''}}
-                                        </div>
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_city') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->city : '' }}
-                                        </div>
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_bank_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->bank_number : '' }}
-                                        </div>
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-4">&nbsp;</div>
-                                        <div class="col-md-4">
-                                            <strong>{{ getTranslation('customer_account_number') }}:</strong> {{ (\Auth::user()->customer) ? \Auth::user()->customer->account_number : '' }}
-                                        </div>
-                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -222,7 +183,7 @@
                         </thead>
                         <tbody>
                         @foreach($claims as $claim)
-                            <tr class="alert alert-{{ getClaimColor($claim) }}">
+                            <tr class="alert alert-{{ getClaimColor($claim) }}" id="claim_{{ $claim->id }}">
                                 <td data-sort="{{ date('Y-m-d', strtotime($claim->updated_at)) }}">{{ $claim->updated_at }}
                                     @if($claim->is_updated)
                                         <button class="btn btn-info">Opdateret</button>
@@ -239,7 +200,7 @@
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success btn-sm">{{ getTranslation('details') }}</a>
                                     <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info btn-sm">{{ getTranslation('edit') }}</a>
-                                    {{--<button data-url="{{ route('claim.delete', ['id'=> $claim->id]) }}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete">{{ getTranslation('delete') }}</button>--}}
+                                    <button data-url="{{ route('claim.delete', ['id'=> $claim->id]) }}" data-id="{{ $claim->id }}" class="btn btn-danger btn-sm delete" data-csrf="{{ csrf_token() }}">{{ getTranslation('delete') }}</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -258,214 +219,7 @@
     <link href="{{ asset('/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('/admin/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
-    <style>
-        table { table-layout:fixed; }
-        hr.style-one {
-            border: 0;
-            height: 1px;
-            background: #333;
-            background-image: linear-gradient(to right, #ccc, #333, #ccc);
-        }
-        .help-block{
-            color: #a94442;
-        }
-        .bg-grey-steel {
-            background: #e9edef!important;
-        }
 
-
-        .mt-element-ribbon .ribbon {
-            padding: .5em 1em;
-            float: left;
-            margin: 10px 0 0 -2px;
-            clear: left;
-            position: relative;
-        }
-        .mt-element-ribbon {
-            position: relative;
-            margin-bottom: 30px;
-        }
-        .mt-element-ribbon .ribbon.ribbon-clip {
-            left: -10px;
-            margin-left: 0;
-        }
-        .mt-element-ribbon .ribbon.ribbon-color-danger {
-            background-color: #ed6b75;
-            color: #fff;
-        }
-        .mt-element-ribbon .ribbon, .mt-element-ribbon .ribbon.ribbon-color-default, .mt-element-ribbon .ribbon.ribbon-color-default>.ribbon-sub, .mt-element-ribbon .ribbon>.ribbon-sub {
-            background-color: #bac3d0;
-            color: #384353;
-        }
-        .mt-element-ribbon .ribbon-content {
-            margin: 0;
-            padding: 25px;
-            clear: both;
-        }
-        .mt-element-ribbon .ribbon, .mt-element-ribbon .ribbon.ribbon-color-default, .mt-element-ribbon .ribbon.ribbon-color-default>.ribbon-sub, .mt-element-ribbon .ribbon>.ribbon-sub {
-            background-color: #bac3d0;
-            color: #384353;
-        }
-        .mt-element-ribbon .ribbon.ribbon-border-hor:after {
-            border-top: 1px solid;
-            border-bottom: 1px solid;
-            border-left: none;
-            border-right: none;
-            content: '';
-            position: absolute;
-            top: 5px;
-            bottom: 5px;
-            left: 0;
-            right: 0;
-            border-color: #e73d4a;
-        }
-        b, optgroup, strong {
-            font-weight: 800;
-        }
-        * {
-            box-sizing: border-box;
-        }
-
-        .row > .column {
-            padding: 0 8px;
-        }
-
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .column {
-            float: left;
-            width: 25%;
-        }
-
-
-        /* The Modal (background) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: black;
-        }
-
-        /* Modal Content */
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            width: 90%;
-            max-width: 1200px;
-        }
-
-        /* The Close Button */
-        .close {
-            color: white;
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #999;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .mySlides {
-            display: none;
-        }
-
-        .cursor {
-            cursor: pointer;
-        }
-
-        /* Next & previous buttons */
-        .prev,
-        .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -50px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        /* Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Number text (1/3 etc) */
-        .numbertext {
-            color: #f2f2f2;
-            font-size: 12px;
-            padding: 8px 12px;
-            position: absolute;
-            top: 0;
-        }
-
-        img {
-            margin-bottom: -4px;
-        }
-
-        .caption-container {
-            text-align: center;
-            background-color: black;
-            padding: 2px 16px;
-            color: white;
-        }
-
-        .demo {
-            opacity: 0.6;
-        }
-
-        .active,
-        .demo:hover {
-            opacity: 1;
-        }
-
-        img.hover-shadow {
-            transition: 0.3s;
-        }
-
-        .hover-shadow:hover {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
-
-        input[type=file] {
-            position: absolute;
-            left: 10px;
-            top: 0;
-            opacity: 0;
-            width: 100px;
-        }
-    </style>
 @endsection
 
 @section('js')
@@ -485,6 +239,25 @@
     <script>
         $('#date').datetimepicker({
             format: 'YYYY-MM-DD'
+        });
+
+        $('.delete').on('click', function(event){
+            event.stopImmediatePropagation();
+            var modal = $("#modal-delete");
+            var url = $(this).data('url');
+            var id = $(this).data('id');
+            var csrf = $(this).data('csrf');
+            modal.modal('show');
+
+            $("#delete-confirm").unbind().on('click', function (e) {
+                e.stopImmediatePropagation();
+                sendAjax(url, {_token: csrf}, 'POST', function (result) {
+                    modal.modal('hide');
+                    if(result.is_deleted) {
+                        $("#claim_"+id).hide('slow');
+                    }
+                });
+            });
         });
         $('#datatable').on( 'dblclick', 'tbody td.estimate_value', function (e) {
             var element = $(this);
@@ -515,7 +288,6 @@
                     element.html(updatedText);
 
                 });
-
                 $(".update-value-"+claimId).on('change', element, function (event) {
                     console.log('hello')
                     var updatedText = $(this).val();
@@ -524,8 +296,6 @@
                     $(this).val(updatedText);
                 });
             }
-
-
         });
 
 
