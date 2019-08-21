@@ -145,7 +145,7 @@ class ContentRepository implements ContentInterface
                 if($content) {
                     $result[] = $content;
                 } else {
-                    $content = $this->getByCategoryIdAndCustomerId($categoryId, $customerId);
+                    $content = $this->getByCategoryIdAndCustomerIdForCompany($categoryId, $customerId);
 
                     if($content) {
                         $result[] = $content;
