@@ -26,35 +26,31 @@
                         <input type="hidden" name="default_content_id" value="{{ getDefaultContentId($contents) }}">
                         <input type="hidden" name="customer_content_id" value="{{ getUserSpecificContentId($contents) }}">
                         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-                        @if(hasDefaultContent($contents))
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Default Title <span class="required">*</span>
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" id="title" required="required" class="form-control col-md-7 col-xs-12" name="default_title" value="{{ getDefaultTitle($contents) }}">
-                                    @if ($errors->has('title'))
-                                        <span class="help-block" style="color: red;">
-                                            <strong>{{ $errors->first('title') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Default Title <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" id="title" required="required" class="form-control col-md-7 col-xs-12" name="default_title" value="{{ getDefaultTitle($contents) }}">
+                                @if ($errors->has('title'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                        @endif
+                        </div>
 
-                        @if(hasDefaultContent($contents))
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Default Description <span class="required">*</span>
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="default_description" style="width: 100%; height: 100%;">{{ getDefaultContent($contents) }}</textarea>
-                                    @if ($errors->has('description'))
-                                        <span class="help-block" style="color: red;">
-                                            <strong>{{ $errors->first('description') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Default Description <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="default_description" style="width: 100%; height: 100%;">{{ getDefaultContent($contents) }}</textarea>
+                                @if ($errors->has('description'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                        @endif
+                        </div>
 
 
                         <div class="form-group">
@@ -87,13 +83,10 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parent_id">Category
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <?php
-                                    $category = getCategoryIdAndName($contents);
-                                ?>
                                 <select type="text" id="parent_id" class="form-control col-md-7 col-xs-12" name="category_id">
                                     <option value="">Select Category</option>
                                     @if(count($category) > 0)
-                                        <option value="{{ $category['id'] }}" selected="selected">{{ $category['title'] }}</option>
+                                        <option value="{{ $category->id }}" selected="selected">{{ $category->title }}</option>
                                     @endif
                                 </select>
                                 @if ($errors->has('parent_id'))

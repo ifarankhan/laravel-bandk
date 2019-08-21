@@ -73,9 +73,10 @@ class ContentsController extends Controller
     }
     public function customerCategoryContent($categoryId, $customerId)
     {
+        $category = $this->category->getOne($categoryId);
         $contents = $this->content->getContentByCustomerIDAndCategoryId($categoryId, $customerId);
         $customer = $this->customer->getOne($customerId);
-        return view('contents.create_edit_customers', compact('contents', 'categoryId', 'customer'));
+        return view('contents.create_edit_customers', compact('contents', 'categoryId', 'customer', 'category'));
     }
 
     public function postCustomerCategoryContent($categoryId, $customerId, CustomerContentRequest $request)
