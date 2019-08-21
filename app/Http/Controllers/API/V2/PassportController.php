@@ -428,7 +428,7 @@ class PassportController extends Controller
         return [
             "status" =>  200,
             "message" => "User companies.",
-            "data" => ($user->companies) ? $user->companies : []
+            "data" => $this->company->getUserCompanyData(\Auth::user()->companies)
         ];
     }
 
