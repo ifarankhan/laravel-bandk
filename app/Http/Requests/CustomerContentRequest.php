@@ -39,6 +39,8 @@ class CustomerContentRequest extends FormRequest
             ];
         }
 
+        return [];
+
     }
 
 

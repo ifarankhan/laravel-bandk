@@ -118,7 +118,9 @@ class CategoryRepository implements CategoryInterface
             return $q;
         });
 
-        return $query->get();
+        $categories =  $query->get();
+        return $categories;
+        dd($categories);
     }
 
     public function getCategory($categoryId)
