@@ -138,7 +138,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="company_id">{{ getTranslation('company') }}<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
-                                <select class="form-control col-md-7 col-xs-12" name="company_id" id="company_id_id" disabled="disabled" data-url="/customer/departments/grouped/">
+                                <select class="form-control col-md-7 col-xs-12 select2" multiple="multiple" name="companies[]" id="company_id_id" disabled="disabled" data-url="/customer/departments/grouped/">
                                 </select>
                                 @if ($errors->has('company_id'))
                                     <span class="help-block" style="color: red;">

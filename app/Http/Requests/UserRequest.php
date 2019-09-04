@@ -33,8 +33,7 @@ class UserRequest extends FormRequest
                 'roles' => 'required',
                 'modules' => 'required',
                 'departments' => 'required',
-                'customer_id' => 'required',
-                'company_id' => 'required',
+                'customer_id' => 'required'
             ];
         } else {
             return [
