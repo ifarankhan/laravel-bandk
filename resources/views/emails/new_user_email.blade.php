@@ -5,7 +5,7 @@ Du er nu oprettet som bruger/anmelder af skader på Bækmark & Kvists skadeanmel
 <br />
 <br />
 
-Brugernavn: {{ $user['email'] }} <br />
+Brugernavn: {{ $user['username'] }} <br />
 Password: {{ $user['password'] }}
 
 <strong>Brug af App’en til skadeanmeldelse:</strong>
@@ -21,9 +21,9 @@ Password: {{ $user['password'] }}
 
 <strong>Anmeld skaden via portalen på internettet.</strong>
 <ol>
-    <li>tryk <a href="{{ route('dashboard.index') }}">her</a></li>
+    <li>tryk <a href="{{ route('login') }}">her</a></li>
     <li>Indtast ovennævnte brugernavn og password og tryk Login</li>
-    <li>Tast Opert for at komme til anmeldelsesformularen</li>
+    <li>Tast opret for at komme til anmeldelsesformularen</li>
     <li>Udfyld og tryk ”Send”</li>
     <li>Når du har trykke ”Send”, får du en bekræftelse på at skaden er anmeldt korrekt.</li>
 </ol>
