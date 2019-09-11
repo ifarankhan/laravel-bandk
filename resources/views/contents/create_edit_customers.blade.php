@@ -30,7 +30,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Default Title <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" id="title" required="required" class="form-control col-md-7 col-xs-12" name="default_title" value="{{ getDefaultTitle($contents) }}">
+                                <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="default_title" value="{{ getDefaultTitle($contents) }}">
                                 @if ($errors->has('title'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -43,7 +43,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Default Description <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="default_description" style="width: 100%; height: 100%;">{{ getDefaultContent($contents) }}</textarea>
+                                <textarea id="description" class="form-control col-md-7 col-xs-12 wysihtml5" name="default_description" style="width: 100%; height: 100%;">{{ getDefaultContent($contents) }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -54,10 +54,10 @@
 
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title for {{ $customer->name }}<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title for {{ $customer->name }}
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" id="title" required="required" class="form-control col-md-7 col-xs-12" name="title" value="{{ getUserSpecificTitle($contents) }}">
+                                <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{ getUserSpecificTitle($contents) }}">
                                 @if ($errors->has('title'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -67,10 +67,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description for {{ $customer->name }}<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description for {{ $customer->name }}
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <textarea id="description" required="required" class="form-control col-md-7 col-xs-12 wysihtml5" name="description" style="width: 100%; height: 100%;">{{ getUserSpecificContent($contents) }}</textarea>
+                                <textarea id="description" class="form-control col-md-7 col-xs-12 wysihtml5" name="description" style="width: 100%; height: 100%;">{{ getUserSpecificContent($contents) }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block" style="color: red;">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -111,7 +111,7 @@
                                         ?>
                                             <div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Title <span class="required">*</span>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Title
                                                     </label>
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                                         <input type="text" id="title" class="form-control col-md-7 col-xs-12" name=company_title_description[{{ $company->id }}][title] value="{{ $companyContent['title'] }}">
@@ -125,7 +125,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Description<span class="required">*</span>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Description
                                                     </label>
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                                         <textarea  class="form-control col-md-7 col-xs-12 wysihtml5" name=company_title_description[{{ $company->id }}][description] style="width: 100%; height: 100%;">{{ $companyContent['description'] }}</textarea>

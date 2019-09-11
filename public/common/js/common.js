@@ -298,7 +298,7 @@ jQuery(document).ready(function () {
     });
 
     if($('#company_id_id').length > 0) {
-            if($('#company_id_id option').length < 0)
+            if($('#company_id_id option').length <= 1)
                 jQuery("#customer_id").trigger('change');
     } else {
         jQuery("#customer_id").trigger('change');

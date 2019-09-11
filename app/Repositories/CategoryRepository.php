@@ -120,7 +120,6 @@ class CategoryRepository implements CategoryInterface
 
         $categories =  $query->get();
         return $categories;
-        dd($categories);
     }
 
     public function getCategory($categoryId)

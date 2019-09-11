@@ -98,8 +98,8 @@ class ContentRepository implements ContentInterface
             $this->model = $this->model->find($data['customer_content_id']);
         }
 
-        $this->model->title = $data['title'];
-        $this->model->description = $data['description'];
+        $this->model->title = (isset($data['title']) && !is_null($data['title'])) ? $data['title'] : '';
+        $this->model->description = (isset($data['description']) && !is_null($data['description'])) ? $data['description'] : '';
         $this->model->customer_id = isset($data['customer_id']) ? $data['customer_id'] : null;
         $this->model->category_id = isset($data['category_id']) ? $data['category_id'] : null;
 
@@ -180,10 +180,10 @@ class ContentRepository implements ContentInterface
 
     public function getByCategoryIdAndCustomerId($categoryId, $customerId)
     {
-        $content =  $this->model->where('category_id', $categoryId)->where('customer_id', $customerId)->get();
+        $content =  $this->model->where('category_id', $categoryId)->where('customer_id', $customerId)->first();
 
-        if(is_null($content)) {
-            $content =  $this->model->where('category_id', $categoryId)->where('customer_id', null)->get();
+        if(is_null($content) || empty($content->title) || empty($content->description)) {
+            $content =  $this->model->where('category_id', $categoryId)->where('customer_id', null)->first();
         }
 
         return $content;

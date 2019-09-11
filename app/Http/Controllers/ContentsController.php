@@ -125,10 +125,10 @@ class ContentsController extends Controller
 
     public function getList($categoryId)
     {
-        $contents = $this->content->getByCategoryIdAndCustomerId($categoryId, \Auth::user()->customer_id);
+        $content = $this->content->getByCategoryIdAndCustomerId($categoryId, \Auth::user()->customer_id);
         $category = $this->category->getOne($categoryId);
 
-        $html = view('partials.category-detail', compact('contents', 'category'))->render();
+        $html = view('partials.category-detail', compact('content', 'category'))->render();
 
         return [
             'html' => $html,
