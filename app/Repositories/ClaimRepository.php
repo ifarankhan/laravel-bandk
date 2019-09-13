@@ -209,6 +209,7 @@ class ClaimRepository implements ClaimInterface
 
         if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
+            $emails[] = 'mno@bk-as.dk';
 
             foreach ($emails as $email) {
                 if($email && $email != '') {
