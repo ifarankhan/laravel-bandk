@@ -162,7 +162,6 @@ jQuery(document).ready(function () {
 
         departments.html('');
         if (company.length > 0) {
-            console.log('hello');
             var selectedCompany = jQuery("#hidden_company_1").val();
             var url = $(this).data('url') + value;
             var data = {};
@@ -183,6 +182,7 @@ jQuery(document).ready(function () {
 
                         company.html(html);
                         company.prop('disabled', false);
+                        jQuery("#company_id_id").trigger('change');
                     }
                 });
 
