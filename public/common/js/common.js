@@ -162,8 +162,8 @@ jQuery(document).ready(function () {
 
         departments.html('');
         if (company.length > 0) {
-            console.log('hello');
             var selectedCompany = jQuery("#hidden_company_1").val();
+            console.log(selectedCompany);
             var url = $(this).data('url') + value;
             var data = {};
             if (value != '' ) {
