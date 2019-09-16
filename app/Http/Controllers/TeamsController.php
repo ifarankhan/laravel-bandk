@@ -47,11 +47,13 @@ class TeamsController extends Controller
         $this->company = $company;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $teams = $this->teams->all();
+        $search = $request->get('search');
+        $teams = $this->teams->search($search);
+        $customers = $this->customer->all();
 
-        return view('teams.index', compact('teams'));
+        return view('teams.index', compact('teams', 'customers', 'search'));
     }
     public function create()
     {

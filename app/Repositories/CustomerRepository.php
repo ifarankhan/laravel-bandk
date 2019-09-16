@@ -26,7 +26,7 @@ class CustomerRepository implements CustomerInterface
         if(isset($search['customer_id'])) {
             $query = $query->where('id', $search['customer_id']);
         }
-        return $query->get();
+        return $query->orderBy('name', 'ASC')->get();
     }
     public function search($search)
     {

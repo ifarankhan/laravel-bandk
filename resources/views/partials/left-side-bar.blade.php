@@ -27,6 +27,12 @@
                                 <li><a href="{{ route('company.create') }}">Opret Selskab</a></li>
                             </ul>
                         </li>
+                        <li><a><i class="fa fa-users"></i> Hold <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ route('team.index') }}">Hold</a></li>
+                            </ul>
+                        </li>
+
                         <li><a><i class="fa fa-users"></i> Afdelinger <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('department.index') }}">Alle afdelinger</a></li>
@@ -59,7 +65,6 @@
                             <ul class="nav child_menu">
                                 <li><a href="{{ route('claim-type.index') }}">Opsætning</a></li>
                                 <li><a href="{{ route('claim-mechanic.index') }}">Håndvækertype</a></li>
-                                <li><a href="{{ route('team.index') }}">Hold</a></li>
                             </ul>
                         </li>
 
