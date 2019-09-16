@@ -183,6 +183,7 @@ jQuery(document).ready(function () {
 
                         company.html(html);
                         company.prop('disabled', false);
+                        jQuery("#company_id_id").trigger('change');
                     }
                 });
 
@@ -298,13 +299,14 @@ jQuery(document).ready(function () {
     });
     /*console.log($('#company_id_id').length);
     console.log( $('#company_id_id option').length);*/
-    if($('#company_id_id').length > 0) {
+    /*if($('#company_id_id').length > 0) {
             if($('#company_id_id option').length <= 1)
                 jQuery("#customer_id").trigger('change');
     } else {
         jQuery("#customer_id").trigger('change');
-    }
-    jQuery("#company_id_id").trigger('change');
+    }*/
+    jQuery("#customer_id").trigger('change');
+    //jQuery("#company_id_id").trigger('change');
 
 
     jQuery("table#datatable1").on('click', '.enable-disable', function () {
