@@ -118,8 +118,11 @@
                                 @endif
                             </div>
                         </div>
+                        <?php
+                        $userCompanies = ($user->companies) ? $user->companies->pluck('company_id')->toArray() : [];
+                        ?>
                         <div class="form-group" >
-                            <input type="hidden" value="{{ $user->company_id }}" id="hidden_company_1">
+                            <input type="hidden" value="{{ $user->company_id }}" id="hidden_company_array">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer</label>
                             <div class="col-md-6 col-sm-9 col-xs-12">
                                 <select class="form-control " name="customer_id" id="customer_id" data-url="/customer/companies/">
@@ -135,9 +138,7 @@
                                 @endif
                             </div>
                         </div>
-                        <?php
-                            $userCompanies = ($user->companies) ? $user->companies->pluck('company_id')->toArray() : [];
-                        ?>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="company_id">{{ getTranslation('company') }}<span class="required">*</span>
                             </label>
