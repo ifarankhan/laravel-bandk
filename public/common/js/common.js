@@ -123,7 +123,7 @@ jQuery(document).ready(function () {
 
             var url = $(this).data('url') + value;
             var data = {};
-            if (value != '') {
+            if (value != '' && value != null) {
                 loader.show();
                 sendAjax(url, data, 'get', function (response) {
                     if (response.length != 0) {
