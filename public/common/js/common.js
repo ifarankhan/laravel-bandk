@@ -296,9 +296,9 @@ jQuery(document).ready(function () {
         }
 
     });
-
+    console.log($('#company_id_id').length, $('#company_id_id option').length);
     if($('#company_id_id').length > 0) {
-            //if($('#company_id_id option').length <= 1)
+            if($('#company_id_id option').length <= 1)
                 jQuery("#customer_id").trigger('change');
     } else {
         jQuery("#customer_id").trigger('change');
