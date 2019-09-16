@@ -86,7 +86,7 @@ class UsersController extends Controller
         $roles = $this->roles->all();
         $modules = $this->modules->all();
         $customers = $this->customer->all();
-        $companies = $this->company->customerCompany(\Auth::user()->customer_id);
+        $companies = $this->company->customerCompany($user->customer_id);
         return view('users.edit', compact('roles', 'modules', 'customers', 'user', 'companies'));
     }
     public function status($id, Request $request)
