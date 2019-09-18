@@ -49,8 +49,23 @@
                             @endif
                         </div>
                     @else
-                        <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ $claim->customer_id }}">
+                        <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/companies/" value="{{ $claim->customer_id }}">
                     @endif
+
+                    <div class="form-group ">
+                        <label for="department">{{ getTranslation('company') }}
+                            <i class="fa fa-spin fa-spinner" style="display: none;" id="company_loader"></i>
+                        </label>
+                        <input type="hidden" value="{{ $claim->company_id }}" id="hidden_company_1">
+                        <select class="form-control" name="company_id" id="company_id_id" data-url="/company/departments/">
+                            <option value="">{{ getTranslation('select_company') }}</option>
+                        </select>
+                        @if ($errors->has('company_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('company_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
                     <div class="form-group ">
                         <label for="department">{{ getTranslation('department') }}

@@ -49,10 +49,10 @@
                         @endif
                     </div>
                     @else
-                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/departments/" value="{{ \Auth::user()->customer_id }}">
+                    <input type="hidden" name="customer_id" id="customer_id" data-url="/customer/companies/" value="{{ \Auth::user()->customer_id }}">
                     @endif
 
-                   {{-- <div class="form-group ">
+                    <div class="form-group ">
                         <label for="department">{{ getTranslation('company') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="company_loader"></i>
                         </label>
@@ -65,7 +65,7 @@
                                 <strong>{{ $errors->first('company_id') }}</strong>
                             </span>
                         @endif
-                    </div>--}}
+                    </div>
                     <div class="form-group ">
                         <label for="department">{{ getTranslation('department') }}
                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
