@@ -57,6 +57,7 @@ class CompanyRepository implements CompanyInterface
                             unset($company->departments[$k]);
                         }
                     }
+                    $company->departments = array_values($company->departments);
                 }
             }
         }
