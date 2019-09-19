@@ -10,6 +10,8 @@ namespace App\Repositories;
 
 
 use App\Company;
+use function foo\func;
+use Illuminate\Support\Collection;
 
 class CompanyRepository implements CompanyInterface
 {
@@ -49,15 +51,20 @@ class CompanyRepository implements CompanyInterface
 
         $companies = $this->model->whereIn('id', $companiesIds)->with(['departments'])->get();
 
+        $userDepartmentsArray = [];
+
         if(count($companies) > 0) {
             foreach ($companies as $key => $company) {
+                $userDepartmentsArray = [];
                 if(count($company->departments) > 0) {
                     foreach ($company->departments as $k => $department) {
-                        if(!in_array($department->id, $userDepartments)) {
-                            unset($company->departments[$k]);
+                        if(in_array($department->id, $userDepartments)) {
+                            $userDepartmentsArray[] = $department;
                         }
                     }
-                    //$company->departments = array_values($company->departments);
+                    $collect = collect($userDepartmentsArray);
+                    unset($companies[$key]->departments);
+                    $companies[$key]->departments = $collect;
                 }
             }
         }
