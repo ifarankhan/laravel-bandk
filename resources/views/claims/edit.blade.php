@@ -32,7 +32,7 @@
                             <label for="heading">{{ getTranslation('customer') }}
                                 <i class="fa fa-spin fa-spinner" style="display: none;" id="customer_loader"></i>
                             </label>
-                            <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/departments/">
+                            <select class="form-control" name="customer_id" id="customer_id" data-url="/customer/companies/">
                                 <option value="">{{ getTranslation('select_customer_id') }}</option>
                                 @foreach($customers as $customer)
                                     <option value="{{ $customer->id }}" {{ $claim->customer_id == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
