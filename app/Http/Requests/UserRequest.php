@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -36,16 +37,28 @@ class UserRequest extends FormRequest
                 'customer_id' => 'required'
             ];
         } else {
-            return [
-                'name' => 'required',
-                'phone_number' => 'required',
-                'email' => 'required',
-                'username' => 'required',
-                'roles' => 'required',
-                'departments' => 'required',
-                'modules' => 'required',
-            ];
-
+            $username = User::where('username', $this->get('username'))->first();
+            if(($username) && $username->id != $this->get('id')) {
+                return [
+                    'name' => 'required',
+                    'phone_number' => 'required',
+                    'username' => 'required|unique:users',
+                    'email' => 'required',
+                    'roles' => 'required',
+                    'departments' => 'required',
+                    'modules' => 'required'
+                ];
+            } else {
+                return [
+                    'name' => 'required',
+                    'phone_number' => 'required',
+                    'username' => 'required',
+                    'email' => 'required',
+                    'roles' => 'required',
+                    'departments' => 'required',
+                    'modules' => 'required'
+                ];
+            }
         }
     }
 }
