@@ -423,7 +423,6 @@ class PassportController extends Controller
     public function getUserCompanies()
     {
         $user = \Auth::user();
-        dd($user);
         return [
             "status" =>  200,
             "message" => "User companies.",
