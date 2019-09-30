@@ -45,7 +45,12 @@ Route::get('/testing', function () {
     \PDF::loadHTML($html)->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 0)->setOption('javascript-delay', 2000)->setOption('enable-external-links', true)->save('myfile.pdf');
 });
 
-
+Route::get('/dashboard/session/reset',  function () {
+    $urlReferral = \Request::server('HTTP_REFERER');
+    $urlName = app('router')->getRoutes()->match(app('request')->create($urlReferral))->getName();
+    session(['customer_id' => null]);
+    return redirect()->route($urlName);
+})->name('reset.url');
 
 Route::group(['middleware' => ['auth', 'is_super_admin']], function() {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index')->middleware(['auth']);

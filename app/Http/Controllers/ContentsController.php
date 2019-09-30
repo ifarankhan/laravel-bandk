@@ -55,6 +55,7 @@ class ContentsController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $contents = $this->content->search($search);
         $customers = $this->customer->all();
         return view('contents.index', compact('contents', 'customers', 'search'));

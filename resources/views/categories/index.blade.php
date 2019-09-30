@@ -18,7 +18,7 @@
                                 <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
                                     <option value="">{{ getTranslation('select_customer') }}</option>
                                     @foreach($customers as $aCustomer)
-                                        <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
+                                        <option value="{{ $aCustomer->id }}" {{ (session('customer_id') && session('customer_id') == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
                                     @endforeach
 
                                 </select>
@@ -30,6 +30,7 @@
                                     </label>
                                     <div class="">
                                         <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
+                                        <a class="btn btn-success" href="{{ route('reset.url') }}">{{ getTranslation('reset') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -72,8 +73,8 @@
                                     @if($search && isset($search['customer_id']))
                                         <a href="{{ route('category.customer.content', ['category_id'=> $category->id, 'id' => $search['customer_id']]) }}" class="btn btn-info">{{ getTranslation('content') }}</a>
                                     @endif
-                                    <a href="{{ route('category.edit', ['id'=> $category->id]) }}" class="btn btn-success">Edit</a>
-                                    <button data-id="{{ $category->id }}" data-url="{{ route('category.delete', ['id'=> $category->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                                    <a href="{{ route('category.edit', ['id'=> $category->id]) }}" class="btn btn-success">{{ getTranslation('edit') }}</a>
+                                    <button data-id="{{ $category->id }}" data-url="{{ route('category.delete', ['id'=> $category->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">{{ getTranslation('delete') }}</button>
                                 </td>
                             </tr>
                         @endforeach

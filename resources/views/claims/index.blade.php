@@ -148,7 +148,7 @@
                                             <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
                                                 <option value="">{{ getTranslation('select_customer') }}</option>
                                                 @foreach($customers as $customer)
-                                                    <option value="{{ $customer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $customer->id) ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
+                                                    <option value="{{ $customer->id }}" {{ (session('customer_id') && session('customer_id') == $customer->id) ? 'selected="selected"' : '' }}>{{ $customer->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

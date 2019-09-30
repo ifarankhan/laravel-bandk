@@ -87,6 +87,7 @@ class ClaimsController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $claimTypes = $this->claimTypes->all();
         $departments = $this->departments->all();
         $customers = $this->customer->all();

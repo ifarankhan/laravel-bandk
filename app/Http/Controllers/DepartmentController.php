@@ -45,6 +45,7 @@ class DepartmentController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $departments = $this->departments->search($search);
         $customers = $this->customer->all();
         return view('department.index', compact('departments', 'customers', 'search'));

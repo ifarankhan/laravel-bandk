@@ -19,7 +19,7 @@
                         <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
                             <option value="">{{ getTranslation('select_customer') }}</option>
                             @foreach($customers as $aCustomer)
-                                <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
+                                <option value="{{ $aCustomer->id }}" {{ (session('customer_id') && session('customer_id') == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
                             @endforeach
 
                         </select>
@@ -31,7 +31,7 @@
                             </label>
                             <div class="">
                                 <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
-                                <a class="btn btn-success" href="{{ route('dashboard.index') }}">{{ getTranslation('reset') }}</a>
+                                <a class="btn btn-success" href="{{ route('reset.url') }}">{{ getTranslation('reset') }}</a>
                             </div>
                         </div>
                     </div>

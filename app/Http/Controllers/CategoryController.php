@@ -41,6 +41,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $customers = $this->customer->all();
         $categories = $this->category->search($search);
         return view('categories.index', compact('categories', 'customers', 'search'));

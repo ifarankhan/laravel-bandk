@@ -39,6 +39,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $allCustomers = $this->customer->all();
         $companies = $this->company->search($search);
         return view('companies.index', compact('allCustomers','companies', 'search'));

@@ -22,16 +22,24 @@ class ClaimConversationRepository implements ClaimConversationInterface
      * @var ClaimConversationFiles
      */
     private $claimConversationFiles;
+    /**
+     * @var ClaimInterface
+     */
+    private $claim;
 
     /**
      * ClaimConversationRepository constructor.
      * @param ClaimConversation $claimConversation
      * @param ClaimConversationFiles $claimConversationFiles
+     * @param ClaimInterface $claim
      */
-    public function __construct(ClaimConversation $claimConversation, ClaimConversationFiles $claimConversationFiles)
+    public function __construct(ClaimConversation $claimConversation,
+                                ClaimConversationFiles $claimConversationFiles,
+                                ClaimInterface $claim)
     {
         $this->model = $claimConversation;
         $this->claimConversationFiles = $claimConversationFiles;
+        $this->claim = $claim;
     }
 
     public function getOne($id)
@@ -48,7 +56,13 @@ class ClaimConversationRepository implements ClaimConversationInterface
         $data['user_id'] = \Auth::user()->id;
         $claimConversation = $this->model->create($data);
 
+        $email = 'mno@bk-as.dk';
+        $claim = $this->claim->getOne($data['claim_id']);
+        $customer = ($claim->customer) ? $claim->customer : null;
+        $this->claim->sendEmailOnUpdate($email, $customer, $claim);
+
         if(isset($data['file']) && count($data['file']) > 0) {
+
             foreach ($data['file'] as $file) {
                 $this->claimConversationFiles = new ClaimConversationFiles();
                 $fileName = explode(',', $file->getClientOriginalName());

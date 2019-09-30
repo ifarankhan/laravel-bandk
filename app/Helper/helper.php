@@ -6,6 +6,17 @@
  * Time: 10:22 AM
  */
 
+
+/**
+ * @param $search
+ */
+function setSearchInSession($search)
+{
+    if(isset($search['customer_id'])) {
+        session(['customer_id' => $search['customer_id']]);
+    }
+}
+
 function get_mb($size) {
     return round($size/1048576,2);
 }

@@ -50,6 +50,7 @@ class TeamsController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $teams = $this->teams->search($search);
         $customers = $this->customer->all();
 

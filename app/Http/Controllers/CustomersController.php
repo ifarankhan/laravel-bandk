@@ -35,6 +35,7 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $allCustomers = $this->customer->all();
         $customers = $this->customer->search($search);
         return view('customers.index', compact('allCustomers','customers', 'search'));

@@ -45,6 +45,8 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
+
         $userCount = $this->user->allCount($search);
         $claimCount = $this->claim->allCount($search);
         $todayCount = $this->claim->todayCount($search);

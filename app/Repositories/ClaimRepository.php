@@ -209,80 +209,9 @@ class ClaimRepository implements ClaimInterface
 
         if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
-            $emails[] = 'mno@bk-as.dk';
 
             foreach ($emails as $email) {
-                if($email && $email != '') {
-                    //event(new SendEmailToCustomerUsers($customer, $claim, $email));
-                    $subject = '';
-
-                    if(!empty($customer->name)) {
-                        $subject = $customer->name;
-                    }
-                    if($claim->department) {
-                        $subject = $subject . ', Afd. nr.: '.$claim->department->name;
-                    }
-                    if($claim->address1) {
-                        $subject = $subject . ', '.$claim->address1->address;
-                    }
-                    if(!empty($claim->address_2)) {
-                        $subject = $subject . ' - Nr/Etage/Side: '.$claim->address_2;
-                    }
-                    if(!empty($customer->policy_number)) {
-                        $subject = $subject . ' - police nr.: '.$customer->policy_number;
-                    }
-                    if(!empty($claim->selsskab_skade_nummer)) {
-                        $subject = $subject . ' - skade nr.: '.$claim->selsskab_skade_nummer;
-                    }
-
-                    //$images = $this->claim->images ? $this->claim->images : new Collection();
-                    //data:image/png;base64,{{ base64_encode(file_get_contents($image->image, false)) }}
-
-                    $data =  [
-                        'customer'  => $customer,
-                        'claim'   => $claim,
-                        'email'     => $email
-                    ];
-
-                    $toEMail = $email;
-
-                    $markdown = Container::getInstance()->make(Markdown::class);
-                    $html = $markdown->render('emails.send_email_to_customer', $data);
-
-                    $images = $claim->images ? $claim->images : new Collection();
-
-                    Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject, $images)
-                    {
-
-                        $message->from('no_reply@bnk.com');
-                        $message->to($toEMail);
-                        $message->subject($subject);
-
-                        $size = count($images);
-                        $mbSize = 0;
-                        if($size > 0) {
-                            foreach ($images as $image) {
-
-                                $mb = get_mb(filesize($image->image_path));
-                                $mbSize = $mbSize + $mb;
-                                if($mbSize < 20) {
-                                    $message->attach($image->image_path);
-                                }
-
-                            }
-                        }
-
-                    }, true);
-                    /*try {
-                        event(new SendEmailToCustomerUsers($customer, $claim, $email));
-                    } catch (\Exception $e) {
-                       return [
-                           'email' => false,
-                           'claim' => $claim
-                       ];
-                    }*/
-
-                }
+                $this->sendEmailOnUpdate($email, $customer, $claim);
             }
         }
 
@@ -319,5 +248,72 @@ class ClaimRepository implements ClaimInterface
         }
 
         return false;
+    }
+
+    /**
+     * @param $email
+     * @param $customer
+     * @param $claim
+     */
+    public function sendEmailOnUpdate($email, $customer, $claim)
+    {
+        if ($email && $email != '') {
+            //event(new SendEmailToCustomerUsers($customer, $claim, $email));
+            $subject = '';
+
+            if (!empty($customer->name)) {
+                $subject = $customer->name;
+            }
+            if ($claim->department) {
+                $subject = $subject . ', Afd. nr.: ' . $claim->department->name;
+            }
+            if ($claim->address1) {
+                $subject = $subject . ', ' . $claim->address1->address;
+            }
+            if (!empty($claim->address_2)) {
+                $subject = $subject . ' - Nr/Etage/Side: ' . $claim->address_2;
+            }
+            if (!empty($customer->policy_number)) {
+                $subject = $subject . ' - police nr.: ' . $customer->policy_number;
+            }
+            if (!empty($claim->selsskab_skade_nummer)) {
+                $subject = $subject . ' - skade nr.: ' . $claim->selsskab_skade_nummer;
+            }
+
+            $data = [
+                'customer' => $customer,
+                'claim' => $claim,
+                'email' => $email
+            ];
+
+            $toEMail = $email;
+
+            $markdown = Container::getInstance()->make(Markdown::class);
+            $html = $markdown->render('emails.send_email_to_customer', $data);
+
+            $images = $claim->images ? $claim->images : new Collection();
+
+            Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject, $images) {
+
+                $message->from('no_reply@bnk.com');
+                $message->to($toEMail);
+                $message->subject($subject);
+
+                $size = count($images);
+                $mbSize = 0;
+                if ($size > 0) {
+                    foreach ($images as $image) {
+
+                        $mb = get_mb(filesize($image->image_path));
+                        $mbSize = $mbSize + $mb;
+                        if ($mbSize < 20) {
+                            $message->attach($image->image_path);
+                        }
+
+                    }
+                }
+
+            }, true);
+        }
     }
 }

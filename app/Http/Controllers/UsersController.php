@@ -68,6 +68,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        setSearchInSession($search);
         $users = $this->user->search($search);
         $customers = $this->customer->all();
         return view('users.index', compact('users', 'customers', 'search'));
