@@ -44,9 +44,9 @@ class CategoryRepository implements CategoryInterface
     {
         $query = $this->model;
 
-        if($search && isset($search['customer_id'])) {
+        if(session('customer_id')) {
             $query = $query->orwhere('customer_id', null);
-            $query = $query->orwhere('customer_id', $search['customer_id']);
+            $query = $query->orwhere('customer_id', session('customer_id'));
         }
         return $query->with(['parent', 'customer'])->get();
     }

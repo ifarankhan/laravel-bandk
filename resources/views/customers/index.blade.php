@@ -85,7 +85,7 @@
                                 <td>
                                     <a href="{{ route('customer.details', ['id'=> $customer->id]) }}" class="btn btn-info btn-xs">{!! getTranslation('details')  !!} </a>
                                     <a href="{{ route('customer.edit', ['id'=> $customer->id]) }}" class="btn btn-success btn-xs">{!! getTranslation('edit') !!}</a>
-                                    <button data-id="{{ $customer->id }}" data-url="{{ route('customer.delete', ['id'=> $customer->id]) }}" class="btn btn-danger delete btn-xs" data-toggle="modal" data-target="#modal-delete">{!! getTranslation('delete') !!}</button>
+                                    <button data-id="{{ $customer->id }}" data-url="{{ route('customer.delete', ['id'=> $customer->id]) }}" class="btn btn-danger delete btn-xs" data-toggle="modal" data-target="#modal-delete" data-csrf="{{ csrf_token() }}">{!! getTranslation('delete') !!}</button>
                                 </td>
                             </tr>
                         @endforeach

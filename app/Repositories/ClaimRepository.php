@@ -60,8 +60,8 @@ class ClaimRepository implements ClaimInterface
         if($search && isset($search['department_id'])) {
             $query = $query->where('department_id', $search['department_id']);
         }
-        if($search && isset($search['customer_id'])) {
-            $query = $query->where('customer_id', $search['customer_id']);
+        if(session('customer_id')) {
+            $query = $query->where('customer_id', session('customer_id'));
         }
         if($search && isset($search['user_id'])) {
             $query = $query->where('user_id', $search['user_id']);

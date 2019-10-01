@@ -34,8 +34,8 @@ class TeamsRepository implements TeamsInterface
     public function search($search)
     {
         $query = $this->model;
-        if(isset($search['customer_id'])) {
-            $query = $query->where('customer_id', $search['customer_id']);
+        if(session('customer_id')) {
+            $query = $query->where('customer_id', session('customer_id'));
         }
 
         return $query->orderBy('name', 'ASC')->get();

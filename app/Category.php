@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    protected $fillable = ['title', 'parent_id', 'icon', 'color', 'customer_id', 'show_on_frontend'];
+    use SoftDeletes;
 
+    protected $fillable = ['title', 'parent_id', 'icon', 'color', 'customer_id', 'show_on_frontend'];
+    protected $dates = ['deleted_at'];
     protected $appends = [
         'childrenCount'
     ];

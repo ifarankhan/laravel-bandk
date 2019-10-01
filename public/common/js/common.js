@@ -28,25 +28,23 @@ jQuery(document).ready(function () {
        jQuery("#external_link_text").show();
     });
 
-    jQuery(".delete").on('click', function (event) {
-        event.preventDefault();
-        $(this).off('click');
+    $('.delete').on('click', function(event){
+        event.stopImmediatePropagation();
+        var modal = $("#modal-delete");
         var url = $(this).data('url');
         var id = $(this).data('id');
-        var data = {'_token': _token};
-        var modalElement = jQuery("#modal-delete");
-        modalElement.show();
-        jQuery(".delete-confirm").on('click', function () {
+        var csrf = $(this).data('csrf');
+        modal.modal('show');
 
-            sendAjax(url,data, 'POST', function (response) {
-                if(response.success) {
-                    jQuery("#content_"+id).hide('slow');
+        $("#delete-confirm").unbind().on('click', function (e) {
+            e.stopImmediatePropagation();
+            sendAjax(url, {_token: csrf}, 'POST', function (result) {
+                console.log(result);
+                modal.modal('hide');
+                if(result.success) {
+                    $("#content_"+id).hide('slow');
                 }
-                modalElement.modal('hide');
             });
-
-            $(this).off('click');
-
         });
     });
 
