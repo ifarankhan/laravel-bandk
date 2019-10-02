@@ -75,6 +75,7 @@
 
 <body class="nav-md">
 <div class="container body">
+    {{ dump(session('customer_id')) }}
     <div class="main_container">
         @include('partials.left-side-bar')
 
