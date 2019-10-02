@@ -12,7 +12,9 @@
  */
 function setSearchInSession($search)
 {
-    session(['customer_id' => $search['customer_id']]);
+    if(isset($search['customer_id'])) {
+        session(['customer_id' => $search['customer_id']]);
+    }
 }
 
 function get_mb($size) {
