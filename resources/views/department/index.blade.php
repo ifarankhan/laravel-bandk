@@ -100,7 +100,7 @@
                                         <tr id="content_{{ $address->id }}"  style="{{ ($key1 == 0 && $key == 0) ? '' : 'display:none' }}" class="{{ ($key1 == 0 && $key == 0) ? '' : 'toggle-class-'.$department->id }}">
                                             <td data-order="{{ intval($department->name) }}">
                                                 {!! ($key1 == 0 && $key == 0) ? $department->name : '' !!}
-                                                {!! ($key1 == 0 && $key == 0 && count($department->addresses) > 1) ? '<br /><br /><i style="cursor:pointer;color: #0275d8;" class="show_more down icon-my pull-right" data-what-to-do="down" data-department-id="'.$department->id.'">': '' !!}
+                                                {!! ($key1 == 0 && $key == 0 && (count($departmentsA) > 1 || count($department->addresses) > 1)) ? '<br /><br /><i style="cursor:pointer;color: #0275d8;" class="show_more down icon-my pull-right" data-what-to-do="down" data-department-id="'.$department->id.'">': '' !!}
                                             </td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
