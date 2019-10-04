@@ -37,6 +37,7 @@ class DepartmentsRepository implements DepartmentsInterface
 
     public function search($search)
     {
+        dump(session('customer_id'));
         $query = $this->model;
         if(session('customer_id')) {
             $query = $query->where('customer_id', session('customer_id'));
