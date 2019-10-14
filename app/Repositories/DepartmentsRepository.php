@@ -87,12 +87,17 @@ class DepartmentsRepository implements DepartmentsInterface
                 $addressObj = null;
                 $addressObj = $this->addresses->getAddressByIdDepartmentId($key, $this->model->id);
                 if($addressObj) {
-                    $addressObj->address     = isset($address['address']) ? $address['address'] : '';
-                    $addressObj->zip_code    = isset($address['zip_code']) ? $address['zip_code'] : null;
-                    $addressObj->city        = isset($address['city']) ? $address['city'] : null;
-                    $addressObj->build_year  = isset($address['build_year']) ? $address['build_year'] : null;
-                    $addressObj->m2          = isset($address['m2']) ? $address['m2'] : null;
-                    $addressObj->save();
+                    if(empty(trim($address['address'])) && empty(trim($address['zip_code'])) && empty(trim($address['city'])) && empty(trim($address['build_year'])) && empty(trim($address['m2']))) {
+                        $addressObj->delete();
+                    } else {
+                        $addressObj->address     = isset($address['address']) ? $address['address'] : '';
+                        $addressObj->zip_code    = isset($address['zip_code']) ? $address['zip_code'] : null;
+                        $addressObj->city        = isset($address['city']) ? $address['city'] : null;
+                        $addressObj->build_year  = isset($address['build_year']) ? $address['build_year'] : null;
+                        $addressObj->m2          = isset($address['m2']) ? $address['m2'] : null;
+                        $addressObj->save();
+                    }
+
                 } else {
                     $add = new Addresses();
                     $add->address     = isset($address['address']) ? $address['address'] : '';
