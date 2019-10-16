@@ -302,6 +302,9 @@ function getCompanyContent($companyId, $customerId, $categoryId)
     }
 
     return $contentArray;
+}
 
-
+function sortMyArray($a, $b)
+{
+    return $a->name > $b->name;
 }

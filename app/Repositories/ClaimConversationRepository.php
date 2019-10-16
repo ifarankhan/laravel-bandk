@@ -56,10 +56,10 @@ class ClaimConversationRepository implements ClaimConversationInterface
         $data['user_id'] = \Auth::user()->id;
         $claimConversation = $this->model->create($data);
 
-        $email = 'mno@bk-as.dk';
+        /*$email = 'mno@bk-as.dk';
         $claim = $this->claim->getOne($data['claim_id']);
         $customer = ($claim->customer) ? $claim->customer : null;
-        $this->claim->sendEmailOnUpdate($email, $customer, $claim);
+        $this->claim->sendEmailOnUpdate($email, $customer, $claim);*/
 
         if(isset($data['file']) && count($data['file']) > 0) {
 

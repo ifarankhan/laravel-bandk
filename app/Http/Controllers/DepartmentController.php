@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\DepartmentRequest;
 use App\Repositories\CategoryInterface;
+use App\Repositories\CompanyInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\TeamsInterface;
@@ -29,17 +30,23 @@ class DepartmentController extends Controller
      * @var CustomerInterface
      */
     private $customer;
+    /**
+     * @var CompanyInterface
+     */
+    private $company;
 
     /**
      * DepartmentController constructor.
      * @param DepartmentsInterface $departments
      * @param CustomerInterface $customer
+     * @param CompanyInterface $company
      */
-    public function __construct(DepartmentsInterface $departments, CustomerInterface $customer)
+    public function __construct(DepartmentsInterface $departments, CustomerInterface $customer, CompanyInterface $company)
     {
 
         $this->departments = $departments;
         $this->customer = $customer;
+        $this->company = $company;
     }
 
     public function index(Request $request)
@@ -102,7 +109,7 @@ class DepartmentController extends Controller
     }
     public function companyDepartments($id)
     {
-        return $this->departments->getCompanyDepartment($id);
+        return $this->departments->getCompanyAssignedDepartments($id);
     }
     public function customerGroupedDepartments($id)
     {
