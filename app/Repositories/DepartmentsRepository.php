@@ -44,8 +44,8 @@ class DepartmentsRepository implements DepartmentsInterface
 
         $departments = $query->orderBy('name', 'ASC')->get();
 
-        if($departments->count() > 0)
-            usort($departments, 'sortMyArray');
+        /*if($departments->count() > 0)
+            usort($departments, 'sortMyArray');*/
 
         return $departments;
     }
@@ -62,8 +62,8 @@ class DepartmentsRepository implements DepartmentsInterface
             }
         }
         $departments =  $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
-        if($departments->count() > 0)
-            usort($departments, 'sortMyArray');
+        /*if($departments->count() > 0)
+            usort($departments, 'sortMyArray');*/
 
         return $departments;
     }
