@@ -42,7 +42,12 @@ class DepartmentsRepository implements DepartmentsInterface
             $query = $query->where('customer_id', session('customer_id'));
         }
 
-        return $query->orderBy('name', 'ASC')->get();
+        $departments = $query->orderBy('name', 'ASC')->get();
+
+        if($departments->count() > 0)
+            usort($departments, 'sortMyArray');
+
+        return $departments;
     }
 
     public function all()
@@ -56,7 +61,11 @@ class DepartmentsRepository implements DepartmentsInterface
                 $query = $query->where('customer_id', \Auth::user()->customer->id);
             }
         }
-        return $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
+        $departments =  $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
+        if($departments->count() > 0)
+            usort($departments, 'sortMyArray');
+
+        return $departments;
     }
 
     public function getOne($id)
