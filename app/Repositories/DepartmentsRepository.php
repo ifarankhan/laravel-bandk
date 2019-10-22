@@ -161,17 +161,27 @@ class DepartmentsRepository implements DepartmentsInterface
     }
     public function getCompanyAssignedDepartments($companyId)
     {
+        $roles = \Auth::user()->roles;
+        $isAdmin = false;
+
+        foreach ($roles as $role) {
+            if($role->name == 'ADMIN') {
+                $isAdmin = true;
+            }
+        }
         $userDepartments = (\Auth::user()->departments) ? json_decode((\Auth::user()->departments)) : [];
         $ids = explode(',', $companyId);
         $departments = $this->model->whereIn('company_id', $ids)->orderBy('name', 'ASC')->get();
         $userDepartmentsArray = [];
-        if(count($departments) > 0) {
+        if(count($departments) > 0 && !$isAdmin) {
             foreach ($departments as $k => $department) {
                 if(in_array($department->id, $userDepartments)) {
                     $userDepartmentsArray[] = $department;
                 }
             }
             usort($userDepartmentsArray, 'sortMyArray');
+        } else {
+            $userDepartmentsArray = $departments;
         }
         return $userDepartmentsArray;
     }
