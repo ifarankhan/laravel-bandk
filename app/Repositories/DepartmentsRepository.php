@@ -182,6 +182,7 @@ class DepartmentsRepository implements DepartmentsInterface
             usort($userDepartmentsArray, 'sortMyArray');
         } else {
             $userDepartmentsArray = $departments;
+            usort($userDepartmentsArray, 'sortMyArray');
         }
         return $userDepartmentsArray;
     }
