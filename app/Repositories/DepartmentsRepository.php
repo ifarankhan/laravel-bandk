@@ -43,11 +43,15 @@ class DepartmentsRepository implements DepartmentsInterface
         }
 
         $departments = $query->orderBy('name', 'ASC')->get();
+        $newDepartments = [];
+        if(count($departments) > 0) {
+            foreach ($departments as $department) {
+                $newDepartments[] = $department;
+            }
+            usort($newDepartments, 'sortMyArray');
+        }
 
-        /*if($departments->count() > 0)
-            usort($departments, 'sortMyArray');*/
-
-        return $departments;
+        return $newDepartments;
     }
 
     public function all()
@@ -61,11 +65,16 @@ class DepartmentsRepository implements DepartmentsInterface
                 $query = $query->where('customer_id', \Auth::user()->customer->id);
             }
         }
-        $departments =  $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
-        /*if($departments->count() > 0)
-            usort($departments, 'sortMyArray');*/
+        $departments = $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
+        $newDepartments = [];
+        if(count($departments) > 0) {
+            foreach ($departments as $department) {
+                $newDepartments[] = $department;
+            }
+            usort($newDepartments, 'sortMyArray');
+        }
 
-        return $departments;
+        return $newDepartments;
     }
 
     public function getOne($id)
