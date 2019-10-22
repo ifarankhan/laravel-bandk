@@ -306,5 +306,7 @@ function getCompanyContent($companyId, $customerId, $categoryId)
 
 function sortMyArray($a, $b)
 {
-    return strtolower($a->name ) >= strtolower($b->name);
+    $newA = explode(' ', $a->name)[0];
+    $newB = explode(' ', $b->name)[0];
+    return strtolower($newA) >= strtolower($newB);
 }
