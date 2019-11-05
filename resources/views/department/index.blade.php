@@ -57,7 +57,7 @@
                     $departmentsArray = [];
                     if(count($departments) > 0) {
                         foreach ($departments as $department) {
-                            $departmentsArray[$department->customer_id][] = $department;
+                            $departmentsArray[$department->id][] = $department;
                         }
                     }
                     ?>
