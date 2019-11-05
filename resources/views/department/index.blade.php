@@ -11,6 +11,7 @@
                 <div class="x_title">
                     <h2>Departments Lists</h2>
                     <a href="{{ route('department.create') }}" class="btn btn-danger pull-right">Opret</a>
+                    <a class="btn btn-success" href="{{ route('reset.url') }}">{{ getTranslation('reset') }}</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -56,7 +57,7 @@
                     $departmentsArray = [];
                     if($search && isset($search['customer_id']) && count($departments) > 0) {
                         foreach ($departments as $department) {
-                            $departmentsArray[$department->id][] = $department;
+                            $departmentsArray[$department->name][] = $department;
                         }
                     }
                     ?>
