@@ -54,6 +54,7 @@ class DepartmentController extends Controller
         $search = $request->get('search');
         setSearchInSession($search);
         $departments = $this->departments->search($search);
+        dd($departments);
         $customers = $this->customer->all();
         return view('department.index', compact('departments', 'customers', 'search'));
     }
