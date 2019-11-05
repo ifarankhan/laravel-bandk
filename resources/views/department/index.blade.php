@@ -11,7 +11,6 @@
                 <div class="x_title">
                     <h2>Departments Lists</h2>
                     <a href="{{ route('department.create') }}" class="btn btn-danger pull-right">Opret</a>
-                    <a class="btn btn-success" href="{{ route('reset.url') }}">{{ getTranslation('reset') }}</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -45,6 +44,7 @@
                                             </label>
                                             <div class="">
                                                 <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
+                                                <a class="btn btn-success" href="{{ route('reset.url') }}">{{ getTranslation('reset') }}</a>
                                             </div>
                                         </div>
                                     </div>
