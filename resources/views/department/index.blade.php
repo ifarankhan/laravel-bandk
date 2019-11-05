@@ -57,7 +57,7 @@
                     $departmentsArray = [];
                     if($search && isset($search['customer_id']) && count($departments) > 0) {
                         foreach ($departments as $department) {
-                            $departmentsArray[$department->name][] = $department;
+                            $departmentsArray[$department->id][] = $department;
                         }
                     }
                     ?>
@@ -74,7 +74,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($departmentsArray) == 0)
+                        {{--@if(count($departmentsArray) == 0)
                             @foreach($departments as $department)
                                 @foreach($department->addresses as $key => $address)
                                     <tr id="content_{{ $department->id }}">
@@ -91,7 +91,7 @@
                                     </tr>
                                 @endforeach
                             @endforeach
-                        @else
+                        @else--}}
                             @foreach($departmentsArray as $departmentsA)
                                 @foreach($departmentsA as $key1 => $department)
                                     @foreach($department->addresses as $key => $address)
@@ -113,7 +113,7 @@
                                     @endforeach
                                 @endforeach
                             @endforeach
-                        @endif
+                        {{--@endif--}}
                         </tbody>
                     </table>
                 </div>
