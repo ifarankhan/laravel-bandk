@@ -65,6 +65,7 @@
                         <thead>
                         <tr>
                             <th>{{ getTranslation('department') }}</th>
+                            <th>Customer</th>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
@@ -96,6 +97,7 @@
                                 @foreach($departmentsA as $key1 => $department)
                                     @foreach($department->addresses as $key => $address)
                                         <tr id="content_{{ $address->id }}"  style="{{ ($key1 == 0 && $key == 0) ? '' : 'display:none' }}" class="{{ ($key1 == 0 && $key == 0) ? '' : 'toggle-class-'.$department->id }}">
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $department->customer->name}}</td>
                                             <td data-order="{{ intval($department->name) }}">
                                                 {!! ($key1 == 0 && $key == 0) ? $department->name : '' !!}
                                                 {!! ($key1 == 0 && $key == 0 && count($department->addresses) > 1) ? '<br /><br /><i style="cursor:pointer;color: #0275d8;" class="show_more down icon-my pull-right" data-what-to-do="down" data-department-id="'.$department->id.'">': '' !!}
