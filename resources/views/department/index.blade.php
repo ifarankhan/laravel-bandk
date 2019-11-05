@@ -64,8 +64,8 @@
                     <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>{{ getTranslation('department') }}</th>
                             <th>Customer</th>
+                            <th>{{ getTranslation('department') }}</th>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
