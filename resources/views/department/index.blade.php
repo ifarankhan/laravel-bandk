@@ -32,7 +32,7 @@
                                         <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
                                             <option value="">{{ getTranslation('select_customer') }}</option>
                                             @foreach($customers as $aCustomer)
-                                                <option value="{{ $aCustomer->id }}" {{ (session('customer_id') && session('customer_id') == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
+                                                <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -44,7 +44,6 @@
                                             </label>
                                             <div class="">
                                                 <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
-                                                <a class="btn btn-success" href="{{ route('reset.url') }}">{{ getTranslation('reset') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -54,18 +53,17 @@
                         </div>
                     </form>
                     <?php
-                        $departmentsArray = [];
-                        if((($search && isset($search['customer_id'])) || session('customer_id')) && count($departments) > 0) {
-                            foreach ($departments as $department) {
-                                $departmentsArray[$department->name][] = $department;
-                            }
+                    $departmentsArray = [];
+                    if($search && isset($search['customer_id']) && count($departments) > 0) {
+                        foreach ($departments as $department) {
+                            $departmentsArray[$department->name][] = $department;
                         }
+                    }
                     ?>
                     <table id="datatable1" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>{{ getTranslation('department') }}</th>
-                            {{--<td style="width:150px;" class="col-md-3 col-xs-12" >{{ getTranslation('company') }}</td>--}}
                             <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >Post nr.</td>
                             <td style="width:150px;" class="col-md-3 col-xs-12" >By</td>
