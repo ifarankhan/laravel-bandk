@@ -77,21 +77,20 @@
                         <tbody>
                         @if(count($departmentsArray) == 0)
                             @foreach($departments as $department)
-                                    @foreach($department->addresses as $key => $address)
-                                        <tr id="content_{{ $department->id }}">
-                                            <td data-order="{{ intval($department->name) }}">{{ $department->name }}</td>
-                                            {{--<td>{{ ($department->company) ?  $department->company->name : ''}}</td>--}}
-                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
-                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
-                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
-                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
-                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
-                                            <td>
-                                                <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
-                                                <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" data-csrf="{{ csrf_token() }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach($department->addresses as $key => $address)
+                                    <tr id="content_{{ $department->id }}">
+                                        <td data-order="{{ intval($department->name) }}">{{ $department->name }}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->build_year}}</td>
+                                        <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
+                                        <td>
+                                            <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
+                                            <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endforeach
                         @else
                             @foreach($departmentsArray as $departmentsA)
@@ -115,7 +114,6 @@
                                     @endforeach
                                 @endforeach
                             @endforeach
-
                         @endif
                         </tbody>
                     </table>
