@@ -15,6 +15,10 @@ class Departments extends Model
     {
         return $this->belongsTo(Team::class);
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 
     public function company()
     {
