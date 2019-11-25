@@ -1,6 +1,7 @@
 /**
  * Created by fara on 8/18/2018.
  */
+var myFiles = new Array();
 jQuery(document).ready(function () {
 
     jQuery(".show-hide").on('click', function () {
@@ -161,7 +162,6 @@ jQuery(document).ready(function () {
         departments.html('');
         if (company.length > 0) {
             var selectedCompany = jQuery("#hidden_company_1").val();
-            console.log(selectedCompany);
             var url = $(this).data('url') + value;
             var data = {};
             if (value != '' ) {
@@ -322,6 +322,12 @@ jQuery(document).ready(function () {
         });
     });
 
+    jQuery("#claim-create-form").on('submit', function(){
+        $("#files_images").val('');
+        var data = JSON.stringify(myFiles);
+        $("#files_images").val(data);
+        $(this).submit();
+    });
 
     jQuery("input#fileUpload").on('change', function () {
 
@@ -331,8 +337,11 @@ jQuery(document).ready(function () {
         var imgPath = jQuery(this)[0].value;
         var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
         var image_holder = jQuery("#image-holder");
-        image_holder.empty();
+        //image_holder.empty();
 
+        console.log(image_holder.find('img').length);
+        var src = '';
+        var index = myFiles.length;
         if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
             if (typeof (FileReader) != "undefined") {
 
@@ -340,12 +349,18 @@ jQuery(document).ready(function () {
                 for (var i = 0; i < countFiles; i++) {
 
                     var reader = new FileReader();
+
                     reader.onload = function (e) {
+                        myFiles[index] = e.target.result;
+
                         $("<img />", {
                             "src": e.target.result,
                             "class": "thumb-image"
                         }).appendTo(image_holder);
+                        index++;
                     }
+
+
 
                     image_holder.show();
                     reader.readAsDataURL($(this)[0].files[i]);
@@ -357,6 +372,8 @@ jQuery(document).ready(function () {
         } else {
             alert("Pls select only images");
         }
+
+        console.log(myFiles);
     });
 
     jQuery('body').on('click','a.load-content',function(e){

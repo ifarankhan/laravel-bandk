@@ -86,7 +86,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger delete-confirm">{{ getTranslation('delete') }}</button>
+                <button type="button" class="btn btn-danger" id="delete-confirm">{{ getTranslation('delete') }}</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ getTranslation('close') }}</button>
             </div>
         </div>

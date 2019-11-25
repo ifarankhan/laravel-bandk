@@ -14,10 +14,11 @@
                     @endforeach
                 </div>
 
-                <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data" id="claim-create-form">
                     {{ csrf_field() }}
                     <input type="hidden" name="status" value="OPEN">
                     <input type="hidden" name="from_web" value="from_web">
+                    <input type="hidden" name="files_images" id="files_images" value="">
                     <?php
                         $roles = \Auth::user()->roles;
 

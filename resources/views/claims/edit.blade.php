@@ -14,11 +14,12 @@
                     @endforeach
                 </div>
 
-                <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('claim.create.post') }}" method="POST" enctype="multipart/form-data" id="claim-create-form">
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $claim->id }}">
                     <input type="hidden" name="status" value="FOR_BNK">
                     <input type="hidden" name="from_web" value="from_web">
+                    <input type="hidden" name="files_images" id="files_images" value="">
                     <?php
                     $roles = \Auth::user()->roles;
 
@@ -208,7 +209,7 @@
                                             <img src="{{ $image->image }}" style="width:170px;height:120px;" class="img-responsive" />
                                             <br />
                                             <br />
-                                            <a data-id="{{ $image->id }}" data-url="{{ route('image.delete', ['id'=> $image->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">{{ getTranslation('delete') }}</a>
+                                            <a data-id="{{ $image->id }}" data-url="{{ route('image.delete', ['id'=> $image->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-image-delete" data-csrf="{{ csrf_token() }}">{{ getTranslation('delete') }}</a>
                                         </div>
 
                                     </div>
