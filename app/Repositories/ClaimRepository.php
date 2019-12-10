@@ -189,7 +189,7 @@ class ClaimRepository implements ClaimInterface
         }
 
 
-        if(isset($data['files_images']) && count(json_decode($data['files_images'])) > 0) {
+        if(isset($data['from_web']) && isset($data['files_images']) && count(json_decode($data['files_images'])) > 0) {
             $uploadedImages = json_decode($data['files_images']);
             foreach ($uploadedImages as $image) {
                 $this->claimImages = new ClaimImages();
@@ -200,6 +200,17 @@ class ClaimRepository implements ClaimInterface
                 fclose( $ifp );
 
                 //$image->move(config('app.path_to_upload') , $uniqueFileName);
+                $this->claimImages->image = $uniqueFileName;
+                $this->claimImages->claim_id = $claim->id;
+                $this->claimImages->save();
+            }
+        }
+
+        if(!isset($data['from_web']) && isset($data['images']) && count($data['images']) > 0) {
+            foreach ($data['images'] as $image) {
+                $this->claimImages = new ClaimImages();
+                $uniqueFileName = uniqid() . $image->getClientOriginalName();
+                $image->move(config('app.path_to_upload') , $uniqueFileName);
                 $this->claimImages->image = $uniqueFileName;
                 $this->claimImages->claim_id = $claim->id;
                 $this->claimImages->save();
