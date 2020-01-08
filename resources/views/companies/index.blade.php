@@ -74,7 +74,7 @@
                         @foreach($companies as $company)
                             <tr id="content_{{ $company->id }}">
                                 <td>{{ $company->name }}</td>
-                                <td>{{ $company->customer->name }}</td>
+                                <td>{{ ($company->customer) ? $company->customer->name : '' }}</td>
                                 <td>{{ ($company->address) ? $company->address :  ''}}</td>
                                 <td>{{ ($company->city) ? $company->city :  ''}}</td>
                                 <td>{{ ($company->zip_code) ? $company->zip_code :  ''}}</td>
