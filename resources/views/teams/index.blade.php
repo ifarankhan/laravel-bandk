@@ -66,7 +66,7 @@
                         @foreach($teams as $team)
                             <tr id="content_{{ $team->id }}">
                                 <td>{{ $team->name }}</td>
-                                <td>{{ $team->customer->name }}</td>
+                                <td>{{ ($team->customer) ? $team->customer->name : '' }}</td>
                                 <td>
                                     <a href="{{ route('team.edit', ['id'=> $team->id]) }}" class="btn btn-success">Edit</a>
                                     {{--<button data-id="{{ $team->id }}" data-url="{{ route('team.delete', ['id'=> $team->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>--}}
