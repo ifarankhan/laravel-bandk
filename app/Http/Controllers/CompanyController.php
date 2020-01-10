@@ -79,7 +79,8 @@ class CompanyController extends Controller
 
     public function customerCompanies($customerId)
     {
-        return $this->company->customerCompany($customerId);
+        $user = \Auth::user();
+        return $this->company->getUserCompanyData($user->companies);
     }
 
     public function delete($id)

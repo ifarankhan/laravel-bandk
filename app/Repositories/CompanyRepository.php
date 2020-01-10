@@ -51,8 +51,6 @@ class CompanyRepository implements CompanyInterface
 
         $companies = $this->model->whereIn('id', $companiesIds)->with(['departments'])->get();
 
-        $userDepartmentsArray = [];
-
         if(count($companies) > 0) {
             foreach ($companies as $key => $company) {
                 $userDepartmentsArray = [];
