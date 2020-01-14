@@ -152,7 +152,7 @@ class DepartmentsRepository implements DepartmentsInterface
     public function getCompanyDepartment($companyId)
     {
         $ids = explode(',', $companyId);
-        $departments = $this->model->whereIn('company_id', $ids)->orderBy('name', 'ASC')->get();
+        $departments = $this->model->whereIn('company_id', $ids)->orderBy('name', 'ASC')->get()->toArray();
         usort($departments, 'sortMyArray');
         if(count($departments) > 0 ) {
             return $departments;
