@@ -122,6 +122,8 @@ class DepartmentController extends Controller
                     $team = $dep->team->name;
                 }
                 $departmentGroup[$team][] = $dep;
+
+                usort($departmentGroup[$team], 'sortMyArray');
             }
         }
 
