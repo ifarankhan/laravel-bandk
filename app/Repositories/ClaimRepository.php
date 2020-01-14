@@ -290,7 +290,10 @@ class ClaimRepository implements ClaimInterface
             if (!empty($claim->address_2)) {
                 $subject = $subject . ' - Nr/Etage/Side: ' . $claim->address_2;
             }
-            if (!empty($customer->policy_number)) {
+
+            if ($claim->department && !is_null($claim->department->policy_number) && !empty($claim->department->policy_number)) {
+                $subject = $subject . ' - police nr.: ' . $claim->department->policy_number;
+            } elseif(!empty($customer->policy_number)) {
                 $subject = $subject . ' - police nr.: ' . $customer->policy_number;
             }
             if (!empty($claim->selsskab_skade_nummer)) {
