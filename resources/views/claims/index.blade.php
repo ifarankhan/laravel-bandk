@@ -172,6 +172,7 @@
                         <tr>
                             <th>{{ getTranslation('updated_at') }}</th>
                             <th>{{ getTranslation('customer_name') }}</th>
+                            <th>Virksomheder</th>
                             <th>{{ getTranslation('date') }}</th>
                             <th>Selskab skade nummer</th>
                             <th>{{ getTranslation('claim_type') }}</th>
@@ -190,6 +191,9 @@
                                      @endif
                                 </td>
                                 <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
+                                <td>
+                                    {{ ($claim->department && $claim->department->company && $claim->department->company->name)  ? $claim->department->company->name : ''}}
+                                </td>
                                 <td data-sort="{{ date('Y-m-d', strtotime($claim->date)) }}">{{ $claim->date }}</td>
                                 <td>{{ $claim->selsskab_skade_nummer }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
