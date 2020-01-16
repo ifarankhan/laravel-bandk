@@ -56,59 +56,55 @@
                     </thead>
                     <tbody>
                         <tr >
-                            <td class="col-md-10">
+                            <td>
                                 <div class="col-md-6">
                                     <strong>{{ getTranslation('customer_name') }}:</strong>
                                 </div>
-                                <div class="col-md-6">
-                                     {{ ($claim->customer) ?  $claim->customer->name : ''}}
-                                </div>
-                                </td>
+                            </td>
 
-                            <td class="col-md-1">&nbsp;</td>
-                            <td class="col-md-1">&nbsp;</td>
+                            <td >{{ ($claim->customer) ?  $claim->customer->name : ''}}</td>
                         </tr>
                         <tr >
-                            <td class="col-md-4">
-                                <div class="col-md-6"><strong>{{ getTranslation('claim_id') }}:</strong> </div>
-                                <div class="col-md-6">{{ $claim->id }}</div>
+                            <td>
+                                <div><strong>{{ getTranslation('claim_id') }}:</strong> </div>
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-6"><strong>{{ getTranslation('department') }}:</strong></div>
-                                <div class="col-md-6"> {{ ($claim->department) ? $claim->department->name : ''}}</div>
+                            <td><div>{{ $claim->id }}</div></td>
+                            <td >
+                                <div><strong>{{ getTranslation('department') }}:</strong></div>
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-6"><strong>{{ getTranslation('date') }}:</strong></div>
-                                <div class="col-md-6">{{ $claim->date }}</div>
-
+                            <td>
+                                <div> {{ ($claim->department) ? $claim->department->name : ''}}</div>
+                            </td>
+                            <td>
+                                <div><strong>{{ getTranslation('date') }}:</strong></div>
+                            </td>
+                            <td>
+                                <div>{{ $claim->date }}</div>
                             </td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
-                            <td class="col-md-6">
-                                <div class="col-md-6"><strong>{{ getTranslation('address_1') }}:</strong></div>
-                                <div class="col-md-6">{{ ($claim->address1)  ? $claim->address1->address : ''}}</div>
-
+                            <td>&nbsp;</td>
+                            <td>
+                                <div><strong>{{ getTranslation('address_1') }}:</strong></div>
                             </td>
-                            <td class="col-md-6">
-                                <div class="col-md-6"><strong>{{ getTranslation('claim_type') }}:</strong></div>
-                                <div class="col-md-6">{{ ($claim->type) ? $claim->type->name : ''}}</div>
+                            <td><div >{{ ($claim->address1)  ? $claim->address1->address : ''}}</div></td>
+                            <td>
+                                <div><strong>{{ getTranslation('claim_type') }}:</strong></div>
                             </td>
+                            <td><div>{{ ($claim->type) ? $claim->type->name : ''}}</div></td>
                         </tr>
                         <tr>
-                            <td class="col-md-4"><div class="col-md-12"><strong>Selskab skade nummer:</strong></div></td>
-                            <td class="col-md-4">
-                                <div class="col-md-6"><strong>{{ getTranslation('address_2') }}:</strong></div>
-                                <div class="col-md-6">{{ ($claim->address_2)  ? $claim->address_2 : ''}}</div>
-                            </td>
-                            <td class="col-md-4">
-                                <div class="col-md-6"><strong>{{ getTranslation('estimate') }}:</strong></div>
-                                <div class="col-md-6"> {{ $claim->estimate }}</div>
-                            </td>
+                            <td>&nbsp;</td>
+                            <td><div ><strong>Selskab skade nummer:</strong></div></td>
+                            <td><div ><strong>{{ getTranslation('address_2') }}:</strong></div></td>
+                            <td><div >{{ ($claim->address_2)  ? $claim->address_2 : ''}}</div></td>
+                            <td ><div ><strong>{{ getTranslation('estimate') }}:</strong></div></td>
+                            <td><div > {{ $claim->estimate }}</div></td>
                         </tr>
                         <tr>
-                            <td class="col-md-4">
-                                <div class="col-md-12">
+                            <td colspan="2">
+                                <div >
                                     <input type="hidden" name="id" value="{{ $claim->id }}">
                                     {{ csrf_field() }}
                                     <div style="margin-left: -2px;">
@@ -117,10 +113,10 @@
                                 </div>
 
                             </td>
-                            <td class="col-md-4">
-                                <div class="col-md-6"><strong>{{ getTranslation('customer_zip_code') }}:</strong></div>
-                                <div class="col-md-6">{{ ($claim->address1) ?  $claim->address1->zip_code : ''}}</div>
+                            <td >
+                                <div ><strong>{{ getTranslation('customer_zip_code') }}:</strong></div>
                             </td>
+                            <div >{{ ($claim->address1) ?  $claim->address1->zip_code : ''}}</div>
                             <td class="col-md-4"> &nbsp;</td>
                         </tr>
                         <tr>
