@@ -101,7 +101,7 @@
                                                 {!! ($key1 == 0 && $key == 0) ? $department->name : '' !!}
                                                 {!! ($key1 == 0 && $key == 0 && count($department->addresses) > 1) ? '<br /><br /><i style="cursor:pointer;color: #0275d8;" class="show_more down icon-my pull-right" data-what-to-do="down" data-department-id="'.$department->id.'">': '' !!}
                                             </td>
-                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $department->customer->name}}</td>
+                                            <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ ($department->customer) ? $department->customer->name : '' }}</td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->address}}</td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->zip_code}}</td>
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->city}}</td>

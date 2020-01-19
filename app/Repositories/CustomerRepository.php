@@ -57,9 +57,18 @@ class CustomerRepository implements CustomerInterface
 
     public function store($data)
     {
+        $emails = [];
         if(isset($data['id'])) {
             $this->model = $this->model->find($data['id']);
         }
+        if(count($data['emails']) > 0) {
+            foreach ($data['emails'] as $email) {
+                if(!empty($email)) {
+                    $emails[] = $email;
+                }
+            }
+        }
+
 
         $this->model->name = isset($data['name']) ? $data['name'] : null;
         $this->model->address = isset($data['address']) ? $data['address'] : null;
@@ -72,7 +81,7 @@ class CustomerRepository implements CustomerInterface
         $this->model->policy_number = isset($data['policy_number']) ? $data['policy_number'] : null;
         $this->model->insurance_number = isset($data['insurance_number']) ? $data['insurance_number'] : null;
         $this->model->bnk_insurance_number = isset($data['bnk_insurance_number']) ? $data['bnk_insurance_number'] : null;
-        $this->model->emails = isset($data['emails']) ? json_encode($data['emails']) : null;
+        $this->model->emails = (count($emails) > 0) ? json_encode($emails) : null;
         $this->model->is_send_email = isset($data['is_send_email']) ? true : false;
         $this->model->shared_link = (isset($data['shared_link']) && !empty($data['shared_link'])) ? $data['shared_link'] : null;
 

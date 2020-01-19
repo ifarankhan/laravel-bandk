@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Http\Requests\CompanyRequest;
 use App\Repositories\CompanyInterface;
 use App\Repositories\CustomerInterface;
@@ -80,7 +81,12 @@ class CompanyController extends Controller
     public function customerCompanies($customerId)
     {
         $user = \Auth::user();
-        return $this->company->getUserCompanyData($user->companies);
+        $companies = $user->companies;
+        if(in_array('ADMIN', getUserRoles($user))) {
+            return $this->company->customerCompany($customerId);
+        }
+
+        return $this->company->getUserCompanyData($companies);
     }
 
     public function delete($id)

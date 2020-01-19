@@ -157,9 +157,9 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="checkbox" name="is_send_email" id="is_send_email" value="true" >
-                                @if ($errors->has('bnk_insurance_number'))
+                                @if ($errors->has('is_send_email'))
                                     <span class="help-block" style="color: red;">
-                                        <strong>{{ $errors->first('bnk_insurance_number') }}</strong>
+                                        <strong>{{ $errors->first('is_send_email') }}</strong>
                                     </span>
                                 @endif
                             </div>

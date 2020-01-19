@@ -97,6 +97,39 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="is_send_email" > {{ getTranslation('receive_emails') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="checkbox" name="is_send_email" id="is_send_email" value="true" >
+                                @if ($errors->has('is_send_email'))
+                                    <span class="help-block" style="color: red;">
+                                        <strong>{{ $errors->first('is_send_email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ getTranslation('customer_emails') }}
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-9" id="emails_div">
+                                    @if(count(old('emails')) > 0)
+                                        @foreach(old('emails') as $email)
+                                            <div style="margin-bottom: 35px;">
+                                                <input type="text"  required="required" class="form-control col-md-7 col-xs-12" name="emails[]" value="{{ $email }}">
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-danger pull-right" type="button" id="add_emails">{{ getTranslation('customer_add_emails') }}</button>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <br />
                         <br />
                         <div class="form-group">
