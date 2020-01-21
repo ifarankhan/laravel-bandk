@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="form-section">
-                <h1>Claim Form</h1>
+                <h1>Anmeld skade</h1>
 
                 <div class="flash-message">
                     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
