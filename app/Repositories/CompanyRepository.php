@@ -61,10 +61,11 @@ class CompanyRepository implements CompanyInterface
                         }
                     }
                     usort($userDepartmentsArray, 'sortMyArray');
+                    foreach ($userDepartmentsArray as $key => $dep) {
+                        $userDepartmentsArray[$key]['order'] = $key + 1;
+                    }
                     $collect = collect($userDepartmentsArray);
-                    /*foreach ($collect as $key => $dep) {
-                        $dep->order = $key + 1;
-                    }*/
+
                     unset($companies[$key]->departments);
                     $companies[$key]->departments = $collect;
                 }
