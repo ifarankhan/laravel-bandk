@@ -1,6 +1,9 @@
 @component('mail::message')
 Hej, <br />
-På vegne af vores fælles kunde – {{ (isset($customer->department) && isset($customer->department->company) && isset($customer->department->company->name)) ?  $customer->department->company->name : $customer->name }}, skal vi hermed anmelde følgende skade, til jeres videre behandling:
+På vegne af vores fælles kunde – {{ (isset($customer->department) && isset($customer->department->company) && isset($customer->department->company->name)) ?  $customer->department->company->name : '' }}, skal vi hermed anmelde følgende skade, til jeres videre behandling:
+<p>
+    Kundeadministration : {{ $customer->name }}
+</p>
 <p>
     Skadedato: {{ $claim->date }}
 </p>

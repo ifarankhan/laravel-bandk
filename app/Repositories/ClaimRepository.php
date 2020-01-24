@@ -285,8 +285,8 @@ class ClaimRepository implements ClaimInterface
             //event(new SendEmailToCustomerUsers($customer, $claim, $email));
             $subject = '';
 
-            if (!empty($customer->name)) {
-                $subject = $customer->name;
+            if (!is_null($claim->department) && !is_null($claim->department->company)) {
+                $subject = $claim->department->company->name;
             }
             if ($claim->department) {
                 $subject = $subject . ', Afd. nr.: ' . $claim->department->name;
