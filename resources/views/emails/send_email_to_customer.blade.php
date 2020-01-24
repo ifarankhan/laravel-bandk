@@ -1,9 +1,7 @@
 @component('mail::message')
 Hej, <br />
 På vegne af vores fælles kunde – {{ (!is_null($claim->department) && !is_null($claim->department->company)) ?  $claim->department->company->name : '' }}, skal vi hermed anmelde følgende skade, til jeres videre behandling:
-<p>
-    Kundeadministration : {{ $customer->name }}
-</p>
+
 <p>
     Skadedato: {{ $claim->date }}
 </p>
