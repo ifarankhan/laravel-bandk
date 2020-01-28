@@ -35,7 +35,7 @@
                                     <td>{{ $claimType->name }}</td>
                                     <td>
                                         <a href="{{ route('claim-type.edit', ['id'=> $claimType->id]) }}" class="btn btn-success">Redigere</a>
-                                        <button data-id="{{ $claimType->id }}" data-url="{{ route('claim-type.delete', ['id'=> $claimType->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                        <button data-id="{{ $claimType->id }}" data-url="{{ route('claim-type.delete', ['id'=> $claimType->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-csrf="{{ csrf_token() }}" data-target="#modal-delete">Slet</button>
                                     </td>
                                 </tr>
                             @endforeach

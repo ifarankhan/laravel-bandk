@@ -70,7 +70,7 @@
                                 <td>{{ ($content->customer) ? $content->customer->name :  'All'}}</td>
                                 <td>
                                     <a href="{{ route('content.edit', ['id'=> $content->id]) }}" class="btn btn-success">Redigere</a>
-                                    <button data-id="{{ $content->id }}" data-url="{{ route('content.delete', ['id'=> $content->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                    <button data-id="{{ $content->id }}" data-url="{{ route('content.delete', ['id'=> $content->id]) }}" data-csrf="{{ csrf_token() }}"  class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
                                 </td>
                             </tr>
                         @endforeach

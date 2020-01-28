@@ -31,7 +31,7 @@ class ClaimTypesRepository implements ClaimTypesInterface
     }
     public function all()
     {
-        return $this->model->orderBy('name', 'ASC')->get(['id', 'name']);
+        return $this->model->whereNull('deleted_at')->orderBy('name', 'ASC')->get(['id', 'name']);
     }
 
     public function store($data)

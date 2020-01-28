@@ -40,6 +40,15 @@ class AddDeletedAtToAll extends Migration
         Schema::table('addresses', function (Blueprint $table) {
             $table->softDeletes();
         });
+        Schema::table('claim_types', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+        Schema::table('claim_mechanics', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+        Schema::table('contents', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -74,6 +83,15 @@ class AddDeletedAtToAll extends Migration
             $table->dropColumn('deleted_at ');
         });
         Schema::table('addresses', function (Blueprint $table) {
+            $table->dropColumn('deleted_at ');
+        });
+        Schema::table('claim_types', function (Blueprint $table) {
+            $table->dropColumn('deleted_at ');
+        });
+        Schema::table('claim_mechanics', function (Blueprint $table) {
+            $table->dropColumn('deleted_at ');
+        });
+        Schema::table('contents', function (Blueprint $table) {
             $table->dropColumn('deleted_at ');
         });
     }

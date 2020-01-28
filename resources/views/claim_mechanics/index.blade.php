@@ -35,7 +35,7 @@
                                     <td>{{ $claimMechanic->name }}</td>
                                     <td>
                                         <a href="{{ route('claim-mechanic.edit', ['id'=> $claimMechanic->id]) }}" class="btn btn-success">Redigere</a>
-                                        <button data-id="{{ $claimMechanic->id }}" data-url="{{ route('claim-mechanic.delete', ['id'=> $claimMechanic->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                        <button data-id="{{ $claimMechanic->id }}" data-url="{{ route('claim-mechanic.delete', ['id'=> $claimMechanic->id]) }}" data-csrf=" {{ csrf_token() }}"class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
                                     </td>
                                 </tr>
                             @endforeach
