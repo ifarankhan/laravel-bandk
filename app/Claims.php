@@ -74,4 +74,17 @@ class Claims extends Model
         }
         return $value;
     }
+
+    protected static function boot()
+    {
+        static::deleting(function ($instance) {
+            if(count($instance->conversations) > 0) {
+                $instance->conversations->each->delete();
+            }
+
+            if(count($instance->images) > 0) {
+                $instance->images->each->delete();
+            }
+        });
+    }
 }

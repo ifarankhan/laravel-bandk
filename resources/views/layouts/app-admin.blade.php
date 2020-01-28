@@ -144,7 +144,7 @@
                 <h4 class="modal-title">Are you sure to delete?</h4>
             </div>
             <div class="modal-body">
-                Are you sure to delete this claim?
+                Are you sure to delete?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" id="delete-confirm">Delete</button>

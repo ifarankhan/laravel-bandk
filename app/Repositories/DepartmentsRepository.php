@@ -42,7 +42,7 @@ class DepartmentsRepository implements DepartmentsInterface
             $query = $query->where('customer_id', session('customer_id'));
         }
 
-        $departments = $query->orderBy('name', 'ASC')->get();
+        $departments = $query->whereNull('deleted_at')->orderBy('name', 'ASC')->get();
         $newDepartments = [];
         if(count($departments) > 0) {
             foreach ($departments as $department) {
@@ -65,7 +65,7 @@ class DepartmentsRepository implements DepartmentsInterface
                 $query = $query->where('customer_id', \Auth::user()->customer->id);
             }
         }
-        $departments = $query->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
+        $departments = $query->whereNull('deleted_at')->with(['addresses'])->orderBy('name', 'ASC')->get(['id', 'name', 'code']);
         $newDepartments = [];
         if(count($departments) > 0) {
             foreach ($departments as $department) {

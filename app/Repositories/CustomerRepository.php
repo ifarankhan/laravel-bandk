@@ -26,7 +26,8 @@ class CustomerRepository implements CustomerInterface
         if(isset($search['customer_id'])) {
             $query = $query->where('id', $search['customer_id']);
         }
-        return $query->orderBy('name', 'ASC')->get();
+        $customers = $query->whereNull('deleted_at')->orderBy('name', 'ASC')->get();
+        return $customers;
     }
     public function search($search)
     {
@@ -34,7 +35,8 @@ class CustomerRepository implements CustomerInterface
         if(session('customer_id')) {
             $query = $query->where('id', session('customer_id'));
         }
-        return $query->orderBy('name', 'ASC')->get();
+        $customers = $query->whereNull('deleted_at')->orderBy('name', 'ASC')->get();
+        return $customers;
     }
     public function allCount($search = [])
     {
@@ -101,10 +103,5 @@ class CustomerRepository implements CustomerInterface
     public function delete($id)
     {
         return $this->getOne($id)->delete();
-    }
-
-    public function getDepartmentsByCustomer($id)
-    {
-
     }
 }

@@ -38,7 +38,7 @@ class TeamsRepository implements TeamsInterface
             $query = $query->where('customer_id', session('customer_id'));
         }
 
-        return $query->orderBy('name', 'ASC')->get();
+        return $query->whereNull('deleted_at')->orderBy('name', 'ASC')->get();
     }
 
     public function all()
@@ -66,5 +66,10 @@ class TeamsRepository implements TeamsInterface
         }
         return [];
     }
+    public function delete($id)
+    {
+        return $this->getOne($id)->delete();
+    }
+
 
 }

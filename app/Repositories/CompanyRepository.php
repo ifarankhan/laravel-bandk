@@ -32,7 +32,7 @@ class CompanyRepository implements CompanyInterface
         if(session('customer_id')) {
             $query = $query->where('customer_id', session('customer_id'));
         }
-        return $query->get();
+        return $query->whereNull('deleted_at')->get();
     }
     public function allCount()
     {
@@ -98,7 +98,7 @@ class CompanyRepository implements CompanyInterface
             $this->model = $this->model->find($data['id']);
         }
 
-        if(count($data['emails']) > 0) {
+        if(isset($data['emails']) && count($data['emails']) > 0) {
             foreach ($data['emails'] as $email) {
                 if(!empty($email)) {
                     $emails[] = $email;

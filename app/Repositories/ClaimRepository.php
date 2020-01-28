@@ -82,7 +82,7 @@ class ClaimRepository implements ClaimInterface
 
         }
 
-        return $query->orderBy('updated_at', 'DESC')->get();
+        return $query->whereNull('deleted_at')->orderBy('updated_at', 'DESC')->get();
 
     }
     public function all($user = null)

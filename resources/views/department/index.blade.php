@@ -109,7 +109,7 @@
                                             <td style="width: 150px;" class="col-md-3 col-xs-12" >{{ $address->m2}}</td>
                                             <td>
                                                 <a href="{{ route('department.edit', ['id'=> $department->id]) }}" class="btn btn-success">Redigere</a>
-                                                <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Slet</button>
+                                                <button data-id="{{ $department->id }}" data-url="{{ route('department.delete', ['id'=> $department->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete" data-csrf="{{ csrf_token() }}">{!! getTranslation('delete') !!}</button>
                                             </td>
                                         </tr>
                                     @endforeach

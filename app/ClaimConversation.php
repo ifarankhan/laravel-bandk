@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ClaimConversation extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['claim_id', 'user_id', 'conversation'];
 
     public function files()

@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
+    use SoftDeletes;
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
@@ -23,6 +25,19 @@ class Company extends Model
 
         return null;
 
+    }
+
+    protected static function boot()
+    {
+        static::deleting(function ($instance) {
+            if(count($instance->departments) > 0) {
+                $instance->departments->each->delete();
+            }
+        });
+
+        /*static::restoring(function ($instance) {
+            $instance->child->each->restore();
+        });*/
     }
 
 }

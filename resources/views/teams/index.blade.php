@@ -69,7 +69,7 @@
                                 <td>{{ ($team->customer) ? $team->customer->name : '' }}</td>
                                 <td>
                                     <a href="{{ route('team.edit', ['id'=> $team->id]) }}" class="btn btn-success">Edit</a>
-                                    {{--<button data-id="{{ $team->id }}" data-url="{{ route('team.delete', ['id'=> $team->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete">Delete</button>--}}
+                                    <button data-id="{{ $team->id }}" data-url="{{ route('team.delete', ['id'=> $team->id]) }}" class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete" data-csrf="{{ csrf_token() }}">{!! getTranslation('delete') !!}</button>
                                 </td>
                             </tr>
                         @endforeach

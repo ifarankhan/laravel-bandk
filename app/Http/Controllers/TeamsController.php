@@ -92,4 +92,20 @@ class TeamsController extends Controller
             return redirect()->route('team.index');
         }
     }
+    public function delete($id)
+    {
+        $response = $this->teams->delete($id);
+
+        if($response) {
+            return [
+                'status' => '200',
+                'success' => true
+            ];
+        }
+        return [
+            'status' => '200',
+            'success' => false
+        ];
+
+    }
 }

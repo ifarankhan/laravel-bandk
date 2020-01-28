@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ClaimImages extends Model
 {
+    use SoftDeletes;
     protected $appends = ['image_path',];
     public function getImageAttribute($value)
     {
