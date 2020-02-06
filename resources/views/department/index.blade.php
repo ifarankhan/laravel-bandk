@@ -25,11 +25,11 @@
                         <div class="row">
                             <div class="form-group form-group-sm col-md-12 col-lg-12">
                                 <div class="row">
-                                    <div class="col-md-4 col-lg-4">
+                                    <div class="col-md-3 col-lg-3">
                                         <label for="customer_id">
                                             {{ getTranslation('customer') }}
                                         </label>
-                                        <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true">
+                                        <select id="customer_id" class="form-control" name="search[customer_id]" tabindex="-1" aria-hidden="true" name="customer_id" data-url="/customer/companies/">
                                             <option value="">{{ getTranslation('select_customer') }}</option>
                                             @foreach($customers as $aCustomer)
                                                 <option value="{{ $aCustomer->id }}" {{ ($search && isset($search['customer_id']) && $search['customer_id'] == $aCustomer->id) ? 'selected="selected"' : '' }}>{{ $aCustomer->name }}</option>
@@ -37,7 +37,25 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-md-4 col-lg-4">
+                                    <div class="col-md-3 col-lg-3">
+                                        <label for="department">{{ getTranslation('company') }}
+                                            <i class="fa fa-spin fa-spinner" style="display: none;" id="company_loader"></i>
+                                        </label>
+                                        <input type="hidden" value="{{ $search['company_id'] }}" id="hidden_company_1">
+                                        <select class="form-control" name="search[company_id]" id="company_id_id" data-url="/company/departments/">
+                                            <option value="">{{ getTranslation('select_company') }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 ">
+                                        <label for="department">{{ getTranslation('department') }}
+                                            <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
+                                        </label>
+                                        <input type="hidden" value="{{ $search['department_id'] }}" id="hidden_department_1">
+                                        <select class="form-control" name="search[department_id]" id="department_id" data-url="/department/address/">
+                                            <option value="">{{ getTranslation('select_department') }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
                                         <div class="form-group form-group-sm ">
                                             <label for="customer_id">
                                                 &nbsp;

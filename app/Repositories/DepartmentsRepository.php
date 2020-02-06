@@ -37,9 +37,16 @@ class DepartmentsRepository implements DepartmentsInterface
 
     public function search($search)
     {
+        //dd($search);
         $query = $this->model;
         if(session('customer_id')) {
             $query = $query->where('customer_id', session('customer_id'));
+        }
+        if(isset($search['company_id']) && !empty($search['company_id'])) {
+            $query = $query->where('company_id', $search['company_id']);
+        }
+        if(isset($search['department_id']) && !empty($search['department_id'])) {
+            $query = $query->where('id', $search['department_id']);
         }
 
         $departments = $query->whereNull('deleted_at')->orderBy('name', 'ASC')->get();
