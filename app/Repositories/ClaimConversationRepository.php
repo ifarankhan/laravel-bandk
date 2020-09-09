@@ -82,8 +82,14 @@ class ClaimConversationRepository implements ClaimConversationInterface
         }
 
         return $claimConversation;
+    }
 
-
-
+    public function delete($id)
+    {
+        $file = $this->claimConversationFiles->find($id);
+        if($file) {
+            return $file->delete();
+        }
+        return false;
     }
 }

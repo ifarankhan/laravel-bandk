@@ -50,7 +50,7 @@
                                         <label for="department">{{ getTranslation('department') }}
                                             <i class="fa fa-spin fa-spinner" style="display: none;" id="department_loader"></i>
                                         </label>
-                                        <input type="hidden" value="{{ $search['department_id'] }}" id="hidden_department_1">
+                                        <input type="hidden" value="{{ isset($search['department_id']) ? $search['department_id'] : '' }}" id="hidden_department_1">
                                         <select class="form-control" name="search[department_id]" id="department_id" data-url="/department/address/">
                                             <option value="">{{ getTranslation('select_department') }}</option>
                                         </select>

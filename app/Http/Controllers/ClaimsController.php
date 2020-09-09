@@ -93,6 +93,7 @@ class ClaimsController extends Controller
         $customers = $this->customer->all();
         $users = $this->userRepository->all();
         $claims = $this->claim->search($search);
+
         return view('claims.index', compact('claims', 'departments', 'claimTypes', 'search', 'customers', 'users'));
     }
 
@@ -228,6 +229,21 @@ class ClaimsController extends Controller
 
         return [
           'is_deleted' => false
+        ];
+    }
+
+    public function deleteConversationFile($id)
+    {
+        $response =  $this->claimConversation->delete($id);
+        if($response) {
+            return [
+                'status' => '200',
+                'success' => true
+            ];
+        }
+        return [
+            'status' => '200',
+            'success' => false
         ];
     }
 }

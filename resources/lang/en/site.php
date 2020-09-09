@@ -119,7 +119,8 @@ return [
     'select_company' => 'Vælg Selskab',
     'company_create_success_message' => 'Selskab er oprettet/opdateret korrekt',
     'company_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
-    'reset' => 'Nulstil'
+    'reset' => 'Nulstil',
+    'get_closed_claims_as_well' => 'Vis lukkede / færdige krav'
 
 
 

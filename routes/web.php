@@ -120,6 +120,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/dashboard/claim/other/fields/update', 'ClaimsController@otherFields')->name('claim.detail.form');
 
     Route::post('/dashboard/claim/conversation/create', 'ClaimsController@addConversation')->name('claim.conversation.store');
+    Route::post('/dashboard/claim/conversation/file/delete/{id}', 'ClaimsController@deleteConversationFile')->name('claimconversation.file.delete');
 
     Route::post('/claim/create', 'ClaimsController@store')->name('claim.create.post');
     Route::get('/department/address/{id}', 'ClaimsController@departmentAddress')->name('department.address');

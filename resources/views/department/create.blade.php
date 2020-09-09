@@ -102,10 +102,10 @@
                                     <table>
                                         <thead>
                                         <tr>
-                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Address</td>
+                                            <td style="width:150px;" class="col-md-3 col-xs-12" >Adresse</td>
                                             <td style="width:150px;" class="col-md-2 col-xs-12" >Post nr.</td>
                                             <td style="width:150px;" class="col-md-2 col-xs-12" >By</td>
-                                            <td style="width:150px;" class="col-md-2 col-xs-12" >Build Year</td>
+                                            <td style="width:150px;" class="col-md-2 col-xs-12" >Bygge år</td>
                                             <td style="width:150px;" class="col-md-3 col-xs-12" >Etageareal</td>
                                         </tr>
                                         </thead>

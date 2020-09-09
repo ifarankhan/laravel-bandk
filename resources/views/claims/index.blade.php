@@ -153,6 +153,12 @@
                                             </select>
                                         </div>
                                     @endif
+                                    <div class="col-md-4 col-lg-4">
+                                        <label for="id">
+                                            {{ getTranslation('claim_id') }}
+                                        </label>
+                                        <input type="text" class="form-control" name="search[id]" id="id" value="{{ ($search && isset($search['id'])) ? $search['id'] : ''}}">
+                                    </div>
 
                                 </div>
                             </div>
@@ -162,6 +168,15 @@
                                 <div class="col-md-4 col-lg-4">
                                     <button class="btn btn-danger" type="submit">{{ getTranslation('submit') }}</button>
                                 </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <label for="status">
+                                        {{ getTranslation('get_closed_claims_as_well') }}
+                                        <input type="checkbox" id="status" name="search[status]" value="CLOSED" {{ ($search && isset($search['status'])) ? 'checked="checked"' : '' }}>
+                                    </label>
+                                    <br />
+
+
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -170,10 +185,11 @@
                     <table id="datatable" class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>{{ getTranslation('updated_at') }}</th>
+                            <th>{{ getTranslation('date') }}</th>
                             <th>{{ getTranslation('customer_name') }}</th>
                             <th>Virksomheder</th>
-                            <th>{{ getTranslation('date') }}</th>
+                            <th>{{ getTranslation('claim_id') }}</th>
+
                             <th>Selskab skade nummer</th>
                             <th>{{ getTranslation('claim_type') }}</th>
                             <th>{{ getTranslation('department') }}</th>
@@ -185,16 +201,15 @@
                         <tbody>
                         @foreach($claims as $claim)
                             <tr class="alert alert-{{ getClaimColor($claim) }}" id="claim_{{ $claim->id }}">
-                                <td data-sort="{{ date('Y-m-d', strtotime($claim->updated_at)) }}">{{ $claim->updated_at }}
-                                    @if($claim->is_updated)
-                                        <button class="btn btn-info">Opdateret</button>
-                                     @endif
-                                </td>
+                                <td data-sort="{{ date('Y-m-d', strtotime($claim->date)) }}">{{ $claim->date }}</td>
                                 <td>{{ ($claim->customer && $claim->customer->name)  ? $claim->customer->name : ''}}</td>
                                 <td>
                                     {{ ($claim->department && $claim->department->company && $claim->department->company->name)  ? $claim->department->company->name : ''}}
                                 </td>
-                                <td data-sort="{{ date('Y-m-d', strtotime($claim->date)) }}">{{ $claim->date }}</td>
+                                <td >
+                                    {{ $claim->id }}
+                                </td>
+
                                 <td>{{ $claim->selsskab_skade_nummer }}</td>
                                 <td>{{ ($claim->type) ? $claim->type->name : '' }}</td>
                                 {{--<td data-claim-id="{{ $claim->id }}" data-csrf="{{ csrf_token() }}" data-url="{{ route('claim.detail.form') }}" class="estimate_value">{{ $claim->estimate }}</td>--}}
@@ -203,8 +218,10 @@
                                 <td>{{ ($claim->address_2)  ? $claim->address_2 : ''}}</td>
                                 <td>
                                     <a href="{{ route('claim.details', ['id'=> $claim->id]) }}" class="btn btn-success btn-sm">{{ getTranslation('details') }}</a>
-                                    <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info btn-sm">{{ getTranslation('edit') }}</a>
-                                    <button data-url="{{ route('claim.delete', ['id'=> $claim->id]) }}" data-id="{{ $claim->id }}" class="btn btn-danger btn-sm delete" data-csrf="{{ csrf_token() }}">{{ getTranslation('delete') }}</button>
+                                    @if (isAdmin(\Auth::user()))
+                                        <a href="{{ route('claim.edit', ['id'=> $claim->id]) }}" class="btn btn-info btn-sm">{{ getTranslation('edit') }}</a>
+                                        <button data-url="{{ route('claim.delete', ['id'=> $claim->id]) }}" data-id="{{ $claim->id }}" class="btn btn-danger btn-sm delete" data-csrf="{{ csrf_token() }}">{{ getTranslation('delete') }}</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

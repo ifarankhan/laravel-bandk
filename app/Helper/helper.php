@@ -310,3 +310,8 @@ function sortMyArray($a, $b)
     $newB = explode(' ', $b->name)[0];
     return strtolower($newA) >= strtolower($newB);
 }
+
+function isAdmin($user)
+{
+    return in_array('ADMIN', getUserRoles($user));
+}

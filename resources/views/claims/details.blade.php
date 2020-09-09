@@ -14,7 +14,8 @@
     <div class="row">
         <div class="col-xs-12">
             <form action="{{ route('claim.detail.form') }}" method="POST">
-                <div class="row">
+                @if (isAdmin(\Auth::user()))
+                    <div class="row">
                     <div class="col-md-4">
                         <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-danger uppercase">
                             <div class="ribbon-sub ribbon-clip">{{ getTranslation('claim_details') }}</div>
@@ -41,8 +42,7 @@
                         </div>
                     </div>
                 </div>
-
-
+                @endif
             <div class="mt-element-ribbon bg-grey-steel">
                 <div class="row ribbon-content">
 
@@ -96,7 +96,7 @@
                         <div class="col-md-2"><strong>{{ getTranslation('customer_city') }}:</strong></div>
                         <div class="col-md-2">{{ ($claim->customer) ? $claim->customer->city : '' }}</div>
                         <div class="col-md-2"><strong>Anmelder:</strong></div>
-                        <div class="col-md-2">{{ ($claim->user) ? $claim->user->name : '' }}</div>
+                        <div class="col-md-2">{{ ($claim->user) ? $claim->user->name. '&nbsp;('.$claim->user->email.')' : '' }}</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
 
@@ -118,13 +118,14 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
+                    @if(isAdmin(\Auth::user()))
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
 
                     <div class="row">
@@ -133,89 +134,6 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="row ribbon-content">
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('claim_id') }}:</strong> {{ $claim->id }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('department') }}:</strong> {{ ($claim->department) ? $claim->department->name : ''}}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('claim_person') }}:</strong> {{ ($claim->user) ? ucfirst($claim->user->name) : '' }}
-                    </div>
-                    <div class="col-md-4">
-                        <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
-                            <input type="hidden" name="id" value="{{ $claim->id }}">
-                            {{ csrf_field() }}
-                            <div class="form-group" style="margin-left: -10px;">
-
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="rekv_nummer"><strong>Selsskab skade nummer:</strong>
-                                    </label>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <input type="text" id="selsskab_skade_nummer" class="form-control col-md-12 " name="selsskab_skade_nummer" value="{{ $claim->selsskab_skade_nummer }}" placeholder="Selsskab skade nummer">
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <input type="submit" class="btn btn-success btn-xs">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('claim_type') }}:</strong> {{ ($claim->type) ? $claim->type->name : '' }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('address_1') }}:</strong> {{ ($claim->address1)  ? $claim->address1->address : ''}}
-                    </div>
-                    <div class="col-md-4">&nbsp;</div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('date') }}:</strong> {{ $claim->date }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('address_2') }}:</strong> {{ ($claim->address_2)  ? $claim->address_2 : ''}}
-                    </div>
-                    <div class="col-md-4">&nbsp;</div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('estimate') }}:</strong> {{ $claim->estimate }}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_zip_code') }}:</strong> {{ ($claim->customer) ?  $claim->customer->zip_code : ''}}
-                    </div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('status') }}:</strong> {{ getClaimStatus($claim) }}
-                    </div>
-                    <div class="col-md-4">&nbsp;</div>
-                    <div class="col-md-4">
-                        <strong>{{ getTranslation('customer_city') }}:</strong> {{ ($claim->customer) ? $claim->customer->city : '' }}
-                    </div>
-                    <div class="col-md-4">
-                        <form class="form-horizontal form-label-left" action="{{ route('claim.detail.form') }}" method="POST">
-                            <input type="hidden" name="id" value="{{ $claim->id }}">
-                            {{ csrf_field() }}
-                            <div class="form-group" style="margin-left: -8px;">
-
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="rekv_nummer"><strong>Rekv nummer:</strong>
-                                    </label>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <input type="text" id="rekv_nummer" class="form-control col-md-12 " name="rekv_nummer" value="{{ $claim->rekv_nummer }}" placeholder="Rekv nummer">
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <input type="submit" class="btn btn-success btn-xs">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="row ribbon-content">
-                    <div class="col-md-12">
-                        <strong>{{ getTranslation('description') }}:</strong> {{ $claim->description }}
-                    </div>
-
-                </div>--}}
             </div>
 
             </form>
@@ -254,15 +172,26 @@
                                 <p class="month">{{ date('M', strtotime($conversation->created_at)) }}</p>
                             </div>
                             <div class="message_wrapper">
-                                <blockquote class="message">{{ $conversation->conversation }}</blockquote>
+                                <span class="caption">
+                                  <blockquote class="message">{{ $conversation->conversation }}</blockquote>
+                                </span>
                                 <br />
-                                <p class="url">
-                                    @if(count($conversation->files) > 0)
-                                        @foreach($conversation->files as $file)
-                                            <a href="{{ asset('/files/'.$file->file_name) }}" download="{{ $file->file_name }}"><i class="fa fa-paperclip"></i> {{ $file->file_name }} </a><br>
-                                        @endforeach()
-                                    @endif
-                                </p>
+
+                                @if(count($conversation->files) > 0)
+                                    @foreach($conversation->files as $file)
+                                        <div class="row" id="conversation_file_{{ $file->id }}">
+                                            <div class="col-md-8" >
+                                                <a href="{{ asset('/files/'.$file->file_name) }}" download="{{ $file->file_name }}"><i class="fa fa-paperclip"></i> {{ $file->file_name }} </a><br>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-danger btn-xs delete-file" title="Delete" data-id="{{ $file->id }}" data-url="{{ route('claimconversation.file.delete', ['id'=> $file->id]) }}" data-csrf="{{ csrf_token() }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach()
+                                @endif
+
                             </div>
                         </li>
                     @endforeach
@@ -271,7 +200,8 @@
                 @endif
             </ul>
         </div>
-        <div class="col-md-4">
+        @if(isAdmin(\Auth::user()))
+            <div class="col-md-4">
             <form id="demoForm2" data-parsley-validate class="form-horizontal form-label-left dropzone" action="{{ route('claim.conversation.store') }}" method="POST" enctype='multipart/form-data'>
                 {{ csrf_field() }}
                 <input type="hidden" name="claim_id" value="{{ $claim->id }}">
@@ -310,9 +240,32 @@
             <button type="submit" id="btn_submit" class="btn btn-success pull-left btn-xs">Submit</button>
 
         </div>
+        @endif
+
     </div>
 
     {{ isUpdated($claim) }}
+
+    <div id="modal-delete-file" class="modal fade" role="dialog" style="z-index: 9999">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Are you sure to delete?</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure to delete?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="delete-confirm">Delete</button>
+                    <button type="button" class="btn btn-default" id="delete-cancel" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 @endsection
 
@@ -327,14 +280,12 @@
             background: #333;
             background-image: linear-gradient(to right, #ccc, #333, #ccc);
         }
-        .help-block{
+        .help-block {
             color: #a94442;
         }
         .bg-grey-steel {
             background: #e9edef!important;
         }
-
-
         .mt-element-ribbon .ribbon {
             padding: .5em 1em;
             float: left;
@@ -539,7 +490,7 @@
     <script src="{{ asset('/admin/js/simpleLightbox.min.js') }}"></script>
     <script>
         jQuery(document).ready(function(){
-            $('.imageGallery1 a').simpleLightbox();
+            //$('.imageGallery1 a').simpleLightbox();
 
 
             $('#btn_submit').on("click", function() {
@@ -554,6 +505,25 @@
                 }
                 return false;
             });
+            $('.delete-file').on('click', function(event) {
+                event.stopImmediatePropagation();
+                var modal = $("#modal-delete-file");
+                var url = $(this).data('url');
+                var id = $(this).data('id');
+                var csrf = $(this).data('csrf');
+                modal.modal('show');
+
+                $("#delete-confirm").unbind().on('click', function (e) {
+                    e.stopImmediatePropagation();
+                    sendAjax(url, {_token: csrf}, 'POST', function (result) {
+                        modal.modal('hide');
+                        if(result.success) {
+                            $("#conversation_file_"+id).hide('slow');
+                        }
+                    });
+                });
+            });
+
 
             Dropzone.prototype.defaultOptions.dictRemoveFile = "Fjern fil";
             Dropzone.options.demoForm2 = {
