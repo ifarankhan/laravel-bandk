@@ -69,8 +69,11 @@ class ClaimRepository implements ClaimInterface
         if($search && isset($search['id'])) {
             $query = $query->where('id', $search['id']);
         }
+        if($search && isset($search['selsskab_skade_nummer'])) {
+            $query = $query->where('selsskab_skade_nummer', $search['selsskab_skade_nummer']);
+        }
         if($search && !empty($search['status'])) {
-            $query = $query->where('status', 'CLOSED');
+            $query = $query;
         } else {
             $query = $query->where('status','!=', 'CLOSED');
         }

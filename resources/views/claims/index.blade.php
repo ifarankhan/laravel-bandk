@@ -130,6 +130,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 col-lg-4">
+                                        <label for="selsskab_skade_nummer">
+                                            Selskab skade nummer
+                                        </label>
+                                        <input type="text" class="form-control" name="search[selsskab_skade_nummer]" id="selsskab_skade_nummer" value="{{ ($search && isset($search['selsskab_skade_nummer'])) ? $search['selsskab_skade_nummer'] : ''}}">
+                                    </div>
+                                    {{--<div class="col-md-4 col-lg-4">
                                         <label for="user_id">
                                             {{ getTranslation('users') }}
                                         </label>
@@ -139,7 +145,8 @@
                                                 <option value="{{ $user->id }}" {{ ($search && isset($search['user_id']) && $search['user_id'] == $user->id) ? 'selected="selected"' : '' }}>{{ $user->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div>--}}
+
                                     @if(!in_array('AGENT', getUserRoles(\Auth::user())))
                                         <div class="col-md-4 col-lg-4">
                                             <label for="customer_id">
