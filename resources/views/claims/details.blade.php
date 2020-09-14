@@ -183,11 +183,13 @@
                                             <div class="col-md-8" >
                                                 <a href="{{ asset('/files/'.$file->file_name) }}" download="{{ $file->file_name }}"><i class="fa fa-paperclip"></i> {{ $file->file_name }} </a><br>
                                             </div>
-                                            <div class="col-md-4">
-                                                <button class="btn btn-danger btn-xs delete-file" title="Delete" data-id="{{ $file->id }}" data-url="{{ route('claimconversation.file.delete', ['id'=> $file->id]) }}" data-csrf="{{ csrf_token() }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </div>
+                                            @if(isAdmin(\Auth::user()))
+                                                <div class="col-md-4">
+                                                    <button class="btn btn-danger btn-xs delete-file" title="Delete" data-id="{{ $file->id }}" data-url="{{ route('claimconversation.file.delete', ['id'=> $file->id]) }}" data-csrf="{{ csrf_token() }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            @endif
                                         </div>
                                     @endforeach()
                                 @endif

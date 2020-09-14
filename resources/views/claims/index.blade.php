@@ -181,8 +181,6 @@
                                         <input type="checkbox" id="status" name="search[status]" value="CLOSED" {{ ($search && isset($search['status'])) ? 'checked="checked"' : '' }}>
                                     </label>
                                     <br />
-
-
                                 </div>
                             </div>
                         </div>
