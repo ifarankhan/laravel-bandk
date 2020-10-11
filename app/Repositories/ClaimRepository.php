@@ -236,14 +236,14 @@ class ClaimRepository implements ClaimInterface
         $customer = ($claim->customer) ? $claim->customer : null;
         $company = (($claim->department) && ($claim->department->company)) ? $claim->department->company: null;
 
-        if($company->is_send_email && !is_null($company) && !empty($company->emails)) {
-            $emails = json_decode($company->emails, true);
+        if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
+            $emails = json_decode($customer->emails, true);
 
             foreach ($emails as $email) {
                 $this->sendEmailOnUpdate($email, $customer, $claim);
             }
-        } else if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
-            $emails = json_decode($customer->emails, true);
+        } else if($company->is_send_email && !is_null($company) && !empty($company->emails)) {
+            $emails = json_decode($company->emails, true);
 
             foreach ($emails as $email) {
                 $this->sendEmailOnUpdate($email, $customer, $claim);
