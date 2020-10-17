@@ -63,7 +63,7 @@ class CustomerRepository implements CustomerInterface
         if(isset($data['id'])) {
             $this->model = $this->model->find($data['id']);
         }
-        if(count($data['emails']) > 0) {
+        if(isset($data['emails']) && count($data['emails']) > 0) {
             foreach ($data['emails'] as $email) {
                 if(!empty($email)) {
                     $emails[] = $email;

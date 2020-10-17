@@ -236,7 +236,7 @@ class ClaimRepository implements ClaimInterface
         $customer = ($claim->customer) ? $claim->customer : null;
         $company = (($claim->department) && ($claim->department->company)) ? $claim->department->company: null;
 
-        if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
+        /*if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
 
             foreach ($emails as $email) {
@@ -248,7 +248,7 @@ class ClaimRepository implements ClaimInterface
             foreach ($emails as $email) {
                 $this->sendEmailOnUpdate($email, $customer, $claim);
             }
-        }
+        }*/
 
         return $claim;
     }
