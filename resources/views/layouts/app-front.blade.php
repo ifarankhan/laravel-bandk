@@ -97,7 +97,7 @@
 <div class="footer container-fluid zero-padding text-center">
     <div class="container">
         <div class="row">
-            <span class="footer-text">© 2013-2016 KeepTruckin, Inc. All rights reserved.</span>
+            <span class="footer-text">© 2013-<?php echo date('Y', time()); ?> B&K, Inc. All rights reserved.</span>
             <img src="/frontend/images/white-logo.png" alt="logo">
         </div>
     </div>
