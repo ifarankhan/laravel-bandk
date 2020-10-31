@@ -236,7 +236,7 @@ class ClaimRepository implements ClaimInterface
         $customer = ($claim->customer) ? $claim->customer : null;
         $company = (($claim->department) && ($claim->department->company)) ? $claim->department->company: null;
 
-        /*if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
+        if($customer->is_send_email && !is_null($customer) && !empty($customer->emails)) {
             $emails = json_decode($customer->emails, true);
 
             foreach ($emails as $email) {
@@ -248,7 +248,7 @@ class ClaimRepository implements ClaimInterface
             foreach ($emails as $email) {
                 $this->sendEmailOnUpdate($email, $customer, $claim);
             }
-        }*/
+        }
 
         return $claim;
     }
@@ -331,27 +331,31 @@ class ClaimRepository implements ClaimInterface
 
             $images = $claim->images ? $claim->images : new Collection();
 
-            Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject, $images) {
+            try {
+                Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject, $images) {
 
-                $message->from('no_reply@bnk.com');
-                $message->to($toEMail);
-                $message->subject($subject);
+                    $message->from('no_reply@bnk.com');
+                    $message->to($toEMail);
+                    $message->subject($subject);
 
-                $size = count($images);
-                $mbSize = 0;
-                if ($size > 0) {
-                    foreach ($images as $image) {
+                    $size = count($images);
+                    $mbSize = 0;
+                    if ($size > 0) {
+                        foreach ($images as $image) {
 
-                        $mb = get_mb(filesize($image->image_path));
-                        $mbSize = $mbSize + $mb;
-                        if ($mbSize < 20) {
-                            $message->attach($image->image_path);
+                            $mb = get_mb(filesize($image->image_path));
+                            $mbSize = $mbSize + $mb;
+                            if ($mbSize < 20) {
+                                $message->attach($image->image_path);
+                            }
+
                         }
-
                     }
-                }
 
-            }, true);
+                }, true);
+            } catch (\Exception $e) {
+                \Log::info([$e->getMessage()]);
+            }
         }
     }
 }
