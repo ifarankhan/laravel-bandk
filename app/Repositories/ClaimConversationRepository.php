@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\ClaimConversation;
 use App\ClaimConversationFiles;
+use Carbon\Carbon;
 
 class ClaimConversationRepository implements ClaimConversationInterface
 {
@@ -67,12 +68,14 @@ class ClaimConversationRepository implements ClaimConversationInterface
                 $this->claimConversationFiles = new ClaimConversationFiles();
                 $fileName = explode(',', $file->getClientOriginalName());
                 $uniqueFileName = uniqid();
-
-                if(isset($fileName[1])) {
-                    $uniqueFileName = $uniqueFileName . '_' . $fileName[0] . '_'. $fileName[1];
-                } else {
-                    $uniqueFileName = $uniqueFileName . '_' . $fileName[0];
-                }
+                $now = Carbon::now();
+                $unique_code = $now->format('YmdHisu');
+//                if(isset($fileName[1])) {
+//                    $uniqueFileName = $uniqueFileName . '_' . $fileName[0] . '_'. $fileName[1];
+//                } else {
+//                    $uniqueFileName = $uniqueFileName . '_' . $fileName[0];
+//                }
+                $uniqueFileName = $uniqueFileName."_".$unique_code;
                 $uniqueFileName = $uniqueFileName.'.'.$file->getClientOriginalExtension();
                 $file->move(config('app.path_to_upload_files') , $uniqueFileName);
                 $this->claimConversationFiles->file_name = $uniqueFileName;

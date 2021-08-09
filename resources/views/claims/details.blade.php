@@ -495,14 +495,15 @@
             //$('.imageGallery1 a').simpleLightbox();
 
 
-            $('#btn_submit').on("click", function() {
+            $('#btn_submit').on("click", function(e) {
+                e.preventDefault();
                 var conversation = $("#conversation").val();
 
                 if(conversation == '') {
                     $("#conversation").css('border-color', 'red');
                     return false;
                 }
-                if($("#demoForm2").find(".dz-preview.dz-file-preview").length == 0) {
+                if($("#demoForm2").find(".dz-preview .dz-image img").length == 0) {
                     $("#demoForm2").submit();
                 }
                 return false;
