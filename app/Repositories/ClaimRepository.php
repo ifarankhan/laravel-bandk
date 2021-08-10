@@ -70,7 +70,7 @@ class ClaimRepository implements ClaimInterface
             $query = $query->where('id', $search['id']);
         }
         if($search && isset($search['selsskab_skade_nummer'])) {
-            $query = $query->where('selsskab_skade_nummer', $search['selsskab_skade_nummer']);
+            $query = $query->where('selsskab_skade_nummer','LIKE', "%{$search['selsskab_skade_nummer']}%");
         }
         if($search && !empty($search['status'])) {
             $query = $query;

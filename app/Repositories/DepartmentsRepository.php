@@ -98,10 +98,9 @@ class DepartmentsRepository implements DepartmentsInterface
         $this->model->name = $data['name'];
         $this->model->code = $data['code'];
         $this->model->team_id = $data['team_id'];
-        if( isset($data['policy_number']) ) {
+//        if( isset($data['policy_number']) ) {
             $this->model->policy_number = $data['policy_number'];
-        }
-
+//        }
         $this->model->customer_id = $data['customer_id'];
         $this->model->company_id = $data['company_id'];
 
