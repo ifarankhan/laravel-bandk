@@ -41,8 +41,8 @@
                                         <label for="department">{{ getTranslation('company') }}
                                             <i class="fa fa-spin fa-spinner" style="display: none;" id="company_loader"></i>
                                         </label>
-                                        <input type="hidden" value="{{ $search['company_id'] }}" id="hidden_company_1">
-                                        <select class="form-control" name="search[company_id]" id="company_id_id" data-url="/company/departments/">
+                                        <input type="hidden" value="@if(isset( $search['company_id']))company_id {{$search['company_id']}} @endif" id="hidden_company_1">
+                                        <select class="form-control" name="search[company_id]" id="_id" data-url="/company/departments/">
                                             <option value="">{{ getTranslation('select_company') }}</option>
                                         </select>
                                     </div>
