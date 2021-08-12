@@ -430,4 +430,18 @@ class PassportController extends Controller
         ];
     }
 
+    /**
+     * List of all departments that are accessable to user
+     * @return array
+     */
+    public function getAllCompaniesDepartments()
+    {
+        $user = \Auth::user();
+        return [
+            "status" =>  200,
+            "message" => "User Departments.",
+            "data" => $this->departments->getUserDepartmentData()
+        ];
+    }
+
 }
