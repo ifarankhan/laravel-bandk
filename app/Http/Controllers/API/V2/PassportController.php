@@ -15,11 +15,17 @@ use App\Repositories\ContentInterface;
 use App\Repositories\CustomerInterface;
 use App\Repositories\DepartmentsInterface;
 use App\Repositories\UserInterface;
+use http\Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 
 class PassportController extends Controller
 {
@@ -140,6 +146,47 @@ class PassportController extends Controller
         else {
             return response()->json(['message' => 'Email or password is wrong', 'status' => 401, "data" =>  null], $this->successStatus);
         }
+    }
+
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function forgotPassword(Request $request)
+    {
+        $input = $request->all();
+        $rules = array(
+            'email' => "required|email",
+        );
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            $arr = array("status" => 400, "message" => $validator->errors()->first(), "data" => array());
+        } else {
+            try {
+//                $token = Str::random(64);
+//                $response = Mail::send('emails.forgetPassword', ['token' => $token], function($message) use($request){
+//                    $message->to('fah@ciklum.com');
+//                    $message->subject('Reset Password');
+//                });
+//                var_dump($response);
+//                exit();
+                $response = Password::sendResetLink($request->only('email'), function (Message $message) {
+                    $message->subject($this->getEmailSubject());
+                });
+                switch ($response) {
+                    case Password::RESET_LINK_SENT:
+                        return response()->json(array("status" => 200, "message" => trans($response), "data" => array()));
+                    case Password::INVALID_USER:
+                        return response()->json(array("status" => 400, "message" => trans($response), "data" => array()));
+                }
+            } catch (\Swift_TransportException $ex) {
+                $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
+            } catch (Exception $ex) {
+                $arr = array("status" => 400, "message" => $ex->getMessage(), "data" => []);
+            }
+        }
+        return response()->json($arr);
     }
 
     public function getUserRoles() {
