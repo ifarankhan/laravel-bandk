@@ -164,6 +164,16 @@ class DepartmentsRepository implements DepartmentsInterface
         }
         return [];
     }
+
+    public function getUserDepartmentData()
+    {
+        $userDepartments = (\Auth::user()->departments) ? json_decode((\Auth::user()->departments)) : [];
+
+        $departments = $this->model->whereIn('id', $userDepartments)->with(['addresses'])->get();
+
+        return $departments;
+    }
+
     public function getCompanyAssignedDepartments($companyId)
     {
         $roles = \Auth::user()->roles;
