@@ -1,10 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.app-front-login')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+    <style>
+        .login-container {
+            max-width: 456px;
+        }
+    </style>
+    <div class="outer">
+        <div class="inner">
+            <div class="login-section">
+                <div class="login-container">
+                    <img src="/frontend/images/logob&k.png" alt="img">
+                    <ul>
                 <div class="panel-heading">Reset Password</div>
 
                 <div class="panel-body">
@@ -63,8 +70,10 @@
                         </div>
                     </form>
                 </div>
+                </ul>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
