@@ -28,7 +28,7 @@
                             <li>
                                 <input type="checkbox" class="remember-me" value="Remember">
                                 <span class="remember">Remember me</span>
-                                <a href="#" class="forgot">Forgotten account?</a>
+                                <a href="{{ route('password.request') }}" class="forgot">Forgotten account?</a>
                             </li>
                         </form>
                     </ul>
