@@ -1,13 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.app-front-login')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
+    <style>
+        .login-container {
+            max-width: 456px;
+        }
+    </style>
+    <div class="outer">
+        <div class="inner">
+            <div class="login-section">
+                <div class="login-container">
+                    <img src="/frontend/images/logob&k.png" alt="img">
+                    <ul>
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
@@ -20,7 +25,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
@@ -32,16 +37,17 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-offset-4 col-md-8 ">
                                 <button type="submit" class="btn btn-primary">
                                     Send Password Reset Link
                                 </button>
                             </div>
                         </div>
                     </form>
+                    </ul>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
