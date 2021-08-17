@@ -42,6 +42,7 @@ class ResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->from("no_reply@mail.insurance.bk-as.dk")
             ->subject('B&K Reset Password')
             ->line('You are receiving this email because we received a password reset request for your account.')
             ->action('Reset Password', url(config('app.url').route('password.reset', $this->token, false)))
