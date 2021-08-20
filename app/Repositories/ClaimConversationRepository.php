@@ -89,8 +89,24 @@ class ClaimConversationRepository implements ClaimConversationInterface
 
     public function delete($id)
     {
+        $conversation = $this->model->find($id);
+        if($conversation) {
+            foreach ($conversation->files as $file){
+                $this->deleteFile($file->id);
+            }
+            return $conversation->delete();
+        }
+        return false;
+    }
+
+    public function deleteFile($id)
+    {
         $file = $this->claimConversationFiles->find($id);
         if($file) {
+            $filePath = public_path(config('app.path_to_upload_files').'/'.$file->file_name);
+            if(file_exists($filePath)){
+                unlink($filePath);
+            }
             return $file->delete();
         }
         return false;

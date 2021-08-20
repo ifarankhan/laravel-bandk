@@ -2931,7 +2931,8 @@ img.avatar {
 }
 ul.messages li .message_date {
     float: right;
-    text-align: right
+    text-align: right;
+    margin-top: 10px;
 }
 ul.messages li .message_wrapper {
     margin-left: 50px;
