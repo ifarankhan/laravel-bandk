@@ -166,13 +166,26 @@
 
                 @if(count($claim->conversations) > 0)
                     @foreach($claim->conversations as $conversation)
-                        <li>
-                            <div class="message_date">
-                                <h3 class="date text-info">{{ date('d', strtotime($conversation->created_at)) }}</h3>
-                                <p class="month">{{ date('M', strtotime($conversation->created_at)) }}</p>
-                            </div>
-                            <div class="message_wrapper">
-                                <span class="caption">
+                        <li id="conversation_{{ $conversation->id }}">
+                           <div class="message_wrapper">
+                               <div class="message_date">
+                                   <div class="col-md-8">
+                                       <h3 class="date text-info">{{ date('d', strtotime($conversation->created_at)) }}</h3>
+                                       <p class="month">{{ date('M', strtotime($conversation->created_at)) }}</p>
+                                   </div>
+                                   @if(isAdmin(\Auth::user()))
+                                       <div class="col-md-4">
+                                           <p style="margin-top: 12px;">
+                                           <button class="btn btn-danger btn-xs delete-conversation" title="Delete" data-id="{{ $conversation->id }}" data-url="{{ route('claimconversation.delete', ['id'=> $conversation->id]) }}" data-csrf="{{ csrf_token() }}">
+                                               <i class="fa fa-trash"></i>
+                                           </button>
+                                           </p>
+                                       </div>
+                                   @endif
+
+                               </div>
+
+                               <span class="caption">
                                   <blockquote class="message">{{ $conversation->conversation }}</blockquote>
                                 </span>
                                 <br />
@@ -183,13 +196,13 @@
                                             <div class="col-md-8" >
                                                 <a href="{{ asset('/files/'.$file->file_name) }}" download="{{ $file->file_name }}"><i class="fa fa-paperclip"></i> {{ $file->file_name }} </a><br>
                                             </div>
-                                            @if(isAdmin(\Auth::user()))
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-danger btn-xs delete-file" title="Delete" data-id="{{ $file->id }}" data-url="{{ route('claimconversation.file.delete', ['id'=> $file->id]) }}" data-csrf="{{ csrf_token() }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            @endif
+{{--                                            @if(isAdmin(\Auth::user()))--}}
+{{--                                                <div class="col-md-4">--}}
+{{--                                                    <button class="btn btn-danger btn-xs delete-file" title="Delete" data-id="{{ $file->id }}" data-url="{{ route('claimconversation.file.delete', ['id'=> $file->id]) }}" data-csrf="{{ csrf_token() }}">--}}
+{{--                                                        <i class="fa fa-trash"></i>--}}
+{{--                                                    </button>--}}
+{{--                                                </div>--}}
+{{--                                            @endif--}}
                                         </div>
                                     @endforeach()
                                 @endif
@@ -508,6 +521,26 @@
                 }
                 return false;
             });
+
+            $('.delete-conversation').on('click', function(event) {
+                event.stopImmediatePropagation();
+                var modal = $("#modal-delete-file");
+                var url = $(this).data('url');
+                var id = $(this).data('id');
+                var csrf = $(this).data('csrf');
+                modal.modal('show');
+
+                $("#delete-confirm").unbind().on('click', function (e) {
+                    e.stopImmediatePropagation();
+                    sendAjax(url, {_token: csrf}, 'POST', function (result) {
+                        modal.modal('hide');
+                        if(result.success) {
+                            $("#conversation_"+id).hide('slow');
+                        }
+                    });
+                });
+            });
+
             $('.delete-file').on('click', function(event) {
                 event.stopImmediatePropagation();
                 var modal = $("#modal-delete-file");

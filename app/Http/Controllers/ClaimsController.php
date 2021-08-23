@@ -232,9 +232,24 @@ class ClaimsController extends Controller
         ];
     }
 
-    public function deleteConversationFile($id)
+    public function deleteConversation($id)
     {
         $response =  $this->claimConversation->delete($id);
+        if($response) {
+            return [
+                'status' => '200',
+                'success' => true
+            ];
+        }
+        return [
+            'status' => '200',
+            'success' => false
+        ];
+    }
+
+    public function deleteConversationFile($id)
+    {
+        $response =  $this->claimConversation->deleteFile($id);
         if($response) {
             return [
                 'status' => '200',

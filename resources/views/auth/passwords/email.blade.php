@@ -43,6 +43,13 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class=" col-md-offset-4 col-md-8 ">
+                                <a href="{{ url('login') }}">
+                                    Back to Login
+                                </a>
+                            </div>
+                        </div>
                     </form>
                     </ul>
 
