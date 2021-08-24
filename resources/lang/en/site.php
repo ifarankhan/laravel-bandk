@@ -75,6 +75,7 @@ return [
     'my_claims' => 'Skadeliste',
     'contact_bnk_admin' => 'Kontakt Bækmark & Kvist',
     'contact_bnk_admin_message' => 'For at få adgang hertil,  kontakt Bækmark & Kvist.',
+    'contact_bnk_password_reset_message' => 'Din adgangskode er blevet nulstillet!',
 
     'category_create_success_message' => 'Kategorien er oprettet/opdateret korrekt',
     'category_create_error_message' => 'Fejl ifm. oprettelsen/opdateringen.',
