@@ -332,7 +332,7 @@ class ClaimRepository implements ClaimInterface
             $images = $claim->images ? $claim->images : new Collection();
             Mail::send(['html' => $html], $data, function ($message) use ($toEMail, $subject, $images) {
 
-                $message->from('no_reply@bnk.com');
+                $message->from('no_reply@mail.insurance.bk-as.dk');
                 $message->to($toEMail);
                 $message->subject($subject);
 

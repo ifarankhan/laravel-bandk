@@ -80,7 +80,7 @@ class SendEmailToCustomerEmail extends Mailable
         Mail::send('emails.send_email_to_customer', $data, function ($message) use ($toEMail, $subject)
         {
 
-            $message->from('no_reply@bnk.com');
+            $message->from("no_reply@mail.insurance.bk-as.dk");
 
             $message->to($toEMail);
 
