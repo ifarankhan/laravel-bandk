@@ -37,7 +37,7 @@ class SendUpdatePasswordEmailMail extends Mailable
     public function build()
     {
         $subject = 'Bækmark & Kvists: Dit kodeord er opdateret';
-        return $this->from('no_reply@bnk.com')
+        return $this->from('no_reply@mail.insurance.bk-as.dk')
                     ->subject($subject)
                     ->with(
                         [
