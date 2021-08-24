@@ -64,6 +64,11 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xs-10 text-left zero-padding">
+                @if (session('status'))
+                    <p class="alert alert-success">{!! getTranslation('contact_bnk_password_reset_message') !!}</p>
+                @endif
+            </div>
         </div>
     </div>
 </div>
