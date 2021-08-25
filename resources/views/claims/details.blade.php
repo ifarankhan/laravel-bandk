@@ -118,21 +118,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-2"><strong>{{ getTranslation('description') }}:</strong></div>
+                        <div class="col-md-10 ">
+                           <span class="bg-white" style="display: inline-block">{{ $claim->description }} </span>
+                        </div>
+                    </div>
+
                     @if(isAdmin(\Auth::user()))
-                        <div class="row">
+                        <div class="row" style="margin-top: 15px;">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                                 <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
                             </div>
                         </div>
                     @endif
-
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>{{ getTranslation('description') }}:</strong> &nbsp;{{ $claim->description }}
-                        </div>
-                    </div>
                 </div>
             </div>
 
