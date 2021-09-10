@@ -47,34 +47,34 @@
                 <div class="row ribbon-content">
 
                     <div class="row">
-                        <div class="col-md-3"><strong>{{ getTranslation('customer_name') }}:</strong></div>
-                        <div class="col-md-3">{{ ($claim->customer) ?  $claim->customer->name : ''}}</div>
+                        <div class="col-md-2"><strong>{{ getTranslation('customer_name') }}:</strong></div>
+                        <div class="col-md-2 bg-white">{{ ($claim->customer) ?  $claim->customer->name : ''}}</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
 
                     <div class="row">
                         <div class="col-md-2"><strong>{{ getTranslation('claim_id') }}:</strong></div>
-                        <div class="col-md-2">{{ $claim->id }}</div>
+                        <div class="col-md-2 bg-white">{{ $claim->id }}</div>
                         <div class="col-md-2"><strong>{{ getTranslation('department') }}:</strong></div>
-                        <div class="col-md-2">{{ ($claim->department) ? $claim->department->name : ''}}</div>
+                        <div class="col-md-2 bg-white">{{ ($claim->department) ? $claim->department->name : ''}}</div>
                         <div class="col-md-2"><strong>{{ getTranslation('date') }}:</strong></div>
-                        <div class="col-md-2">{{ $claim->date }}</div>
+                        <div class="col-md-2 bg-white">{{ $claim->date }}</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
                     <div class="row">
                         <div class="col-md-4">&nbsp;</div>
                         <div class="col-md-2"><strong>{{ getTranslation('address_1') }}:</strong></div>
-                        <div class="col-md-2">{{ ($claim->address1)  ? $claim->address1->address : ''}}</div>
+                        <div class="col-md-2 bg-white">{{ ($claim->address1)  ? $claim->address1->address : ''}}</div>
                         <div class="col-md-2"><strong>{{ getTranslation('claim_type') }}:</strong></div>
-                        <div class="col-md-2">{{ ($claim->type) ? $claim->type->name : ''}}</div>
+                        <div class="col-md-2 bg-white">{{ ($claim->type) ? $claim->type->name : ''}}</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
                     <div class="row">
                         <div class="col-md-4"><strong>Selskab skade nummer:</strong></div>
                         <div class="col-md-2"><strong>{{ getTranslation('address_2') }}:</strong></div>
-                        <div class="col-md-2">{{ ($claim->address_2)  ? $claim->address_2 : ''}}</div>
+                        <div class="col-md-2 bg-white">{{ ($claim->address_2)  ? $claim->address_2 : ''}}</div>
                         <div class="col-md-2"><strong>{{ getTranslation('estimate') }}:</strong></div>
-                        <div class="col-md-2">{{ $claim->estimate }}</div>
+                        <div class="col-md-2 bg-white">{{ $claim->estimate }}</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
 
@@ -86,17 +86,17 @@
                             </div>
                         </div>
                         <div class="col-md-2"><strong>{{ getTranslation('customer_zip_code') }}:</strong></div>
-                        <div class="col-md-3">{{ ($claim->address1) ?  $claim->address1->zip_code : ''}}</div>
-                        <div class="col-md-3">&nbsp;</div>
+                        <div class="col-md-2 bg-white">{{ ($claim->address1) ?  $claim->address1->zip_code : ''}}</div>
+                        <div class="col-md-4">&nbsp;</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
 
                     <div class="row">
                         <div class="col-md-4">&nbsp;</div>
-                        <div class="col-md-2"><strong>{{ getTranslation('customer_city') }}:</strong></div>
-                        <div class="col-md-2">{{ ($claim->customer) ? $claim->customer->city : '' }}</div>
+                        <div class="col-md-2 "><strong>{{ getTranslation('customer_city') }}:</strong></div>
+                        <div class="col-md-2 bg-white">{{ ($claim->customer) ? $claim->customer->city : '' }}</div>
                         <div class="col-md-2"><strong>Anmelder:</strong></div>
-                        <div class="col-md-2">{{ ($claim->user) ? $claim->user->name. '&nbsp;('.$claim->user->email.')' : '' }}</div>
+                        <div class="col-md-2 bg-white">{{ ($claim->user) ? $claim->user->name. ' ('.$claim->user->email.')' : '' }}</div>
                     </div>
                     <hr style="border-top: 1px solid gray;"/>
 
@@ -118,21 +118,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-2"><strong>{{ getTranslation('description') }}:</strong></div>
+                        <div class="col-md-10 ">
+                           <span class="bg-white" style="display: inline-block">{{ $claim->description }} </span>
+                        </div>
+                    </div>
+
                     @if(isAdmin(\Auth::user()))
-                        <div class="row">
+                        <div class="row" style="margin-top: 15px;">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                                 <button class=" btn btn-{{ getClaimColor($claim) }} " type="submit">{{ getTranslation('submit') }}</button>
                             </div>
                         </div>
                     @endif
-
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>{{ getTranslation('description') }}:</strong> &nbsp;{{ $claim->description }}
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -288,6 +289,10 @@
     <link href="{{ asset('/admin/css/simpleLightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/admin/css/dropzone.css') }}" rel="stylesheet">
     <style>
+        .bg-grey-steel .bg-white{
+            border: 1px solid #ccc !important;
+            padding: 6px 12px;
+        }
         table {border:none;}
         hr.style-one {
             border: 0;
